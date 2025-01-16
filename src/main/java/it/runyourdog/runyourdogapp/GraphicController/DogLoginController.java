@@ -18,7 +18,15 @@ public class DogLoginController {
     private Button loginDogSitter;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     public void goToRegistrazione() throws IOException {
         singStage.cambiaScena("GUI/Registrazione.fxml");
+    }
+
+    @FXML
+    public void changeRole() throws IOException {
+        singStage.cambiaScena("GUI/Prelogin.fxml");
     }
 }

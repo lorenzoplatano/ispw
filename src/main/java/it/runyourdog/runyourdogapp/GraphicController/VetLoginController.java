@@ -18,7 +18,15 @@ public class VetLoginController {
     private Button loginVeterinario;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     public void goToRegistrazione() throws IOException {
         singStage.cambiaScena("GUI/Registrazione.fxml");
+    }
+
+    @FXML
+    public void changeRole() throws IOException {
+        singStage.cambiaScena("GUI/Prelogin.fxml");
     }
 }
