@@ -18,7 +18,16 @@ public class PadLoginController {
     private Button loginPadrone;
 
     @FXML
+    private Button backButton;
+
+
+    @FXML
     public void goToRegistrazione() throws IOException {
         singStage.cambiaScena("GUI/Registrazione.fxml");
+    }
+
+    @FXML
+    public void changeRole() throws IOException {
+        singStage.cambiaScena("GUI/PreLogin.fxml");
     }
 }
