@@ -12,4 +12,6 @@ module it.runyourdog.runyourdogapp {
 
     opens it.runyourdog.runyourdogapp to javafx.fxml;
     exports it.runyourdog.runyourdogapp;
+    exports it.runyourdog.runyourdogapp.GraphicController;
+    opens it.runyourdog.runyourdogapp.GraphicController to javafx.fxml;
 }
