@@ -15,7 +15,7 @@
    <children>
       <VBox layoutX="320.8" layoutY="275.0" prefHeight="283.0" prefWidth="584.0" style="-fx-background-color: b4b3b3; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: black;" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0">
          <children>
-            <Label alignment="CENTER" prefHeight="55.0" prefWidth="641.0" text="Compila i campi per effettuare il login come dogsitter">
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="641.0" text="Compila i campi per effettuare il login come padrone">
                <font>
                   <Font size="24.0" />
                </font>
@@ -68,7 +68,7 @@
             </AnchorPane>
          </children>
       </VBox>
-      <TextFlow layoutX="398.4" layoutY="196.0" prefHeight="53.0" prefWidth="403.0" textAlignment="CENTER" AnchorPane.leftAnchor="398.4" AnchorPane.rightAnchor="399.20000000000005">
+      <TextFlow layoutX="398.4" layoutY="197.0" prefHeight="53.0" prefWidth="403.0" textAlignment="CENTER" AnchorPane.leftAnchor="398.4" AnchorPane.rightAnchor="399.20000000000005">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="RUN " translateY="-14.0">
                <font>
