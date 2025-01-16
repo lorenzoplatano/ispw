@@ -30,16 +30,16 @@ public class PreloginController {
 
     @FXML
     public void goToPadLogin() throws IOException {
-        singStage.cambiaScena("GUI/Registrazione.fxml");
+        singStage.cambiaScena("GUI/PadLogin.fxml");
     }
 
     @FXML
     public void goToDogLogin() throws IOException {
-        singStage.cambiaScena("GUI/Registrazione.fxml");
+        singStage.cambiaScena("GUI/DogLogin.fxml");
     }
 
     @FXML
     public void goToVetLogin() throws IOException {
-        singStage.cambiaScena("GUI/Registrazione.fxml");
+        singStage.cambiaScena("GUI/VetLogin.fxml");
     }
 }

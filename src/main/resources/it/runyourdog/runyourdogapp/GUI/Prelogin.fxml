@@ -29,17 +29,17 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button fx:id="padroneButton" layoutX="40.0" layoutY="142.0" mnemonicParsing="false" prefHeight="169.0" prefWidth="199.0" style="-fx-background-color: E1A15C; -fx-cursor: HAND; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="PADRONE" textAlignment="CENTER" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="553.0" AnchorPane.topAnchor="80.0">
+            <Button fx:id="padroneButton" layoutX="40.0" layoutY="142.0" mnemonicParsing="false" onMouseClicked="#goToPadLogin" prefHeight="169.0" prefWidth="199.0" style="-fx-background-color: E1A15C; -fx-cursor: HAND; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="PADRONE" textAlignment="CENTER" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="553.0" AnchorPane.topAnchor="80.0">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="dogsitterButton" layoutX="302.0" layoutY="81.0" mnemonicParsing="false" prefHeight="169.0" prefWidth="199.0" style="-fx-background-color: E1A15C; -fx-cursor: HAND; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="DOGSITTER" textAlignment="CENTER">
+            <Button fx:id="dogsitterButton" layoutX="302.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#goToDogLogin" prefHeight="169.0" prefWidth="199.0" style="-fx-background-color: E1A15C; -fx-cursor: HAND; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="DOGSITTER" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="veterinarioButton" layoutX="551.0" layoutY="81.0" mnemonicParsing="false" prefHeight="169.0" prefWidth="199.0" style="-fx-background-color: E1A15C; -fx-cursor: HAND; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="VETERINARIO" textAlignment="CENTER" AnchorPane.leftAnchor="553.0" AnchorPane.rightAnchor="49.0">
+            <Button fx:id="veterinarioButton" layoutX="551.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#goToVetLogin" prefHeight="169.0" prefWidth="199.0" style="-fx-background-color: E1A15C; -fx-cursor: HAND; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="VETERINARIO" textAlignment="CENTER" AnchorPane.leftAnchor="553.0" AnchorPane.rightAnchor="49.0">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
