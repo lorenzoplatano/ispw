@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.GraphicController;
 import it.runyourdog.runyourdogapp.AppController.LoginController;
 import it.runyourdog.runyourdogapp.Beans.LoginBean;
 import it.runyourdog.runyourdogapp.Beans.UserBean;
+import it.runyourdog.runyourdogapp.Exceptions.DAOException;
 import it.runyourdog.runyourdogapp.Utils.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -52,9 +53,10 @@ public class PadLoginController{
                 default -> throw new CredentialException();
             }
 
-        }catch(CredentialException | IOException e) {
+        }catch(CredentialException | IOException | DAOException e) {
             System.out.println(e.getMessage());
         }
+
     }
 
 }

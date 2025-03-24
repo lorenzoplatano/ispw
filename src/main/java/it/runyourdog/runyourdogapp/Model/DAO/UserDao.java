@@ -1,0 +1,46 @@
+package it.runyourdog.runyourdogapp.Model.DAO;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Types;
+
+import it.runyourdog.runyourdogapp.Exceptions.ConnectionException;
+import it.runyourdog.runyourdogapp.Exceptions.DAOException;
+import it.runyourdog.runyourdogapp.Model.Entities.User;
+import it.runyourdog.runyourdogapp.Utils.Enum.Role;
+
+public class UserDao {
+
+    private final Connection conn;
+    private CallableStatement cs;
+
+    public UserDao() throws DAOException{
+        try {
+            this.conn = ConnectionManager.getConnection();
+        }catch(ConnectionException e){
+            throw new DAOException(e.getMessage());
+        }
+    }
+    public User loginProcedure(User user) throws DAOException {
+        int role;
+        String username;
+        try{
+
+            this.cs = this.conn.prepareCall("{call login(?,?,?,?)}");
+            this.cs.setString(1, user.getEmail());
+            this.cs.setString(2, user.getPassword());
+            this.cs.registerOutParameter(3, Types.NUMERIC);
+            this.cs.registerOutParameter(4, Types.VARCHAR);
+            this.cs.executeQuery();
+            role = this.cs.getInt(3);
+            username = this.cs.getString(4);
+
+        } catch(SQLException e) {
+            throw new DAOException(e.getMessage());
+        }
+        user.setUsername(username);
+        user.setRole(Role.fromInt(role));
+        return user;
+    }
+}

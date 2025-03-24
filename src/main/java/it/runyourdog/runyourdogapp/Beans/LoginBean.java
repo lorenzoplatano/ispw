@@ -1,27 +1,43 @@
 package it.runyourdog.runyourdogapp.Beans;
 
+import javax.security.auth.login.CredentialException;
+
 public class LoginBean {
-    String username;
-    String password;
-
-    public LoginBean(String username, String password) {
-        this.username = username;
-        this.password = password;
+    private String email;
+    private String password;
+    public LoginBean(String email, String password) throws CredentialException{
+        setEmail(email);
+        setPassword(password);
     }
 
-    public String getUsername() {
-        return username;
+    public void setEmail(String email) throws CredentialException {
+        if(this.isValidEmail(email)) {
+            this.email = email;
+        }else {
+            throw new CredentialException();
+        }
+    }
+    public void setPassword(String password) throws CredentialException{
+        if(this.isValidPassword(password)) {
+            this.password = password;
+        }else{
+            throw new CredentialException();
+        }
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getEmail() {
+        return this.email;
     }
 
-    public String getPassword() {
-        return password;
+
+    public String getPassword(){
+        return this.password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    private boolean isValidEmail(String email){
+        return email != null;
+    }
+    private boolean isValidPassword(String password){
+        return password != null;
     }
 }

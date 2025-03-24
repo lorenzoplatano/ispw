@@ -13,6 +13,12 @@ public class UserBean {
     private String password;
     private Role role;
 
+    public UserBean(String username, String email, String password, Role role) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public void setUsername(String username) throws CredentialException {
         if(username != null) {

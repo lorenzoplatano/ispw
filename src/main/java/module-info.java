@@ -10,6 +10,7 @@ module it.runyourdog.runyourdogapp {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.management;
+    requires java.sql;
 
     opens it.runyourdog.runyourdogapp to javafx.fxml;
     exports it.runyourdog.runyourdogapp;
