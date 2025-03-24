@@ -9,6 +9,7 @@ module it.runyourdog.runyourdogapp {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.management;
 
     opens it.runyourdog.runyourdogapp to javafx.fxml;
     exports it.runyourdog.runyourdogapp;
