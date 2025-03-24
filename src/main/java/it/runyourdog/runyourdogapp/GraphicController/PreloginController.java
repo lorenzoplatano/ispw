@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp.GraphicController;
 
-import it.runyourdog.runyourdogapp.SingletonStage;
+import it.runyourdog.runyourdogapp.Utils.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
@@ -12,34 +12,22 @@ public class PreloginController {
     SingletonStage singStage=SingletonStage.getStage(null);
 
     @FXML
-    private Text registratiLink;
-
-    @FXML
-    private Button padroneButton;
-
-    @FXML
-    private Button dogsitterButton;
-
-    @FXML
-    private Button veterinarioButton;
-
-    @FXML
     public void goToRegister() throws IOException {
-        singStage.cambiaScena("GUI/Registrazione.fxml");
+        singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
     }
 
     @FXML
     public void goToPadLogin() throws IOException {
-        singStage.cambiaScena("GUI/PadLogin.fxml");
+        singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/PadLogin.fxml");
     }
 
     @FXML
     public void goToDogLogin() throws IOException {
-        singStage.cambiaScena("GUI/DogLogin.fxml");
+        singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/DogLogin.fxml");
     }
 
     @FXML
     public void goToVetLogin() throws IOException {
-        singStage.cambiaScena("GUI/VetLogin.fxml");
+        singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/VetLogin.fxml");
     }
 }

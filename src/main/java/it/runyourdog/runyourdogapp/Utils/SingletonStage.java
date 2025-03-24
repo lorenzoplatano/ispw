@@ -1,4 +1,4 @@
-package it.runyourdog.runyourdogapp;
+package it.runyourdog.runyourdogapp.Utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
