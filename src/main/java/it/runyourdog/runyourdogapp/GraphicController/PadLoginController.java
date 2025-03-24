@@ -5,7 +5,6 @@ import it.runyourdog.runyourdogapp.Beans.LoginBean;
 import it.runyourdog.runyourdogapp.Beans.UserBean;
 import it.runyourdog.runyourdogapp.Utils.*;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -13,9 +12,12 @@ import javafx.scene.control.TextField;
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
 
-public class PadLoginController {
+import static it.runyourdog.runyourdogapp.Utils.SingletonStage.getStage;
 
-    SingletonStage singStage=SingletonStage.getStage(null);
+
+public class PadLoginController{
+
+    SingletonStage singStage = getStage(null);
 
     @FXML
     private TextField username;
@@ -44,13 +46,15 @@ public class PadLoginController {
             UserBean loggedUser = controller.authenticate(credentials);
 
             switch(loggedUser.getRole()){
-                case MANAGER -> this.getScenePlayer().showEmployeeListPage("GUI/EmployeeListPage.fxml", loggedUser);
-                case EMPLOYEE -> this.getScenePlayer().showValidationViewPage("GUI/ValidationViewPage.fxml", loggedUser);
+                case PADRONE ->  singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
+                case VETERINARIO -> this.getScenePlayer().showValidationViewPage("GUI/ValidationViewPage.fxml", loggedUser);
+                case DOGSITTER -> this.getScenePlayer().showValidationViewPage("GUI/ValidationViewPage.fxml", loggedUser);
                 default -> throw new CredentialException();
             }
 
         }catch(CredentialException e) {
-            this.showError(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
+
 }

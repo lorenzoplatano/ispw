@@ -1,6 +1,8 @@
 package it.runyourdog.runyourdogapp.Beans;
 
-import javax.management.relation.Role;
+
+import it.runyourdog.runyourdogapp.Utils.Enum.Role;
+
 import javax.security.auth.login.CredentialException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

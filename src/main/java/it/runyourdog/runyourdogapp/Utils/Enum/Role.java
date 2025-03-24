@@ -4,7 +4,7 @@ public enum Role {
 
     PADRONE(1),
     VETERINARIO(2),
-    DOGISTTER(3);
+    DOGSITTER(3);
 
     private final int id;
 
