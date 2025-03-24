@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import it.runyourdog.runyourdogapp.Exceptions.ConnectionException;
 import it.runyourdog.runyourdogapp.Exceptions.DAOException;
 import it.runyourdog.runyourdogapp.Model.Entities.User;
 import it.runyourdog.runyourdogapp.Utils.Enum.Role;
@@ -15,13 +14,10 @@ public class UserDao {
     private final Connection conn;
     private CallableStatement cs;
 
-    public UserDao() throws DAOException{
-        try {
-            this.conn = ConnectionManager.getConnection();
-        }catch(ConnectionException e){
-            throw new DAOException(e.getMessage());
-        }
+    public UserDao() {
+        this.conn = ConnectionManager.getInstance().getDBConnection();
     }
+
     public User loginProcedure(User user) throws DAOException {
         int role;
         String username;

@@ -54,7 +54,7 @@ public class PadLoginController{
             }
 
         }catch(CredentialException | IOException | DAOException e) {
-            System.out.println(e.getMessage());
+            System.out.println("ciao"+e.getMessage());
         }
 
     }

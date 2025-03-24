@@ -1,8 +1,5 @@
 package it.runyourdog.runyourdogapp.Model.DAO;
 
-import it.runyourdog.runyourdogapp.Exceptions.ConnectionException;
-
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -11,30 +8,59 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectionManager {
-    private static Connection connection;
-    private static final String PATH = "/src/main/resources/prop/db.properties";
+
+
+    private String jdbc;
+    private String user;
+    private String password;
+    private static ConnectionManager instance = null;
+    private Connection conn;
+    private static final String PATH = "src/main/resources/prop/db.properties";
+
     private ConnectionManager() {}
 
-    static {
+    /** Singleton */
+    public static ConnectionManager getInstance() {
+        if (instance == null) {
+            instance = new ConnectionManager();
+        }
+        return instance;
+    }
 
-        try (InputStream input = new FileInputStream(PATH)) {
-            Properties properties = new Properties();
-            properties.load(input);
+    public Connection getDBConnection() {
+        if (this.conn == null) {
+            getInfo();
 
-            String connection_url = properties.getProperty("CONNECTION_URL");
-            String user = properties.getProperty("CONNECTION_USER");
-            String pass = properties.getProperty("CONNECTION_PASS");
+            try{
+                this.conn = DriverManager.getConnection(jdbc, user, password);
+            } catch (SQLException e){
+                System.out.println(String.format("Error in ConnectionManager.java %s", e.getMessage()));
+            }
 
-            connection = DriverManager.getConnection(connection_url, user, pass);
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
+        }
+        return this.conn;
+    }
+
+
+    private void getInfo() {
+        try {
+
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db.properties");
+            if (inputStream == null) {
+                throw new IOException("File not found: prop/db.properties");
+            }
+            Properties prop = new Properties();
+            prop.load(inputStream);
+
+            jdbc = prop.getProperty("JDBC_URL");
+            user = prop.getProperty("USER");
+            password = prop.getProperty("PASSWORD");
+
+
+        } catch (IOException e){
+            System.out.println(e.getMessage());
         }
     }
-
-    public static Connection getConnection() throws ConnectionException {
-        return connection;
-    }
-
 
 
 }
