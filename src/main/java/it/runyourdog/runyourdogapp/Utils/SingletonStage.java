@@ -1,6 +1,8 @@
 package it.runyourdog.runyourdogapp.Utils;
 
+import it.runyourdog.runyourdogapp.Beans.UserBean;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -28,4 +30,28 @@ public class SingletonStage {
         Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setScene(scene);
     }
+
+    public void showPadroneHomePage(String fxmlPath, UserBean loggedUser) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        instance.stage.setScene(scene);
+    }
+
+    public void showVeterinarioHomePage(String fxmlPath, UserBean loggedUser) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        instance.stage.setScene(scene);
+    }
+
+    public void showDogsitterHomePage(String fxmlPath, UserBean loggedUser) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        instance.stage.setScene(scene);
+    }
+
+
+
 }

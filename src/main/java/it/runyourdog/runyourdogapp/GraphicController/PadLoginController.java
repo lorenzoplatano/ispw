@@ -46,13 +46,13 @@ public class PadLoginController{
             UserBean loggedUser = controller.authenticate(credentials);
 
             switch(loggedUser.getRole()){
-                case PADRONE ->  singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
-                case VETERINARIO -> this.getScenePlayer().showValidationViewPage("GUI/ValidationViewPage.fxml", loggedUser);
-                case DOGSITTER -> this.getScenePlayer().showValidationViewPage("GUI/ValidationViewPage.fxml", loggedUser);
+                case PADRONE ->  singStage.showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml",loggedUser);
+                case VETERINARIO -> singStage.showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml",loggedUser);
+                case DOGSITTER -> singStage.showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml",loggedUser);
                 default -> throw new CredentialException();
             }
 
-        }catch(CredentialException e) {
+        }catch(CredentialException | IOException e) {
             System.out.println(e.getMessage());
         }
     }
