@@ -24,7 +24,7 @@ public class PadLoginController{
     private TextField username;
 
     @FXML
-    private PasswordField password;
+    private TextField password;
 
     @FXML
     public void goToRegistrazione() throws IOException {

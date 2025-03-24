@@ -22,7 +22,7 @@
             </Label>
             <VBox prefHeight="70.0" prefWidth="576.0">
                <children>
-                  <Label text="Username" translateY="3.0">
+                  <Label text="Email" translateY="3.0">
                      <font>
                         <Font size="18.0" />
                      </font>
