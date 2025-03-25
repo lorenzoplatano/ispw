@@ -15,7 +15,6 @@ public class ConnectionManager {
     private String password;
     private static ConnectionManager instance = null;
     private Connection conn;
-    private static final String PATH = "src/main/resources/prop/db.properties";
 
     private ConnectionManager() {}
 
