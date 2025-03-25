@@ -30,7 +30,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="username" style="-fx-border-color: CC6C25;">
+                  <TextField fx:id="email" style="-fx-border-color: CC6C25;">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>

@@ -5,8 +5,9 @@ import it.runyourdog.runyourdogapp.Beans.LoginBean;
 import it.runyourdog.runyourdogapp.Beans.UserBean;
 import it.runyourdog.runyourdogapp.Exceptions.DAOException;
 import it.runyourdog.runyourdogapp.Utils.*;
+import it.runyourdog.runyourdogapp.Utils.Enum.Role;
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
+
 import javafx.scene.control.TextField;
 
 
@@ -21,7 +22,7 @@ public class PadLoginController{
     SingletonStage singStage = getStage(null);
 
     @FXML
-    private TextField username;
+    private TextField email;
 
     @FXML
     private TextField password;
@@ -38,7 +39,7 @@ public class PadLoginController{
 
     @FXML
     public void onPadLoginClick()  {
-        String email = this.username.getText().trim();
+        String email = this.email.getText().trim();
         String pass = this.password.getText().trim();
 
         LoginController controller=new LoginController();
@@ -46,15 +47,14 @@ public class PadLoginController{
             LoginBean credentials = new LoginBean(email, pass);
             UserBean loggedUser = controller.authenticate(credentials);
 
-            switch(loggedUser.getRole()){
-                case PADRONE ->  singStage.showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml",loggedUser);
-                case VETERINARIO -> singStage.showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml",loggedUser);
-                case DOGSITTER -> singStage.showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml",loggedUser);
-                default -> throw new CredentialException();
+            if (loggedUser.getRole() != Role.PADRONE) {
+                throw new CredentialException("Accesso negato: solo i padroni possono effettuare il login.");
             }
 
-        }catch(CredentialException | IOException | DAOException e) {
-            System.out.println("ciao"+e.getMessage());
+            singStage.showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml", loggedUser);
+
+        } catch (CredentialException | IOException | DAOException e) {
+            System.out.println("Errore: " + e.getMessage());
         }
 
     }
