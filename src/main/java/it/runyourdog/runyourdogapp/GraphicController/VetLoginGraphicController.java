@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
 
-public class VetLoginController {
+public class VetLoginGraphicController {
 
     SingletonStage singStage=SingletonStage.getStage(null);
 

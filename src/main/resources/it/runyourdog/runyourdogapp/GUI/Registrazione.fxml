@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: E8E8E8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.GraphicController.RegistrazioneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: E8E8E8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.GraphicController.RegistrazioneGraphicController">
    <children>
       <TextFlow layoutX="412.0" layoutY="35.0" prefHeight="90.0" prefWidth="369.0" AnchorPane.leftAnchor="412.0" AnchorPane.rightAnchor="412.0">
          <children>

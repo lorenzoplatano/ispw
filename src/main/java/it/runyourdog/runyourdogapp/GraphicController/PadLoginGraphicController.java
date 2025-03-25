@@ -17,7 +17,7 @@ import java.io.IOException;
 import static it.runyourdog.runyourdogapp.Utils.SingletonStage.getStage;
 
 
-public class PadLoginController{
+public class PadLoginGraphicController {
 
     SingletonStage singStage = getStage(null);
 
