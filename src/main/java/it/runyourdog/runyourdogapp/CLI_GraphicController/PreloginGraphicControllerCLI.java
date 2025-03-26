@@ -2,9 +2,8 @@ package it.runyourdog.runyourdogapp.CLI_GraphicController;
 
 import it.runyourdog.runyourdogapp.Exceptions.InvalidInputException;
 
-import java.util.Scanner;
 
-public class PreloginGraphicControllerCLI {
+public class PreloginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
     public void start(){
         this.showMenu();
@@ -42,23 +41,4 @@ public class PreloginGraphicControllerCLI {
         }
     }
 
-    public void showAppName() {
-        System.out.println("*---- RUNYOURDOG APP ----*");
-    }
-
-    public int getChoice(int start, int end) {
-        Scanner scanner = new Scanner(System.in);
-        int choice = 0;
-
-        while(true) {
-            System.out.println("Inserisci la tua scelta: ");
-            choice = scanner.nextInt();
-            if(choice >= start && choice <= end) {
-                break;
-            }else {
-                System.out.println("Invalid choice");
-            }
-        }
-        return choice;
-    }
 }
