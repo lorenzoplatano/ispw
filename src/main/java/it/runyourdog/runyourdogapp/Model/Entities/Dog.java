@@ -12,6 +12,15 @@ public class Dog {
     private Date dataNascita;
     private ArrayList<String> vaccinazioni;
 
+    public Dog(String nome, String sesso, String razza, String microchip, Date dataNascita, ArrayList<String> vaccinazioni) {
+        this.nome = nome;
+        this.sesso = sesso;
+        this.razza = razza;
+        this.microchip = microchip;
+        this.dataNascita = dataNascita;
+        this.vaccinazioni = vaccinazioni;
+    }
+
     public String getNome() {
         return nome;
     }

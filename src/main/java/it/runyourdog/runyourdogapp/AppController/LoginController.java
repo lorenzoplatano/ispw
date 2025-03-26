@@ -58,8 +58,13 @@ public class LoginController {
         PadroneDao daoPad = new PadroneDao();
         PadroneDao daoDog = new PadroneDao();
 
-        pad = daoPad.padInfo(pad);
-        dog = daoDog.dogInfo(pad);
+        try {
+            pad = daoPad.padInfo(pad);
+            dog = daoDog.dogInfo(pad);
+        } catch (DAOException e) {
+            throw new RuntimeException(e);
+        }
+
 
         nomeCane = dog.getNome();
         sessoCane = dog.getSesso();
