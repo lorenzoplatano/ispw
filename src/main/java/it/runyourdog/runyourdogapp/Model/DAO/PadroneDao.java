@@ -36,7 +36,6 @@ public class PadroneDao {
                     nome = rs.getString(3);
                     telefono = rs.getInt(4);
                     indirizzo = rs.getString(5);
-                    System.out.println(nome+indirizzo);
                 }
             }
         } catch(SQLException e) {

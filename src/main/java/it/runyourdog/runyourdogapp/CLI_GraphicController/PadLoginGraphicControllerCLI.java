@@ -77,15 +77,12 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
                     throw new CredentialException("Accesso negato: solo i padroni possono effettuare il login.");
                 }
 
-                break;
+                new ProfiloPadroneGraphicControllerCLI(loggedUser).start();
 
             } catch (IOException | DAOException | CredentialException e) {
                 System.out.println("Errore: " + e.getMessage());
                 System.exit(-1);
             }
         }
-
-        new ProfiloPadroneGraphicControllerCLI().start();
-
     }
 }

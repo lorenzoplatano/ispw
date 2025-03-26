@@ -1,10 +1,23 @@
 package it.runyourdog.runyourdogapp.CLI_GraphicController;
 
+import it.runyourdog.runyourdogapp.Beans.UserBean;
+
 import java.util.Scanner;
 
-public class GenericGraphicControllerCLI {
+public abstract class GenericGraphicControllerCLI {
+
+    private UserBean loggedUser;
+
+    public void setLoggedUser(UserBean loggedUser) {
+        this.loggedUser = loggedUser;
+    }
+
+    public UserBean getLoggedUser() {
+        return this.loggedUser;
+    }
+
     public void showAppName() {
-        System.out.println("*---- RUNYOURDOG APP ----*");
+        System.out.println("\n*---- RUNYOURDOG APP ----*");
     }
 
     public int getChoice(int start, int end) {
