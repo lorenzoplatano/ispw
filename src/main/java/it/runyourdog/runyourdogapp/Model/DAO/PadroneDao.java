@@ -36,12 +36,13 @@ public class PadroneDao {
                     nome = rs.getString(3);
                     telefono = rs.getInt(4);
                     indirizzo = rs.getString(5);
-
+                    System.out.println(nome+indirizzo);
                 }
             }
         } catch(SQLException e) {
             throw new DAOException(e.getMessage());
         }
+
 
         pad.setNome(nome);
         pad.setTelefono(String.valueOf(telefono));
@@ -49,7 +50,7 @@ public class PadroneDao {
         return pad;
     }
 
-    public Dog dogInfo(Padrone pad) throws DAOException{
+    public Dog dogInfo(Padrone pad) throws DAOException {
         String nome = null;
         String sesso = null;
         String razza = null;
@@ -57,30 +58,32 @@ public class PadroneDao {
         Date dataNascita = null;
         ArrayList<String> vaccinazioni = new ArrayList<>();
 
-        try{
-
-            this.cs = this.conn.prepareCall("{call GetCaneData(?,?)}");
+        try {
+            this.cs = this.conn.prepareCall("{call getCaneData(?,?)}");
             this.cs.setString(1, pad.getEmail());
             this.cs.setString(2, pad.getPassword());
             boolean status = cs.execute();
-            if(status) {
+
+            if (status) {
                 ResultSet rs = cs.getResultSet();
-                nome = rs.getString(1);
-                sesso = rs.getString(2);
-                razza = rs.getString(3);
-                dataNascita = rs.getDate(4);
-                microchip = rs.getString(5);
 
-                do {
-                    vaccinazioni.add(rs.getString(6));
+                if (rs.next()) {
+                    nome = rs.getString(1);
+                    sesso = rs.getString(2);
+                    razza = rs.getString(3);
+                    dataNascita = rs.getDate(4);
+                    microchip = rs.getString(5);
 
-                } while (rs.next());
+                    do {
+                        vaccinazioni.add(rs.getString(6));
+                    } while (rs.next());
+                }
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new DAOException(e.getMessage());
         }
 
         return new Dog(nome, sesso, razza, microchip, dataNascita, vaccinazioni);
-
     }
+
 }

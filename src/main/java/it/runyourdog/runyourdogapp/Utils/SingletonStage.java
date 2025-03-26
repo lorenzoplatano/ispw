@@ -2,6 +2,7 @@ package it.runyourdog.runyourdogapp.Utils;
 
 import it.runyourdog.runyourdogapp.Beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.Beans.UserBean;
+import it.runyourdog.runyourdogapp.GraphicController.ProfiloPadroneGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,6 +36,8 @@ public class SingletonStage {
     public void showPadroneHomePage(String fxmlPath, ProfiloPadroneBean loggedPad) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
         Parent root = fxmlLoader.load();
+        ProfiloPadroneGraphicController controller = fxmlLoader.getController();
+        controller.populate(loggedPad);
         Scene scene = new Scene(root);
         instance.stage.setScene(scene);
     }

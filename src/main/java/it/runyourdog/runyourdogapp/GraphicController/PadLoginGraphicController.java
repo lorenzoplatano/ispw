@@ -53,7 +53,7 @@ public class PadLoginGraphicController {
             }
 
             ProfiloPadroneBean loggedPad = controller.getPadProfileInfo(loggedUser);
-            singStage.showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml", loggedPad);
+            singStage.showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", loggedPad);
 
         } catch (CredentialException | IOException | DAOException e) {
             System.out.println("Errore: " + e.getMessage());
