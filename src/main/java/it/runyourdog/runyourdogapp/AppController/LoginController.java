@@ -2,12 +2,12 @@ package it.runyourdog.runyourdogapp.AppController;
 
 import it.runyourdog.runyourdogapp.Beans.LoginBean;
 import it.runyourdog.runyourdogapp.Beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.Beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.Beans.UserBean;
 import it.runyourdog.runyourdogapp.Exceptions.DAOException;
 import it.runyourdog.runyourdogapp.Model.DAO.UserDao;
-import it.runyourdog.runyourdogapp.Model.Entities.Dog;
-import it.runyourdog.runyourdogapp.Model.Entities.Padrone;
-import it.runyourdog.runyourdogapp.Model.Entities.User;
+import it.runyourdog.runyourdogapp.Model.DAO.VeterinarioDao;
+import it.runyourdog.runyourdogapp.Model.Entities.*;
 import it.runyourdog.runyourdogapp.Utils.Enum.Role;
 import it.runyourdog.runyourdogapp.Model.DAO.PadroneDao;
 
@@ -77,5 +77,40 @@ public class LoginController {
         indirizzoPadrone = pad.getIndirizzo();
 
         return new ProfiloPadroneBean(nomeCane, sessoCane, razzaCane, microchip, dataNascitaCane, vaccinazioniCane, nomePadrone, telefonoPadrone, indirizzoPadrone);
+    }
+
+    public ProfiloVeterinarioBean getVetProfileInfo(UserBean loggedUser) {
+
+        String email = loggedUser.getEmail();
+        String password = loggedUser.getPassword();
+
+        String nome;
+        String genere;
+        Integer eta;
+        String citta;
+        String indirizzo;
+        String telefono;
+        ArrayList<Orario> orari;
+
+        Veterinario vet = new Veterinario(email, password);
+
+        VeterinarioDao daoVet = new VeterinarioDao();
+
+        try {
+            vet = daoVet.vetInfo(vet);
+        } catch (DAOException e) {
+            throw new RuntimeException(e);
+        }
+
+        nome= vet.getNome();
+        genere= vet.getGenere();
+        eta= vet.getEta();
+        citta= vet.getCitta();
+        indirizzo= vet.getIndirizzo();
+        telefono= vet.getTelefono();
+
+
+
+
     }
 }

@@ -2,6 +2,8 @@ package it.runyourdog.runyourdogapp.GraphicController;
 
 import it.runyourdog.runyourdogapp.AppController.LoginController;
 import it.runyourdog.runyourdogapp.Beans.LoginBean;
+import it.runyourdog.runyourdogapp.Beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.Beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.Beans.UserBean;
 import it.runyourdog.runyourdogapp.Exceptions.DAOException;
 import it.runyourdog.runyourdogapp.Utils.*;
@@ -49,6 +51,7 @@ public class VetLoginGraphicController {
                 throw new CredentialException("Accesso negato: solo i veterinari possono effettuare il login.");
             }
 
+            ProfiloVeterinarioBean loggedPad = controller.getVetProfileInfo(loggedUser);
             singStage.showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml", loggedUser);
 
         } catch (CredentialException | IOException | DAOException e) {
