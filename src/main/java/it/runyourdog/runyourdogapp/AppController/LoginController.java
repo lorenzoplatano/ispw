@@ -1,13 +1,19 @@
 package it.runyourdog.runyourdogapp.AppController;
 
 import it.runyourdog.runyourdogapp.Beans.LoginBean;
+import it.runyourdog.runyourdogapp.Beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.Beans.UserBean;
 import it.runyourdog.runyourdogapp.Exceptions.DAOException;
 import it.runyourdog.runyourdogapp.Model.DAO.UserDao;
+import it.runyourdog.runyourdogapp.Model.Entities.Dog;
+import it.runyourdog.runyourdogapp.Model.Entities.Padrone;
 import it.runyourdog.runyourdogapp.Model.Entities.User;
 import it.runyourdog.runyourdogapp.Utils.Enum.Role;
+import it.runyourdog.runyourdogapp.Model.DAO.PadroneDao;
 
 import javax.security.auth.login.CredentialException;
+import java.sql.Date;
+import java.util.ArrayList;
 
 
 public class LoginController {
@@ -30,5 +36,41 @@ public class LoginController {
 
         return new UserBean(username, email, password, role);
 
+    }
+
+    public ProfiloPadroneBean getPadProfileInfo(UserBean loggedUser) {
+        String email = loggedUser.getEmail();
+        String password = loggedUser.getPassword();
+
+        String nomeCane;
+        String sessoCane;
+        String razzaCane;
+        String microchip;
+        Date dataNascitaCane;
+        ArrayList<String> vaccinazioniCane;
+        String nomePadrone;
+        String telefonoPadrone;
+        String indirizzoPadrone;
+
+        Padrone pad = new Padrone(email, password);
+        Dog dog;
+
+        PadroneDao daoPad = new PadroneDao();
+        PadroneDao daoDog = new PadroneDao();
+
+        pad = daoPad.padInfo(pad);
+        dog = daoDog.dogInfo(pad);
+
+        nomeCane = dog.getNome();
+        sessoCane = dog.getSesso();
+        razzaCane = dog.getRazza();
+        microchip = dog.getMicrochip();
+        dataNascitaCane = dog.getDataNascita();
+        vaccinazioniCane = dog.getVaccinazioni();
+        nomePadrone = pad.getNome();
+        telefonoPadrone = pad.getTelefono();
+        indirizzoPadrone = pad.getIndirizzo();
+
+        return new ProfiloPadroneBean(nomeCane, sessoCane, razzaCane, microchip, dataNascitaCane, vaccinazioniCane, nomePadrone, telefonoPadrone, indirizzoPadrone);
     }
 }

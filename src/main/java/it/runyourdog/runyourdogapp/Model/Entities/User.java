@@ -6,19 +6,11 @@ public class User {
     private String username;
     private String email;
     private String password;
-
     private Role role;
-
-    private int managerID;
-
 
     public User(String email, String password){
         this.setEmail(email);
         this.setPassword(password);
-    }
-
-    public User(String email){
-        this.setEmail(email);
     }
 
     public void setUsername(String username) {
@@ -36,8 +28,6 @@ public class User {
     public void setRole(Role role){
         this.role = role;
     }
-
-
 
     public String getUsername() {
         return this.username;

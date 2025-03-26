@@ -2,6 +2,7 @@ package it.runyourdog.runyourdogapp.GraphicController;
 
 import it.runyourdog.runyourdogapp.AppController.LoginController;
 import it.runyourdog.runyourdogapp.Beans.LoginBean;
+import it.runyourdog.runyourdogapp.Beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.Beans.UserBean;
 import it.runyourdog.runyourdogapp.Exceptions.DAOException;
 import it.runyourdog.runyourdogapp.Utils.*;
@@ -51,7 +52,8 @@ public class PadLoginGraphicController {
                 throw new CredentialException("Accesso negato: solo i padroni possono effettuare il login.");
             }
 
-            singStage.showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml", loggedUser);
+            ProfiloPadroneBean loggedPad = controller.getPadProfileInfo(loggedUser);
+            singStage.showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml", loggedPad);
 
         } catch (CredentialException | IOException | DAOException e) {
             System.out.println("Errore: " + e.getMessage());
