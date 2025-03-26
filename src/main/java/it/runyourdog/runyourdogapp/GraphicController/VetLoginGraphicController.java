@@ -51,8 +51,8 @@ public class VetLoginGraphicController {
                 throw new CredentialException("Accesso negato: solo i veterinari possono effettuare il login.");
             }
 
-            ProfiloVeterinarioBean loggedPad = controller.getVetProfileInfo(loggedUser);
-            singStage.showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml", loggedUser);
+            ProfiloVeterinarioBean loggedVet = controller.getVetProfileInfo(loggedUser);
+            singStage.showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml", loggedVet);
 
         } catch (CredentialException | IOException | DAOException e) {
             System.out.println("Errore: " + e.getMessage());

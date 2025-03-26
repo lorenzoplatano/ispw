@@ -59,7 +59,7 @@ public class VeterinarioDao {
     }
 
     public ArrayList<Orario> vetOrari(Veterinario vet) throws DAOException {
-        Date giorno = null;
+        String giorno = null;
         Time inizio = null;
         Time fine = null;
 
@@ -75,12 +75,13 @@ public class VeterinarioDao {
                 ResultSet rs = cs.getResultSet();
                 while(rs.next())
                 {
-                    giorno = rs.getDate(1);
+                    giorno = rs.getString(1);
                     inizio = rs.getTime(2);
                     fine = rs.getTime(3);
+
+                    Orario o = new Orario(giorno, inizio, fine);
+                    orari.add(o);
                 }
-                Orario o = new Orario(giorno, inizio, fine);
-                orari.add(o);
             }
         } catch (SQLException e) {
             throw new DAOException(e.getMessage());

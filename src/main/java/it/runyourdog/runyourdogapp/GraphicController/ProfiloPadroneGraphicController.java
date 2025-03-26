@@ -10,8 +10,6 @@ import static it.runyourdog.runyourdogapp.Utils.SingletonStage.getStage;
 
 public class ProfiloPadroneGraphicController {
 
-    SingletonStage singStage = getStage(null);
-
     @FXML
     private Label nameLabel;
 

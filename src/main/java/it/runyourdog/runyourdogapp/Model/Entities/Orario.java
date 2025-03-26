@@ -4,18 +4,18 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class Orario {
-    private Date giorno;
+    private String giorno;
     private Time orainizio;
     private Time orafine;
-    public Orario(Date giorno, Time orainizio, Time orafine) {
+    public Orario(String giorno, Time orainizio, Time orafine) {
         this.giorno = giorno;
         this.orainizio = orainizio;
         this.orafine = orafine;
     }
-    public Date getGiorno() {
+    public String getGiorno() {
         return giorno;
     }
-    public void setGiorno(Date giorno) {
+    public void setGiorno(String giorno) {
         this.giorno = giorno;
     }
     public Time getOrainizio() {

@@ -12,8 +12,9 @@ public class ProfiloVeterinarioBean {
     private String indirizzo;
     private String telefono;
     private ArrayList<Orario> orari;
+    private String email;
 
-    public ProfiloVeterinarioBean(String nome, String genere, Integer eta, String citta, String indirizzo, String telefono, ArrayList<Orario> orari) {
+    public ProfiloVeterinarioBean(String nome, String genere, Integer eta, String citta, String indirizzo, String telefono, ArrayList<Orario> orari, String email) {
         this.nome = nome;
         this.genere = genere;
         this.eta = eta;
@@ -21,6 +22,7 @@ public class ProfiloVeterinarioBean {
         this.indirizzo = indirizzo;
         this.telefono = telefono;
         this.orari = orari;
+        this.email = email;
     }
 
     public String getNome() {
@@ -79,5 +81,13 @@ public class ProfiloVeterinarioBean {
 
     public void setOrari(ArrayList<Orario> orari) {
         this.orari = orari;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

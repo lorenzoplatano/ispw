@@ -93,7 +93,7 @@ public class LoginController {
         ArrayList<Orario> orari;
 
         Veterinario vet = new Veterinario(email, password);
-        ArrayList<Orario> orario = new ArrayList<>();
+        ArrayList<Orario> orario;
 
         VeterinarioDao daoVet = new VeterinarioDao();
 
@@ -112,6 +112,7 @@ public class LoginController {
         telefono= vet.getTelefono();
         orari=orario;
 
-        return new ProfiloVeterinarioBean(nome, genere, eta, citta, indirizzo, telefono, orario);
+
+        return new ProfiloVeterinarioBean(nome, genere, eta, citta, indirizzo, telefono, orari, email);
     }
 }
