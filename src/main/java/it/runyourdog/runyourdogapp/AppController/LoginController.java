@@ -93,11 +93,13 @@ public class LoginController {
         ArrayList<Orario> orari;
 
         Veterinario vet = new Veterinario(email, password);
+        ArrayList<Orario> orario = new ArrayList<>();
 
         VeterinarioDao daoVet = new VeterinarioDao();
 
         try {
             vet = daoVet.vetInfo(vet);
+            orario=daoVet.vetOrari(vet);
         } catch (DAOException e) {
             throw new RuntimeException(e);
         }
@@ -108,9 +110,8 @@ public class LoginController {
         citta= vet.getCitta();
         indirizzo= vet.getIndirizzo();
         telefono= vet.getTelefono();
+        orari=orario;
 
-
-
-
+        return new ProfiloVeterinarioBean(nome, genere, eta, citta, indirizzo, telefono, orario);
     }
 }
