@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp;
 
-import it.runyourdog.runyourdogapp.CLI_GraphicController.PreloginGraphicControllerCLI;
+import it.runyourdog.runyourdogapp.graphiccontrollercli.PreloginGraphicControllerCLI;
 
 public class AppStarterCLI {
 

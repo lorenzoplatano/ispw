@@ -1,13 +1,13 @@
 package it.runyourdog.runyourdogapp.appcontroller;
 
-import it.runyourdog.runyourdogapp.Beans.*;
-import it.runyourdog.runyourdogapp.Exceptions.DAOException;
-import it.runyourdog.runyourdogapp.Model.DAO.DogsitterDao;
-import it.runyourdog.runyourdogapp.Model.DAO.UserDao;
-import it.runyourdog.runyourdogapp.Model.DAO.VeterinarioDao;
-import it.runyourdog.runyourdogapp.Model.Entities.*;
-import it.runyourdog.runyourdogapp.Utils.Enum.Role;
-import it.runyourdog.runyourdogapp.Model.DAO.PadroneDao;
+import it.runyourdog.runyourdogapp.beans.*;
+import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
+import it.runyourdog.runyourdogapp.model.dao.UserDao;
+import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
+import it.runyourdog.runyourdogapp.model.entities.*;
+import it.runyourdog.runyourdogapp.utils.enumeration.Role;
+import it.runyourdog.runyourdogapp.model.dao.PadroneDao;
 
 import javax.security.auth.login.CredentialException;
 import java.sql.Date;

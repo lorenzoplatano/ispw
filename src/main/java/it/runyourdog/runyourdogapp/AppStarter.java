@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp;
 
-import it.runyourdog.runyourdogapp.Utils.*;
+import it.runyourdog.runyourdogapp.utils.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
