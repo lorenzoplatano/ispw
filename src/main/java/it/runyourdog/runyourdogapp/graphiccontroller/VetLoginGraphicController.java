@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.LoginBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import javafx.fxml.FXML;
@@ -51,7 +52,7 @@ public class VetLoginGraphicController {
             ProfiloVeterinarioBean loggedVet = controller.getVetProfileInfo(loggedUser);
             SingletonStage.getStage(null).showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml", loggedVet);
 
-        } catch (CredentialException | IOException | DAOException e) {
+        } catch (CredentialException | IOException | DAOException | ProfileRetrievalException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
 

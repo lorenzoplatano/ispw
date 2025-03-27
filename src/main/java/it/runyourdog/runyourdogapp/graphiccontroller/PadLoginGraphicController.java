@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.LoginBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import javafx.fxml.FXML;
@@ -53,7 +54,7 @@ public class PadLoginGraphicController {
             ProfiloPadroneBean loggedPad = controller.getPadProfileInfo(loggedUser);
             SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", loggedPad);
 
-        } catch (CredentialException | IOException | DAOException e) {
+        } catch (CredentialException | IOException | DAOException | ProfileRetrievalException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
 
