@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.utils.Printer;
 
 public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicControllerCLI{
 
@@ -24,14 +25,14 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicController
 
         int choice;
         this.showAppName();
-        System.out.print("*---- HOME PAGE PADRONE ----*\n");
+        Printer.printf("*---- HOME PAGE PADRONE ----*\n");
 
         while(true) {
-            System.out.println("1) Mostra profilo");
-            System.out.println("2) Modifica profilo");
-            System.out.println("3) Prenota Dogsitter");
-            System.out.println("4) Prenota Veterinario");
-            System.out.println("5) Esci");
+            Printer.printf("1) Mostra profilo");
+            Printer.printf("2) Modifica profilo");
+            Printer.printf("3) Prenota Dogsitter");
+            Printer.printf("4) Prenota Veterinario");
+            Printer.printf("5) Esci");
 
 
             choice = getChoice(1,5);
@@ -39,9 +40,9 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicController
             try {
                 switch (choice) {
                     case 1 -> this.getProfiloPadrone(loggedUser);
-                    case 2 -> System.out.print("*---- NOT IMPLEMENTED ----*\n");
-                    case 3 -> System.out.print("*---- NOT IMPLEMENTED ----*\n");
-                    case 4 -> System.out.print("*---- NOT IMPLEMENTED ----*\n");
+                    case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 5 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
                 }
@@ -49,7 +50,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicController
                 break;
 
             } catch (InvalidInputException e) {
-                System.out.println(e.getMessage());
+                Printer.printf(e.getMessage());
             }
         }
     }
@@ -61,25 +62,25 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicController
     }
 
     public void showProfiloPadrone(ProfiloPadroneBean profilo) {
-        System.out.println("\nProfilo del Cane:");
-        System.out.println("Nome del cane: " + profilo.getNomeCane());
-        System.out.println("Sesso del cane: " + profilo.getSessoCane());
-        System.out.println("Razza del cane: " + profilo.getRazzaCane());
-        System.out.println("Microchip: " + profilo.getMicrochip());
+        Printer.printf("\nProfilo del Cane:");
+        Printer.printf("Nome del cane: " + profilo.getNomeCane());
+        Printer.printf("Sesso del cane: " + profilo.getSessoCane());
+        Printer.printf("Razza del cane: " + profilo.getRazzaCane());
+        Printer.printf("Microchip: " + profilo.getMicrochip());
 
         if (profilo.getDataNascitaCane() != null) {
-            System.out.println("Data di nascita del cane: " + profilo.getDataNascitaCane().toString());
+            Printer.printf("Data di nascita del cane: " + profilo.getDataNascitaCane().toString());
         } else {
-            System.out.println("Data di nascita del cane: Non disponibile");
+            Printer.printf("Data di nascita del cane: Non disponibile");
         }
 
-        System.out.println("Vaccinazioni del cane: " +
+        Printer.printf("Vaccinazioni del cane: " +
                 (profilo.getVaccinazioniCane() != null ? String.join(", ", profilo.getVaccinazioniCane()) : "Non disponibili"));
 
-        System.out.println("\nProfilo del Padrone:");
-        System.out.println("Nome del padrone: " + profilo.getNomePadrone());
-        System.out.println("Telefono del padrone: " + profilo.getTelefonoPadrone());
-        System.out.println("Indirizzo del padrone: " + profilo.getIndirizzoPadrone());
+        Printer.printf("\nProfilo del Padrone:");
+        Printer.printf("Nome del padrone: " + profilo.getNomePadrone());
+        Printer.printf("Telefono del padrone: " + profilo.getTelefonoPadrone());
+        Printer.printf("Indirizzo del padrone: " + profilo.getIndirizzoPadrone());
     }
 
 
