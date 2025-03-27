@@ -2,6 +2,7 @@ package it.runyourdog.runyourdogapp.model.entities;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Dog {
 
@@ -10,9 +11,9 @@ public class Dog {
     private String razza;
     private String microchip;
     private Date dataNascita;
-    private ArrayList<String> vaccinazioni;
+    private List<String> vaccinazioni;
 
-    public Dog(String nome, String sesso, String razza, String microchip, Date dataNascita, ArrayList<String> vaccinazioni) {
+    public Dog(String nome, String sesso, String razza, String microchip, Date dataNascita, List<String> vaccinazioni) {
         this.nome = nome;
         this.sesso = sesso;
         this.razza = razza;
@@ -61,11 +62,11 @@ public class Dog {
         this.dataNascita = dataNascita;
     }
 
-    public ArrayList<String> getVaccinazioni() {
+    public List<String> getVaccinazioni() {
         return vaccinazioni;
     }
 
-    public void setVaccinazioni(ArrayList<String> vaccinazioni) {
+    public void setVaccinazioni(List<String> vaccinazioni) {
         this.vaccinazioni = vaccinazioni;
     }
 }

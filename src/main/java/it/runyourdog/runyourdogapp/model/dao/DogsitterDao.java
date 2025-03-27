@@ -6,6 +6,7 @@ import it.runyourdog.runyourdogapp.model.entities.Orario;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DogsitterDao {
 
@@ -53,12 +54,12 @@ public class DogsitterDao {
         return dogs;
     }
 
-    public ArrayList<Orario> dogsOrari(Dogsitter dogs) throws DAOException {
+    public List<Orario> dogsOrari(Dogsitter dogs) throws DAOException {
         String giorno;
         Time inizio;
         Time fine;
 
-        ArrayList<Orario> orari = new ArrayList<>();
+        List<Orario> orari = new ArrayList<>();
 
         try {
             this.cs = this.conn.prepareCall("{call getDogsitterOrari(?,?)}");

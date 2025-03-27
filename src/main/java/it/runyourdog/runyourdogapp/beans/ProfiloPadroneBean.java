@@ -2,6 +2,7 @@ package it.runyourdog.runyourdogapp.beans;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProfiloPadroneBean {
@@ -10,13 +11,13 @@ public class ProfiloPadroneBean {
     private String razzaCane;
     private String microchip;
     private Date dataNascitaCane;
-    private ArrayList<String> vaccinazioniCane;
+    private List<String> vaccinazioniCane;
     private String nomePadrone;
     private String telefonoPadrone;
     private String indirizzoPadrone;
 
     public ProfiloPadroneBean(String nomeCane, String sessoCane, String razzaCane, String microchip, Date dataNascitaCane,
-                              ArrayList<String> vaccinazioniCane, String nomePadrone, String telefonoPadrone, String indirizzoPadrone) {
+                              List<String> vaccinazioniCane, String nomePadrone, String telefonoPadrone, String indirizzoPadrone) {
         this.nomeCane = nomeCane;
         this.sessoCane = sessoCane;
         this.razzaCane = razzaCane;
@@ -68,11 +69,11 @@ public class ProfiloPadroneBean {
         this.dataNascitaCane = dataNascitaCane;
     }
 
-    public ArrayList<String> getVaccinazioniCane() {
+    public List<String> getVaccinazioniCane() {
         return vaccinazioniCane;
     }
 
-    public void setVaccinazioniCane(ArrayList<String> vaccinazioniCane) {
+    public void setVaccinazioniCane(List<String> vaccinazioniCane) {
         this.vaccinazioniCane = vaccinazioniCane;
     }
 

@@ -12,6 +12,7 @@ import it.runyourdog.runyourdogapp.model.dao.PadroneDao;
 import javax.security.auth.login.CredentialException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class LoginController {
@@ -45,7 +46,7 @@ public class LoginController {
         String razzaCane;
         String microchip;
         Date dataNascitaCane;
-        ArrayList<String> vaccinazioniCane;
+        List<String> vaccinazioniCane;
         String nomePadrone;
         String telefonoPadrone;
         String indirizzoPadrone;
@@ -88,10 +89,10 @@ public class LoginController {
         String citta;
         String indirizzo;
         String telefono;
-        ArrayList<Orario> orari;
+        List<Orario> orari;
 
         Veterinario vet = new Veterinario(email, password);
-        ArrayList<Orario> orario;
+        List<Orario> orario;
 
         VeterinarioDao daoVet = new VeterinarioDao();
 
@@ -124,10 +125,10 @@ public class LoginController {
         Integer eta;
         String citta;
         String telefono;
-        ArrayList<Orario> orari;
+        List<Orario> orari;
 
         Dogsitter dogs = new Dogsitter(email, password);
-        ArrayList<Orario> orario;
+        List<Orario> orario;
 
         DogsitterDao daoDogs = new DogsitterDao();
 

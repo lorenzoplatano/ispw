@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.beans;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfiloDogsitterBean {
 
@@ -10,13 +11,13 @@ public class ProfiloDogsitterBean {
     private int eta;
     private String genere;
     private String citta;
-    private ArrayList<Orario> orari;
+    private List<Orario> orari;
     private String email;
     private String telefono;
 
 
 
-    public ProfiloDogsitterBean(String nome, Integer eta, String genere, String citta, String telefono, ArrayList<Orario> orari, String email) {
+    public ProfiloDogsitterBean(String nome, Integer eta, String genere, String citta, String telefono, List<Orario> orari, String email) {
         this.nome = nome;
         this.eta = eta;
         this.genere = genere;
@@ -58,11 +59,11 @@ public class ProfiloDogsitterBean {
         this.citta = citta;
     }
 
-    public ArrayList<Orario> getOrari() {
+    public List<Orario> getOrari() {
         return orari;
     }
 
-    public void setOrari(ArrayList<Orario> orari) {
+    public void setOrari(List<Orario> orari) {
         this.orari = orari;
     }
 
