@@ -2,6 +2,8 @@ package it.runyourdog.runyourdogapp.GraphicController;
 
 import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.Beans.LoginBean;
+import it.runyourdog.runyourdogapp.Beans.ProfiloDogsitterBean;
+import it.runyourdog.runyourdogapp.Beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.Beans.UserBean;
 import it.runyourdog.runyourdogapp.Exceptions.DAOException;
 import it.runyourdog.runyourdogapp.Utils.*;
@@ -49,7 +51,8 @@ public class DogLoginGraphicController {
                 throw new CredentialException("Accesso negato: solo i dogsitter possono effettuare il login.");
             }
 
-            singStage.showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/prova.fxml", loggedUser);
+            ProfiloDogsitterBean loggedDogs = controller.getDogProfileInfo(loggedUser);
+            singStage.showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml", loggedDogs);
 
         } catch (CredentialException | IOException | DAOException e) {
             System.out.println("Errore: " + e.getMessage());
