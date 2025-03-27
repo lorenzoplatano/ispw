@@ -36,12 +36,12 @@ public class VetLoginGraphicController {
 
     @FXML
     public void onVetLoginClick()  {
-        String email = this.email.getText().trim();
+        String vetEmail = this.email.getText().trim();
         String pass = this.password.getText().trim();
 
         LoginController controller=new LoginController();
         try {
-            LoginBean credentials = new LoginBean(email, pass);
+            LoginBean credentials = new LoginBean(vetEmail, pass);
             UserBean loggedUser = controller.authenticate(credentials);
 
             if (loggedUser.getRole() != Role.VETERINARIO) {

@@ -36,12 +36,12 @@ public class DogLoginGraphicController {
 
     @FXML
     public void onDogLoginClick()  {
-        String email = this.email.getText().trim();
+        String dogEmail = this.email.getText().trim();
         String pass = this.password.getText().trim();
 
         LoginController controller=new LoginController();
         try {
-            LoginBean credentials = new LoginBean(email, pass);
+            LoginBean credentials = new LoginBean(dogEmail, pass);
             UserBean loggedUser = controller.authenticate(credentials);
 
             if (loggedUser.getRole() != Role.DOGSITTER) {
