@@ -38,7 +38,7 @@ public class PreloginGraphicControllerCLI extends GenericGraphicControllerCLI{
                 break;
 
             } catch (InvalidInputException e) {
-               System.out.println(e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
     }

@@ -54,7 +54,7 @@ public class VetLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
                 break;
 
             } catch (InvalidInputException e) {
-                Printer.printf(e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
     }
@@ -82,7 +82,7 @@ public class VetLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
                 new ProfiloVeterinarioGraphicControllerCLI(loggedUser).start();
 
             } catch (IOException | DAOException | CredentialException e) {
-                Printer.printf("Errore: " + e.getMessage());
+                Printer.perror("Errore: " + e.getMessage());
                 System.exit(-1);
             }
         }
