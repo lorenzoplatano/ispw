@@ -52,7 +52,7 @@ public class VetLoginGraphicController {
             SingletonStage.getStage(null).showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml", loggedVet);
 
         } catch (CredentialException | IOException | DAOException e) {
-            System.out.println("Errore: " + e.getMessage());
+            Printer.perror("Errore: " + e.getMessage());
         }
 
     }

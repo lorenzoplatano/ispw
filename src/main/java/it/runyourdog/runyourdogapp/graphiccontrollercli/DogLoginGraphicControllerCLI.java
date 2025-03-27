@@ -1,7 +1,9 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
+import it.runyourdog.runyourdogapp.utils.Printer;
+
 public class DogLoginGraphicControllerCLI {
     public void start() {
-        System.out.println("Dog Login Graphic Controller");
+        Printer.printf("Dog Login Graphic Controller");
     }
 }

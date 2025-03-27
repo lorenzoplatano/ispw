@@ -1,6 +1,7 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
 import it.runyourdog.runyourdogapp.beans.UserBean;
+import it.runyourdog.runyourdogapp.utils.Printer;
 
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ public abstract class GenericGraphicControllerCLI {
     }
 
     public void showAppName() {
-        System.out.println("\n*---- RUNYOURDOG APP ----*");
+        Printer.printf("\n*---- RUNYOURDOG APP ----*");
     }
 
     public int getChoice(int start, int end) {
@@ -25,12 +26,12 @@ public abstract class GenericGraphicControllerCLI {
         int choice = 0;
 
         while(true) {
-            System.out.println("Inserisci la tua scelta: ");
+            Printer.printf("Inserisci la tua scelta: ");
             choice = scanner.nextInt();
             if(choice >= start && choice <= end) {
                 break;
             }else {
-                System.out.println("Invalid choice");
+                Printer.printf("Invalid choice");
             }
         }
         return choice;
@@ -38,6 +39,6 @@ public abstract class GenericGraphicControllerCLI {
 
     public void showMenu()
     {
-        System.out.println("*---- RUNYOURDOG MENU DI PROVA----*");
+        Printer.printf("*---- RUNYOURDOG MENU DI PROVA----*");
     }
 }

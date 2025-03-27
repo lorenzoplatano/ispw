@@ -52,7 +52,7 @@ public class DogLoginGraphicController {
             SingletonStage.getStage(null).showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml", loggedDogs);
 
         } catch (CredentialException | IOException | DAOException e) {
-            System.out.println("Errore: " + e.getMessage());
+            Printer.perror("Errore: " + e.getMessage());
         }
     }
 }
