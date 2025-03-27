@@ -1,5 +1,7 @@
 package it.runyourdog.runyourdogapp.model.dao;
 
+import it.runyourdog.runyourdogapp.utils.Printer;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -33,7 +35,7 @@ public class ConnectionManager {
             try{
                 this.conn = DriverManager.getConnection(jdbc, user, password);
             } catch (SQLException e){
-                System.out.println(String.format("Error in ConnectionManager.java %s", e.getMessage()));
+                Printer.perror(String.format("Error in ConnectionManager.java %s", e.getMessage()));
             }
 
         }
@@ -57,7 +59,7 @@ public class ConnectionManager {
 
 
         } catch (IOException e){
-            System.out.println(e.getMessage());
+            Printer.perror(e.getMessage());
         }
     }
 
