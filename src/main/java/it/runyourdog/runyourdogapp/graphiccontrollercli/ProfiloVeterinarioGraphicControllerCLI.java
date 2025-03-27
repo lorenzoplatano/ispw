@@ -75,7 +75,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericGraphicContro
         Printer.printf("\nOrari di disponibilità:");
         if (profilo.getOrari() != null && !profilo.getOrari().isEmpty()) {
             for (Orario orario : profilo.getOrari()) {
-                System.out.println(orario.getGiorno() + ": " + orario.getOrainizio() + " - " + orario.getOrafine());
+                Printer.printf(orario.getGiorno() + ": " + orario.getOrainizio() + " - " + orario.getOrafine());
             }
         } else {
             Printer.printf("Nessun orario disponibile.");
