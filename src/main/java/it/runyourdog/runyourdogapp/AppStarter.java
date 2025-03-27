@@ -10,8 +10,7 @@ public class AppStarter extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        SingletonStage singStage=SingletonStage.getStage(stage);
-        singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/Prelogin.fxml");
+        SingletonStage.getStage(stage).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Prelogin.fxml");
         stage.show();
     }
 

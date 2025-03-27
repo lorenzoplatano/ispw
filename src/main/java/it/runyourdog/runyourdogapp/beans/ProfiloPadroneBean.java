@@ -1,7 +1,7 @@
 package it.runyourdog.runyourdogapp.beans;
 
 import java.sql.Date;
-import java.util.ArrayList;
+
 import java.util.List;
 
 

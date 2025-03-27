@@ -2,7 +2,7 @@ package it.runyourdog.runyourdogapp.beans;
 
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class ProfiloVeterinarioBean {
