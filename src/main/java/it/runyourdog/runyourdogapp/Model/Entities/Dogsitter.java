@@ -5,12 +5,10 @@ package it.runyourdog.runyourdogapp.Model.Entities;
 public class Dogsitter extends User {
 
     private String nome;
-    private Integer eta;
+    private int eta;
     private String genere;
     private String citta;
-    private String indirizzo;
-
-
+    private String telefono;
 
     public Dogsitter(String email, String password) {
         super(email, password);
@@ -48,12 +46,12 @@ public class Dogsitter extends User {
         this.citta = citta;
     }
 
-    public String getIndirizzo() {
-        return indirizzo;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setIndirizzo(String indirizzo) {
-        this.indirizzo = indirizzo;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
 }

@@ -1,36 +1,33 @@
 package it.runyourdog.runyourdogapp.Model.DAO;
 
 import it.runyourdog.runyourdogapp.Exceptions.DAOException;
-import it.runyourdog.runyourdogapp.Model.Entities.Dog;
+import it.runyourdog.runyourdogapp.Model.Entities.Dogsitter;
 import it.runyourdog.runyourdogapp.Model.Entities.Orario;
-import it.runyourdog.runyourdogapp.Model.Entities.Padrone;
-import it.runyourdog.runyourdogapp.Model.Entities.Veterinario;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class VeterinarioDao {
+public class DogsitterDao {
 
     private final Connection conn;
     private CallableStatement cs;
 
-    public VeterinarioDao() {
+    public DogsitterDao() {
         this.conn = ConnectionManager.getInstance().getDBConnection();
     }
 
-    public Veterinario vetInfo(Veterinario vet) throws DAOException {
+    public Dogsitter dogsInfo(Dogsitter dogs) throws DAOException {
         String nome = null;
         String genere = null;
         String citta = null;
         int eta = 0;
-        String indirizzo = null;
         int telefono = 0;
 
         try{
 
-            this.cs = this.conn.prepareCall("{call getVeterinarioData(?,?)}");
-            this.cs.setString(1, vet.getEmail());
-            this.cs.setString(2, vet.getPassword());
+            this.cs = this.conn.prepareCall("{call getDogsitterData(?,?)}");
+            this.cs.setString(1, dogs.getEmail());
+            this.cs.setString(2, dogs.getPassword());
             boolean status = cs.execute();
 
             if(status) {
@@ -41,24 +38,22 @@ public class VeterinarioDao {
                     genere = rs.getString(4);
                     citta = rs.getString(6);
                     eta = rs.getInt(5);
-                    indirizzo = rs.getString(7);
-                    telefono = rs.getInt(8);
+                    telefono = rs.getInt(7);
                 }
             }
         } catch(SQLException e) {
             throw new DAOException(e.getMessage());
         }
 
-        vet.setNome(nome);
-        vet.setTelefono(String.valueOf(telefono));
-        vet.setIndirizzo(indirizzo);
-        vet.setGenere(genere);
-        vet.setCitta(citta);
-        vet.setEta(eta);
-        return vet;
+        dogs.setNome(nome);
+        dogs.setTelefono(String.valueOf(telefono));
+        dogs.setGenere(genere);
+        dogs.setCitta(citta);
+        dogs.setEta(eta);
+        return dogs;
     }
 
-    public ArrayList<Orario> vetOrari(Veterinario vet) throws DAOException {
+    public ArrayList<Orario> dogsOrari(Dogsitter dogs) throws DAOException {
         String giorno;
         Time inizio;
         Time fine;
@@ -66,9 +61,9 @@ public class VeterinarioDao {
         ArrayList<Orario> orari = new ArrayList<>();
 
         try {
-            this.cs = this.conn.prepareCall("{call getVeterinarioOrari(?,?)}");
-            this.cs.setString(1, vet.getEmail());
-            this.cs.setString(2, vet.getPassword());
+            this.cs = this.conn.prepareCall("{call getDogsitterOrari(?,?)}");
+            this.cs.setString(1, dogs.getEmail());
+            this.cs.setString(2, dogs.getPassword());
             boolean status = cs.execute();
 
             if(status) {

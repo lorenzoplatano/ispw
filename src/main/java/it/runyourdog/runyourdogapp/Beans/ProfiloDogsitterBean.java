@@ -7,21 +7,23 @@ import java.util.ArrayList;
 public class ProfiloDogsitterBean {
 
     private String nome;
-    private Integer eta;
+    private int eta;
     private String genere;
     private String citta;
-    private String indirizzo;
     private ArrayList<Orario> orari;
+    private String email;
+    private String telefono;
 
 
 
-    public ProfiloDogsitterBean(String nome, Integer eta, String genere, String citta, String indirizzo, ArrayList<Orario> orari) {
+    public ProfiloDogsitterBean(String nome, Integer eta, String genere, String citta, String telefono, ArrayList<Orario> orari, String email) {
         this.nome = nome;
         this.eta = eta;
         this.genere = genere;
         this.citta = citta;
-        this.indirizzo = indirizzo;
         this.orari = orari;
+        this.email = email;
+        this.telefono = telefono;
     }
 
     public String getNome() {
@@ -56,19 +58,27 @@ public class ProfiloDogsitterBean {
         this.citta = citta;
     }
 
-    public String getIndirizzo() {
-        return indirizzo;
-    }
-
-    public void setIndirizzo(String indirizzo) {
-        this.indirizzo = indirizzo;
-    }
-
     public ArrayList<Orario> getOrari() {
         return orari;
     }
 
     public void setOrari(ArrayList<Orario> orari) {
         this.orari = orari;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }

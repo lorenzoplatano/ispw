@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class ProfiloVeterinarioBean {
     private String nome;
     private String genere;
-    private Integer eta;
+    private int eta;
     private String citta;
     private String indirizzo;
     private String telefono;

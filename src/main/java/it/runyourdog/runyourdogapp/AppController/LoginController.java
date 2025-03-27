@@ -1,10 +1,8 @@
 package it.runyourdog.runyourdogapp.AppController;
 
-import it.runyourdog.runyourdogapp.Beans.LoginBean;
-import it.runyourdog.runyourdogapp.Beans.ProfiloPadroneBean;
-import it.runyourdog.runyourdogapp.Beans.ProfiloVeterinarioBean;
-import it.runyourdog.runyourdogapp.Beans.UserBean;
+import it.runyourdog.runyourdogapp.Beans.*;
 import it.runyourdog.runyourdogapp.Exceptions.DAOException;
+import it.runyourdog.runyourdogapp.Model.DAO.DogsitterDao;
 import it.runyourdog.runyourdogapp.Model.DAO.UserDao;
 import it.runyourdog.runyourdogapp.Model.DAO.VeterinarioDao;
 import it.runyourdog.runyourdogapp.Model.Entities.*;
@@ -114,5 +112,40 @@ public class LoginController {
 
 
         return new ProfiloVeterinarioBean(nome, genere, eta, citta, indirizzo, telefono, orari, email);
+    }
+
+    public ProfiloDogsitterBean getDogProfileInfo(UserBean loggedUser) {
+
+        String email = loggedUser.getEmail();
+        String password = loggedUser.getPassword();
+
+        String nome;
+        String genere;
+        Integer eta;
+        String citta;
+        String telefono;
+        ArrayList<Orario> orari;
+
+        Dogsitter dogs = new Dogsitter(email, password);
+        ArrayList<Orario> orario;
+
+        DogsitterDao daoDogs = new DogsitterDao();
+
+        try {
+            dogs = daoDogs.dogsInfo(dogs);
+            orario = daoDogs.dogsOrari(dogs);
+        } catch (DAOException e) {
+            throw new RuntimeException(e);
+        }
+
+        nome= dogs.getNome();
+        genere= dogs.getGenere();
+        eta= dogs.getEta();
+        citta= dogs.getCitta();
+        telefono= dogs.getTelefono();
+        orari=orario;
+
+
+        return new ProfiloDogsitterBean(nome, eta, genere, citta, telefono, orari, email);
     }
 }
