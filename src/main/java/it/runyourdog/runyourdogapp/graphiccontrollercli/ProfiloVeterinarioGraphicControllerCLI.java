@@ -51,7 +51,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericGraphicContro
                 break;
 
             } catch (InvalidInputException e) {
-                System.out.println(e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
     }

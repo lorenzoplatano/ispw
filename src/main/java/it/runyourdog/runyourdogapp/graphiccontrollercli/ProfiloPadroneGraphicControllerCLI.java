@@ -50,7 +50,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicController
                 break;
 
             } catch (InvalidInputException e) {
-                Printer.printf(e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
     }
