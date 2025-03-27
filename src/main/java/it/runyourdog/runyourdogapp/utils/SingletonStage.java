@@ -42,7 +42,7 @@ public class SingletonStage {
         ProfiloPadroneGraphicController controller = fxmlLoader.getController();
         controller.populate(loggedPad);
         Scene scene = new Scene(root);
-        instance.stage.setScene(scene);
+        stage.setScene(scene);
     }
 
     public void showVeterinarioHomePage(String fxmlPath, ProfiloVeterinarioBean loggedVet) throws IOException {
@@ -51,7 +51,7 @@ public class SingletonStage {
         ProfiloVeterinarioGraphicController controller = fxmlLoader.getController();
         controller.populate(loggedVet);
         Scene scene = new Scene(root);
-        instance.stage.setScene(scene);
+        stage.setScene(scene);
     }
 
     public void showDogsitterHomePage(String fxmlPath, ProfiloDogsitterBean loggedDogs) throws IOException {
@@ -60,7 +60,7 @@ public class SingletonStage {
         ProfiloDogsitterGraphicController controller = fxmlLoader.getController();
         controller.populate(loggedDogs);
         Scene scene = new Scene(root);
-        instance.stage.setScene(scene);
+        stage.setScene(scene);
     }
 
 
