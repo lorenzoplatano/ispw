@@ -57,11 +57,11 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicController
     }
 
     public void getProfiloPadrone(UserBean loggedUser) {
-        ProfiloPadroneBean profilo;
+        ProfiloPadroneBean profilo = null;
         try {
             profilo = this.controller.getPadProfileInfo(loggedUser);
         } catch (ProfileRetrievalException e) {
-            throw new RuntimeException(e);
+            Printer.perror("Errore: " + e.getMessage());
         }
         showProfiloPadrone(profilo);
         showMenu();

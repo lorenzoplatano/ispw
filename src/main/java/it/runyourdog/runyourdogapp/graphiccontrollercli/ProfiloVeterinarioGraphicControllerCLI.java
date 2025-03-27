@@ -58,11 +58,11 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericGraphicContro
     }
 
     public void getProfiloVeterinario(UserBean loggedUser) {
-        ProfiloVeterinarioBean profilo;
+        ProfiloVeterinarioBean profilo = null;
         try {
            profilo = this.controller.getVetProfileInfo(loggedUser);
         } catch (ProfileRetrievalException e) {
-            throw new RuntimeException(e);
+            Printer.perror("Errore: " + e.getMessage());
         }
         showProfiloVeterinario(profilo);
         showMenu();
