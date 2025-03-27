@@ -2,6 +2,7 @@ package it.runyourdog.runyourdogapp.appcontroller;
 
 import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
 import it.runyourdog.runyourdogapp.model.dao.UserDao;
 import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
@@ -35,7 +36,7 @@ public class LoginController {
 
     }
 
-    public ProfiloPadroneBean getPadProfileInfo(UserBean loggedUser) {
+    public ProfiloPadroneBean getPadProfileInfo(UserBean loggedUser) throws ProfileRetrievalException {
         String email = loggedUser.getEmail();
         String password = loggedUser.getPassword();
 
@@ -59,7 +60,7 @@ public class LoginController {
             pad = daoPad.padInfo(pad);
             dog = daoDog.dogInfo(pad);
         } catch (DAOException e) {
-            throw new RuntimeException(e);
+            throw new ProfileRetrievalException("Errore nel recupero del profilo del dogsitter", e);
         }
 
 
@@ -76,7 +77,7 @@ public class LoginController {
         return new ProfiloPadroneBean(nomeCane, sessoCane, razzaCane, microchip, dataNascitaCane, vaccinazioniCane, nomePadrone, telefonoPadrone, indirizzoPadrone);
     }
 
-    public ProfiloVeterinarioBean getVetProfileInfo(UserBean loggedUser) {
+    public ProfiloVeterinarioBean getVetProfileInfo(UserBean loggedUser) throws ProfileRetrievalException{
 
         String email = loggedUser.getEmail();
         String password = loggedUser.getPassword();
@@ -98,7 +99,7 @@ public class LoginController {
             vet = daoVet.vetInfo(vet);
             orario=daoVet.vetOrari(vet);
         } catch (DAOException e) {
-            throw new RuntimeException(e);
+            throw new ProfileRetrievalException("Errore nel recupero del profilo del dogsitter", e);
         }
 
         nome= vet.getNome();
@@ -113,7 +114,7 @@ public class LoginController {
         return new ProfiloVeterinarioBean(nome, genere, eta, citta, indirizzo, telefono, orari, email);
     }
 
-    public ProfiloDogsitterBean getDogProfileInfo(UserBean loggedUser) {
+    public ProfiloDogsitterBean getDogProfileInfo(UserBean loggedUser) throws ProfileRetrievalException{
 
         String email = loggedUser.getEmail();
         String password = loggedUser.getPassword();
@@ -134,7 +135,7 @@ public class LoginController {
             dogs = daoDogs.dogsInfo(dogs);
             orario = daoDogs.dogsOrari(dogs);
         } catch (DAOException e) {
-            throw new RuntimeException(e);
+            throw new ProfileRetrievalException("Errore nel recupero del profilo del dogsitter", e);
         }
 
         nome= dogs.getNome();

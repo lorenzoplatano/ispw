@@ -1,4 +1,4 @@
-package it.runyourdog.runyourdogapp.Exceptions;
+package it.runyourdog.runyourdogapp.exceptions;
 
 public class ProfileRetrievalException extends Exception {
   public ProfileRetrievalException(String message) {
