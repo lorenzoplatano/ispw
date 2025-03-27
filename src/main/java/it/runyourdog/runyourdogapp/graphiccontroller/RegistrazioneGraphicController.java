@@ -10,8 +10,6 @@ import java.io.IOException;
 
 public class RegistrazioneGraphicController {
 
-    SingletonStage singStage=SingletonStage.getStage(null);
-
     @FXML
     private TextField email;
 
@@ -40,7 +38,7 @@ public class RegistrazioneGraphicController {
 
     @FXML
     public void goToPrelogin() throws IOException {
-        singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/Prelogin.fxml");
+        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Prelogin.fxml");
     }
 
     @FXML

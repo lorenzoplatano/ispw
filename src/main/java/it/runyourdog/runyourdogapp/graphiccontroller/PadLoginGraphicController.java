@@ -20,8 +20,6 @@ import static it.runyourdog.runyourdogapp.utils.SingletonStage.getStage;
 
 public class PadLoginGraphicController {
 
-    SingletonStage singStage = getStage(null);
-
     @FXML
     private TextField email;
 
@@ -30,12 +28,12 @@ public class PadLoginGraphicController {
 
     @FXML
     public void goToRegistrazione() throws IOException {
-        singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
+        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
     }
 
     @FXML
     public void changeRole() throws IOException {
-        singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/PreLogin.fxml");
+        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/PreLogin.fxml");
     }
 
     @FXML
@@ -53,7 +51,7 @@ public class PadLoginGraphicController {
             }
 
             ProfiloPadroneBean loggedPad = controller.getPadProfileInfo(loggedUser);
-            singStage.showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", loggedPad);
+            SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", loggedPad);
 
         } catch (CredentialException | IOException | DAOException e) {
             System.out.println("Errore: " + e.getMessage());

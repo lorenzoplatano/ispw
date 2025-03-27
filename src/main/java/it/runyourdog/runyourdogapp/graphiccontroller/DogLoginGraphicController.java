@@ -18,8 +18,6 @@ import java.io.IOException;
 
 public class DogLoginGraphicController {
 
-    SingletonStage singStage=SingletonStage.getStage(null);
-
     @FXML
     private TextField email;
 
@@ -28,12 +26,12 @@ public class DogLoginGraphicController {
 
     @FXML
     public void goToRegistrazione() throws IOException {
-        singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
+        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
     }
 
     @FXML
     public void changeRole() throws IOException {
-        singStage.cambiaScena("/it/runyourdog/runyourdogapp/GUI/Prelogin.fxml");
+        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Prelogin.fxml");
     }
 
     @FXML
@@ -51,7 +49,7 @@ public class DogLoginGraphicController {
             }
 
             ProfiloDogsitterBean loggedDogs = controller.getDogProfileInfo(loggedUser);
-            singStage.showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml", loggedDogs);
+            SingletonStage.getStage(null).showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml", loggedDogs);
 
         } catch (CredentialException | IOException | DAOException e) {
             System.out.println("Errore: " + e.getMessage());
