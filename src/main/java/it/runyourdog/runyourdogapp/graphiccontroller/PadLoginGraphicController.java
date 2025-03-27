@@ -54,7 +54,7 @@ public class PadLoginGraphicController {
             SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", loggedPad);
 
         } catch (CredentialException | IOException | DAOException e) {
-            System.out.println("Errore: " + e.getMessage());
+            Printer.perror("Errore: " + e.getMessage());
         }
 
     }
