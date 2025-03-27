@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.LoginBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
 import javax.security.auth.login.CredentialException;
@@ -31,13 +32,13 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
         int choice;
         this.showAppName();
-        System.out.print("*---- LOGIN PER PADRONE ----*\n");
+        Printer.printf("*---- LOGIN PER PADRONE ----*\n");
 
         while(true) {
-            System.out.println("1) Login");
-            System.out.println("2) Torna indietro");
-            System.out.println("3) Registrati");
-            System.out.println("4) Esci");
+            Printer.printf("1) Login");
+            Printer.printf("2) Torna indietro");
+            Printer.printf("3) Registrati");
+            Printer.printf("4) Esci");
 
             choice = getChoice(1,4);
 
@@ -60,15 +61,15 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
     private void authenticate() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("*---- LOGIN ----*");
+        Printer.printf("*---- LOGIN ----*");
 
         while(true) {
             try {
 
-                System.out.print("Email: ");
+                Printer.printf("Email: ");
                 String email = reader.readLine();
 
-                System.out.print("Password: ");
+                Printer.printf("Password: ");
                 String password = reader.readLine();
 
                 LoginBean credentials = new LoginBean(email, password);
@@ -81,7 +82,7 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
                 new ProfiloPadroneGraphicControllerCLI(loggedUser).start();
 
             } catch (IOException | DAOException | CredentialException e) {
-                System.out.println("Errore: " + e.getMessage());
+                Printer.printf("Errore: " + e.getMessage());
                 System.exit(-1);
             }
         }

@@ -1,6 +1,7 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.utils.Printer;
 
 
 public class PreloginGraphicControllerCLI extends GenericGraphicControllerCLI{
@@ -16,11 +17,11 @@ public class PreloginGraphicControllerCLI extends GenericGraphicControllerCLI{
         this.showAppName();
 
         while(true) {
-            System.out.println("1) Login come Padrone");
-            System.out.println("2) Login come Dogsitter");
-            System.out.println("3) Login come Veterinario");
-            System.out.println("4) Registrati");
-            System.out.println("5) Esci");
+            Printer.printf("1) Login come Padrone");
+            Printer.printf("2) Login come Dogsitter");
+            Printer.printf("3) Login come Veterinario");
+            Printer.printf("4) Registrati");
+            Printer.printf("5) Esci");
 
             choice = getChoice(1,5);
 
