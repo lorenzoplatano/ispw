@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
 public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicControllerCLI{
@@ -56,7 +57,12 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicController
     }
 
     public void getProfiloPadrone(UserBean loggedUser) {
-        ProfiloPadroneBean profilo = this.controller.getPadProfileInfo(loggedUser);
+        ProfiloPadroneBean profilo;
+        try {
+            profilo = this.controller.getPadProfileInfo(loggedUser);
+        } catch (ProfileRetrievalException e) {
+            throw new RuntimeException(e);
+        }
         showProfiloPadrone(profilo);
         showMenu();
     }

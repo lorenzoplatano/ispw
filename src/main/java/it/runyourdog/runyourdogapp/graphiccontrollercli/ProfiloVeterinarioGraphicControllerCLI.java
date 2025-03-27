@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
@@ -57,7 +58,12 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericGraphicContro
     }
 
     public void getProfiloVeterinario(UserBean loggedUser) {
-        ProfiloVeterinarioBean profilo = this.controller.getVetProfileInfo(loggedUser);
+        ProfiloVeterinarioBean profilo;
+        try {
+           profilo = this.controller.getVetProfileInfo(loggedUser);
+        } catch (ProfileRetrievalException e) {
+            throw new RuntimeException(e);
+        }
         showProfiloVeterinario(profilo);
         showMenu();
     }
