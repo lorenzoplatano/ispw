@@ -1,4 +1,4 @@
-package it.runyourdog.runyourdogapp.AppController;
+package it.runyourdog.runyourdogapp.appcontroller;
 
 import it.runyourdog.runyourdogapp.Beans.*;
 import it.runyourdog.runyourdogapp.Exceptions.DAOException;

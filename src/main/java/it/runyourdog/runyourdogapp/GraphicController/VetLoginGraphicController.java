@@ -1,8 +1,7 @@
 package it.runyourdog.runyourdogapp.GraphicController;
 
-import it.runyourdog.runyourdogapp.AppController.LoginController;
+import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.Beans.LoginBean;
-import it.runyourdog.runyourdogapp.Beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.Beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.Beans.UserBean;
 import it.runyourdog.runyourdogapp.Exceptions.DAOException;

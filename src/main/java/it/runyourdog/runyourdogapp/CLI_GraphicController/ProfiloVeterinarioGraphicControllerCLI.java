@@ -1,7 +1,6 @@
 package it.runyourdog.runyourdogapp.CLI_GraphicController;
 
-import it.runyourdog.runyourdogapp.AppController.LoginController;
-import it.runyourdog.runyourdogapp.Beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.Beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.Beans.UserBean;
 import it.runyourdog.runyourdogapp.Exceptions.InvalidInputException;
