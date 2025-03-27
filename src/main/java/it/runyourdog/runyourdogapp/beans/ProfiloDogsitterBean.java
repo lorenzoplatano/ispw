@@ -47,7 +47,7 @@ public class ProfiloDogsitterBean {
         return eta;
     }
 
-    public void setEta(Integer eta) {
+    public void setEta(int eta) {
         this.eta = eta;
     }
 
