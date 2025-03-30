@@ -29,10 +29,10 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
         int scelta;
 
-        Printer.printf("*---- PADRONE HOMEPAGE ----*\n");
+        Printer.printf("*---- PADRONE LOGIN ----*\n");
 
         while(true) {
-            Printer.printf("1) Login");
+            Printer.printf("1) Effettua il login come padrone");
             Printer.printf("2) Torna indietro");
             Printer.printf("3) Registrati");
             Printer.printf("4) Esci");
