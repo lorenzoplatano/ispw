@@ -23,15 +23,12 @@ public class VetLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
     }
 
-    public void start(){
-        this.showMenu();
-    }
 
     @Override
     public void showMenu(){
 
         int choice;
-        this.showAppName();
+
         Printer.printf("*---- VETERINARIO HOMEPAGE ----*\n");
 
         while(true) {

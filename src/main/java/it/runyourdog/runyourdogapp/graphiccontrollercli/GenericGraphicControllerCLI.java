@@ -41,4 +41,10 @@ public abstract class GenericGraphicControllerCLI {
     {
         Printer.printf("*---- RUNYOURDOG MENU DI PROVA----*");
     }
+
+    public void start(){
+
+        this.showAppName();
+        this.showMenu();
+    }
 }

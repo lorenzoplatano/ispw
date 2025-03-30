@@ -15,23 +15,20 @@ import java.io.InputStreamReader;
 
 public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
-    private final LoginController controller;
+    private final LoginController con;
 
     public PadLoginGraphicControllerCLI(){
 
-        this.controller = new LoginController();
+        this.con = new LoginController();
 
     }
 
-    public void start(){
-        this.showMenu();
-    }
 
     @Override
     public void showMenu(){
 
-        int choice;
-        this.showAppName();
+        int scelta;
+
         Printer.printf("*---- PADRONE HOMEPAGE ----*\n");
 
         while(true) {
@@ -40,10 +37,10 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
             Printer.printf("3) Registrati");
             Printer.printf("4) Esci");
 
-            choice = getChoice(1,4);
+            scelta = getChoice(1,4);
 
             try {
-                switch (choice) {
+                switch (scelta) {
                     case 1 -> this.authenticate();
                     case 2 -> new PreloginGraphicControllerCLI().start();
                     case 3 -> new RegistrazioneGraphicControllerCLI().start();
@@ -73,7 +70,7 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
                 String padpassword = reader.readLine();
 
                 LoginBean credentials = new LoginBean(pademail, padpassword);
-                UserBean loggedPad = this.controller.authenticate(credentials);
+                UserBean loggedPad = this.con.authenticate(credentials);
 
                 if (loggedPad.getRole() != Role.PADRONE) {
                     throw new CredentialException("Accesso negato: solo i padroni possono effettuare il login.");
