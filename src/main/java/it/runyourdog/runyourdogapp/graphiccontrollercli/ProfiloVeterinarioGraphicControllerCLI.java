@@ -11,22 +11,19 @@ import it.runyourdog.runyourdogapp.utils.Printer;
 public class ProfiloVeterinarioGraphicControllerCLI extends GenericGraphicControllerCLI{
 
     private final LoginController controller;
-    private UserBean loggedUser;
+    private UserBean loggedVet;
 
     public ProfiloVeterinarioGraphicControllerCLI(UserBean loggedUser) {
         this.controller = new LoginController();
-        this.loggedUser = loggedUser;
+        this.loggedVet = loggedUser;
     }
 
-    public void start(){
-        this.showMenu();
-    }
 
     @Override
     public void showMenu(){
 
-        int choice;
-        this.showAppName();
+        int scelta;
+
         Printer.printf("*---- HOME PAGE VETERINARIO ----*\n");
 
         while(true) {
@@ -37,11 +34,11 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericGraphicContro
             Printer.printf("5) Esci");
 
 
-            choice = getChoice(1,5);
+            scelta = getChoice(1,5);
 
             try {
-                switch (choice) {
-                    case 1 -> this.getProfiloVeterinario(loggedUser);
+                switch (scelta) {
+                    case 1 -> this.getProfiloVeterinario(loggedVet);
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");

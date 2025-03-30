@@ -124,7 +124,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1">
                      <children>
-                        <Label fx:id="nameLabel" alignment="CENTER" layoutX="120.0" layoutY="8.0" prefHeight="41.0" prefWidth="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="name" alignment="CENTER" layoutX="120.0" layoutY="8.0" prefHeight="41.0" prefWidth="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -133,7 +133,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label fx:id="etaLabel" alignment="CENTER" layoutX="120.0" layoutY="8.0" prefHeight="41.0" prefWidth="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="eta" alignment="CENTER" layoutX="120.0" layoutY="8.0" prefHeight="41.0" prefWidth="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -142,7 +142,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Label fx:id="sessoLabel" alignment="CENTER" layoutX="120.0" layoutY="8.0" prefHeight="40.0" prefWidth="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="sesso" alignment="CENTER" layoutX="120.0" layoutY="8.0" prefHeight="40.0" prefWidth="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -151,7 +151,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <Label fx:id="telLabel" alignment="CENTER" layoutX="120.0" layoutY="8.0" prefHeight="40.0" prefWidth="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="tel" alignment="CENTER" layoutX="120.0" layoutY="8.0" prefHeight="40.0" prefWidth="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -160,7 +160,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
-                        <Label fx:id="emailLabel" alignment="CENTER" layoutX="120.0" layoutY="8.0" prefHeight="40.0" prefWidth="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="email" alignment="CENTER" layoutX="120.0" layoutY="8.0" prefHeight="40.0" prefWidth="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -178,7 +178,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <Label fx:id="cittaLabel" alignment="CENTER" layoutX="110.0" layoutY="14.0" prefHeight="44.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="citta" alignment="CENTER" layoutX="110.0" layoutY="14.0" prefHeight="44.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -257,7 +257,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1">
                      <children>
-                        <Label fx:id="luLabel" alignment="CENTER" layoutX="124.0" layoutY="7.0" prefHeight="38.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="lu" alignment="CENTER" layoutX="124.0" layoutY="7.0" prefHeight="38.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -266,7 +266,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label fx:id="maLabel" alignment="CENTER" layoutX="124.0" layoutY="7.0" prefHeight="38.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="ma" alignment="CENTER" layoutX="124.0" layoutY="7.0" prefHeight="38.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -275,7 +275,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Label fx:id="meLabel" alignment="CENTER" layoutX="124.0" layoutY="7.0" prefHeight="38.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="me" alignment="CENTER" layoutX="124.0" layoutY="7.0" prefHeight="38.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -284,7 +284,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <Label fx:id="gioLabel" alignment="CENTER" layoutX="124.0" layoutY="6.0" prefHeight="37.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="gio" alignment="CENTER" layoutX="124.0" layoutY="6.0" prefHeight="37.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -293,7 +293,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <Label fx:id="veLabel" alignment="CENTER" layoutX="124.0" layoutY="6.0" prefHeight="37.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="ve" alignment="CENTER" layoutX="124.0" layoutY="6.0" prefHeight="37.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -320,7 +320,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
-                        <Label fx:id="saLabel" alignment="CENTER" layoutX="124.0" layoutY="6.0" prefHeight="37.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="sa" alignment="CENTER" layoutX="124.0" layoutY="6.0" prefHeight="37.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -329,7 +329,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
-                        <Label fx:id="doLabel" alignment="CENTER" layoutX="124.0" layoutY="6.0" prefHeight="37.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="dom" alignment="CENTER" layoutX="124.0" layoutY="6.0" prefHeight="37.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
