@@ -35,10 +35,10 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
         Printer.printf("*---- PADRONE HOMEPAGE ----*\n");
 
         while(true) {
-            Printer.printf("1) Login");
-            Printer.printf("2) Torna indietro");
-            Printer.printf("3) Registrati");
-            Printer.printf("4) Esci");
+            Printer.printf("1) Login ");
+            Printer.printf("2) Torna indietro ");
+            Printer.printf("3) Registrati ");
+            Printer.printf("4) Esci ");
 
             choice = getChoice(1,4);
 
@@ -66,7 +66,7 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
         while(true) {
             try {
 
-                Printer.printf(" Email: ");
+                Printer.printf("Email: ");
                 String pademail = reader.readLine();
 
                 Printer.printf("Password: ");
