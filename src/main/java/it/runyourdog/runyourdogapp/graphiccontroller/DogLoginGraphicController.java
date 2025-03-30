@@ -25,16 +25,6 @@ public class DogLoginGraphicController {
     private TextField password;
 
     @FXML
-    public void goToRegistrazione() throws IOException {
-        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
-    }
-
-    @FXML
-    public void changeRole() throws IOException {
-        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Prelogin.fxml");
-    }
-
-    @FXML
     public void onDogLoginClick()  {
         String dogEmail = this.email.getText().trim();
         String pass = this.password.getText().trim();
@@ -55,4 +45,15 @@ public class DogLoginGraphicController {
             Printer.perror("Errore: " + e.getMessage());
         }
     }
+
+    @FXML
+    public void changeRole() throws IOException {
+        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Prelogin.fxml");
+    }
+
+    @FXML
+    public void goToRegistrazione() throws IOException {
+        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
+    }
+
 }
