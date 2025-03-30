@@ -20,20 +20,21 @@ import java.io.IOException;
 public class VetLoginGraphicController {
 
     @FXML
+    private TextField password;
+
+    @FXML
     private TextField email;
 
     @FXML
-    private TextField password;
+    public void changeRole() throws IOException {
+        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Prelogin.fxml");
+    }
 
     @FXML
     public void goToRegistrazione() throws IOException {
         SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
     }
 
-    @FXML
-    public void changeRole() throws IOException {
-        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Prelogin.fxml");
-    }
 
     @FXML
     public void onVetLoginClick()  {
