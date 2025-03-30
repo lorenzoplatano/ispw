@@ -57,25 +57,28 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
     }
 
     private void authenticate() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
         Printer.printf("*---- PADRONE LOGIN ----*");
 
         while(true) {
             try {
-
                 Printer.printf("(Padrone)Inserisci Email: ");
-                String pademail = reader.readLine();
+
+                String pademail = read.readLine();
 
                 Printer.printf("(Padrone)Inserisci Password: ");
-                String padpassword = reader.readLine();
+
+                String padpassword = read.readLine();
 
                 LoginBean credentials = new LoginBean(pademail, padpassword);
+
                 UserBean loggedPad = this.con.authenticate(credentials);
 
                 if (loggedPad.getRole() != Role.PADRONE) {
-                    throw new CredentialException("Accesso negato: solo i padroni possono effettuare il login.");
-                }
 
+                    throw new CredentialException("Accesso negato: solo i padroni possono effettuare il login.");
+
+                }
                 new ProfiloPadroneGraphicControllerCLI(loggedPad).start();
 
             } catch (IOException | DAOException | CredentialException e) {
