@@ -22,9 +22,10 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericGraphicContro
     @Override
     public void showMenu(){
 
+        Printer.printf("*---- HOME PAGE VETERINARIO ----*\n");
+
         int scelta;
 
-        Printer.printf("*---- HOME PAGE VETERINARIO ----*\n");
         while(true) {
             Printer.printf("1) Mostra profilo");
             Printer.printf("2) Modifica informazioni personali");

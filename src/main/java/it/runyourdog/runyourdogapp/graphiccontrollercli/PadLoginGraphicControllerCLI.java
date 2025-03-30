@@ -27,6 +27,7 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
     @Override
     public void showMenu(){
         int scelta;
+
         Printer.printf("*---- PADRONE LOGIN ----*\n");
 
         while(true) {
