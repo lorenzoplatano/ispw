@@ -32,7 +32,7 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
         int choice;
         this.showAppName();
-        Printer.printf("*---- LOGIN PER PADRONE ----*\n");
+        Printer.printf("*---- PADRONE HOMEPAGE ----*\n");
 
         while(true) {
             Printer.printf("1) Login");
@@ -61,18 +61,18 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
     private void authenticate() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Printer.printf("*---- LOGIN ----*");
+        Printer.printf("*---- PADRONE LOGIN ----*");
 
         while(true) {
             try {
 
-                Printer.printf("Email: ");
-                String email = reader.readLine();
+                Printer.printf(" Email: ");
+                String pademail = reader.readLine();
 
                 Printer.printf("Password: ");
-                String password = reader.readLine();
+                String padpassword = reader.readLine();
 
-                LoginBean credentials = new LoginBean(email, password);
+                LoginBean credentials = new LoginBean(pademail, padpassword);
                 UserBean loggedUser = this.controller.authenticate(credentials);
 
                 if (loggedUser.getRole() != Role.PADRONE) {
