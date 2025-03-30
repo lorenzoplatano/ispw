@@ -10,51 +10,51 @@ import java.util.Map;
 
 public class ProfiloDogsitterGraphicController {
     @FXML
-    private Label nameLabel;
+    private Label name;
 
     @FXML
-    private Label sessoLabel;
+    private Label sesso;
 
     @FXML
-    private Label etaLabel;
+    private Label eta;
 
     @FXML
-    private Label cittaLabel;
+    private Label citta;
 
     @FXML
-    private Label emailLabel;
+    private Label email;
 
     @FXML
-    private Label telLabel;
+    private Label tel;
 
     @FXML
-    private Label luLabel;
+    private Label lu;
 
     @FXML
-    private Label maLabel;
+    private Label ma;
 
     @FXML
-    private Label meLabel;
+    private Label me;
 
     @FXML
-    private Label gioLabel;
+    private Label gio;
 
     @FXML
-    private Label veLabel;
+    private Label ve;
 
     @FXML
-    private Label saLabel;
+    private Label sa;
 
     @FXML
-    private Label doLabel;
+    private Label dom;
 
     public void populate(ProfiloDogsitterBean loggedDogs) {
-        nameLabel.setText(loggedDogs.getNome());
-        sessoLabel.setText(loggedDogs.getGenere());
-        etaLabel.setText(loggedDogs.getEta() != null ? loggedDogs.getEta().toString() : "");
-        cittaLabel.setText(loggedDogs.getCitta());
-        telLabel.setText(loggedDogs.getTelefono());
-        emailLabel.setText(loggedDogs.getEmail());
+        name.setText(loggedDogs.getNome());
+        sesso.setText(loggedDogs.getGenere());
+        eta.setText(loggedDogs.getEta() != null ? loggedDogs.getEta().toString() : "");
+        citta.setText(loggedDogs.getCitta());
+        tel.setText(loggedDogs.getTelefono());
+        email.setText(loggedDogs.getEmail());
 
         Map<String, StringBuilder> orariPerGiorno = new HashMap<>();
 
@@ -68,12 +68,12 @@ public class ProfiloDogsitterGraphicController {
                     .append(orarioStr);
         }
 
-        luLabel.setText(orariPerGiorno.getOrDefault("Lunedì", new StringBuilder()).toString());
-        maLabel.setText(orariPerGiorno.getOrDefault("Martedì", new StringBuilder()).toString());
-        meLabel.setText(orariPerGiorno.getOrDefault("Mercoledì", new StringBuilder()).toString());
-        gioLabel.setText(orariPerGiorno.getOrDefault("Giovedì", new StringBuilder()).toString());
-        veLabel.setText(orariPerGiorno.getOrDefault("Venerdì", new StringBuilder()).toString());
-        saLabel.setText(orariPerGiorno.getOrDefault("Sabato", new StringBuilder()).toString());
-        doLabel.setText(orariPerGiorno.getOrDefault("Domenica", new StringBuilder()).toString());
+        lu.setText(orariPerGiorno.getOrDefault("Lunedì", new StringBuilder()).toString());
+        ma.setText(orariPerGiorno.getOrDefault("Martedì", new StringBuilder()).toString());
+        me.setText(orariPerGiorno.getOrDefault("Mercoledì", new StringBuilder()).toString());
+        gio.setText(orariPerGiorno.getOrDefault("Giovedì", new StringBuilder()).toString());
+        ve.setText(orariPerGiorno.getOrDefault("Venerdì", new StringBuilder()).toString());
+        sa.setText(orariPerGiorno.getOrDefault("Sabato", new StringBuilder()).toString());
+        dom.setText(orariPerGiorno.getOrDefault("Domenica", new StringBuilder()).toString());
     }
 }
