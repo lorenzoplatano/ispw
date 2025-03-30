@@ -32,12 +32,12 @@ public class VetLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
         int choice;
         this.showAppName();
-        Printer.printf("*---- LOGIN PER VETERINARIO ----*\n");
+        Printer.printf("*---- VETERINARIO HOMEPAGE ----*\n");
 
         while(true) {
-            Printer.printf("1) Login");
-            Printer.printf("2) Torna indietro");
-            Printer.printf("3) Registrati");
+            Printer.printf("1) Effettua il login come veterinario");
+            Printer.printf("2) Registrati");
+            Printer.printf("3) Torna indietro");
             Printer.printf("4) Esci");
 
             choice = getChoice(1,4);
@@ -45,8 +45,8 @@ public class VetLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
             try {
                 switch (choice) {
                     case 1 -> this.authenticate();
-                    case 2 -> new PreloginGraphicControllerCLI().start();
-                    case 3 -> new RegistrazioneGraphicControllerCLI().start();
+                    case 3 -> new PreloginGraphicControllerCLI().start();
+                    case 2 -> new RegistrazioneGraphicControllerCLI().start();
                     case 4 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
                 }
@@ -61,25 +61,25 @@ public class VetLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
     private void authenticate() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Printer.printf("*---- LOGIN ----*");
+        Printer.printf("*---- VETERINARIO LOGIN ----*");
 
         while(true) {
             try {
 
-                Printer.printf("Email: ");
-                String email = reader.readLine();
+                Printer.printf("(Veterinario)Inserisci Email:");
+                String vetemail = reader.readLine();
 
-                Printer.printf("Password: ");
-                String password = reader.readLine();
+                Printer.printf("(Veterinario)Inserisci Password:");
+                String vetpassword = reader.readLine();
 
-                LoginBean credentials = new LoginBean(email, password);
-                UserBean loggedUser = this.controller.authenticate(credentials);
+                LoginBean credentials = new LoginBean(vetemail, vetpassword);
+                UserBean loggedVet = this.controller.authenticate(credentials);
 
-                if (loggedUser.getRole() != Role.VETERINARIO) {
+                if (loggedVet.getRole() != Role.VETERINARIO) {
                     throw new CredentialException("Accesso negato: solo i veterinari possono effettuare il login.");
                 }
 
-                new ProfiloVeterinarioGraphicControllerCLI(loggedUser).start();
+                new ProfiloVeterinarioGraphicControllerCLI(loggedVet).start();
 
             } catch (IOException | DAOException | CredentialException e) {
                 Printer.perror("Errore: " + e.getMessage());

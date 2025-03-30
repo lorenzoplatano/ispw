@@ -35,10 +35,10 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
         Printer.printf("*---- PADRONE HOMEPAGE ----*\n");
 
         while(true) {
-            Printer.printf("1) Login ");
-            Printer.printf("2) Torna indietro ");
-            Printer.printf("3) Registrati ");
-            Printer.printf("4) Esci ");
+            Printer.printf("1) Login");
+            Printer.printf("2) Torna indietro");
+            Printer.printf("3) Registrati");
+            Printer.printf("4) Esci");
 
             choice = getChoice(1,4);
 
@@ -66,20 +66,20 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
         while(true) {
             try {
 
-                Printer.printf("Email: ");
+                Printer.printf("(Padrone)Inserisci Email: ");
                 String pademail = reader.readLine();
 
-                Printer.printf("Password: ");
+                Printer.printf("(Padrone)Inserisci Password: ");
                 String padpassword = reader.readLine();
 
                 LoginBean credentials = new LoginBean(pademail, padpassword);
-                UserBean loggedUser = this.controller.authenticate(credentials);
+                UserBean loggedPad = this.controller.authenticate(credentials);
 
-                if (loggedUser.getRole() != Role.PADRONE) {
+                if (loggedPad.getRole() != Role.PADRONE) {
                     throw new CredentialException("Accesso negato: solo i padroni possono effettuare il login.");
                 }
 
-                new ProfiloPadroneGraphicControllerCLI(loggedUser).start();
+                new ProfiloPadroneGraphicControllerCLI(loggedPad).start();
 
             } catch (IOException | DAOException | CredentialException e) {
                 Printer.printf("Errore: " + e.getMessage());
