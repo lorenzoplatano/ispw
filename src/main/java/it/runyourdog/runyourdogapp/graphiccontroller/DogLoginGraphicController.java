@@ -18,13 +18,10 @@ import javax.security.auth.login.CredentialException;
 import java.io.IOException;
 
 public class DogLoginGraphicController {
-
     @FXML
     private TextField email;
-
     @FXML
     private TextField password;
-
     @FXML
     public void goToRegistrazione() throws IOException {
         SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");

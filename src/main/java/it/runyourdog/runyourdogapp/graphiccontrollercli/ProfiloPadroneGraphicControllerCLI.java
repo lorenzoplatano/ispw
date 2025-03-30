@@ -23,7 +23,6 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicController
 
     @Override
     public void showMenu(){
-
         int choice;
 
         Printer.printf("*---- HOME PAGE PADRONE ----*\n");

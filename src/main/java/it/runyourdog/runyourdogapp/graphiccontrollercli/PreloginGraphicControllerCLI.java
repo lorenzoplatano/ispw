@@ -6,15 +6,13 @@ import it.runyourdog.runyourdogapp.utils.Printer;
 
 public class PreloginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
-    public void start(){
-        this.showMenu();
-    }
+
 
     @Override
     public void showMenu(){
 
         int choice;
-        this.showAppName();
+
 
         while(true) {
             Printer.printf("1) Login come Padrone");

@@ -28,7 +28,6 @@ public class VetLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
     public void showMenu(){
 
         int choice;
-
         Printer.printf("*---- VETERINARIO LOGIN ----*\n");
 
         while(true) {

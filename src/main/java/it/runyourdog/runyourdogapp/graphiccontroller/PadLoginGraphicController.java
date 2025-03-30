@@ -23,7 +23,6 @@ public class PadLoginGraphicController {
 
     @FXML
     private TextField email;
-
     @FXML
     private TextField password;
 
