@@ -11,18 +11,10 @@ import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import javafx.fxml.FXML;
 
 
-import javafx.scene.control.TextField;
-
-
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
 
-public class DogLoginGraphicController {
-
-    @FXML
-    private TextField email;
-    @FXML
-    private TextField password;
+public class DogLoginGraphicController extends GenericLoginGraphicController {
 
     @FXML
     public void onDogLoginClick()  {
@@ -44,16 +36,6 @@ public class DogLoginGraphicController {
         } catch (CredentialException | IOException | DAOException | ProfileRetrievalException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
-    }
-
-    @FXML
-    public void changeRole() throws IOException {
-        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Prelogin.fxml");
-    }
-
-    @FXML
-    public void goToRegistrazione() throws IOException {
-        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
     }
 
 }

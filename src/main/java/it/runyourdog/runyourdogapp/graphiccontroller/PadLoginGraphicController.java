@@ -19,22 +19,8 @@ import java.io.IOException;
 import static it.runyourdog.runyourdogapp.utils.SingletonStage.getStage;
 
 
-public class PadLoginGraphicController {
+public class PadLoginGraphicController extends GenericLoginGraphicController {
 
-    @FXML
-    private TextField email;
-    @FXML
-    private TextField password;
-
-    @FXML
-    public void goToRegistrazione() throws IOException {
-        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
-    }
-
-    @FXML
-    public void changeRole() throws IOException {
-        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/PreLogin.fxml");
-    }
 
     @FXML
     public void onPadLoginClick()  {
