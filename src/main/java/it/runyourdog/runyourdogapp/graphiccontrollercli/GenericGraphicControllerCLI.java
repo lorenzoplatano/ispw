@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public abstract class GenericGraphicControllerCLI {
 
-    private UserBean loggedUser;
+    protected UserBean loggedUser;
 
     protected LoginController controller;
 

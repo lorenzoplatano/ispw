@@ -15,8 +15,6 @@ import java.io.BufferedReader;
 
 public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
-
-
     public PadLoginGraphicControllerCLI(){
 
         this.controller = new LoginController();

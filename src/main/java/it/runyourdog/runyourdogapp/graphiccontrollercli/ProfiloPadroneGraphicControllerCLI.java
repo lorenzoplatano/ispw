@@ -9,13 +9,10 @@ import it.runyourdog.runyourdogapp.utils.Printer;
 
 public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicControllerCLI{
 
-
-    private UserBean loggedPad;
-
     public ProfiloPadroneGraphicControllerCLI(UserBean loggedUser) {
 
         this.controller = new LoginController();
-        this.loggedPad = loggedUser;
+        this.loggedUser = loggedUser;
     }
 
 
@@ -40,7 +37,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicController
 
             try {
                 switch (choice) {
-                    case 1 -> this.getProfiloPadrone(loggedPad);
+                    case 1 -> this.getProfiloPadrone(loggedUser);
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");

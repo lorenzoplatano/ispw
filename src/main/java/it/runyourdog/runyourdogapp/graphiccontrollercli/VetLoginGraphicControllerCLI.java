@@ -14,8 +14,6 @@ import java.io.InputStreamReader;
 
 public class VetLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
-
-
     public VetLoginGraphicControllerCLI(){
 
         this.controller = new LoginController();
