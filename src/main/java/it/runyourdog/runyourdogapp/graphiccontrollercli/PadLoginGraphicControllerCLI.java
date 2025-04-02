@@ -8,10 +8,10 @@ import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
-import javax.security.auth.login.CredentialException;
-import java.io.BufferedReader;
-import java.io.IOException;
+import javax.security.auth.login.CredentialException;import java.io.IOException;
 import java.io.InputStreamReader;
+
+import java.io.BufferedReader;
 
 public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
@@ -23,39 +23,8 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
     }
 
-
     @Override
-    public void showMenu(){
-        int scelta;
-
-        Printer.printf("*---- PADRONE LOGIN ----*\n");
-
-        while(true) {
-            Printer.printf("1) Effettua il login come padrone");
-            Printer.printf("2) Torna indietro");
-            Printer.printf("3) Registrati");
-            Printer.printf("4) Esci");
-
-            scelta = getChoice(1,4);
-
-            try {
-                switch (scelta) {
-                    case 1 -> this.authenticate();
-                    case 2 -> new PreloginGraphicControllerCLI().start();
-                    case 3 -> new RegistrazioneGraphicControllerCLI().start();
-                    case 4 -> System.exit(0);
-                    default -> throw new InvalidInputException("Invalid choice");
-                }
-
-                break;
-
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
-    }
-
-    private void authenticate() {
+    public void authenticate() {
         BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
         Printer.printf("*---- PADRONE LOGIN ----*");
 

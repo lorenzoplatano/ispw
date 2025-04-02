@@ -25,37 +25,7 @@ public class VetLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
 
     @Override
-    public void showMenu(){
-
-        int choice;
-        Printer.printf("*---- VETERINARIO LOGIN ----*\n");
-
-        while(true) {
-            Printer.printf("1) Effettua il login come veterinario");
-            Printer.printf("2) Registrati");
-            Printer.printf("3) Torna indietro");
-            Printer.printf("4) Esci");
-
-            choice = getChoice(1,4);
-
-            try {
-                switch (choice) {
-                    case 1 -> this.authenticate();
-                    case 3 -> new PreloginGraphicControllerCLI().start();
-                    case 2 -> new RegistrazioneGraphicControllerCLI().start();
-                    case 4 -> System.exit(0);
-                    default -> throw new InvalidInputException("Invalid choice");
-                }
-
-                break;
-
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
-    }
-
-    private void authenticate() {
+    public void authenticate() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Printer.printf("*---- VETERINARIO LOGIN ----*");
 
