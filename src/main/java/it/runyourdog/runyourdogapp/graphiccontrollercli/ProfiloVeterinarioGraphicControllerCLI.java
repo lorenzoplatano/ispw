@@ -10,7 +10,7 @@ import it.runyourdog.runyourdogapp.utils.Printer;
 
 public class ProfiloVeterinarioGraphicControllerCLI extends GenericGraphicControllerCLI{
 
-    private final LoginController controller;
+
     private UserBean loggedVet;
 
     public ProfiloVeterinarioGraphicControllerCLI(UserBean loggedUser) {
