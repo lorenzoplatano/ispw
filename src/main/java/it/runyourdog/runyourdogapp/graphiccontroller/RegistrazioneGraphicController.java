@@ -43,13 +43,13 @@ public class RegistrazioneGraphicController {
 
     @FXML
     public void onRegistratiClick() throws IOException {
-        String email = this.email.getText().trim();
-        String username = this.username.getText().trim();
-        String nome = this.nome.getText().trim();
-        String cognome = this.cognome.getText().trim();
-        String password = this.password.getText().trim();
-        String confermaPassword = this.confermaPassword.getText().trim();
-        String ruolo = this.comboBox.getValue();
+        String emailInput = this.email.getText().trim();
+        String usernameInput = this.username.getText().trim();
+        String nomeInput = this.nome.getText().trim();
+        String cognomeInput = this.cognome.getText().trim();
+        String passwordInput = this.password.getText().trim();
+        String confermaPasswordInput = this.confermaPassword.getText().trim();
+        String ruoloInput = this.comboBox.getValue();
 
         RegistrazioneController controller = new RegistrazioneController();
 
