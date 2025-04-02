@@ -17,12 +17,12 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericGraphicControll
 
     @Override
     public void showMenu(){
+        Printer.printf("*---- HOME PAGE DOGSITTER ----*\n");
 
         int choice;
 
-        Printer.printf("*---- HOME PAGE DOGSITTER ----*\n");
-
         while(true) {
+
             Printer.printf("1) Mostra informazioni personali");
             Printer.printf("2) Modifica informazioni personali");
             Printer.printf("3) Modifica orari di disponibilità");
