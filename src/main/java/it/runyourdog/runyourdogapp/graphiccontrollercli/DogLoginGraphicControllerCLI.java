@@ -46,7 +46,7 @@ public class DogLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
                     throw new CredentialException("Accesso negato: solo i dogsitter possono effettuare il login.");
 
                 }
-                new ProfiloPadroneGraphicControllerCLI(loggedPad).start();
+                new ProfiloDogsitterGraphicControllerCLI(loggedPad).start();
 
             } catch (IOException | DAOException | CredentialException e) {
                 Printer.printf("Errore: " + e.getMessage());
