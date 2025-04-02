@@ -4,7 +4,6 @@ import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.beans.LoginBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
-import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
@@ -15,7 +14,7 @@ import java.io.InputStreamReader;
 
 public class VetLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
-    private final LoginController controller;
+
 
     public VetLoginGraphicControllerCLI(){
 

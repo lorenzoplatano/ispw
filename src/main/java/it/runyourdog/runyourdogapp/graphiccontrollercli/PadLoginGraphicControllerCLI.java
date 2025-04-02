@@ -4,7 +4,7 @@ import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.beans.LoginBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
-import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
@@ -15,11 +15,11 @@ import java.io.BufferedReader;
 
 public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
-    private final LoginController con;
+
 
     public PadLoginGraphicControllerCLI(){
 
-        this.con = new LoginController();
+        this.controller = new LoginController();
 
     }
 
@@ -40,7 +40,7 @@ public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
 
                 LoginBean credentials = new LoginBean(pademail, padpassword);
 
-                UserBean loggedPad = this.con.authenticate(credentials);
+                UserBean loggedPad = this.controller.authenticate(credentials);
 
                 if (loggedPad.getRole() != Role.PADRONE) {
 
