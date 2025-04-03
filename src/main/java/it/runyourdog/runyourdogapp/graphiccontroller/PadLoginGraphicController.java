@@ -10,6 +10,7 @@ import it.runyourdog.runyourdogapp.utils.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import javafx.fxml.FXML;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 
@@ -21,6 +22,10 @@ import static it.runyourdog.runyourdogapp.utils.SingletonStage.getStage;
 
 public class PadLoginGraphicController extends GenericLoginGraphicController {
 
+
+
+    @FXML
+    private Label errorLabel;
 
     @FXML
     public void onPadLoginClick()  {
@@ -40,9 +45,15 @@ public class PadLoginGraphicController extends GenericLoginGraphicController {
             SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", loggedPad);
 
         } catch (CredentialException | IOException | DAOException | ProfileRetrievalException e) {
-            Printer.perror("Errore: " + e.getMessage());
+            showError("Errore: " + e.getMessage());
         }
 
+    }
+
+
+    @Override
+    public Label getErrorLabel() {
+        return this.errorLabel;
     }
 
 }

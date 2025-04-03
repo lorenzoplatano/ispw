@@ -9,12 +9,16 @@ import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
 
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
 
 public class DogLoginGraphicController extends GenericLoginGraphicController {
+
+    @FXML
+    private Label errorLabel;
 
     @FXML
     public void onDogLoginClick()  {
@@ -34,8 +38,12 @@ public class DogLoginGraphicController extends GenericLoginGraphicController {
             SingletonStage.getStage(null).showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml", loggedDogs);
 
         } catch (CredentialException | IOException | DAOException | ProfileRetrievalException e) {
-            Printer.perror("Errore: " + e.getMessage());
+            showError("Errore: " + e.getMessage());
         }
     }
 
+    @Override
+    public Label getErrorLabel() {
+        return this.errorLabel;
+    }
 }
