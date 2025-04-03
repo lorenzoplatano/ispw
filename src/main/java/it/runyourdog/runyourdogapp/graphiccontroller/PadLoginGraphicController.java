@@ -28,7 +28,8 @@ public class PadLoginGraphicController extends GenericLoginGraphicController {
     private Label errorLabel;
 
     @FXML
-    public void onPadLoginClick()  {
+    @Override
+    public void onLoginClick()  {
         String padEmail = this.email.getText().trim();
         String pass = this.password.getText().trim();
 

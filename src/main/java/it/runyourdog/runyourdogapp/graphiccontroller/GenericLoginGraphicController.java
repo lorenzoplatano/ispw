@@ -27,6 +27,9 @@ public abstract class GenericLoginGraphicController {
         SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/PreLogin.fxml");
     }
 
+    @FXML
+    protected abstract void onLoginClick();
+
     protected abstract Label getErrorLabel();
 
     public void showError(String message){

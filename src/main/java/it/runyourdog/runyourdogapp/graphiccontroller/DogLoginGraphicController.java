@@ -21,7 +21,8 @@ public class DogLoginGraphicController extends GenericLoginGraphicController {
     private Label errorLabel;
 
     @FXML
-    public void onDogLoginClick()  {
+    @Override
+    public void onLoginClick()  {
         String dogEmail = this.email.getText().trim();
         String pass = this.password.getText().trim();
 

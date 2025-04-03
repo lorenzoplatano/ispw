@@ -25,7 +25,8 @@ public class VetLoginGraphicController extends GenericLoginGraphicController {
     private Label errorLabel;
 
     @FXML
-    public void onVetLoginClick()  {
+    @Override
+    public void onLoginClick()  {
         String vetEmail = this.email.getText().trim();
         String pass = this.password.getText().trim();
 

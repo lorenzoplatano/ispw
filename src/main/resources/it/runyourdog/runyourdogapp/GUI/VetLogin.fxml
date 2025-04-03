@@ -56,7 +56,7 @@
             </VBox>
             <AnchorPane prefHeight="71.0" prefWidth="576.0">
                <children>
-                  <Button layoutX="139.2" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#onVetLoginClick" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: CC6C25; -fx-border-width: 2; -fx-border-radius: 5;" text="LOGIN" AnchorPane.leftAnchor="139.2" AnchorPane.rightAnchor="139.2">
+                  <Button layoutX="139.2" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#onLoginClick" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: CC6C25; -fx-border-width: 2; -fx-border-radius: 5;" text="LOGIN" AnchorPane.leftAnchor="139.2" AnchorPane.rightAnchor="139.2">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
