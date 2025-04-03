@@ -7,7 +7,7 @@ import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
-public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicControllerCLI{
+public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicControllerCLI {
 
     public ProfiloPadroneGraphicControllerCLI(UserBean loggedUser) {
 
@@ -37,7 +37,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicController
 
             try {
                 switch (choice) {
-                    case 1 -> this.getProfiloPadrone(loggedUser);
+                    case 1 -> this.getProfilo(loggedUser);
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
@@ -53,18 +53,19 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericGraphicController
         }
     }
 
-    public void getProfiloPadrone(UserBean loggedUser) {
+    @Override
+    public void getProfilo(UserBean loggedUser) {
         ProfiloPadroneBean profilo = null;
         try {
             profilo = this.controller.getPadProfileInfo(loggedUser);
         } catch (ProfileRetrievalException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
-        showProfiloPadrone(profilo);
+        showProfilo(profilo);
         showMenu();
     }
 
-    public void showProfiloPadrone(ProfiloPadroneBean profilo) {
+    public void showProfilo(ProfiloPadroneBean profilo) {
         Printer.printf("\nProfilo del Cane:");
         Printer.printf("Nome del cane: " + profilo.getNomeCane());
         Printer.printf("Sesso del cane: " + profilo.getSessoCane());

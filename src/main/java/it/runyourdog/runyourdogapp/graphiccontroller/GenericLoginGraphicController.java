@@ -18,21 +18,21 @@ public abstract class GenericLoginGraphicController {
     protected TextField password;
 
     @FXML
-    public void goToRegistrazione() throws IOException {
+    protected void goToRegistrazione() throws IOException {
         SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
     }
 
     @FXML
-    public void changeRole() throws IOException {
+    protected void changeRole() throws IOException {
         SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/PreLogin.fxml");
     }
 
     @FXML
-    protected abstract void onLoginClick();
+    protected abstract void onLoginClick() ;
 
     protected abstract Label getErrorLabel();
 
-    public void showError(String message){
+    protected void showError(String message){
         Label errorLabel = this.getErrorLabel();
         errorLabel.setText(message);
         errorLabel.setVisible(true);

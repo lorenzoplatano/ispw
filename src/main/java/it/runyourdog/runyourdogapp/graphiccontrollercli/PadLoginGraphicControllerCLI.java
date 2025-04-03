@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 
 import java.io.BufferedReader;
 
-public class PadLoginGraphicControllerCLI extends GenericGraphicControllerCLI{
+public class PadLoginGraphicControllerCLI extends GenericLoginGraphicControllerCLI {
 
     public PadLoginGraphicControllerCLI(){
 

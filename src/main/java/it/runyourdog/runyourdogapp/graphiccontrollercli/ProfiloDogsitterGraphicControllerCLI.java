@@ -2,13 +2,15 @@ package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
 import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
+import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
+import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
-public class ProfiloDogsitterGraphicControllerCLI extends GenericGraphicControllerCLI {
+public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfiloGraphicControllerCLI {
 
     public ProfiloDogsitterGraphicControllerCLI(UserBean user) {
         this.loggedUser = user;
@@ -35,7 +37,7 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericGraphicControll
 
             try {
                 switch (choice) {
-                    case 1 -> this.getProfiloDogsitter(loggedUser);
+                    case 1 -> this.getProfilo(loggedUser);
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
@@ -52,25 +54,28 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericGraphicControll
         }
     }
 
-    public void getProfiloDogsitter(UserBean loggedUser) {
+    @Override
+    public void getProfilo(UserBean loggedUser) {
         ProfiloDogsitterBean profilo = null;
         try {
             profilo = this.controller.getDogProfileInfo(loggedUser);
         } catch (ProfileRetrievalException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
-        showProfiloPadrone(profilo);
+        showProfilo(profilo);
         showMenu();
     }
 
-    public void showProfiloPadrone(ProfiloDogsitterBean profilo) {
+    @Override
+    public void showProfilo(ProfiloLavoratoreBean profilo) {
         Printer.printf("\nProfilo del Dogsitter:");
         Printer.printf("Nome: " + profilo.getNome());
         Printer.printf("Genere: " + profilo.getGenere());
-        Printer.printf("Età: " + profilo.getEta());
-        Printer.printf("Città: " + profilo.getCitta());
         Printer.printf("Telefono: " + profilo.getTelefono());
         Printer.printf("Email: " + profilo.getEmail());
+        Printer.printf("Età: " + profilo.getEta());
+        Printer.printf("Città: " + profilo.getCitta());
+
 
         Printer.printf("\nOrari di disponibilità:");
         if (profilo.getOrari() != null && !profilo.getOrari().isEmpty()) {
