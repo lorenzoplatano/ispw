@@ -51,7 +51,7 @@ public class ProfiloDogsitterGraphicController {
     public void populate(ProfiloDogsitterBean loggedDogs) {
         name.setText(loggedDogs.getNome());
         sesso.setText(loggedDogs.getGenere());
-        eta.setText(loggedDogs.getEta() != null ? loggedDogs.getEta().toString() : "");
+        eta.setText(String.valueOf(loggedDogs.getEta()));
         citta.setText(loggedDogs.getCitta());
         tel.setText(loggedDogs.getTelefono());
         email.setText(loggedDogs.getEmail());

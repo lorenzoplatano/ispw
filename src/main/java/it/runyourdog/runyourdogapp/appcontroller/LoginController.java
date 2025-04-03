@@ -40,16 +40,6 @@ public class LoginController {
         String email = loggedUser.getEmail();
         String password = loggedUser.getPassword();
 
-        String nomeCane;
-        String sessoCane;
-        String razzaCane;
-        String microchip;
-        Date dataNascitaCane;
-        List<String> vaccinazioniCane;
-        String nomePadrone;
-        String telefonoPadrone;
-        String indirizzoPadrone;
-
         Padrone pad = new Padrone(email, password);
         Dog dog;
 
@@ -60,35 +50,26 @@ public class LoginController {
             pad = daoPad.padInfo(pad);
             dog = daoDog.dogInfo(pad);
         } catch (DAOException e) {
-            throw new ProfileRetrievalException("Errore nel recupero del profilo del dogsitter", e);
+            throw new ProfileRetrievalException("Errore nel recupero del profilo del padrone", e);
         }
 
-
-        nomeCane = dog.getNome();
-        sessoCane = dog.getSesso();
-        razzaCane = dog.getRazza();
-        microchip = dog.getMicrochip();
-        dataNascitaCane = dog.getDataNascita();
-        vaccinazioniCane = dog.getVaccinazioni();
-        nomePadrone = pad.getNome();
-        telefonoPadrone = pad.getTelefono();
-        indirizzoPadrone = pad.getIndirizzo();
-
-        return new ProfiloPadroneBean(nomeCane, sessoCane, razzaCane, microchip, dataNascitaCane, vaccinazioniCane, nomePadrone, telefonoPadrone, indirizzoPadrone);
+        return new ProfiloPadroneBean.Builder()
+                .nomeCane(dog.getNome())
+                .sessoCane(dog.getSesso())
+                .razzaCane(dog.getRazza())
+                .microchip(dog.getMicrochip())
+                .dataNascitaCane(dog.getDataNascita())
+                .vaccinazioniCane(dog.getVaccinazioni())
+                .nomePadrone(pad.getNome())
+                .telefonoPadrone(pad.getTelefono())
+                .indirizzoPadrone(pad.getIndirizzo())
+                .build();
     }
 
-    public ProfiloVeterinarioBean getVetProfileInfo(UserBean loggedUser) throws ProfileRetrievalException{
 
+    public ProfiloVeterinarioBean getVetProfileInfo(UserBean loggedUser) throws ProfileRetrievalException {
         String email = loggedUser.getEmail();
         String password = loggedUser.getPassword();
-
-        String nome;
-        String genere;
-        Integer eta;
-        String citta;
-        String indirizzo;
-        String telefono;
-        List<Orario> orari;
 
         Veterinario vet = new Veterinario(email, password);
         List<Orario> orario;
@@ -97,34 +78,28 @@ public class LoginController {
 
         try {
             vet = daoVet.vetInfo(vet);
-            orario=daoVet.vetOrari(vet);
+            orario = daoVet.vetOrari(vet);
         } catch (DAOException e) {
-            throw new ProfileRetrievalException("Errore nel recupero del profilo del dogsitter", e);
+            throw new ProfileRetrievalException("Errore nel recupero del profilo del veterinario", e);
         }
 
-        nome= vet.getNome();
-        genere= vet.getGenere();
-        eta= vet.getEta();
-        citta= vet.getCitta();
-        indirizzo= vet.getIndirizzo();
-        telefono= vet.getTelefono();
-        orari=orario;
-
-
-        return new ProfiloVeterinarioBean(nome, genere, eta, citta, indirizzo, telefono, orari, email);
+        return new ProfiloVeterinarioBean.Builder()
+                .nome(vet.getNome())
+                .genere(vet.getGenere())
+                .eta(vet.getEta())
+                .citta(vet.getCitta())
+                .indirizzo(vet.getIndirizzo())
+                .telefono(vet.getTelefono())
+                .orari(orario)
+                .email(email)
+                .build();
     }
 
-    public ProfiloDogsitterBean getDogProfileInfo(UserBean loggedUser) throws ProfileRetrievalException{
+
+    public ProfiloDogsitterBean getDogProfileInfo(UserBean loggedUser) throws ProfileRetrievalException {
 
         String email = loggedUser.getEmail();
         String password = loggedUser.getPassword();
-
-        String nome;
-        String genere;
-        Integer eta;
-        String citta;
-        String telefono;
-        List<Orario> orari;
 
         Dogsitter dogs = new Dogsitter(email, password);
         List<Orario> orario;
@@ -138,14 +113,15 @@ public class LoginController {
             throw new ProfileRetrievalException("Errore nel recupero del profilo del dogsitter", e);
         }
 
-        nome= dogs.getNome();
-        genere= dogs.getGenere();
-        eta= dogs.getEta();
-        citta= dogs.getCitta();
-        telefono= dogs.getTelefono();
-        orari=orario;
-
-
-        return new ProfiloDogsitterBean(nome, eta, genere, citta, telefono, orari, email);
+        return new ProfiloDogsitterBean.Builder()
+                .nome(dogs.getNome())
+                .eta(dogs.getEta())
+                .genere(dogs.getGenere())
+                .citta(dogs.getCitta())
+                .telefono(dogs.getTelefono())
+                .email(email)
+                .orari(orario)
+                .build();
     }
+
 }

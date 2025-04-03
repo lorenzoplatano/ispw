@@ -54,7 +54,7 @@ public class ProfiloVeterinarioGraphicController {
     public void populate(ProfiloVeterinarioBean loggedVet) {
         nameLabel.setText(loggedVet.getNome());
         sessoLabel.setText(loggedVet.getGenere());
-        etaLabel.setText(loggedVet.getEta() != null ? loggedVet.getEta().toString() : "");
+        etaLabel.setText(String.valueOf(loggedVet.getEta()));
         cittaLabel.setText(loggedVet.getCitta());
         indLabel.setText(loggedVet.getIndirizzo());
         telLabel.setText(loggedVet.getTelefono());
