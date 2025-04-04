@@ -11,7 +11,7 @@ public abstract class GenericGraphicController {
     protected Label errorLabel;
 
     protected void showError(String message){
-        Label errorLabel = this.getErrorLabel();
+        errorLabel = this.getErrorLabel();
         errorLabel.setText(message);
         errorLabel.setVisible(true);
         PauseTransition pause = new PauseTransition(Duration.seconds(3));
