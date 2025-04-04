@@ -30,6 +30,14 @@ public abstract class ProfiloLavoratoreBean {
     public String getEmail() { return email; }
     public String getTelefono() { return telefono; }
 
+    public void setNome(String nome) { this.nome = nome; }
+    public void setEta(int eta) { this.eta = eta; }
+    public void setGenere(String genere) { this.genere = genere; }
+    public void setCitta(String citta) { this.citta = citta; }
+    public void setOrari(List<Orario> orari) { this.orari = orari; }
+    public void setEmail(String email) { this.email = email; }
+    public void setTelefono(String telefono) { this.telefono = telefono; }
+
     public abstract static class Builder<T extends Builder<T>> {
         protected String nome;
         protected int eta;

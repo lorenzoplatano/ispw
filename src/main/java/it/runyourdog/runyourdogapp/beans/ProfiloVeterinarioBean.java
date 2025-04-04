@@ -10,6 +10,9 @@ public class ProfiloVeterinarioBean extends ProfiloLavoratoreBean {
 
     public String getIndirizzo() { return indirizzo; }
 
+    public void setIndirizzo(String indirizzo) { this.indirizzo = indirizzo; }
+
+
     public static class Builder extends ProfiloLavoratoreBean.Builder<Builder> {
         private String indirizzo;
 

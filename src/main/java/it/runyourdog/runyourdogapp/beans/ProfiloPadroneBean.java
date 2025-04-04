@@ -87,5 +87,15 @@ public class ProfiloPadroneBean {
             return new ProfiloPadroneBean(this);
         }
     }
+
+    public void setNomeCane(String nomeCane) { this.nomeCane = nomeCane; }
+    public void setSessoCane(String sessoCane) { this.sessoCane = sessoCane; }
+    public void setRazzaCane(String razzaCane) { this.razzaCane = razzaCane; }
+    public void setMicrochip(String microchip) { this.microchip = microchip; }
+    public void setDataNascitaCane(Date dataNascitaCane) { this.dataNascitaCane = dataNascitaCane; }
+    public void setVaccinazioniCane(List<String> vaccinazioniCane) { this.vaccinazioniCane = vaccinazioniCane; }
+    public void setNomePadrone(String nomePadrone) { this.nomePadrone = nomePadrone; }
+    public void setTelefonoPadrone(String telefonoPadrone) { this.telefonoPadrone = telefonoPadrone; }
+    public void setIndirizzoPadrone(String indirizzoPadrone) { this.indirizzoPadrone = indirizzoPadrone; }
 }
 
