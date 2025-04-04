@@ -1,9 +1,13 @@
 package it.runyourdog.runyourdogapp.beans;
 
+import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import java.sql.Date;
 import java.util.List;
 
-public class ProfiloPadroneBean {
+
+
+
+public class ProfiloPadroneBean extends UserBean {
     private String nomeCane;
     private String sessoCane;
     private String razzaCane;
@@ -15,6 +19,9 @@ public class ProfiloPadroneBean {
     private String indirizzoPadrone;
 
     private ProfiloPadroneBean(Builder builder) {
+
+        super(builder.username, builder.email, builder.password, builder.role);
+
         this.nomeCane = builder.nomeCane;
         this.sessoCane = builder.sessoCane;
         this.razzaCane = builder.razzaCane;
@@ -26,6 +33,7 @@ public class ProfiloPadroneBean {
         this.indirizzoPadrone = builder.indirizzoPadrone;
     }
 
+
     public String getNomeCane() { return nomeCane; }
     public String getSessoCane() { return sessoCane; }
     public String getRazzaCane() { return razzaCane; }
@@ -36,7 +44,25 @@ public class ProfiloPadroneBean {
     public String getTelefonoPadrone() { return telefonoPadrone; }
     public String getIndirizzoPadrone() { return indirizzoPadrone; }
 
+
+    public void setNomeCane(String nomeCane) { this.nomeCane = nomeCane; }
+    public void setSessoCane(String sessoCane) { this.sessoCane = sessoCane; }
+    public void setRazzaCane(String razzaCane) { this.razzaCane = razzaCane; }
+    public void setMicrochip(String microchip) { this.microchip = microchip; }
+    public void setDataNascitaCane(Date dataNascitaCane) { this.dataNascitaCane = dataNascitaCane; }
+    public void setVaccinazioniCane(List<String> vaccinazioniCane) { this.vaccinazioniCane = vaccinazioniCane; }
+    public void setNomePadrone(String nomePadrone) { this.nomePadrone = nomePadrone; }
+    public void setTelefonoPadrone(String telefonoPadrone) { this.telefonoPadrone = telefonoPadrone; }
+    public void setIndirizzoPadrone(String indirizzoPadrone) { this.indirizzoPadrone = indirizzoPadrone; }
+
     public static class Builder {
+
+        private String username;
+        private String email;
+        private String password;
+        private Role role;
+
+
         private String nomeCane;
         private String sessoCane;
         private String razzaCane;
@@ -46,6 +72,24 @@ public class ProfiloPadroneBean {
         private String nomePadrone;
         private String telefonoPadrone;
         private String indirizzoPadrone;
+
+
+        public Builder username(String username) {
+            this.username = username;
+            return this;
+        }
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+        public Builder password(String password) {
+            this.password = password;
+            return this;
+        }
+        public Builder role(Role role) {
+            this.role = role;
+            return this;
+        }
 
         public Builder nomeCane(String nomeCane) {
             this.nomeCane = nomeCane;
@@ -87,15 +131,4 @@ public class ProfiloPadroneBean {
             return new ProfiloPadroneBean(this);
         }
     }
-
-    public void setNomeCane(String nomeCane) { this.nomeCane = nomeCane; }
-    public void setSessoCane(String sessoCane) { this.sessoCane = sessoCane; }
-    public void setRazzaCane(String razzaCane) { this.razzaCane = razzaCane; }
-    public void setMicrochip(String microchip) { this.microchip = microchip; }
-    public void setDataNascitaCane(Date dataNascitaCane) { this.dataNascitaCane = dataNascitaCane; }
-    public void setVaccinazioniCane(List<String> vaccinazioniCane) { this.vaccinazioniCane = vaccinazioniCane; }
-    public void setNomePadrone(String nomePadrone) { this.nomePadrone = nomePadrone; }
-    public void setTelefonoPadrone(String telefonoPadrone) { this.telefonoPadrone = telefonoPadrone; }
-    public void setIndirizzoPadrone(String indirizzoPadrone) { this.indirizzoPadrone = indirizzoPadrone; }
 }
-

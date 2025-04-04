@@ -53,6 +53,10 @@ public class LoginController {
         }
 
         return new ProfiloPadroneBean.Builder()
+                .username(pad.getUsername())
+                .email(pad.getEmail())
+                .password(pad.getPassword())
+                .role(Role.PADRONE)
                 .nomeCane(dog.getNome())
                 .sessoCane(dog.getSesso())
                 .razzaCane(dog.getRazza())
@@ -63,6 +67,7 @@ public class LoginController {
                 .telefonoPadrone(pad.getTelefono())
                 .indirizzoPadrone(pad.getIndirizzo())
                 .build();
+
     }
 
 
