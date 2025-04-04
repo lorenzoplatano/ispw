@@ -30,7 +30,7 @@ public abstract class ProfiloLavoratoreBean {
     public String getEmail() { return email; }
     public String getTelefono() { return telefono; }
 
-    public static abstract class Builder<T extends Builder<T>> {
+    public abstract static class Builder<T extends Builder<T>> {
         protected String nome;
         protected int eta;
         protected String genere;

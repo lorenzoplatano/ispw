@@ -23,7 +23,7 @@ public class PreloginGraphicControllerCLI extends GenericGraphicControllerCLI {
                 switch (choice) {
                     case 1:
                         Printer.print("*\n---- PADRONE ----*");
-                        new PadLoginGraphicControllerCLI().start(); // Corretta l'istanza dell'oggetto
+                        new PadLoginGraphicControllerCLI().start();
                         break;
 
                     case 2:
