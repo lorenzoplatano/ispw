@@ -5,6 +5,8 @@ import it.runyourdog.runyourdogapp.utils.Printer;
 
 public abstract class GenericLoginGraphicControllerCLI extends GenericGraphicControllerCLI {
 
+
+
     @Override
     protected void showMenu(){
         int scelta;

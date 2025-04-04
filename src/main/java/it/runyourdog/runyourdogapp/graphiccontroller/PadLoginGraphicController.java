@@ -11,21 +11,17 @@ import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
 
-import static it.runyourdog.runyourdogapp.utils.SingletonStage.getStage;
 
 
 public class PadLoginGraphicController extends GenericLoginGraphicController {
 
 
 
-    @FXML
-    private Label errorLabel;
 
     @FXML
     @Override
@@ -51,10 +47,5 @@ public class PadLoginGraphicController extends GenericLoginGraphicController {
 
     }
 
-
-    @Override
-    public Label getErrorLabel() {
-        return this.errorLabel;
-    }
 
 }

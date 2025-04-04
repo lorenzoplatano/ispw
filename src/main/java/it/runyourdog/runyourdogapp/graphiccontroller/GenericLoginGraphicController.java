@@ -9,7 +9,8 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-public abstract class GenericLoginGraphicController {
+public abstract class GenericLoginGraphicController extends GenericGraphicController{
+
 
     @FXML
     protected TextField email;
@@ -30,15 +31,9 @@ public abstract class GenericLoginGraphicController {
     @FXML
     protected abstract void onLoginClick() ;
 
-    protected abstract Label getErrorLabel();
 
-    protected void showError(String message){
-        Label errorLabel = this.getErrorLabel();
-        errorLabel.setText(message);
-        errorLabel.setVisible(true);
-        PauseTransition pause = new PauseTransition(Duration.seconds(3));
-        pause.setOnFinished(event -> errorLabel.setVisible(false));
-        pause.play();
-    }
+
+
+
 
 }

@@ -9,16 +9,13 @@ import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+
 
 
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
 
 public class DogLoginGraphicController extends GenericLoginGraphicController {
-
-    @FXML
-    private Label errorLabel;
 
     @FXML
     @Override
@@ -43,8 +40,4 @@ public class DogLoginGraphicController extends GenericLoginGraphicController {
         }
     }
 
-    @Override
-    public Label getErrorLabel() {
-        return this.errorLabel;
-    }
 }

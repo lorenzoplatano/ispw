@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 
-public class ProfiloPadroneGraphicController {
+public class ProfiloPadroneGraphicController extends GenericGraphicController{
 
     @FXML
     private Label nameLabel;
@@ -45,4 +45,5 @@ public class ProfiloPadroneGraphicController {
         telLabel.setText(loggedPad.getTelefonoPadrone());
         indLabel.setText(loggedPad.getIndirizzoPadrone());
     }
+
 }
