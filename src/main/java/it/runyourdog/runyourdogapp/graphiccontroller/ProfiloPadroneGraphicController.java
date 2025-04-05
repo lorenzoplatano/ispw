@@ -2,48 +2,49 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+
+import javafx.scene.control.TextArea;
 
 
 public class ProfiloPadroneGraphicController extends GenericGraphicController{
 
     @FXML
-    private Label nameLabel;
+    private TextArea nameArea;
 
     @FXML
-    private Label sessoLabel;
+    private TextArea sessoArea;
 
     @FXML
-    private Label birthLabel;
+    private TextArea birthArea;
 
     @FXML
-    private Label razzaLabel;
+    private TextArea razzaArea;
 
     @FXML
-    private Label vaccLabel;
+    private TextArea vaccArea;
 
     @FXML
-    private Label microchipLabel;
+    private TextArea microchipArea;
 
     @FXML
-    private Label padNameLabel;
+    private TextArea padNameArea;
 
     @FXML
-    private Label telLabel;
+    private TextArea telArea;
 
     @FXML
-    private Label indLabel;
+    private TextArea indArea;
 
     public void populate(ProfiloPadroneBean loggedPad) {
-        nameLabel.setText(loggedPad.getNomeCane());
-        sessoLabel.setText(loggedPad.getSessoCane());
-        birthLabel.setText(loggedPad.getDataNascitaCane().toString());
-        razzaLabel.setText(loggedPad.getRazzaCane());
-        vaccLabel.setText(String.join(", ", loggedPad.getVaccinazioniCane()));
-        microchipLabel.setText(loggedPad.getMicrochip());
-        padNameLabel.setText(loggedPad.getNomePadrone());
-        telLabel.setText(loggedPad.getTelefonoPadrone());
-        indLabel.setText(loggedPad.getIndirizzoPadrone());
+        nameArea.setText(loggedPad.getNomeCane());
+        sessoArea.setText(loggedPad.getSessoCane());
+        birthArea.setText(loggedPad.getDataNascitaCane().toString());
+        razzaArea.setText(loggedPad.getRazzaCane());
+        vaccArea.setText(String.join(", ", loggedPad.getVaccinazioniCane()));
+        microchipArea.setText(loggedPad.getMicrochip());
+        padNameArea.setText(loggedPad.getNomePadrone());
+        telArea.setText(loggedPad.getTelefonoPadrone());
+        indArea.setText(loggedPad.getIndirizzoPadrone());
     }
 
 }

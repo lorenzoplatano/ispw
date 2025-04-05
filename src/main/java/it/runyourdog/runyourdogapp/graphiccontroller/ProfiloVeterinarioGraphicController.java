@@ -5,7 +5,8 @@ import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +16,7 @@ public class ProfiloVeterinarioGraphicController extends GenericProfiloLavorator
 
 
     @FXML
-    protected Label indLabel;
+    protected TextArea ind;
 
 
 
@@ -25,7 +26,7 @@ public class ProfiloVeterinarioGraphicController extends GenericProfiloLavorator
         sesso.setText(loggedVet.getGenere());
         eta.setText(String.valueOf(loggedVet.getEta()));
         citta.setText(loggedVet.getCitta());
-        indLabel.setText(loggedVet.getIndirizzo());
+        ind.setText(loggedVet.getIndirizzo());
         tel.setText(loggedVet.getTelefono());
         email.setText(loggedVet.getEmail());
 

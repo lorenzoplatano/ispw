@@ -2,47 +2,47 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 public abstract class GenericProfiloLavoratoreGraphicController extends GenericGraphicController{
     @FXML
-    protected Label name;
+    protected TextArea name;
 
     @FXML
-    protected Label sesso;
+    protected TextArea sesso;
 
     @FXML
-    protected Label eta;
+    protected TextArea eta;
 
     @FXML
-    protected Label citta;
+    protected TextArea citta;
 
     @FXML
-    protected Label email;
+    protected TextArea email;
 
     @FXML
-    protected Label tel;
+    protected TextArea tel;
 
     @FXML
-    protected Label lu;
+    protected TextArea lu;
 
     @FXML
-    protected Label ma;
+    protected TextArea ma;
 
     @FXML
-    protected Label me;
+    protected TextArea me;
 
     @FXML
-    protected Label gio;
+    protected TextArea gio;
 
     @FXML
-    protected Label ve;
+    protected TextArea ve;
 
     @FXML
-    protected Label sa;
+    protected TextArea sa;
 
     @FXML
-    protected Label dom;
+    protected TextArea dom;
 
     protected abstract void populate(ProfiloLavoratoreBean profilo);
 }
