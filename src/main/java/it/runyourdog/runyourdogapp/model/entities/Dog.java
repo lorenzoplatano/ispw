@@ -22,6 +22,14 @@ public class Dog {
         this.vaccinazioni = vaccinazioni;
     }
 
+    public Dog(String nome, String sesso, String razza, String microchip, List<String> vaccinazioni) {
+        this.nome = nome;
+        this.sesso = sesso;
+        this.razza = razza;
+        this.microchip = microchip;
+        this.vaccinazioni = vaccinazioni;
+    }
+
     public String getNome() {
         return nome;
     }

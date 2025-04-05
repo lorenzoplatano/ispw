@@ -1,5 +1,7 @@
 package it.runyourdog.runyourdogapp.model.entities;
 
+import it.runyourdog.runyourdogapp.utils.enumeration.Role;
+
 public class Padrone extends User {
 
     private String nome;
@@ -8,6 +10,13 @@ public class Padrone extends User {
 
     public Padrone(String email, String password) {
         super(email, password);
+    }
+
+    public Padrone(String username, String email, String password, Role role, String nome, String telefono, String indirizzo) {
+        super(username, email, password, role);
+        this.nome = nome;
+        this.telefono = telefono;
+        this.indirizzo = indirizzo;
     }
 
     public String getNome() {

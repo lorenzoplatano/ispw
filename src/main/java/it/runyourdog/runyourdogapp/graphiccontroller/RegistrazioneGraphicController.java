@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegistrazioneGraphicController {
 
@@ -59,7 +61,6 @@ public class RegistrazioneGraphicController {
     private TextField vaccinazioni;
 
 
-    RegistrazioneController controller = new RegistrazioneController();
 
     private ProfiloPadroneBean profiloPadroneBean;
 
@@ -67,12 +68,9 @@ public class RegistrazioneGraphicController {
     @FXML
     public void initialize() {
         comboBox.getItems().addAll("Padrone", "Veterinario", "Dogsitter");
-    }
-
-    @FXML
-    public void initializeRazza() {
         sessocane.getItems().addAll("M", "F");
     }
+
 
     @FXML
     public void goToPrelogin() throws IOException {
@@ -126,13 +124,27 @@ public class RegistrazioneGraphicController {
         String razzaInput = this.razzacane.getText();
         String sessoInput = this.sessocane.getValue();
         String microchipInput  = this.microchip.getText().trim();
-        String vaccinazioniInput = this.vaccinazioni.getText();
+        String vaccinazione = this.vaccinazioni.getText().trim();
         String datadinascitaInput = this.datadinascita.getText();
 
+        List<String> vaccinazioni = new ArrayList<String>();
+        vaccinazioni.add(vaccinazione);
+
+        RegistrazioneController controller = new RegistrazioneController();
 
 
         try{
+            this.profiloPadroneBean.setTelefonoPadrone(telefonoInput);
+            this.profiloPadroneBean.setIndirizzoPadrone(indirizzoInput);
+            this.profiloPadroneBean.setNomeCane(nomeInput);
+            this.profiloPadroneBean.setRazzaCane(razzaInput);
+            this.profiloPadroneBean.setSessoCane(sessoInput);
+            this.profiloPadroneBean.setMicrochip(microchipInput);
+            this.profiloPadroneBean.setVaccinazioniCane(vaccinazioni);
 
+            controller.padRegister(this.profiloPadroneBean);
+
+            SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", this.profiloPadroneBean);
 
 
 
