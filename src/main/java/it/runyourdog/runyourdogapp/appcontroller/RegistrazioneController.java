@@ -14,7 +14,7 @@ import java.util.List;
 public class RegistrazioneController {
 
 
-    public void padRegister(ProfiloPadroneBean bean) throws CredentialException, DAOException {
+    public void padRegister(ProfiloPadroneBean bean) throws DAOException {
 
         PadroneDao dao = new PadroneDao();
 
