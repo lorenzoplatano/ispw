@@ -2,6 +2,8 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import javafx.fxml.FXML;
@@ -13,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegistrazioneGraphicController {
+public class RegistrazioneGraphicController extends GenericGraphicController {
 
     @FXML
     private TextField email;
@@ -64,11 +66,19 @@ public class RegistrazioneGraphicController {
 
     private ProfiloPadroneBean profiloPadroneBean;
 
+    public void setProfiloPadroneBean(ProfiloPadroneBean profiloPadroneBean) {
+        this.profiloPadroneBean = profiloPadroneBean;
+    }
+
 
     @FXML
     public void initialize() {
-        comboBox.getItems().addAll("Padrone", "Veterinario", "Dogsitter");
-        sessocane.getItems().addAll("M", "F");
+        if(comboBox != null) {
+            comboBox.getItems().addAll("Padrone", "Veterinario", "Dogsitter");
+        }
+        if(sessocane != null) {
+            sessocane.getItems().addAll("M", "F");
+        }
     }
 
 
@@ -107,7 +117,7 @@ public class RegistrazioneGraphicController {
 
 
 
-            SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/RegistrazionePadrone.fxml");
+            SingletonStage.getStage(null).showRegistrazionePadronePage("/it/runyourdog/runyourdogapp/GUI/RegistrazionePadrone.fxml", this.profiloPadroneBean);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -127,7 +137,7 @@ public class RegistrazioneGraphicController {
         String vaccinazione = this.vaccinazioni.getText().trim();
         String datadinascitaInput = this.datadinascita.getText();
 
-        List<String> vaccinazioni = new ArrayList<String>();
+        List<String> vaccinazioni = new ArrayList<>();
         vaccinazioni.add(vaccinazione);
 
         RegistrazioneController controller = new RegistrazioneController();
@@ -148,8 +158,8 @@ public class RegistrazioneGraphicController {
 
 
 
-        }catch (Exception e){
-            e.printStackTrace();
+        } catch (CredentialException | IOException | DAOException e) {
+            showError("Errore: " + e.getMessage());
         }
 
 

@@ -7,6 +7,7 @@ import it.runyourdog.runyourdogapp.model.entities.Padrone;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PadroneDao {
 
@@ -85,4 +86,34 @@ public class PadroneDao {
         return new Dog(nome, sesso, razza, microchip, dataNascita, vaccinazioni);
     }
 
+    public void registerProcedure(Padrone pad, Dog dog) throws DAOException {
+
+
+
+        try {
+
+            List<String> vaccinazioni = dog.getVaccinazioni();
+
+            this.cs = this.conn.prepareCall("{call registrazionePadrone(?,?,?,?,?,?,?,?,?,?,?,?)}");
+            this.cs.setString(1, pad.getUsername());
+            this.cs.setString(2, pad.getEmail());
+            this.cs.setString(3, pad.getPassword());
+            this.cs.setString(4, pad.getNome());
+            this.cs.setString(5, pad.getTelefono());
+            this.cs.setString(6, pad.getIndirizzo());
+            this.cs.setString(7, dog.getNome());
+            this.cs.setString(8, dog.getSesso());
+            this.cs.setString(9, dog.getRazza());
+            this.cs.setDate(10, dog.getDataNascita());
+            this.cs.setString(11, dog.getMicrochip());
+
+            String vaccinazioniStr = String.join(",", vaccinazioni);
+            this.cs.setString(12, vaccinazioniStr);
+            this.cs.execute();
+
+        }catch (SQLException e) {
+            throw new DAOException(e.getMessage());
+        }
+
+    }
 }

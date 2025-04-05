@@ -6,6 +6,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.graphiccontroller.ProfiloDogsitterGraphicController;
 import it.runyourdog.runyourdogapp.graphiccontroller.ProfiloPadroneGraphicController;
 import it.runyourdog.runyourdogapp.graphiccontroller.ProfiloVeterinarioGraphicController;
+import it.runyourdog.runyourdogapp.graphiccontroller.RegistrazioneGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -63,6 +64,16 @@ public class SingletonStage {
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
+
+    public void showRegistrazionePadronePage(String fxmlPath, ProfiloPadroneBean bean) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        RegistrazioneGraphicController controller = fxmlLoader.getController();
+        controller.setProfiloPadroneBean(bean);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
+
 
 
 

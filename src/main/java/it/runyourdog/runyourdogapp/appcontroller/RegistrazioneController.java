@@ -1,19 +1,21 @@
 package it.runyourdog.runyourdogapp.appcontroller;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
-import it.runyourdog.runyourdogapp.model.dao.RegistrazioneDao;
+import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.model.dao.PadroneDao;
 import it.runyourdog.runyourdogapp.model.entities.Dog;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
+import javax.security.auth.login.CredentialException;
 import java.util.List;
 
 public class RegistrazioneController {
 
 
-    public void padRegister(ProfiloPadroneBean bean) {
+    public void padRegister(ProfiloPadroneBean bean) throws CredentialException, DAOException {
 
-        RegistrazioneDao dao = new RegistrazioneDao();
+        PadroneDao dao = new PadroneDao();
 
         String nome = bean.getNomePadrone();
         String username = bean.getUsername();
