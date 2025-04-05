@@ -39,6 +39,9 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
     @FXML
     private TextField vaccinazioni;
 
+    @FXML
+    private TextField citta;
+
     private ProfiloPadroneBean profiloPadroneBean;
 
     public void setProfiloPadroneBean(ProfiloPadroneBean profiloPadroneBean) {
@@ -64,6 +67,7 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
         String microchipInput  = this.microchip.getText().trim();
         String vaccinazione = this.vaccinazioni.getText().trim();
         String datadinascitaInput = this.datadinascita.getText();
+        String cittaInput = this.citta.getText();
 
         List<String> vaccinazioniList = Arrays.asList(vaccinazione.split("\\s*,\\s*"));
 
@@ -88,6 +92,7 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
             this.profiloPadroneBean.setMicrochip(microchipInput);
             this.profiloPadroneBean.setVaccinazioniCane(vaccinazioniList);
             this.profiloPadroneBean.setDataNascitaCane(dataNascita);
+            this.profiloPadroneBean.setCittaPadrone(cittaInput);
 
             controller.padRegister(this.profiloPadroneBean);
 

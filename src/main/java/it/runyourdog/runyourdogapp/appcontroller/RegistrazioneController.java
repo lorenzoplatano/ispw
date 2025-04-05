@@ -25,8 +25,9 @@ public class RegistrazioneController {
         Role ruolo = bean.getRole();
         String telefono = bean.getTelefonoPadrone();
         String indirizzo = bean.getIndirizzoPadrone();
+        String citta = bean.getCittaPadrone();
 
-        Padrone pad = new Padrone(username, email, password, ruolo, nome, telefono, indirizzo);
+        Padrone pad = new Padrone(username, email, password, ruolo, nome, telefono, indirizzo, citta);
 
         String nomec = bean.getNomeCane();
         String microchip = bean.getMicrochip();

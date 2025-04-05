@@ -56,5 +56,5 @@ public class ProfiloPadroneBean extends UserBean {
     public void setNomePadrone(String nomePadrone) { this.nomePadrone = nomePadrone; }
     public void setTelefonoPadrone(String telefonoPadrone) { this.telefonoPadrone = telefonoPadrone; }
     public void setIndirizzoPadrone(String indirizzoPadrone) { this.indirizzoPadrone = indirizzoPadrone; }
-    public void getCittaPadrone(String cittaPadrone){this.cittaPadrone = cittaPadrone; }
+    public void setCittaPadrone(String cittaPadrone){this.cittaPadrone = cittaPadrone; }
 }

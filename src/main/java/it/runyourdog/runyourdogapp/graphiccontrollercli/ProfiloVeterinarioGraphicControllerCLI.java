@@ -29,7 +29,8 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
             Printer.printf("2) Modifica informazioni personali");
             Printer.printf("3) Modifica orari di lavoro");
             Printer.printf("4) Gestisci le tue prenotazioni");
-            Printer.printf("5) Esci");
+            Printer.printf("5) Logout");
+            Printer.printf("6) Esci");
 
 
             scelta = getChoice(1,5);
@@ -40,7 +41,8 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 5 -> System.exit(0);
+                    case 5 -> new PreloginGraphicControllerCLI().start();
+                    case 6 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
                 }
 

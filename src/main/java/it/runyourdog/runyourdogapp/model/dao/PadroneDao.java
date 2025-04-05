@@ -22,6 +22,7 @@ public class PadroneDao {
         String nome = null;
         int telefono = 0;
         String indirizzo = null;
+        String citta = null;
 
         try{
 
@@ -37,6 +38,7 @@ public class PadroneDao {
                     nome = rs.getString(3);
                     telefono = rs.getInt(4);
                     indirizzo = rs.getString(5);
+                    citta = rs.getString(7);
                 }
             }
         } catch(SQLException e) {
@@ -47,6 +49,7 @@ public class PadroneDao {
         pad.setNome(nome);
         pad.setTelefono(String.valueOf(telefono));
         pad.setIndirizzo(indirizzo);
+        pad.setCitta(citta);
         return pad;
     }
 

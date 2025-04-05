@@ -30,7 +30,8 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
             Printer.printf("2) Modifica profilo");
             Printer.printf("3) Prenota Dogsitter");
             Printer.printf("4) Prenota Veterinario");
-            Printer.printf("5) Esci");
+            Printer.printf("5) Logout");
+            Printer.printf("6) Esci");
 
 
             choice = getChoice(1,5);
@@ -41,7 +42,8 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 5 -> System.exit(0);
+                    case 5 -> new PreloginGraphicControllerCLI().start();
+                    case 6 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
                 }
 
@@ -85,6 +87,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
         Printer.printf("Nome del padrone: " + profilo.getNomePadrone());
         Printer.printf("Telefono del padrone: " + profilo.getTelefonoPadrone());
         Printer.printf("Indirizzo del padrone: " + profilo.getIndirizzoPadrone());
+        Printer.printf("Città del padrone: " + profilo.getCittaPadrone());
     }
 
 

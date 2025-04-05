@@ -29,7 +29,8 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
             Printer.printf("3) Modifica orari di disponibilità");
             Printer.printf("4) Gestisci prenotazioni");
             Printer.printf("5) Prenota Veterinario");
-            Printer.printf("6) Esci");
+            Printer.printf("6) Logout");
+            Printer.printf("7) Esci");
 
 
             choice = getChoice(1,6);
@@ -41,7 +42,8 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
                     case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 5 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 6 -> System.exit(0);
+                    case 6 -> new PreloginGraphicControllerCLI().start();
+                    case 7 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
                 }
 
