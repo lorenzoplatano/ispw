@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicController{
@@ -65,11 +65,19 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
         String vaccinazione = this.vaccinazioni.getText().trim();
         String datadinascitaInput = this.datadinascita.getText();
 
-        List<String> vaccinazioni = new ArrayList<>();
-        vaccinazioni.add(vaccinazione);
+        List<String> vaccinazioniList = Arrays.asList(vaccinazione.split("\\s*,\\s*"));
 
         RegistrazioneController controller = new RegistrazioneController();
 
+
+        java.sql.Date dataNascita = null;
+        try {
+
+            dataNascita = java.sql.Date.valueOf(datadinascitaInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Errore conversione data: " + e.getMessage());
+            showError("Formato data errato. Utilizza yyyy-mm-dd.");
+        }
 
         try{
             this.profiloPadroneBean.setTelefonoPadrone(telefonoInput);
@@ -78,7 +86,8 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
             this.profiloPadroneBean.setRazzaCane(razzaInput);
             this.profiloPadroneBean.setSessoCane(sessoInput);
             this.profiloPadroneBean.setMicrochip(microchipInput);
-            this.profiloPadroneBean.setVaccinazioniCane(vaccinazioni);
+            this.profiloPadroneBean.setVaccinazioniCane(vaccinazioniList);
+            this.profiloPadroneBean.setDataNascitaCane(dataNascita);
 
             controller.padRegister(this.profiloPadroneBean);
 

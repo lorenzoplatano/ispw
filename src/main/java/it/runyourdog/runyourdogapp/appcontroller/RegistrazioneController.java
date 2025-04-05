@@ -8,6 +8,7 @@ import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
 import javax.security.auth.login.CredentialException;
+import java.sql.Date;
 import java.util.List;
 
 public class RegistrazioneController {
@@ -32,8 +33,9 @@ public class RegistrazioneController {
         String razza = bean.getRazzaCane();
         String sesso = bean.getSessoCane();
         List<String> vaccinazioni = bean.getVaccinazioniCane();
+        Date datadinascita = bean.getDataNascitaCane();
 
-        Dog dog = new Dog(nomec, sesso, razza, microchip, vaccinazioni);
+        Dog dog = new Dog(nomec, sesso, razza, microchip, datadinascita, vaccinazioni);
 
         dao.registerProcedure(pad, dog);
 
