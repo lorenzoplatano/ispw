@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: E8E8E8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.graphiccontroller.RegistrazioneGraphicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: E8E8E8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.graphiccontroller.RegistrazionePadroneGraphicController">
    <children>
       <TextFlow layoutX="412.0" layoutY="35.0" prefHeight="90.0" prefWidth="369.0" AnchorPane.leftAnchor="412.0" AnchorPane.rightAnchor="412.0" AnchorPane.topAnchor="35.0">
          <children>
@@ -73,7 +73,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text onMouseClicked="#goToPrelogin" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-underline: true; -fx-cursor: hand;" text=" Effettua il login ora!">
+            <Text onMouseClicked="#changeRole" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-underline: true; -fx-cursor: hand;" text=" Effettua il login ora!">
                <font>
                   <Font size="18.0" />
                </font>
@@ -199,7 +199,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="errorLabel" alignment="CENTER" layoutX="252.0" layoutY="724.0" prefHeight="56.0" prefWidth="734.0" textAlignment="CENTER">
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="248.0" layoutY="730.0" prefHeight="56.0" prefWidth="734.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

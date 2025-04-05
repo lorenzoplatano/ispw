@@ -18,21 +18,21 @@ public class ProfiloPadroneBean extends UserBean {
     private String telefonoPadrone;
     private String indirizzoPadrone;
 
-    private ProfiloPadroneBean(Builder builder) {
-
-        super(builder.username, builder.email, builder.password, builder.role);
-
-        this.nomeCane = builder.nomeCane;
-        this.sessoCane = builder.sessoCane;
-        this.razzaCane = builder.razzaCane;
-        this.microchip = builder.microchip;
-        this.dataNascitaCane = builder.dataNascitaCane;
-        this.vaccinazioniCane = builder.vaccinazioniCane;
-        this.nomePadrone = builder.nomePadrone;
-        this.telefonoPadrone = builder.telefonoPadrone;
-        this.indirizzoPadrone = builder.indirizzoPadrone;
+    public ProfiloPadroneBean(Date dataNascitaCane, List<String> vaccinazioniCane, String[] datiCane) {
+        this.dataNascitaCane = dataNascitaCane;
+        this.vaccinazioniCane = vaccinazioniCane;
+        this.nomeCane = datiCane[0];
+        this.sessoCane = datiCane[1];
+        this.razzaCane = datiCane[2];
+        this.microchip = datiCane[3];
+        this.nomePadrone = datiCane[4];
+        this.telefonoPadrone = datiCane[5];
+        this.indirizzoPadrone = datiCane[6];
     }
-
+    public ProfiloPadroneBean(String username, String email, String password, String role, String nomePadrone) {
+        super(username, email, password, Role.valueOf(role));
+        this.nomePadrone = nomePadrone;
+    }
 
     public String getNomeCane() { return nomeCane; }
     public String getSessoCane() { return sessoCane; }
@@ -44,7 +44,6 @@ public class ProfiloPadroneBean extends UserBean {
     public String getTelefonoPadrone() { return telefonoPadrone; }
     public String getIndirizzoPadrone() { return indirizzoPadrone; }
 
-
     public void setNomeCane(String nomeCane) { this.nomeCane = nomeCane; }
     public void setSessoCane(String sessoCane) { this.sessoCane = sessoCane; }
     public void setRazzaCane(String razzaCane) { this.razzaCane = razzaCane; }
@@ -54,81 +53,4 @@ public class ProfiloPadroneBean extends UserBean {
     public void setNomePadrone(String nomePadrone) { this.nomePadrone = nomePadrone; }
     public void setTelefonoPadrone(String telefonoPadrone) { this.telefonoPadrone = telefonoPadrone; }
     public void setIndirizzoPadrone(String indirizzoPadrone) { this.indirizzoPadrone = indirizzoPadrone; }
-
-    public static class Builder {
-
-        private String username;
-        private String email;
-        private String password;
-        private Role role;
-
-
-        private String nomeCane;
-        private String sessoCane;
-        private String razzaCane;
-        private String microchip;
-        private Date dataNascitaCane;
-        private List<String> vaccinazioniCane;
-        private String nomePadrone;
-        private String telefonoPadrone;
-        private String indirizzoPadrone;
-
-
-        public Builder username(String username) {
-            this.username = username;
-            return this;
-        }
-        public Builder email(String email) {
-            this.email = email;
-            return this;
-        }
-        public Builder password(String password) {
-            this.password = password;
-            return this;
-        }
-        public Builder role(Role role) {
-            this.role = role;
-            return this;
-        }
-
-        public Builder nomeCane(String nomeCane) {
-            this.nomeCane = nomeCane;
-            return this;
-        }
-        public Builder sessoCane(String sessoCane) {
-            this.sessoCane = sessoCane;
-            return this;
-        }
-        public Builder razzaCane(String razzaCane) {
-            this.razzaCane = razzaCane;
-            return this;
-        }
-        public Builder microchip(String microchip) {
-            this.microchip = microchip;
-            return this;
-        }
-        public Builder dataNascitaCane(Date dataNascitaCane) {
-            this.dataNascitaCane = dataNascitaCane;
-            return this;
-        }
-        public Builder vaccinazioniCane(List<String> vaccinazioniCane) {
-            this.vaccinazioniCane = vaccinazioniCane;
-            return this;
-        }
-        public Builder nomePadrone(String nomePadrone) {
-            this.nomePadrone = nomePadrone;
-            return this;
-        }
-        public Builder telefonoPadrone(String telefonoPadrone) {
-            this.telefonoPadrone = telefonoPadrone;
-            return this;
-        }
-        public Builder indirizzoPadrone(String indirizzoPadrone) {
-            this.indirizzoPadrone = indirizzoPadrone;
-            return this;
-        }
-        public ProfiloPadroneBean build() {
-            return new ProfiloPadroneBean(this);
-        }
-    }
 }

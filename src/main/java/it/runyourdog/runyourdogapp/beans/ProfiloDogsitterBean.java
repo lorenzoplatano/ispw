@@ -1,15 +1,13 @@
 package it.runyourdog.runyourdogapp.beans;
 
+import it.runyourdog.runyourdogapp.model.entities.Orario;
+import java.util.List;
 
 public class ProfiloDogsitterBean extends ProfiloLavoratoreBean {
-    private ProfiloDogsitterBean(Builder builder) {
-        super(builder);
+
+    public ProfiloDogsitterBean(String[] dati, int eta, List<Orario> orari) {
+        super(dati, eta, orari);
     }
 
-    public static class Builder extends ProfiloLavoratoreBean.Builder<Builder> {
-        @Override
-        public ProfiloDogsitterBean build() {
-            return new ProfiloDogsitterBean(this);
-        }
-    }
+
 }
