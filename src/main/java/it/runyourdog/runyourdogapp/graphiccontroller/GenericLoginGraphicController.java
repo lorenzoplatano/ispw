@@ -24,11 +24,6 @@ public abstract class GenericLoginGraphicController extends GenericGraphicContro
     }
 
     @FXML
-    protected void changeRole() throws IOException {
-        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/PreLogin.fxml");
-    }
-
-    @FXML
     protected abstract void onLoginClick() ;
 
 
