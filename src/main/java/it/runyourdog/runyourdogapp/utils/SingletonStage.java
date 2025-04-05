@@ -50,6 +50,7 @@ public class SingletonStage {
         Parent root = fxmlLoader.load();
         ProfiloVeterinarioGraphicController controller = fxmlLoader.getController();
         controller.populate(loggedVet);
+        controller.populateAddress(loggedVet);
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
