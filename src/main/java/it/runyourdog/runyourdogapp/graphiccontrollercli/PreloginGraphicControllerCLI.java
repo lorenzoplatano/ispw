@@ -22,17 +22,17 @@ public class PreloginGraphicControllerCLI extends GenericGraphicControllerCLI {
             try {
                 switch (choice) {
                     case 1:
-                        Printer.print("*\n---- PADRONE ----*");
+                        Printer.print("\n*---- PADRONE ----*");
                         new PadLoginGraphicControllerCLI().start();
                         break;
 
                     case 2:
-                        Printer.print("*\n---- DOGSITTER ----*");
+                        Printer.print("\n*---- DOGSITTER ----*");
                         new DogLoginGraphicControllerCLI().start();
                         break;
 
                     case 3:
-                        Printer.print("*\n---- VETERINARIO ----*");
+                        Printer.print("\n*---- VETERINARIO ----*");
                         new VetLoginGraphicControllerCLI().start();
                         break;
 

@@ -23,7 +23,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
 
         int choice;
 
-        Printer.printf("*---- HOME PAGE PADRONE ----*\n");
+        Printer.printf("*---- HOME PAGE PADRONE ----*");
 
         while(true) {
             Printer.printf("1) Mostra profilo");
@@ -88,6 +88,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
         Printer.printf("Telefono del padrone: " + profilo.getTelefonoPadrone());
         Printer.printf("Indirizzo del padrone: " + profilo.getIndirizzoPadrone());
         Printer.printf("Città del padrone: " + profilo.getCittaPadrone());
+        Printer.printf("\n");
     }
 
 

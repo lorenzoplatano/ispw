@@ -20,7 +20,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
     @Override
     public void showMenu(){
 
-        Printer.printf("*---- HOME PAGE VETERINARIO ----*\n");
+        Printer.printf("*---- HOME PAGE VETERINARIO ----*");
 
         int scelta;
 
@@ -86,6 +86,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
         } else {
             Printer.printf("Nessun orario disponibile.");
         }
+        Printer.printf("\n");
     }
 
 

@@ -46,10 +46,11 @@ public class PadLoginGraphicControllerCLI extends GenericLoginGraphicControllerC
 
                 }
                 new ProfiloPadroneGraphicControllerCLI(loggedPad).start();
+                break;
 
             } catch (IOException | DAOException | CredentialException e) {
                 Printer.printf("Errore: " + e.getMessage());
-                System.exit(-1);
+
             }
         }
     }

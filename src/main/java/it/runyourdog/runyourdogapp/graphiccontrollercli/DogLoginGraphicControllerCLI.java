@@ -47,10 +47,11 @@ public class DogLoginGraphicControllerCLI extends GenericLoginGraphicControllerC
 
                 }
                 new ProfiloDogsitterGraphicControllerCLI(loggedPad).start();
+                break;
 
             } catch (IOException | DAOException | CredentialException e) {
                 Printer.printf("Errore: " + e.getMessage());
-                System.exit(-1);
+
             }
         }
     }

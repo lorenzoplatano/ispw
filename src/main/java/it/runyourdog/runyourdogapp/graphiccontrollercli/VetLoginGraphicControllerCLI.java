@@ -43,10 +43,11 @@ public class VetLoginGraphicControllerCLI extends GenericLoginGraphicControllerC
                 }
 
                 new ProfiloVeterinarioGraphicControllerCLI(loggedVet).start();
+                break;
 
             } catch (IOException | DAOException | CredentialException e) {
                 Printer.perror("Errore: " + e.getMessage());
-                System.exit(-1);
+
             }
         }
     }

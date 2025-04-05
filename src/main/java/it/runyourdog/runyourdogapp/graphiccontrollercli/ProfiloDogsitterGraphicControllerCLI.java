@@ -18,7 +18,7 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
 
     @Override
     public void showMenu(){
-        Printer.printf("*---- HOME PAGE DOGSITTER ----*\n");
+        Printer.printf("*---- HOME PAGE DOGSITTER ----*");
 
         int choice;
 
@@ -64,6 +64,7 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
             Printer.perror("Errore: " + e.getMessage());
         }
         showProfilo(profilo);
+
         showMenu();
     }
 
@@ -86,6 +87,7 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
         } else {
             Printer.printf("Nessun orario disponibile.");
         }
+        Printer.printf("\n");
     }
 
 }
