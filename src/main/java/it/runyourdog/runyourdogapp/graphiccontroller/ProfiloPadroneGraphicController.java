@@ -35,6 +35,9 @@ public class ProfiloPadroneGraphicController extends GenericGraphicController{
     @FXML
     private TextArea indArea;
 
+    @FXML
+    private TextArea cittaArea;
+
     public void populate(ProfiloPadroneBean loggedPad) {
         nameArea.setText(loggedPad.getNomeCane());
         sessoArea.setText(loggedPad.getSessoCane());
@@ -51,6 +54,7 @@ public class ProfiloPadroneGraphicController extends GenericGraphicController{
         padNameArea.setText(loggedPad.getNomePadrone());
         telArea.setText(loggedPad.getTelefonoPadrone());
         indArea.setText(loggedPad.getIndirizzoPadrone());
+        cittaArea.setText(loggedPad.getCittaPadrone());
     }
 
 

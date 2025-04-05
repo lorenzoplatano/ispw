@@ -20,6 +20,8 @@ public class UserBean {
         this.role = role;
     }
 
+    public UserBean(String email) {this.email = email;}
+
     public UserBean() {}
 
     public void setUsername(String username) throws CredentialException {

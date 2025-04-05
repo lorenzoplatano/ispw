@@ -58,7 +58,8 @@ public class LoginController {
                 dog.getMicrochip(),
                 pad.getNome(),
                 pad.getTelefono(),
-                pad.getIndirizzo()
+                pad.getIndirizzo(),
+                pad.getCitta()
         };
 
         return new ProfiloPadroneBean(dog.getDataNascita(), dog.getVaccinazioni(), datiCane);
@@ -84,6 +85,7 @@ public class LoginController {
 
 
         String[] dati = {vet.getNome(), vet.getGenere(), vet.getCitta(), email, vet.getTelefono()};
+
 
 
         return new ProfiloVeterinarioBean(dati, vet.getEta(), orario, vet.getIndirizzo());

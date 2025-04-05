@@ -13,10 +13,10 @@ public abstract class ProfiloLavoratoreBean extends UserBean{
     protected String telefono;
 
     public ProfiloLavoratoreBean(String[] dati, int eta, List<Orario> orari) {
+        super(dati[3]);
         this.nome = dati[0];
         this.genere = dati[1];
         this.citta = dati[2];
-        this.email = dati[3];
         this.telefono = dati[4];
         this.eta = eta;
         this.orari = orari;
