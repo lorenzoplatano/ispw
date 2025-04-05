@@ -1,9 +1,12 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
+import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+
+import java.io.IOException;
 
 public abstract class GenericGraphicController {
 
@@ -21,5 +24,10 @@ public abstract class GenericGraphicController {
 
     protected Label getErrorLabel() {
         return this.errorLabel;
+    }
+
+    @FXML
+    protected void changeRole() throws IOException {
+        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/PreLogin.fxml");
     }
 }
