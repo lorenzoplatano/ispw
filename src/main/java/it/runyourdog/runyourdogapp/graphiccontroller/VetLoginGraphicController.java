@@ -37,6 +37,7 @@ public class VetLoginGraphicController extends GenericLoginGraphicController {
             }
 
             ProfiloVeterinarioBean loggedVet = controller.getVetProfileInfo(loggedUser);
+            System.out.println(loggedVet.getEmail());
             SingletonStage.getStage(null).showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml", loggedVet);
 
         } catch (CredentialException | IOException | DAOException | ProfileRetrievalException e) {

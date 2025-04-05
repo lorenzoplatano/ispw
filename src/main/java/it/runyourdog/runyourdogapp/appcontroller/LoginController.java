@@ -86,6 +86,7 @@ public class LoginController {
         String[] dati = {vet.getNome(), vet.getGenere(), vet.getCitta(), email, vet.getTelefono()};
 
 
+
         return new ProfiloVeterinarioBean(dati, vet.getEta(), orario, vet.getIndirizzo());
     }
 
