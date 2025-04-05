@@ -13,13 +13,14 @@ public class Padrone extends User {
         super(email, password);
     }
 
-    public Padrone(String username, String email, String password, Role role, String nome, String telefono, String indirizzo, String citta) {
+    public Padrone(String username, String email, String password, Role role, String[] dati) {
         super(username, email, password, role);
-        this.nome = nome;
-        this.telefono = telefono;
-        this.indirizzo = indirizzo;
-        this.citta = citta;
+        this.nome = dati[0];
+        this.telefono = dati[1];
+        this.indirizzo = dati[2];
+        this.citta = dati[3];
     }
+
 
     public String getNome() {
         return nome;

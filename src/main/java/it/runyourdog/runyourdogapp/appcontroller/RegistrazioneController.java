@@ -18,16 +18,21 @@ public class RegistrazioneController {
 
         PadroneDao dao = new PadroneDao();
 
-        String nome = bean.getNomePadrone();
+
         String username = bean.getUsername();
         String email = bean.getEmail();
         String password = bean.getPassword();
         Role ruolo = bean.getRole();
-        String telefono = bean.getTelefonoPadrone();
-        String indirizzo = bean.getIndirizzoPadrone();
-        String citta = bean.getCittaPadrone();
 
-        Padrone pad = new Padrone(username, email, password, ruolo, nome, telefono, indirizzo, citta);
+        String[] dati = {
+                bean.getNomePadrone(),
+                bean.getTelefonoPadrone(),
+                bean.getIndirizzoPadrone(),
+                bean.getCittaPadrone()
+        };
+
+
+        Padrone pad = new Padrone(username, email, password, ruolo, dati);
 
         String nomec = bean.getNomeCane();
         String microchip = bean.getMicrochip();

@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -79,7 +80,7 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
 
             dataNascita = java.sql.Date.valueOf(datadinascitaInput);
         } catch (IllegalArgumentException e) {
-            System.out.println("Errore conversione data: " + e.getMessage());
+            Printer.printf("Errore conversione data: " + e.getMessage());
             showError("Formato data errato. Utilizza yyyy-mm-dd.");
         }
 
