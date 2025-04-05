@@ -17,6 +17,7 @@ public class ProfiloPadroneBean extends UserBean {
     private String nomePadrone;
     private String telefonoPadrone;
     private String indirizzoPadrone;
+    private String cittaPadrone;
 
     public ProfiloPadroneBean(Date dataNascitaCane, List<String> vaccinazioniCane, String[] datiCane) {
         this.dataNascitaCane = dataNascitaCane;
@@ -28,6 +29,7 @@ public class ProfiloPadroneBean extends UserBean {
         this.nomePadrone = datiCane[4];
         this.telefonoPadrone = datiCane[5];
         this.indirizzoPadrone = datiCane[6];
+        this.cittaPadrone = datiCane[7];
     }
     public ProfiloPadroneBean(String username, String email, String password, String role, String nomePadrone) {
         super(username, email, password, Role.valueOf(role));
@@ -43,6 +45,7 @@ public class ProfiloPadroneBean extends UserBean {
     public String getNomePadrone() { return nomePadrone; }
     public String getTelefonoPadrone() { return telefonoPadrone; }
     public String getIndirizzoPadrone() { return indirizzoPadrone; }
+    public String getCittaPadrone() { return cittaPadrone; }
 
     public void setNomeCane(String nomeCane) { this.nomeCane = nomeCane; }
     public void setSessoCane(String sessoCane) { this.sessoCane = sessoCane; }
@@ -53,4 +56,5 @@ public class ProfiloPadroneBean extends UserBean {
     public void setNomePadrone(String nomePadrone) { this.nomePadrone = nomePadrone; }
     public void setTelefonoPadrone(String telefonoPadrone) { this.telefonoPadrone = telefonoPadrone; }
     public void setIndirizzoPadrone(String indirizzoPadrone) { this.indirizzoPadrone = indirizzoPadrone; }
+    public void getCittaPadrone(String cittaPadrone){this.cittaPadrone = cittaPadrone; }
 }

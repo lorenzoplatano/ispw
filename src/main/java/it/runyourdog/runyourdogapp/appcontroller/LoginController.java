@@ -58,7 +58,8 @@ public class LoginController {
                 dog.getMicrochip(),
                 pad.getNome(),
                 pad.getTelefono(),
-                pad.getIndirizzo()
+                pad.getIndirizzo(),
+                pad.getCitta()
         };
 
         return new ProfiloPadroneBean(dog.getDataNascita(), dog.getVaccinazioni(), datiCane);
