@@ -22,7 +22,7 @@ public class RegistrazioneVeterinarioGraphicController extends RegistrazioneLavo
             vetBean.setIndirizzo(indirizzo.getText());
             RegistrazioneController controller = new RegistrazioneController();
             controller.vetRegister(vetBean);
-            SingletonStage.getStage(null).showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", vetBean);
+            SingletonStage.getStage(null).showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml", vetBean);
         } catch (DAOException | IOException e) {
             showError("Errore: " + e.getMessage());
         }

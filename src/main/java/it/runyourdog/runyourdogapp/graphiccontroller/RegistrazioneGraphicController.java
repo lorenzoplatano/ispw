@@ -81,7 +81,7 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
                     SingletonStage.getStage(null).showRegistrazioneLavoratorePage("/it/runyourdog/runyourdogapp/GUI/RegistrazioneDogsitter.fxml", dogsitterBean);
                 }
 
-                case "VETERINARIO  " -> {
+                case "VETERINARIO" -> {
                     ProfiloVeterinarioBean vetBean = new ProfiloVeterinarioBean(usernameInput, emailInput, passwordInput, ruoloInput, fullName);
                     SingletonStage.getStage(null).showRegistrazioneLavoratorePage("/it/runyourdog/runyourdogapp/GUI/RegistrazioneVeterinario.fxml", vetBean);
                 }
