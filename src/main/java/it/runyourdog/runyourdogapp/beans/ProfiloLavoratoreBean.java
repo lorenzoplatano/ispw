@@ -24,7 +24,7 @@ public abstract class ProfiloLavoratoreBean extends UserBean{
         this.orari = orari;
     }
 
-    public ProfiloLavoratoreBean(String username, String email, String password, String ruolo, String nome) {
+    protected ProfiloLavoratoreBean(String username, String email, String password, String ruolo, String nome) {
         super(username,email, password, Role.valueOf(ruolo));
         this.nome = nome;
     }
