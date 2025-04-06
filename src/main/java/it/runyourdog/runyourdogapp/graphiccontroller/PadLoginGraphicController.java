@@ -10,7 +10,6 @@ import it.runyourdog.runyourdogapp.utils.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import javafx.fxml.FXML;
 
-import javafx.scene.control.Label;
 
 
 import javax.security.auth.login.CredentialException;

@@ -1,9 +1,11 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
 
+import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 
 
+import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.utils.*;
 
 import javafx.fxml.FXML;
@@ -62,6 +64,12 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
                 throw new CredentialException("Le password non coincidono");
             }
 
+            RegistrazioneController controller = new RegistrazioneController();
+            if (!controller.emailUnica(new UserBean(emailInput))) {
+                showError("Email già in uso. Scegli un'altra email.");
+                return;
+            }
+
             switch (ruoloInput) {
                 case "PADRONE" -> {
                     ProfiloPadroneBean padroneBean = new ProfiloPadroneBean(usernameInput, emailInput, passwordInput, ruoloInput, fullName);
@@ -74,7 +82,6 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
 
         } catch (Exception e) {
             showError("Errore: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 

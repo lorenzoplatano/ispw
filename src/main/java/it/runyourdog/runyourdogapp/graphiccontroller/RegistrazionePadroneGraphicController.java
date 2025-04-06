@@ -55,6 +55,7 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
         if(sessocane != null) {
             sessocane.getItems().addAll("M", "F");
         }
+
     }
 
     @FXML
@@ -80,8 +81,9 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
 
             dataNascita = java.sql.Date.valueOf(datadinascitaInput);
         } catch (IllegalArgumentException e) {
+            this.showError("Formato data errato. Utilizza yyyy-mm-dd.");
             Printer.printf("Errore conversione data: " + e.getMessage());
-            showError("Formato data errato. Utilizza yyyy-mm-dd.");
+            return;
         }
 
         try{
@@ -101,7 +103,7 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
 
 
 
-        } catch (CredentialException | IOException | DAOException e) {
+        } catch ( IOException | DAOException e) {
             showError("Errore: " + e.getMessage());
         }
 

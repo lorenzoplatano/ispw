@@ -39,4 +39,24 @@ public class UserDao {
         user.setRole(Role.fromInt(role));
         return user;
     }
+
+    public boolean emailCheck(User newUser) throws DAOException {
+        String email = newUser.getEmail();
+        int result;
+
+        try{
+            this.cs = this.conn.prepareCall("{call check_email(?, ?)}");
+            this.cs.setString(1, email);
+            this.cs.registerOutParameter(2, Types.INTEGER);
+            this.cs.executeQuery();
+            result = this.cs.getInt(2);
+
+        }catch(SQLException e){
+            throw new DAOException(e.getMessage());
+        }
+
+        return (result == 0);
+
+
+    }
 }

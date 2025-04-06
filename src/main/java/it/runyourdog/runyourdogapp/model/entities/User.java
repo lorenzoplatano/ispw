@@ -22,6 +22,10 @@ public class User {
         this.role = role;
     }
 
+    public User(String email){
+        this.email = email;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }

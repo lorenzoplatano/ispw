@@ -1,13 +1,15 @@
 package it.runyourdog.runyourdogapp.appcontroller;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.dao.PadroneDao;
+import it.runyourdog.runyourdogapp.model.dao.UserDao;
 import it.runyourdog.runyourdogapp.model.entities.Dog;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
+import it.runyourdog.runyourdogapp.model.entities.User;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
-import javax.security.auth.login.CredentialException;
 import java.sql.Date;
 import java.util.List;
 
@@ -46,6 +48,21 @@ public class RegistrazioneController {
         dao.registerProcedure(pad, dog);
 
 
+    }
+
+    public boolean emailUnica(UserBean emailUser) {
+        String email = emailUser.getEmail();
+        User newUser = new User(email);
+        UserDao dao = new UserDao();
+        boolean res;
+
+        try {
+            res = dao.emailCheck(newUser);
+        } catch (DAOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("eccomi");
+        return res;
     }
 }
 
