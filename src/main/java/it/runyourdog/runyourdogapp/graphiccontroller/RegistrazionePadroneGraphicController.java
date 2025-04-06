@@ -76,7 +76,7 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
         RegistrazioneController controller = new RegistrazioneController();
 
 
-        java.sql.Date dataNascita = null;
+        java.sql.Date dataNascita;
         try {
 
             dataNascita = java.sql.Date.valueOf(datadinascitaInput);

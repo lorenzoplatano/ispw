@@ -10,4 +10,7 @@ public class ProfiloDogsitterBean extends ProfiloLavoratoreBean {
     }
 
 
+    public ProfiloDogsitterBean(String username, String email, String password, String ruolo, String nome) {
+        super(username, email, password, ruolo, nome);
+    }
 }

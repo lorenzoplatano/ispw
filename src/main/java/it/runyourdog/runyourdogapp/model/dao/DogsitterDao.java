@@ -85,4 +85,38 @@ public class DogsitterDao {
 
         return orari;
     }
+
+    public void registerProcedure(Dogsitter dogsitter, List<Orario> orari) throws DAOException {
+
+        StringBuilder sb = new StringBuilder();
+        for (Orario o : orari) {
+            sb.append(o.getGiorno())
+                    .append(",")
+                    .append(o.getOrainizio().toString())
+                    .append(",")
+                    .append(o.getOrafine().toString())
+                    .append(";");
+        }
+        String orariParam = sb.toString();
+
+        try {
+
+            this.cs = this.conn.prepareCall("{call registrazioneDogsitter(?,?,?,?,?,?,?,?,?)}");
+            cs.setString(1, dogsitter.getUsername());
+            cs.setString(2, dogsitter.getEmail());
+            cs.setString(3, dogsitter.getPassword());
+            cs.setString(4, dogsitter.getNome());
+            cs.setInt(5, dogsitter.getEta());
+            cs.setString(6, dogsitter.getGenere());
+            cs.setString(7, dogsitter.getCitta());
+            cs.setString(8, dogsitter.getTelefono());
+            cs.setString(9, orariParam);
+
+            cs.execute();
+        } catch (SQLException e) {
+            throw new DAOException("Errore nella registrazione del Dogsitter: " + e.getMessage(), e);
+
+        }
+    }
+
 }

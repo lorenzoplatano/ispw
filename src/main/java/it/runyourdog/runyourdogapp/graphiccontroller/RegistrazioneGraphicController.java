@@ -2,10 +2,9 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 
 
 import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
-import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.beans.*;
 
 
-import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.utils.*;
 
 import javafx.fxml.FXML;
@@ -75,6 +74,16 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
                     ProfiloPadroneBean padroneBean = new ProfiloPadroneBean(usernameInput, emailInput, passwordInput, ruoloInput, fullName);
 
                     SingletonStage.getStage(null).showRegistrazionePadronePage("/it/runyourdog/runyourdogapp/GUI/RegistrazionePadrone.fxml", padroneBean);
+                }
+
+                case "DOGSITTER" -> {
+                    ProfiloDogsitterBean dogsitterBean = new ProfiloDogsitterBean(usernameInput, emailInput, passwordInput, ruoloInput, fullName);
+                    SingletonStage.getStage(null).showRegistrazioneLavoratorePage("/it/runyourdog/runyourdogapp/GUI/RegistrazioneDogsitter.fxml", dogsitterBean);
+                }
+
+                case "VETERINARIO  " -> {
+                    ProfiloVeterinarioBean vetBean = new ProfiloVeterinarioBean(usernameInput, emailInput, passwordInput, ruoloInput, fullName);
+                    SingletonStage.getStage(null).showRegistrazioneLavoratorePage("/it/runyourdog/runyourdogapp/GUI/RegistrazioneVeterinario.fxml", vetBean);
                 }
 
                 default -> throw new IllegalArgumentException("Ruolo non valido selezionato");

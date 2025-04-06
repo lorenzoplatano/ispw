@@ -2,6 +2,7 @@ package it.runyourdog.runyourdogapp.utils;
 
 import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
+import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.graphiccontroller.*;
@@ -73,6 +74,13 @@ public class SingletonStage {
     }
 
 
-
+    public void showRegistrazioneLavoratorePage(String fxmlPath, ProfiloLavoratoreBean bean) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        RegistrazioneLavoratoreGraphicController controller = fxmlLoader.getController();
+        controller.setProfiloLavoratoreBean(bean);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
 
 }

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: E8E8E8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.graphiccontroller.RegistrazionePadroneGraphicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: E8E8E8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.graphiccontroller.RegistrazioneVeterinarioGraphicController">
    <children>
       <TextFlow layoutX="412.0" layoutY="35.0" prefHeight="90.0" prefWidth="369.0" AnchorPane.leftAnchor="412.0" AnchorPane.rightAnchor="412.0" AnchorPane.topAnchor="35.0">
          <children>
@@ -28,11 +28,11 @@
             </Text>
          </children>
       </TextFlow>
-      <VBox layoutX="95.0" layoutY="293.0" prefHeight="200.0" prefWidth="439.0" style="-fx-background-color: b4b3b3; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: black;" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="666.0" AnchorPane.topAnchor="293.0">
+      <VBox layoutX="95.0" layoutY="250.0" prefHeight="301.0" prefWidth="439.0" style="-fx-background-color: b4b3b3; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: black;" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="666.0" AnchorPane.topAnchor="250.0">
          <children>
             <VBox prefHeight="70.0" prefWidth="576.0">
                <children>
-                  <Label text="Telefono" translateY="3.0">
+                  <Label text="Età" translateY="3.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -40,7 +40,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="telefono" style="-fx-border-color: CC6C25;">
+                  <TextField fx:id="eta" style="-fx-border-color: CC6C25;">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
@@ -49,7 +49,7 @@
             </VBox>
             <VBox prefHeight="70.0" prefWidth="576.0">
                <children>
-                  <Label text="Indirizzo" translateY="3.0">
+                  <Label text="Genere" translateY="3.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -57,14 +57,14 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="indirizzo" style="-fx-border-color: CC6C25;">
+                  <ComboBox fx:id="sesso" prefHeight="27.0" prefWidth="417.0" style="-fx-border-color: cc6c25; -fx-cursor: hand;">
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="10.0" />
                      </VBox.margin>
-                  </TextField>
+                  </ComboBox>
                </children>
             </VBox>
-            <VBox prefHeight="70.0" prefWidth="576.0">
+            <VBox prefHeight="70.0" prefWidth="437.0">
                <children>
                   <Label text="Città" translateY="3.0">
                      <font>
@@ -75,6 +75,40 @@
                      </padding>
                   </Label>
                   <TextField fx:id="citta" style="-fx-border-color: CC6C25;">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="437.0">
+               <children>
+                  <Label text="Telefono" translateY="3.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="tel" style="-fx-border-color: CC6C25;">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="437.0">
+               <children>
+                  <Label text="Indirizzo" translateY="3.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="indirizzo" style="-fx-border-color: CC6C25;">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
@@ -99,9 +133,9 @@
       </TextFlow>
       <VBox layoutX="738.0" layoutY="161.0" prefHeight="425.0" prefWidth="439.0" style="-fx-background-color: b4b3b3; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: black;" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="180.0">
          <children>
-            <VBox prefHeight="70.0" prefWidth="576.0">
+            <VBox prefHeight="60.0" prefWidth="437.0">
                <children>
-                  <Label text="Nome cane" translateY="3.0">
+                  <Label text="Lunedì" translateY="3.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -109,16 +143,16 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="nomecane" style="-fx-border-color: CC6C25;">
+                  <TextField fx:id="lun" style="-fx-border-color: CC6C25;">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </TextField>
                </children>
             </VBox>
-            <VBox prefHeight="70.0" prefWidth="576.0">
+            <VBox prefHeight="60.0" prefWidth="437.0">
                <children>
-                  <Label text="Razza cane" translateY="3.0">
+                  <Label text="Martedì" translateY="3.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -126,16 +160,16 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="razzacane" style="-fx-border-color: CC6C25;">
+                  <TextField fx:id="mar" style="-fx-border-color: CC6C25;">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </TextField>
                </children>
             </VBox>
-            <VBox prefHeight="70.0" prefWidth="576.0">
+            <VBox prefHeight="60.0" prefWidth="437.0">
                <children>
-                  <Label text="Sesso cane" translateY="3.0">
+                  <Label text="Mercoledì" translateY="3.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -143,33 +177,16 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="sessocane" prefHeight="26.0" prefWidth="557.0" style="-fx-border-color: cc6c25; -fx-cursor: hand;">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </ComboBox>
-               </children>
-            </VBox>
-            <VBox prefHeight="70.0" prefWidth="576.0">
-               <children>
-                  <Label text="Numero di microchip" translateY="3.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="microchip" style="-fx-border-color: CC6C25;">
+                  <TextField fx:id="mer" style="-fx-border-color: CC6C25;">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </TextField>
                </children>
             </VBox>
-            <VBox prefHeight="70.0" prefWidth="576.0">
+            <VBox prefHeight="60.0" prefWidth="437.0">
                <children>
-                  <Label text="Data di nascita" translateY="3.0">
+                  <Label text="Giovedì" translateY="3.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -177,16 +194,16 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="datadinascita" style="-fx-border-color: CC6C25;">
+                  <TextField fx:id="giov" style="-fx-border-color: CC6C25;">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </TextField>
                </children>
             </VBox>
-            <VBox prefHeight="70.0" prefWidth="576.0">
+            <VBox prefHeight="60.0" prefWidth="437.0">
                <children>
-                  <Label text="Vaccinazioni" translateY="3.0">
+                  <Label text="Venerdì" translateY="3.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -194,7 +211,41 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="vaccinazioni" style="-fx-border-color: CC6C25;">
+                  <TextField fx:id="ven" style="-fx-border-color: CC6C25;">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="60.0" prefWidth="437.0">
+               <children>
+                  <Label text="Sabato" translateY="3.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="sab" style="-fx-border-color: CC6C25;">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="60.0" prefWidth="437.0">
+               <children>
+                  <Label text="Domenica" translateY="3.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="dome" style="-fx-border-color: CC6C25;">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
@@ -203,7 +254,7 @@
             </VBox>
          </children>
       </VBox>
-      <Button layoutX="428.0" layoutY="626.0" mnemonicParsing="false" onMouseClicked="#onRegistratiPadroneClick" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: CC6C25; -fx-border-width: 2; -fx-border-radius: 5;" text="REGISTRATI" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="445.5999999999999" AnchorPane.topAnchor="626.0">
+      <Button layoutX="428.0" layoutY="626.0" mnemonicParsing="false" onMouseClicked="#onRegistratiVeterinarioClick" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: CC6C25; -fx-border-width: 2; -fx-border-radius: 5;" text="REGISTRATI" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="445.5999999999999" AnchorPane.topAnchor="626.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -211,7 +262,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label alignment="CENTER" layoutX="267.0" layoutY="99.0" prefHeight="55.0" prefWidth="668.0" text="Compila i campi per completare la registrazione come padrone">
+      <Label alignment="CENTER" layoutX="231.0" layoutY="98.0" prefHeight="55.0" prefWidth="720.0" text="Compila i campi per completare la registrazione come veterinario">
          <font>
             <Font size="24.0" />
          </font>
@@ -221,15 +272,16 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="187.0" layoutY="267.0" style="-fx-font-weight: bold;" text="INFORMAZIONI PERSONALI">
+      <Label layoutX="739.0" layoutY="154.0" style="-fx-font-weight: bold;" text="ORARI">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="768.0" layoutY="154.0" style="-fx-font-weight: bold;" text="INFORMAZIONI DEL CANE">
+      <Label layoutX="188.0" layoutY="224.0" style="-fx-font-weight: bold;" text="INFORMAZIONI PERSONALI">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <Label layoutX="799.0" layoutY="159.0" prefHeight="17.0" prefWidth="238.0" text="(hh:mm - hh:mm, hh:mm - hh:mm, ...)" />
    </children>
 </AnchorPane>

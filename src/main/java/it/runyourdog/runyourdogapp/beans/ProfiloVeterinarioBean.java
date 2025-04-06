@@ -12,6 +12,10 @@ public class ProfiloVeterinarioBean extends ProfiloLavoratoreBean {
         this.indirizzo = indirizzo;
     }
 
+    public ProfiloVeterinarioBean(String username, String email, String password, String ruolo, String nome) {
+        super(username, email, password, ruolo, nome);
+    }
+
     public String getIndirizzo() { return indirizzo; }
 
     public void setIndirizzo(String indirizzo) { this.indirizzo = indirizzo; }

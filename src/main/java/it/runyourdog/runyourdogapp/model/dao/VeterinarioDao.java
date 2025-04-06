@@ -1,6 +1,7 @@
 package it.runyourdog.runyourdogapp.model.dao;
 
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.model.entities.Veterinario;
 
@@ -87,5 +88,39 @@ public class VeterinarioDao {
         }
 
         return orari;
+    }
+
+    public void registerProcedure(Veterinario veterinario, List<Orario> orari) throws DAOException {
+
+        StringBuilder sb = new StringBuilder();
+        for (Orario o : orari) {
+            sb.append(o.getGiorno())
+                    .append(",")
+                    .append(o.getOrainizio().toString())
+                    .append(",")
+                    .append(o.getOrafine().toString())
+                    .append(";");
+        }
+        String orariParam = sb.toString();
+
+        try {
+
+            this.cs = this.conn.prepareCall("{call registrazioneVeterinario(?,?,?,?,?,?,?,?,?,?)}");
+            cs.setString(1, veterinario.getUsername());
+            cs.setString(2, veterinario.getEmail());
+            cs.setString(3, veterinario.getPassword());
+            cs.setString(4, veterinario.getNome());
+            cs.setInt(5, veterinario.getEta());
+            cs.setString(6, veterinario.getGenere());
+            cs.setString(7, veterinario.getCitta());
+            cs.setString(8, veterinario.getIndirizzo());
+            cs.setString(9, veterinario.getTelefono());
+            cs.setString(10, orariParam);
+
+            cs.execute();
+        } catch (SQLException e) {
+            throw new DAOException("Errore nella registrazione del Veterinario: " + e.getMessage(), e);
+
+        }
     }
 }

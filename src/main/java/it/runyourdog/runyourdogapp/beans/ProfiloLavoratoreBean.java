@@ -1,6 +1,8 @@
 package it.runyourdog.runyourdogapp.beans;
 
 import it.runyourdog.runyourdogapp.model.entities.Orario;
+import it.runyourdog.runyourdogapp.utils.enumeration.Role;
+
 import java.util.List;
 
 public abstract class ProfiloLavoratoreBean extends UserBean{
@@ -20,6 +22,11 @@ public abstract class ProfiloLavoratoreBean extends UserBean{
         this.telefono = dati[4];
         this.eta = eta;
         this.orari = orari;
+    }
+
+    public ProfiloLavoratoreBean(String username, String email, String password, String ruolo, String nome) {
+        super(username,email, password, Role.valueOf(ruolo));
+        this.nome = nome;
     }
 
     public String getNome() { return nome; }
