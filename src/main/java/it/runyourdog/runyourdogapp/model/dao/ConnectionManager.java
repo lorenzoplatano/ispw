@@ -12,7 +12,6 @@ import java.util.Properties;
 public class ConnectionManager {
 
 
-
     private String jdbc;
     private String user;
     private String password;
