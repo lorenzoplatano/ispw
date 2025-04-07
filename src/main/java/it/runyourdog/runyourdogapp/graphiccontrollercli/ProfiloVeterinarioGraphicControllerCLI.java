@@ -67,26 +67,11 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
     }
 
     @Override
-    public void showProfilo(ProfiloLavoratoreBean profilo) {
+    protected void showProfiloSpecifico(ProfiloLavoratoreBean profilo) {
         ProfiloVeterinarioBean vetProfilo = (ProfiloVeterinarioBean) profilo;
-        Printer.printf("\nProfilo del Veterinario:");
-        Printer.printf("Nome: " + vetProfilo.getNome());
-        Printer.printf("Genere: " + vetProfilo.getGenere());
-        Printer.printf("Età: " + vetProfilo.getEta());
-        Printer.printf("Città: " + vetProfilo.getCitta());
-        Printer.printf("Indirizzo: " + vetProfilo.getIndirizzo());
-        Printer.printf("Telefono: " + vetProfilo.getTelefono());
-        Printer.printf("Email: " + vetProfilo.getEmail());
 
-        Printer.printf("\nOrari di disponibilità:");
-        if (vetProfilo.getOrari() != null && !vetProfilo.getOrari().isEmpty()) {
-            for (Orario orario : vetProfilo.getOrari()) {
-                Printer.printf(orario.getGiorno() + ": " + orario.getOrainizio() + " - " + orario.getOrafine());
-            }
-        } else {
-            Printer.printf("Nessun orario disponibile.");
-        }
-        Printer.printf("\n");
+        Printer.printf("Indirizzo: " + vetProfilo.getIndirizzo());
+
     }
 
 

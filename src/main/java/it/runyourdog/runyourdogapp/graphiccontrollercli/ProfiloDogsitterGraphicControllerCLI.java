@@ -17,12 +17,12 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
     }
 
     @Override
-    public void showMenu(){
+    public void showMenu() {
         Printer.printf("*---- HOME PAGE DOGSITTER ----*");
 
         int choice;
 
-        while(true) {
+        while (true) {
 
             Printer.printf("1) Mostra informazioni personali");
             Printer.printf("2) Modifica informazioni personali");
@@ -33,7 +33,7 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
             Printer.printf("7) Esci");
 
 
-            choice = getChoice(1,6);
+            choice = getChoice(1, 7);
 
             try {
                 switch (choice) {
@@ -69,26 +69,8 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
         showMenu();
     }
 
+
     @Override
-    public void showProfilo(ProfiloLavoratoreBean profilo) {
-        Printer.printf("\nProfilo del Dogsitter:");
-        Printer.printf("Nome: " + profilo.getNome());
-        Printer.printf("Genere: " + profilo.getGenere());
-        Printer.printf("Telefono: " + profilo.getTelefono());
-        Printer.printf("Email: " + profilo.getEmail());
-        Printer.printf("Età: " + profilo.getEta());
-        Printer.printf("Città: " + profilo.getCitta());
-
-
-        Printer.printf("\nOrari di disponibilità:");
-        if (profilo.getOrari() != null && !profilo.getOrari().isEmpty()) {
-            for (Orario orario : profilo.getOrari()) {
-                Printer.printf(orario.getGiorno() + ": " + orario.getOrainizio() + " - " + orario.getOrafine());
-            }
-        } else {
-            Printer.printf("Nessun orario disponibile.");
-        }
-        Printer.printf("\n");
+    protected void showProfiloSpecifico(ProfiloLavoratoreBean profilo) {
     }
-
 }

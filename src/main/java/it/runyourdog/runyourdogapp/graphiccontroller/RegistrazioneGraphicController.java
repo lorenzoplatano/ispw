@@ -59,6 +59,8 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
         String fullName = nomeInput + " " + cognomeInput;
 
         try {
+
+
             if (!passwordInput.equals(confermaPasswordInput)) {
                 throw new CredentialException("Le password non coincidono");
             }
@@ -68,6 +70,13 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
                 showError("Email già in uso. Scegli un'altra email.");
                 return;
             }
+
+            if (emailInput.isEmpty() || usernameInput.isEmpty() || nomeInput.isEmpty() || cognomeInput.isEmpty()
+                    || passwordInput.isEmpty()) {
+                showError("Compila tutti i campi prima di procedere.");
+                return;
+            }
+
 
             switch (ruoloInput) {
                 case "PADRONE" -> {
@@ -93,9 +102,4 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
             showError("Errore: " + e.getMessage());
         }
     }
-
-
-
-
-
 }

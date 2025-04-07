@@ -18,17 +18,9 @@ public abstract class GenericLoginGraphicController extends GenericGraphicContro
     @FXML
     protected TextField password;
 
-    @FXML
-    protected void goToRegistrazione() throws IOException {
-        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
-    }
 
     @FXML
     protected abstract void onLoginClick() ;
-
-
-
-
 
 
 }
