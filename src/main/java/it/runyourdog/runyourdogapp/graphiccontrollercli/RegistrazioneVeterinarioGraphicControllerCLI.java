@@ -1,0 +1,4 @@
+package it.runyourdog.runyourdogapp.graphiccontrollercli;
+
+public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneLavoratoreGraphicControllerCLI{
+}

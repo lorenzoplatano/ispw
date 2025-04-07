@@ -107,12 +107,12 @@ public class RegistrazioneGraphicControllerCLI extends GenericGraphicControllerC
 
                 case "DOGSITTER" -> {
                     ProfiloDogsitterBean dogsitterBean = new ProfiloDogsitterBean(username, email, password, ruolo, fullName);
-
+                    new RegistrazioneDogsitterGraphicControllerCLI().start(dogsitterBean);
                 }
 
                 case "VETERINARIO" -> {
                     ProfiloVeterinarioBean vetBean = new ProfiloVeterinarioBean(username, email, password, ruolo, fullName);
-
+                    new RegistrazioneVeterinarioGraphicControllerCLI().start(vetBean);
                 }
             }
 

@@ -24,7 +24,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
         int choice;
 
         while (true) {
-            Printer.printf("1) Continua la registrazione come Padrone");
+            Printer.printf("1) Continua la registrazione come PADRONE");
             Printer.printf("2) Torna Indietro");
             Printer.printf("3) Esci");
 
