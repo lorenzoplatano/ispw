@@ -13,7 +13,7 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
 
     public ProfiloDogsitterGraphicControllerCLI(UserBean user) {
         this.loggedUser = user;
-        this.controller = new LoginController();
+
     }
 
     @Override
@@ -59,7 +59,8 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
     public void getProfilo(UserBean loggedUser) {
         ProfiloDogsitterBean profilo = null;
         try {
-            profilo = this.controller.getDogProfileInfo(loggedUser);
+            LoginController controller = new LoginController();
+            profilo = controller.getDogProfileInfo(loggedUser);
         } catch (ProfileRetrievalException e) {
             Printer.perror("Errore: " + e.getMessage());
         }

@@ -10,8 +10,6 @@ import it.runyourdog.runyourdogapp.utils.Printer;
 public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicControllerCLI {
 
     public ProfiloPadroneGraphicControllerCLI(UserBean loggedUser) {
-
-        this.controller = new LoginController();
         this.loggedUser = loggedUser;
     }
 
@@ -34,7 +32,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
             Printer.printf("6) Esci");
 
 
-            choice = getChoice(1,5);
+            choice = getChoice(1,6);
 
             try {
                 switch (choice) {
@@ -59,7 +57,8 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
     public void getProfilo(UserBean loggedUser) {
         ProfiloPadroneBean profilo = null;
         try {
-            profilo = this.controller.getPadProfileInfo(loggedUser);
+            LoginController controller = new LoginController();
+            profilo = controller.getPadProfileInfo(loggedUser);
         } catch (ProfileRetrievalException e) {
             Printer.perror("Errore: " + e.getMessage());
         }

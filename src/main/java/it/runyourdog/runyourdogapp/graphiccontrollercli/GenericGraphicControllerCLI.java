@@ -10,8 +10,6 @@ public abstract class GenericGraphicControllerCLI {
 
     protected UserBean loggedUser;
 
-    protected LoginController controller;
-
     protected int getChoice(int start, int end) {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;

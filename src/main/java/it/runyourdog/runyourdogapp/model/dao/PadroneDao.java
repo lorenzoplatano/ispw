@@ -97,7 +97,7 @@ public class PadroneDao {
 
             List<String> vaccinazioni = dog.getVaccinazioni();
 
-            this.cs = this.conn.prepareCall("{call registrazionePadrone(?,?,?,?,?,?,?,?,?,?,?,?)}");
+            this.cs = this.conn.prepareCall("{call registrazionePadrone(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             this.cs.setString(1, pad.getUsername());
             this.cs.setString(2, pad.getEmail());
             this.cs.setString(3, pad.getPassword());
@@ -112,6 +112,7 @@ public class PadroneDao {
 
             String vaccinazioniStr = String.join(",", vaccinazioni);
             this.cs.setString(12, vaccinazioniStr);
+            this.cs.setString(13, pad.getCitta());
             this.cs.execute();
 
         }catch (SQLException e) {

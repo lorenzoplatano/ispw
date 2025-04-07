@@ -1,11 +1,12 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
+import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
 public abstract class GenericLoginGraphicControllerCLI extends GenericGraphicControllerCLI {
 
-
+    protected LoginController controller;
 
     @Override
     protected void showMenu(){
@@ -14,7 +15,7 @@ public abstract class GenericLoginGraphicControllerCLI extends GenericGraphicCon
         while(true) {
             Printer.printf("1) Login");
             Printer.printf("2) Torna indietro");
-            Printer.printf("3) Registrati");
+            Printer.printf("3) Non hai ancora un account? Registrati");
             Printer.printf("4) Esci");
 
             scelta = getChoice(1,4);

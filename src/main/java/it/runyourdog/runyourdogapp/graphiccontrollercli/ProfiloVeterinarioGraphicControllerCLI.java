@@ -12,7 +12,6 @@ import it.runyourdog.runyourdogapp.utils.Printer;
 public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratoreProfiloGraphicControllerCLI{
 
     public ProfiloVeterinarioGraphicControllerCLI(UserBean loggedUser) {
-        this.controller = new LoginController();
         this.loggedUser = loggedUser;
     }
 
@@ -58,7 +57,8 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
     public void getProfilo(UserBean loggedUser) {
         ProfiloVeterinarioBean profilo = null;
         try {
-           profilo = this.controller.getVetProfileInfo(loggedUser);
+            LoginController controller = new LoginController();
+            profilo = controller.getVetProfileInfo(loggedUser);
         } catch (ProfileRetrievalException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
