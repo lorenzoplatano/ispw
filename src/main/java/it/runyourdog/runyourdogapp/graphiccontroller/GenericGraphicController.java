@@ -30,4 +30,9 @@ public abstract class GenericGraphicController {
     protected void changeRole() throws IOException {
         SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/PreLogin.fxml");
     }
+
+    @FXML
+    protected void goToRegistrazione()throws IOException {
+        SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
+    }
 }

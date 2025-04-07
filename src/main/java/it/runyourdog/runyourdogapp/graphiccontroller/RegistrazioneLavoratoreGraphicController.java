@@ -4,9 +4,11 @@ import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+
 
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class RegistrazioneLavoratoreGraphicController extends RegistrazioneGraphicController{
+
     @FXML
     protected TextField eta;
 
@@ -57,6 +60,7 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
 
     }
 
+
     protected ProfiloLavoratoreBean profiloLavoratoreBean;
 
     public void setProfiloLavoratoreBean(ProfiloLavoratoreBean profiloLavoratoreBean) {
@@ -71,6 +75,24 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
 
 
         int etaInput;
+
+        if (lun.getText().trim().isEmpty() &&
+                mar.getText().trim().isEmpty() &&
+                mer.getText().trim().isEmpty() &&
+                giov.getText().trim().isEmpty() &&
+                ven.getText().trim().isEmpty() &&
+                sab.getText().trim().isEmpty() &&
+                dome.getText().trim().isEmpty()) {
+            showError("Devi inserire almeno un orario.");
+            return;
+        }
+
+        if (telefonoInput.isEmpty() || genereInput.isEmpty() || cittaInput.isEmpty()) {
+            this.showError("Compila tutti i campi prima di procedere.");
+            return;
+        }
+
+
         try {
             etaInput = Integer.parseInt(this.eta.getText().trim());
         } catch (NumberFormatException e) {

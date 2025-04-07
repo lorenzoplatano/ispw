@@ -165,7 +165,7 @@
             </VBox>
          </children>
       </VBox>
-      <Button layoutX="428.0" layoutY="626.0" mnemonicParsing="false" onMouseClicked="#onRegistratiDogsitterClick" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: CC6C25; -fx-border-width: 2; -fx-border-radius: 5;" text="REGISTRATI" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="445.5999999999999" AnchorPane.topAnchor="626.0">
+      <Button layoutX="428.0" layoutY="626.0" mnemonicParsing="false" onMouseClicked="#onRegistratiDogsitterClick" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: CC6C25; -fx-border-width: 2; -fx-border-radius: 5;" text="REGISTRATI" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="445.5999999999999" AnchorPane.topAnchor="626.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -283,5 +283,10 @@
             </VBox>
          </children>
       </VBox>
+      <Button layoutX="107.0" layoutY="640.0" mnemonicParsing="false" onMouseClicked="#goToRegistrazione" prefHeight="27.0" prefWidth="71.0" style="-fx-border-radius: 5; -fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: cc6c25;" text="INDIETRO" AnchorPane.bottomAnchor="119.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

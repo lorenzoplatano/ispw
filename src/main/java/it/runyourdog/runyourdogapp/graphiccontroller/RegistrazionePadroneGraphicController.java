@@ -8,8 +8,6 @@ import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-
-import javax.security.auth.login.CredentialException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -71,6 +69,13 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
         String datadinascitaInput = this.datadinascita.getText();
         String cittaInput = this.citta.getText();
 
+        if (telefonoInput.isEmpty() || indirizzoInput.isEmpty() || nomeInput.isEmpty() ||
+                razzaInput.isEmpty() || sessoInput == null || microchipInput.isEmpty() ||
+                vaccinazione.isEmpty()  || cittaInput.isEmpty()) {
+            this.showError("Compila tutti i campi prima di procedere.");
+            return;
+        }
+
         List<String> vaccinazioniList = Arrays.asList(vaccinazione.split("\\s*,\\s*"));
 
         RegistrazioneController controller = new RegistrazioneController();
@@ -101,12 +106,8 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
 
             SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", this.profiloPadroneBean);
 
-
-
         } catch ( IOException | DAOException e) {
             showError("Errore: " + e.getMessage());
         }
-
-
     }
 }
