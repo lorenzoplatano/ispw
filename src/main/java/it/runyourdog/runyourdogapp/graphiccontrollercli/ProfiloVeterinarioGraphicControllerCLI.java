@@ -32,7 +32,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
             Printer.printf("6) Esci");
 
 
-            scelta = getChoice(1,5);
+            scelta = getChoice(1,6);
 
             try {
                 switch (scelta) {

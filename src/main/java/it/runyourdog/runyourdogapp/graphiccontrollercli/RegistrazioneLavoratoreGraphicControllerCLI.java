@@ -3,7 +3,18 @@ package it.runyourdog.runyourdogapp.graphiccontrollercli;
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.utils.Printer;
+import it.runyourdog.runyourdogapp.utils.enumeration.Role;
+
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends RegistrazioneGraphicControllerCLI {
 
@@ -29,7 +40,19 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 switch (choice) {
                     case 1:
                         UserBean user = this.registerLav(profiloLavoratoreBean);
-                        //se ruolo è dogsitter fai la start del suo controller senno veterinario
+                        Role ruolo = profiloLavoratoreBean.getRole();
+                        switch (ruolo) {
+                            case Role.DOGSITTER:
+                                new ProfiloDogsitterGraphicControllerCLI(user).start();
+                                break;
+
+                            case Role.VETERINARIO:
+                                new ProfiloVeterinarioGraphicControllerCLI(user).start();
+                                break;
+
+                            default:
+                                throw new InvalidInputException("Ruolo non riconosciuto: " + ruolo);
+                        }
                         break;
 
                     case 2:
@@ -44,14 +67,90 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                         throw new InvalidInputException("Invalid choice");
                 }
                 break;
-
             } catch (InvalidInputException e) {
                 Printer.perror(e.getMessage());
             }
         }
     }
 
+
     private UserBean registerLav(ProfiloLavoratoreBean profiloLavoratoreBean) {
-        return null;
+
+        Scanner scanner = new Scanner(System.in);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        timeFormat.setLenient(false);
+
+        try {
+            Printer.printf("Inserisci età:");
+            int etaInput = scanner.nextInt();
+            scanner.nextLine();
+
+            Printer.printf("Inserisci città:");
+            String cittaInput = scanner.nextLine().trim();
+
+            Printer.printf("Inserisci telefono:");
+            String telefonoInput = scanner.nextLine().trim();
+
+            String genereInput;
+            do {
+                Printer.printf("Inserisci genere (M/F):");
+                genereInput = scanner.nextLine().trim().toUpperCase();
+                if (!genereInput.equals("M") && !genereInput.equals("F")) {
+                    Printer.perror("Sesso non valido. Inserisci 'M' per Maschio o 'F' per Femmina.");
+                }
+            } while (!genereInput.equals("M") && !genereInput.equals("F"));
+
+
+            List<Orario> orariSettimana = new ArrayList<>();
+            String[] giorniSettimana = {"Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"};
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
+            for (String giorno : giorniSettimana) {
+                Printer.printf("Vuoi inserire un orario per " + giorno + "? (s/n):");
+                String risposta = scanner.nextLine().trim().toLowerCase();
+
+                if (risposta.equals("s")) {
+                    try {
+                        Printer.printf("Inserisci orario di inizio per " + giorno + " (HH:mm):");
+                        String inizioStr = scanner.nextLine().trim();
+                        LocalTime inizio = LocalTime.parse(inizioStr, formatter);
+
+                        Printer.printf("Inserisci orario di fine per " + giorno + " (HH:mm):");
+                        String fineStr = scanner.nextLine().trim();
+                        LocalTime fine = LocalTime.parse(fineStr, formatter);
+
+                        if (fine.isBefore(inizio)) {
+                            Printer.perror("L'orario di fine non può essere prima dell'orario di inizio.");
+                            continue;
+                        }
+
+                        Time orainizio = Time.valueOf(inizio);
+                        Time orafine = Time.valueOf(fine);
+
+                        Orario orario = new Orario(giorno, orainizio, orafine);
+                        orariSettimana.add(orario);
+
+                    } catch (DateTimeParseException e) {
+                        Printer.perror("Formato orario non valido. Usa il formato HH:mm (es. 09:30).");
+                    }
+                }
+            }
+
+
+            profiloLavoratoreBean.setTelefono(telefonoInput);
+            profiloLavoratoreBean.setEta(etaInput);
+            profiloLavoratoreBean.setCitta(cittaInput);
+            profiloLavoratoreBean.setGenere(genereInput);
+            profiloLavoratoreBean.setOrari(orariSettimana);
+
+            return completaRegistrazioneLavoratore(profiloLavoratoreBean);
+
+        } catch (Exception e) {
+            Printer.perror("Errore durante la registrazione: " + e.getMessage());
+            return null;
+        }
     }
+
+    protected abstract UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean);
+
 }

@@ -39,5 +39,4 @@ public class DogLoginGraphicController extends GenericLoginGraphicController {
             showError("Errore: " + e.getMessage());
         }
     }
-
 }
