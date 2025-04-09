@@ -71,5 +71,7 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
 
     @Override
     protected void showProfiloSpecifico(ProfiloLavoratoreBean profilo) {
+        // Metodo intenzionalmente lasciato vuoto: questa sottoclasse non necessita di mostrare un profilo specifico
     }
 }
+

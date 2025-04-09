@@ -121,9 +121,7 @@ public class RegistrazioneGraphicControllerCLI extends GenericGraphicControllerC
                     ProfiloVeterinarioBean vetBean = new ProfiloVeterinarioBean(username, email, password, ruolo, fullName);
                     new RegistrazioneVeterinarioGraphicControllerCLI().start(vetBean);
                 }
-                default -> {
-                    Printer.perror("Errore: ruolo non riconosciuto (" + ruolo + "). Registrazione interrotta.");
-                }
+                default -> Printer.perror("Errore: ruolo non riconosciuto (" + ruolo + "). Registrazione interrotta.");
             }
 
         } catch (Exception e) {
