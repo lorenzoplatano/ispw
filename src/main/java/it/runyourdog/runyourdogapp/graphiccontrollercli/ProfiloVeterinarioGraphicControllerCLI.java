@@ -6,7 +6,6 @@ import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
-import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
 public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratoreProfiloGraphicControllerCLI{

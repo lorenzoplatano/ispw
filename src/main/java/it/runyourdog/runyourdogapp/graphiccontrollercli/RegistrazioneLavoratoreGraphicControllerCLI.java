@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends RegistrazioneGraphicControllerCLI {
@@ -110,31 +111,12 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 String risposta = scanner.nextLine().trim().toLowerCase();
 
                 if (risposta.equals("s")) {
-                    try {
-                        Printer.printf("Inserisci orario di inizio per " + giorno + " (HH:mm):");
-                        String inizioStr = scanner.nextLine().trim();
-                        LocalTime inizio = LocalTime.parse(inizioStr, formatter);
-
-                        Printer.printf("Inserisci orario di fine per " + giorno + " (HH:mm):");
-                        String fineStr = scanner.nextLine().trim();
-                        LocalTime fine = LocalTime.parse(fineStr, formatter);
-
-                        if (fine.isBefore(inizio)) {
-                            Printer.perror("L'orario di fine non può essere prima dell'orario di inizio.");
-                            continue;
-                        }
-
-                        Time orainizio = Time.valueOf(inizio);
-                        Time orafine = Time.valueOf(fine);
-
-                        Orario orario = new Orario(giorno, orainizio, orafine);
-                        orariSettimana.add(orario);
-
-                    } catch (DateTimeParseException e) {
-                        Printer.perror("Formato orario non valido. Usa il formato HH:mm (es. 09:30).");
-                    }
+                    Optional<Orario> orarioOpt = inserisciOrarioPerGiorno(giorno, scanner, formatter);
+                    orarioOpt.ifPresent(orariSettimana::add);
                 }
             }
+
+
 
 
             profiloLavoratoreBean.setTelefono(telefonoInput);
@@ -152,5 +134,33 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
     }
 
     protected abstract UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean);
+
+
+
+    private Optional<Orario> inserisciOrarioPerGiorno(String giorno, Scanner scanner, DateTimeFormatter formatter) {
+        try {
+            Printer.printf("Inserisci orario di inizio per " + giorno + " (HH:mm):");
+            String inizioStr = scanner.nextLine().trim();
+            LocalTime inizio = LocalTime.parse(inizioStr, formatter);
+
+            Printer.printf("Inserisci orario di fine per " + giorno + " (HH:mm):");
+            String fineStr = scanner.nextLine().trim();
+            LocalTime fine = LocalTime.parse(fineStr, formatter);
+
+            if (fine.isBefore(inizio)) {
+                Printer.perror("L'orario di fine non può essere prima dell'orario di inizio.");
+                return Optional.empty();
+            }
+
+            Time orainizio = Time.valueOf(inizio);
+            Time orafine = Time.valueOf(fine);
+
+            return Optional.of(new Orario(giorno, orainizio, orafine));
+
+        } catch (DateTimeParseException e) {
+            Printer.perror("Formato orario non valido. Usa il formato HH:mm (es. 09:30).");
+            return Optional.empty();
+        }
+    }
 
 }

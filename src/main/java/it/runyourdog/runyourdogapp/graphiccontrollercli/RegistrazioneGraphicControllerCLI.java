@@ -14,6 +14,10 @@ public class RegistrazioneGraphicControllerCLI extends GenericGraphicControllerC
 
     protected RegistrazioneController controller;
 
+    private static final String PADRONE = "PADRONE";
+    private static final String DOGSITTER = "DOGSITTER";
+    private static final String VETERINARIO = "VETERINARIO";
+
     public RegistrazioneGraphicControllerCLI(){
 
         this.controller = new RegistrazioneController();
@@ -91,28 +95,34 @@ public class RegistrazioneGraphicControllerCLI extends GenericGraphicControllerC
 
             String ruolo;
             do {
-                Printer.printf("Seleziona ruolo (PADRONE, DOGSITTER, VETERINARIO):");
+                Printer.printf (String.format("Seleziona ruolo (%s, %s, %s):",
+                        PADRONE, DOGSITTER, VETERINARIO));
                 ruolo = scanner.nextLine().trim().toUpperCase();
-
-                if (!ruolo.equals("PADRONE") && !ruolo.equals("DOGSITTER") && !ruolo.equals("VETERINARIO")) {
-                    Printer.perror("Ruolo non valido. Inserisci uno tra: PADRONE, DOGSITTER, VETERINARIO.");
+                if (!ruolo.equals(PADRONE) &&
+                        !ruolo.equals(DOGSITTER) &&
+                        !ruolo.equals(VETERINARIO)) {
+                    Printer.perror (String.format("Ruolo non valido. Inserisci uno tra: %s, %s, %s.",
+                            PADRONE, DOGSITTER, VETERINARIO));
                 }
-            } while (!ruolo.equals("PADRONE") && !ruolo.equals("DOGSITTER") && !ruolo.equals("VETERINARIO"));
+            } while (!ruolo.equals(PADRONE) &&
+                    !ruolo.equals(DOGSITTER) &&
+                    !ruolo.equals(VETERINARIO));
 
             switch (ruolo) {
-                case "PADRONE" -> {
+                case PADRONE -> {
                     ProfiloPadroneBean padroneBean = new ProfiloPadroneBean(username, email, password, ruolo, fullName);
                     new RegistrazionePadroneGraphicControllerCLI().start(padroneBean);
                 }
-
-                case "DOGSITTER" -> {
+                case DOGSITTER -> {
                     ProfiloDogsitterBean dogsitterBean = new ProfiloDogsitterBean(username, email, password, ruolo, fullName);
                     new RegistrazioneDogsitterGraphicControllerCLI().start(dogsitterBean);
                 }
-
-                case "VETERINARIO" -> {
+                case VETERINARIO -> {
                     ProfiloVeterinarioBean vetBean = new ProfiloVeterinarioBean(username, email, password, ruolo, fullName);
                     new RegistrazioneVeterinarioGraphicControllerCLI().start(vetBean);
+                }
+                default -> {
+                    Printer.perror("Errore: ruolo non riconosciuto (" + ruolo + "). Registrazione interrotta.");
                 }
             }
 

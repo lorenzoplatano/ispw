@@ -94,11 +94,8 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
             Printer.printf("Inserisci città:");
             String cittaInput = scanner.nextLine().trim();
 
-            java.sql.Date dataNascita;
-            try {
-                dataNascita = java.sql.Date.valueOf(datadinascitaInput);
-            } catch (IllegalArgumentException e) {
-                Printer.perror("Formato data errato. Utilizza yyyy-mm-dd.");
+            java.sql.Date dataNascita = parseDataNascita(datadinascitaInput);
+            if (dataNascita == null) {
                 return null;
             }
 
@@ -132,5 +129,15 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
 
 
     }
+
+    private java.sql.Date parseDataNascita(String datadinascitaInput) {
+        try {
+            return java.sql.Date.valueOf(datadinascitaInput);
+        } catch (IllegalArgumentException e) {
+            Printer.perror("Formato data errato. Utilizza yyyy-mm-dd.");
+            return null;
+        }
+    }
+
 
 }

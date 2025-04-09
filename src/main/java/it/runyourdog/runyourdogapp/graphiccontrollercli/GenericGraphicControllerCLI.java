@@ -1,6 +1,5 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
-import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
