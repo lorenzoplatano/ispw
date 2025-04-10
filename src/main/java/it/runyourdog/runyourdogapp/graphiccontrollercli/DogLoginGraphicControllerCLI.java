@@ -5,7 +5,6 @@ import it.runyourdog.runyourdogapp.beans.LoginBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 
-import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
