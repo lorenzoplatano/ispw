@@ -5,6 +5,7 @@ import javax.security.auth.login.CredentialException;
 public class LoginBean {
     private String email;
     private String password;
+
     public LoginBean(String email, String password) throws CredentialException{
         setEmail(email);
         setPassword(password);

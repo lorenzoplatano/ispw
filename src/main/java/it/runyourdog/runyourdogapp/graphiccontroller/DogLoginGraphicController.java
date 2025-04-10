@@ -19,7 +19,7 @@ public class DogLoginGraphicController extends GenericLoginGraphicController {
 
     @FXML
     @Override
-    public void onLoginClick()  {
+    public void onLoginClick() {
         String dogEmail = this.email.getText().trim();
         String pass = this.password.getText().trim();
 
@@ -35,8 +35,10 @@ public class DogLoginGraphicController extends GenericLoginGraphicController {
             ProfiloDogsitterBean loggedDogs = controller.getDogProfileInfo(loggedUser);
             SingletonStage.getStage(null).showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml", loggedDogs);
 
-        } catch (CredentialException | IOException | DAOException | ProfileRetrievalException e) {
+        } catch (ProfileRetrievalException | CredentialException e) {
             showError("Errore: " + e.getMessage());
+        } catch (IOException | DAOException e) {
+            Printer.perror(e.getMessage());
         }
     }
 }

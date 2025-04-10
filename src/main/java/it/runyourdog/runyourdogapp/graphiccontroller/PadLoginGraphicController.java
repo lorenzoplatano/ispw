@@ -40,8 +40,10 @@ public class PadLoginGraphicController extends GenericLoginGraphicController {
             ProfiloPadroneBean loggedPad = controller.getPadProfileInfo(loggedUser);
             SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", loggedPad);
 
-        } catch (CredentialException | IOException | DAOException | ProfileRetrievalException e) {
+        } catch (ProfileRetrievalException | CredentialException e) {
             showError("Errore: " + e.getMessage());
+        } catch (IOException | DAOException e) {
+            Printer.perror(e.getMessage());
         }
 
     }

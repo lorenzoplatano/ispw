@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -24,7 +25,7 @@ public class RegistrazioneVeterinarioGraphicController extends RegistrazioneLavo
             controller.vetRegister(vetBean);
             SingletonStage.getStage(null).showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml", vetBean);
         } catch (DAOException | IOException e) {
-            showError("Errore: " + e.getMessage());
+            Printer.perror("Errore: " + e.getMessage());
         }
     }
 }

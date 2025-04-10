@@ -42,7 +42,7 @@ public class PadroneDao {
                 }
             }
         } catch(SQLException e) {
-            throw new DAOException(e.getMessage());
+            throw new DAOException("Errore nell'acquisizione dei dati del padrone: " + e.getMessage());
         }
 
 
@@ -83,7 +83,7 @@ public class PadroneDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException(e.getMessage());
+            throw new DAOException("Errore nell'acquisizione dei dati del cane: " + e.getMessage());
         }
 
         return new Dog(nome, sesso, razza, microchip, dataNascita, vaccinazioni);
@@ -116,7 +116,7 @@ public class PadroneDao {
             this.cs.execute();
 
         }catch (SQLException e) {
-            throw new DAOException(e.getMessage());
+            throw new DAOException("Errore nella registrazione del Padrone: " + e.getMessage());
         }
 
     }

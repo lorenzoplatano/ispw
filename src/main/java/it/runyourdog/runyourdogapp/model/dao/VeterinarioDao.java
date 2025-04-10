@@ -46,7 +46,7 @@ public class VeterinarioDao {
                 }
             }
         } catch(SQLException e) {
-            throw new DAOException(e.getMessage());
+            throw new DAOException("Errore nell'acquisizione dei dati del veterinario: " + e.getMessage());
         }
 
         vet.setNome(nome);
@@ -84,7 +84,7 @@ public class VeterinarioDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException(e.getMessage());
+            throw new DAOException("Errore nell'acquisizione degli orari del veterinario: " + e.getMessage());
         }
 
         return orari;
@@ -119,7 +119,7 @@ public class VeterinarioDao {
 
             cs.execute();
         } catch (SQLException e) {
-            throw new DAOException("Errore nella registrazione del Veterinario: " + e.getMessage(), e);
+            throw new DAOException("Errore nella registrazione del Veterinario: " + e.getMessage());
 
         }
     }

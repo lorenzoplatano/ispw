@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.LoginBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 
+import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
@@ -49,9 +50,10 @@ public class DogLoginGraphicControllerCLI extends GenericLoginGraphicControllerC
                 new ProfiloDogsitterGraphicControllerCLI(loggedPad).start();
                 break;
 
-            } catch (IOException | DAOException | CredentialException e) {
-                Printer.printf("Errore: " + e.getMessage());
-
+            } catch ( CredentialException e) {
+                Printer.print("Errore: " + e.getMessage());
+            } catch (IOException | DAOException e) {
+                Printer.perror(e.getMessage());
             }
         }
     }

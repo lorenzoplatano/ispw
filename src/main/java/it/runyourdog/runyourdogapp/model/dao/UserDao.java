@@ -33,7 +33,7 @@ public class UserDao {
             username = this.cs.getString(4);
 
         } catch(SQLException e) {
-            throw new DAOException(e.getMessage());
+            throw new DAOException("Errore durante il login: " + e.getMessage());
         }
         user.setUsername(username);
         user.setRole(Role.fromInt(role));
@@ -52,7 +52,7 @@ public class UserDao {
             result = this.cs.getInt(2);
 
         }catch(SQLException e){
-            throw new DAOException(e.getMessage());
+            throw new DAOException("Errore: l'email inserita già è in uso");
         }
 
         return (result == 0);

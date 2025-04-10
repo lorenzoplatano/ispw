@@ -43,7 +43,7 @@ public class DogsitterDao {
                 }
             }
         } catch(SQLException e) {
-            throw new DAOException(e.getMessage());
+            throw new DAOException("Errore nella acquisizione dei dati del dogsitter: " + e.getMessage());
         }
 
         dogs.setNome(nome);
@@ -80,7 +80,7 @@ public class DogsitterDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException(e.getMessage());
+            throw new DAOException("Errore nella acquisizione degli orari del dogsitter: " + e.getMessage());
         }
 
         return orari;
@@ -114,7 +114,7 @@ public class DogsitterDao {
 
             cs.execute();
         } catch (SQLException e) {
-            throw new DAOException("Errore nella registrazione del Dogsitter: " + e.getMessage(), e);
+            throw new DAOException("Errore nella registrazione del Dogsitter: " + e.getMessage());
 
         }
     }

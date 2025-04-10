@@ -30,7 +30,7 @@ public class SingletonStage {
         return instance;
     }
 
-    public static void cambiaScena(String nomeSchermata) throws IOException {
+    public static void cambiaScena(String nomeSchermata) throws IOException  {
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(nomeSchermata));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setScene(scene);

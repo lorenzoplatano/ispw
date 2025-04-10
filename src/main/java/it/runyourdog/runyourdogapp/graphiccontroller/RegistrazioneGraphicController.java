@@ -12,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import javax.security.auth.login.CredentialException;
+import java.io.IOException;
 
 
 public class RegistrazioneGraphicController extends GenericGraphicController {
@@ -60,20 +61,20 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
 
         try {
 
+            if (emailInput.isEmpty() || usernameInput.isEmpty() || nomeInput.isEmpty() || cognomeInput.isEmpty()
+                    || passwordInput.isEmpty()) {
+                showError("Compila tutti i campi prima di procedere.");
+                return;
+            }
 
             if (!passwordInput.equals(confermaPasswordInput)) {
-                throw new CredentialException("Le password non coincidono");
+                showError("Le password non coincidono");
+                return;
             }
 
             RegistrazioneController controller = new RegistrazioneController();
             if (!controller.emailUnica(new UserBean(emailInput))) {
                 showError("Email già in uso. Scegli un'altra email.");
-                return;
-            }
-
-            if (emailInput.isEmpty() || usernameInput.isEmpty() || nomeInput.isEmpty() || cognomeInput.isEmpty()
-                    || passwordInput.isEmpty()) {
-                showError("Compila tutti i campi prima di procedere.");
                 return;
             }
 
@@ -98,8 +99,8 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
                 default -> throw new IllegalArgumentException("Ruolo non valido selezionato");
             }
 
-        } catch (Exception e) {
-            showError("Errore: " + e.getMessage());
+        } catch (IOException | CredentialException e) {
+            Printer.perror("Errore: " + e.getMessage());
         }
     }
 }

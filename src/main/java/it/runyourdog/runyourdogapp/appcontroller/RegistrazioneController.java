@@ -59,7 +59,7 @@ public class RegistrazioneController {
         try {
             res = dao.emailCheck(newUser);
         } catch (DAOException e) {
-            throw new CredentialException(e.getMessage());
+            throw new CredentialException("Errore: " + e.getMessage());
         }
         return res;
     }

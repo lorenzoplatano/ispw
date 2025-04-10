@@ -25,7 +25,7 @@ public class LoginController {
         UserDao dao = new UserDao();
         user = dao.loginProcedure(user);
         if(user.getRole() == null){
-            throw new CredentialException();
+            throw new CredentialException("Credenziali invalide");
         }
 
         username = user.getUsername();

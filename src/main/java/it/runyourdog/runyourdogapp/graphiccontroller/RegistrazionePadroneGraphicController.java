@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
@@ -78,18 +79,18 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
 
         List<String> vaccinazioniList = Arrays.asList(vaccinazione.split("\\s*,\\s*"));
 
-        RegistrazioneController controller = new RegistrazioneController();
 
-
-        java.sql.Date dataNascita;
+        Date dataNascita;
         try {
 
-            dataNascita = java.sql.Date.valueOf(datadinascitaInput);
+            dataNascita = Date.valueOf(datadinascitaInput);
         } catch (IllegalArgumentException e) {
             this.showError("Formato data errato. Utilizza yyyy-mm-dd.");
             Printer.printf("Errore conversione data: " + e.getMessage());
             return;
         }
+
+        RegistrazioneController controller = new RegistrazioneController();
 
         try{
             this.profiloPadroneBean.setTelefonoPadrone(telefonoInput);
@@ -107,7 +108,7 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
             SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", this.profiloPadroneBean);
 
         } catch ( IOException | DAOException e) {
-            showError("Errore: " + e.getMessage());
+            Printer.perror("Errore: " + e.getMessage());
         }
     }
 }

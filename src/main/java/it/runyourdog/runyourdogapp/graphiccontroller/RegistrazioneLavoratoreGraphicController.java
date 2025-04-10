@@ -97,7 +97,7 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
             etaInput = Integer.parseInt(this.eta.getText().trim());
         } catch (NumberFormatException e) {
             showError("Inserisci un'età valida.");
-            return ;
+            return;
         }
 
 
@@ -130,8 +130,6 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
         profiloLavoratoreBean.setTelefono(telefonoInput);
         profiloLavoratoreBean.setEta(etaInput);
         profiloLavoratoreBean.setOrari(orari);
-
-
 
 
     }
