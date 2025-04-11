@@ -35,7 +35,6 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
     @FXML
     protected TextField mar;
 
-
     @FXML
     protected TextField mer;
 

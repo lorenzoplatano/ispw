@@ -19,34 +19,21 @@ import java.io.IOException;
 
 public class PadLoginGraphicController extends GenericLoginGraphicController {
 
-
-
-
-    @FXML
     @Override
-    public void onLoginClick()  {
-        String padEmail = this.email.getText().trim();
-        String pass = this.password.getText().trim();
-
-        LoginController controller=new LoginController();
-        try {
-            LoginBean credentials = new LoginBean(padEmail, pass);
-            UserBean loggedUser = controller.authenticate(credentials);
-
-            if (loggedUser.getRole() != Role.PADRONE) {
-                throw new CredentialException("Accesso negato: solo i padroni possono effettuare il login.");
-            }
-
-            ProfiloPadroneBean loggedPad = controller.getPadProfileInfo(loggedUser);
-            SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", loggedPad);
-
-        } catch (ProfileRetrievalException | CredentialException e) {
-            showError("Errore: " + e.getMessage());
-        } catch (IOException | DAOException e) {
-            Printer.perror(e.getMessage());
-        }
-
+    protected Role getExpectedRole() {
+        return Role.PADRONE;
     }
 
+    @Override
+    protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException, DAOException {
+        return controller.getPadProfileInfo(user);
+    }
 
+    @Override
+    protected void navigateToHome(Object profile) throws IOException {
+        SingletonStage.getStage(null).showPadroneHomePage(
+                "/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml",
+                (ProfiloPadroneBean) profile
+        );
+    }
 }

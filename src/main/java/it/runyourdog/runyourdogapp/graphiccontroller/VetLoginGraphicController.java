@@ -20,33 +20,21 @@ import java.io.IOException;
 
 public class VetLoginGraphicController extends GenericLoginGraphicController {
 
-
-    @FXML
     @Override
-    public void onLoginClick()  {
-        String vetEmail = this.email.getText().trim();
-        String pass = this.password.getText().trim();
-
-        LoginController controller=new LoginController();
-        try {
-            LoginBean credentials = new LoginBean(vetEmail, pass);
-            UserBean loggedUser = controller.authenticate(credentials);
-
-            if (loggedUser.getRole() != Role.VETERINARIO) {
-                throw new CredentialException("Accesso negato: solo i veterinari possono effettuare il login.");
-            }
-
-            ProfiloVeterinarioBean loggedVet = controller.getVetProfileInfo(loggedUser);
-            SingletonStage.getStage(null).showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml", loggedVet);
-
-        } catch (ProfileRetrievalException | CredentialException e) {
-            showError("Errore: " + e.getMessage());
-        } catch (IOException | DAOException e) {
-            Printer.perror(e.getMessage());
-        }
-
+    protected Role getExpectedRole() {
+        return Role.VETERINARIO;
     }
 
+    @Override
+    protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException, DAOException {
+        return controller.getVetProfileInfo(user);
+    }
 
-
+    @Override
+    protected void navigateToHome(Object profile) throws IOException {
+        SingletonStage.getStage(null).showVeterinarioHomePage(
+                "/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml",
+                (ProfiloVeterinarioBean) profile
+        );
+    }
 }

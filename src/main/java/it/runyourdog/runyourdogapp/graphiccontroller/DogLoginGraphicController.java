@@ -17,28 +17,21 @@ import java.io.IOException;
 
 public class DogLoginGraphicController extends GenericLoginGraphicController {
 
-    @FXML
     @Override
-    public void onLoginClick() {
-        String dogEmail = this.email.getText().trim();
-        String pass = this.password.getText().trim();
+    protected Role getExpectedRole() {
+        return Role.DOGSITTER;
+    }
 
-        LoginController controller=new LoginController();
-        try {
-            LoginBean credentials = new LoginBean(dogEmail, pass);
-            UserBean loggedUser = controller.authenticate(credentials);
+    @Override
+    protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException, DAOException {
+        return controller.getDogProfileInfo(user);
+    }
 
-            if (loggedUser.getRole() != Role.DOGSITTER) {
-                throw new CredentialException("Accesso negato: solo i dogsitter possono effettuare il login.");
-            }
-
-            ProfiloDogsitterBean loggedDogs = controller.getDogProfileInfo(loggedUser);
-            SingletonStage.getStage(null).showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml", loggedDogs);
-
-        } catch (ProfileRetrievalException | CredentialException e) {
-            showError("Errore: " + e.getMessage());
-        } catch (IOException | DAOException e) {
-            Printer.perror(e.getMessage());
-        }
+    @Override
+    protected void navigateToHome(Object profile) throws IOException {
+        SingletonStage.getStage(null).showDogsitterHomePage(
+                "/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml",
+                (ProfiloDogsitterBean) profile
+        );
     }
 }
