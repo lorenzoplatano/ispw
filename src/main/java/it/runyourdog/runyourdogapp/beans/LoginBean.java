@@ -40,11 +40,11 @@ public class LoginBean {
     private boolean isValidEmail(String email){
         String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(emailPattern);
-        if(email == null) return false;
+        if(email == "") return false;
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
     private boolean isValidPassword(String password){
-        return password != null;
+        return password != "";
     }
 }
