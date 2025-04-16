@@ -26,15 +26,12 @@ public class VetLoginGraphicController extends GenericLoginGraphicController {
     }
 
     @Override
-    protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException, DAOException {
+    protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException {
         return controller.getVetProfileInfo(user);
     }
 
     @Override
     protected void navigateToHome(Object profile) throws IOException {
-        SingletonStage.getStage(null).showVeterinarioHomePage(
-                "/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml",
-                (ProfiloVeterinarioBean) profile
-        );
+        SingletonStage.getStage(null).showVeterinarioHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml", (ProfiloVeterinarioBean) profile);
     }
 }

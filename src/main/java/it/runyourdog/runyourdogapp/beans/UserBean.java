@@ -24,32 +24,20 @@ public class UserBean {
 
     public UserBean() {}
 
-    public void setUsername(String username) throws CredentialException {
-        if(username != null) {
+    public void setUsername(String username){
             this.username = username;
-        }else throw new CredentialException("Invalid username");
     }
 
     public String getUsername() {
         return this.username;
     }
 
-    public void setPassword(String password) throws CredentialException {
-
-        if(this.isValidPassword(password)) {
+    public void setPassword(String password) {
             this.password = password;
-        }else{
-            throw new CredentialException("Invalid Password");
-        }
     }
 
-    public void setEmail(String email) throws CredentialException {
-
-        if(this.isValidEmail(email)) {
+    public void setEmail(String email) {
             this.email = email;
-        }else{
-            throw new CredentialException("Invalid Email");
-        }
     }
 
     public String getPassword() {
@@ -68,15 +56,4 @@ public class UserBean {
         return this.role;
     }
 
-    private boolean isValidPassword(String password){
-        return (password != null && password.length() >= 8);
-    }
-
-    private boolean isValidEmail(String email){
-        String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
-        Pattern pattern = Pattern.compile(emailPattern);
-        if(email == null) return false;
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
 }

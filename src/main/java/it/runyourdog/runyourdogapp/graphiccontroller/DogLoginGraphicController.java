@@ -23,15 +23,12 @@ public class DogLoginGraphicController extends GenericLoginGraphicController {
     }
 
     @Override
-    protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException, DAOException {
+    protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException{
         return controller.getDogProfileInfo(user);
     }
 
     @Override
     protected void navigateToHome(Object profile) throws IOException {
-        SingletonStage.getStage(null).showDogsitterHomePage(
-                "/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml",
-                (ProfiloDogsitterBean) profile
-        );
+        SingletonStage.getStage(null).showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml", (ProfiloDogsitterBean) profile);
     }
 }

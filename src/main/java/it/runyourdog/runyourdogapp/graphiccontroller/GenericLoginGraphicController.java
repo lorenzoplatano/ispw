@@ -28,11 +28,6 @@ public abstract class GenericLoginGraphicController extends GenericGraphicContro
         String userEmail = this.email.getText().trim();
         String pass = this.password.getText().trim();
 
-        if(userEmail.isEmpty() || pass.isEmpty()) {
-            this.showError("Compila tutti i campi prima di procedere.");
-            return;
-        }
-
         try {
             LoginBean credentials = new LoginBean(userEmail, pass);
             UserBean loggedUser = controller.authenticate(credentials);
@@ -44,16 +39,16 @@ public abstract class GenericLoginGraphicController extends GenericGraphicContro
             Object profile = retrieveProfile(loggedUser);
             navigateToHome(profile);
 
-        } catch (ProfileRetrievalException | CredentialException e) {
+        } catch (CredentialException e) {
             showError("Errore: " + e.getMessage());
-        } catch (IOException | DAOException e) {
+        } catch (ProfileRetrievalException |IOException | DAOException e) {
             Printer.perror(e.getMessage());
         }
     }
 
     protected abstract Role getExpectedRole();
 
-    protected abstract Object retrieveProfile(UserBean user) throws ProfileRetrievalException, DAOException;
+    protected abstract Object retrieveProfile(UserBean user) throws ProfileRetrievalException;
 
     protected abstract void navigateToHome(Object profile) throws IOException;
 }
