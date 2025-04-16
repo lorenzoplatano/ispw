@@ -6,13 +6,9 @@ import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.Printer;
-import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
-import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.util.Duration;
 
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
