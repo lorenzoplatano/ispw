@@ -56,13 +56,13 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
         String cognomeInput = this.cognome.getText().trim();
         String passwordInput = this.password.getText().trim();
         String confermaPasswordInput = this.confermaPassword.getText().trim();
-        String ruoloInput = this.comboBox.getValue().toUpperCase();
+        String ruoloInput = (comboBox.getValue() != null) ? comboBox.getValue().toUpperCase() : null;
         String fullName = nomeInput + " " + cognomeInput;
 
         try {
 
             if (emailInput.isEmpty() || usernameInput.isEmpty() || nomeInput.isEmpty() || cognomeInput.isEmpty()
-                    || passwordInput.isEmpty()) {
+                    || passwordInput.isEmpty() || ruoloInput == null) {
                 showError("Compila tutti i campi prima di procedere.");
                 return;
             }
