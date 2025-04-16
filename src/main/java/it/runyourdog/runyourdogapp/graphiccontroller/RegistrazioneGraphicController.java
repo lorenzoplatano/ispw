@@ -56,7 +56,7 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
         String cognomeInput = this.cognome.getText().trim();
         String passwordInput = this.password.getText().trim();
         String confermaPasswordInput = this.confermaPassword.getText().trim();
-        String ruoloInput = (this.comboBox.getValue() != null) ? this.comboBox.getValue().toString() : null;
+        String ruoloInput = (this.comboBox.getValue() != null) ? this.comboBox.getValue().toUpperCase() : null;
         String fullName = nomeInput + " " + cognomeInput;
 
         try {
