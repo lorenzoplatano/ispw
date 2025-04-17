@@ -61,6 +61,8 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
             profilo = controller.getPadProfileInfo(loggedUser);
         } catch (ProfileRetrievalException e) {
             Printer.perror("Errore: " + e.getMessage());
+        } catch (InvalidInputException e) {
+            Printer.print(e.getMessage());
         }
         showProfilo(profilo);
         showMenu();

@@ -1,9 +1,8 @@
 package it.runyourdog.runyourdogapp.beans;
 
-
+import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
-import javax.security.auth.login.CredentialException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,47 +12,68 @@ public class UserBean {
     private String password;
     private Role role;
 
-    public UserBean(String username, String email, String password, Role role) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.role = role;
+    public UserBean(String username, String email, String password, Role role) throws InvalidInputException {
+        setUsername(username);
+        setEmail(email);
+        setPassword(password);
+        setRole(role);
     }
 
-    public UserBean(String email) {this.email = email;}
+    public UserBean(String email) throws InvalidInputException {
+        setEmail(email);
+    }
 
     public UserBean() {}
 
-    public void setUsername(String username){
-            this.username = username;
-    }
-
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
-    public void setPassword(String password) {
-            this.password = password;
+    public void setUsername(String username) throws InvalidInputException {
+        if (username == null || username.trim().isEmpty()) {
+            throw new InvalidInputException("Username obbligatorio.");
+        }
+        this.username = username.trim();
     }
 
-    public void setEmail(String email) {
-            this.email = email;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) throws InvalidInputException {
+        if (email == null || email.trim().isEmpty()) {
+            throw new InvalidInputException("Email obbligatoria.");
+        }
+        if (!isValidEmail(email)){throw new InvalidInputException("Usare il formato corretto per l'email.");}
+        this.email = email.trim();
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String getEmail(){
-        return this.email;
+    public void setPassword(String password) throws InvalidInputException {
+        if (password == "" ) {
+            throw new InvalidInputException("Il campo password è obbligatorio.");
+        }
+        this.password = password;
     }
 
-    public void setRole(Role role){
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) throws InvalidInputException {
+        if (role == null) {
+            throw new InvalidInputException("Ruolo obbligatorio.");
+        }
         this.role = role;
     }
 
-    public Role getRole(){
-        return this.role;
+    public boolean isValidEmail(String email){
+        String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+        Pattern pattern = Pattern.compile(emailPattern);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
-
 }

@@ -60,8 +60,11 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
         try {
             LoginController controller = new LoginController();
             profilo = controller.getDogProfileInfo(loggedUser);
+
         } catch (ProfileRetrievalException e) {
             Printer.perror("Errore: " + e.getMessage());
+        }catch (InvalidInputException e) {
+            Printer.print(e.getMessage());
         }
         showProfilo(profilo);
 

@@ -60,6 +60,8 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
             profilo = controller.getVetProfileInfo(loggedUser);
         } catch (ProfileRetrievalException e) {
             Printer.perror("Errore: " + e.getMessage());
+        }catch (InvalidInputException e) {
+            Printer.print(e.getMessage());
         }
         showProfilo(profilo);
         showMenu();

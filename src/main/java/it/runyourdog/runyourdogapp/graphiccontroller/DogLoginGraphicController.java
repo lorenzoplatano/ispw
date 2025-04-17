@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.LoginBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
@@ -23,7 +24,7 @@ public class DogLoginGraphicController extends GenericLoginGraphicController {
     }
 
     @Override
-    protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException{
+    protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException, InvalidInputException {
         return controller.getDogProfileInfo(user);
     }
 

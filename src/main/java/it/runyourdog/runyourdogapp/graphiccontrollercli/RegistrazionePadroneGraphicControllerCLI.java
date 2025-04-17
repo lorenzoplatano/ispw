@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraphicControllerCLI{
+public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraphicControllerCLI {
 
     private ProfiloPadroneBean profiloPadroneBean;
 
@@ -109,6 +109,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
             profiloPadroneBean.setDataNascitaCane(dataNascita);
             profiloPadroneBean.setCittaPadrone(cittaInput);
 
+
             controller.padRegister(profiloPadroneBean);
 
             Printer.printf("Registrazione completata con successo!\nProfilo creato:\n" + profiloPadroneBean);
@@ -120,12 +121,9 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                     Role.PADRONE
             );
 
-
-        } catch (DAOException e) {
+        } catch (InvalidInputException | DAOException e) {
             Printer.perror("Errore durante la registrazione: " + e.getMessage());
             return null;
         }
-
-
     }
 }

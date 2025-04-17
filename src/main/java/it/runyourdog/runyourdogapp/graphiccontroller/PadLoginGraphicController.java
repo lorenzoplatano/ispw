@@ -4,6 +4,7 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 
+import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
@@ -24,7 +25,7 @@ public class PadLoginGraphicController extends GenericLoginGraphicController {
     }
 
     @Override
-    protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException {
+    protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException, InvalidInputException {
         return controller.getPadProfileInfo(user);
     }
 

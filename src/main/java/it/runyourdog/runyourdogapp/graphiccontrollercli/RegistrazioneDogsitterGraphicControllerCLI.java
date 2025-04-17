@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
@@ -11,7 +12,7 @@ public class RegistrazioneDogsitterGraphicControllerCLI extends RegistrazioneLav
 
 
     @Override
-    protected UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) {
+    protected UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) throws InvalidInputException {
         if (!(bean instanceof ProfiloDogsitterBean)) {
             Printer.perror("Errore interno: tipo di bean errato");
             return null;

@@ -76,7 +76,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
     }
 
 
-    private UserBean registerLav(ProfiloLavoratoreBean profiloLavoratoreBean) {
+    private UserBean registerLav(ProfiloLavoratoreBean profiloLavoratoreBean) throws InvalidInputException {
 
         Scanner scanner = new Scanner(System.in);
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
@@ -117,20 +117,23 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
         }
 
 
+        try {
+            profiloLavoratoreBean.setTelefono(telefonoInput);
 
-
-        profiloLavoratoreBean.setTelefono(telefonoInput);
-        profiloLavoratoreBean.setEta(etaInput);
-        profiloLavoratoreBean.setCitta(cittaInput);
-        profiloLavoratoreBean.setGenere(genereInput);
-        profiloLavoratoreBean.setOrari(orariSettimana);
+            profiloLavoratoreBean.setEta(etaInput);
+            profiloLavoratoreBean.setCitta(cittaInput);
+            profiloLavoratoreBean.setGenere(genereInput);
+            profiloLavoratoreBean.setOrari(orariSettimana);
+        } catch (InvalidInputException e) {
+            Printer.print(e.getMessage());
+        }
 
         return completaRegistrazioneLavoratore(profiloLavoratoreBean);
 
 
     }
 
-    protected abstract UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean);
+    protected abstract UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) throws InvalidInputException;
 
 
 
