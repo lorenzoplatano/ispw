@@ -86,5 +86,4 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericG
             textArea.setText("Non sono disponibili orari per il giorno in questione");
         }
     }
-
 }
