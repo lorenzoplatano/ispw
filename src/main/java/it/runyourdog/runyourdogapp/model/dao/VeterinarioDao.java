@@ -92,11 +92,10 @@ public class VeterinarioDao {
 
     public void registerProcedure(Veterinario veterinario, List<Orario> orari) throws DAOException {
 
-        List<Orario> safeOrari = (orari == null) ? new ArrayList<>() : orari;
 
 
         StringBuilder sb = new StringBuilder();
-        for (Orario o : safeOrari) {
+        for (Orario o : orari) {
             sb.append(o.getGiorno())
                     .append(",")
                     .append(o.getOrainizio().toString())
