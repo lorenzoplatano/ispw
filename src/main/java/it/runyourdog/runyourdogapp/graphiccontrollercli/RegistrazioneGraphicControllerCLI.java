@@ -6,8 +6,10 @@ import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.RoleException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
+import javax.security.auth.login.CredentialException;
 import java.util.Scanner;
 
 public class RegistrazioneGraphicControllerCLI extends GenericGraphicControllerCLI{
@@ -61,7 +63,7 @@ public class RegistrazioneGraphicControllerCLI extends GenericGraphicControllerC
 
 
 
-    public void register() {
+    public void register() throws InvalidInputException {
         Scanner scanner = new Scanner(System.in);
 
         try {
@@ -121,11 +123,15 @@ public class RegistrazioneGraphicControllerCLI extends GenericGraphicControllerC
                     ProfiloVeterinarioBean vetBean = new ProfiloVeterinarioBean(username, email, password, ruolo, fullName);
                     new RegistrazioneVeterinarioGraphicControllerCLI().start(vetBean);
                 }
-                default -> Printer.perror("Errore: ruolo non riconosciuto (" + ruolo + "). Registrazione interrotta.");
+                default -> throw new RoleException("Errore: ruolo non riconosciuto (" + ruolo + "). Registrazione interrotta.");
             }
 
-        } catch (Exception e) {
-            Printer.perror("Errore: " + e.getMessage());
+        } catch (RoleException e) {
+            Printer.perror(e.getMessage());
+        }
+        catch (CredentialException e)
+        {
+            Printer.print(e.getMessage());
         }
     }
 

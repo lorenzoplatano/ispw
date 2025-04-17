@@ -10,7 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 
-
+import java.sql.Time;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -142,8 +142,8 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
                 try {
                     String[] orarioInterval = orario.trim().split("\\s*-\\s*");
                     if (orarioInterval.length == 2) {
-                        java.sql.Time inizioTime = java.sql.Time.valueOf(orarioInterval[0] + ":00");
-                        java.sql.Time fineTime = java.sql.Time.valueOf(orarioInterval[1] + ":00");
+                        Time inizioTime = Time.valueOf(orarioInterval[0] + ":00");
+                        Time fineTime = Time.valueOf(orarioInterval[1] + ":00");
                         Orario orarioOggetto = new Orario(giorno, inizioTime, fineTime);
                         orari.add(orarioOggetto);
                     } else {

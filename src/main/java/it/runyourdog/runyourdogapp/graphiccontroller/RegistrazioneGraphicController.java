@@ -73,7 +73,6 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
 
             RegistrazioneController controller = new RegistrazioneController();
             if (!controller.emailUnica(new UserBean(emailInput))) {
-                showError("Email già in uso. Scegli un'altra email.");
                 return;
             }
 
@@ -98,8 +97,9 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
                 default -> throw new IllegalArgumentException("Ruolo non valido selezionato");
             }
 
-        } catch (IOException | CredentialException e) {
+        } catch (IOException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
+        catch (CredentialException e) {showError(e.getMessage());}
     }
 }

@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.graphiccontrollercli;
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.RoleException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
@@ -52,7 +53,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                                 break;
 
                             default:
-                                throw new InvalidInputException("Ruolo non riconosciuto: " + ruolo);
+                                throw new RoleException("Ruolo non riconosciuto: " + ruolo);
                         }
                         break;
 
@@ -68,7 +69,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                         throw new InvalidInputException("Invalid choice");
                 }
                 break;
-            } catch (InvalidInputException e) {
+            } catch (InvalidInputException | RoleException e) {
                 Printer.perror(e.getMessage());
             }
         }
@@ -81,56 +82,52 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         timeFormat.setLenient(false);
 
-        try {
-            Printer.printf("Inserisci età:");
-            int etaInput = scanner.nextInt();
-            scanner.nextLine();
 
-            Printer.printf("Inserisci città:");
-            String cittaInput = scanner.nextLine().trim();
+        Printer.printf("Inserisci età:");
+        int etaInput = scanner.nextInt();
+        scanner.nextLine();
 
-            Printer.printf("Inserisci telefono:");
-            String telefonoInput = scanner.nextLine().trim();
+        Printer.printf("Inserisci città:");
+        String cittaInput = scanner.nextLine().trim();
+        Printer.printf("Inserisci telefono:");
+        String telefonoInput = scanner.nextLine().trim();
 
-            String genereInput;
-            do {
-                Printer.printf("Inserisci genere (M/F):");
-                genereInput = scanner.nextLine().trim().toUpperCase();
-                if (!genereInput.equals("M") && !genereInput.equals("F")) {
-                    Printer.perror("Sesso non valido. Inserisci 'M' per Maschio o 'F' per Femmina.");
-                }
-            } while (!genereInput.equals("M") && !genereInput.equals("F"));
-
-
-            List<Orario> orariSettimana = new ArrayList<>();
-            String[] giorniSettimana = {"Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"};
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-
-            for (String giorno : giorniSettimana) {
-                Printer.printf("Vuoi inserire un orario per " + giorno + "? (s/n):");
-                String risposta = scanner.nextLine().trim().toLowerCase();
-
-                if (risposta.equals("s")) {
-                    Optional<Orario> orarioOpt = inserisciOrarioPerGiorno(giorno, scanner, formatter);
-                    orarioOpt.ifPresent(orariSettimana::add);
-                }
+        String genereInput;
+        do {
+            Printer.printf("Inserisci genere (M/F):");
+            genereInput = scanner.nextLine().trim().toUpperCase();
+            if (!genereInput.equals("M") && !genereInput.equals("F")) {
+                Printer.perror("Sesso non valido. Inserisci 'M' per Maschio o 'F' per Femmina.");
             }
+        } while (!genereInput.equals("M") && !genereInput.equals("F"));
 
 
+        List<Orario> orariSettimana = new ArrayList<>();
+        String[] giorniSettimana = {"Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"};
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
+        for (String giorno : giorniSettimana) {
+            Printer.printf("Vuoi inserire un orario per " + giorno + "? (s/n):");
+            String risposta = scanner.nextLine().trim().toLowerCase();
 
-            profiloLavoratoreBean.setTelefono(telefonoInput);
-            profiloLavoratoreBean.setEta(etaInput);
-            profiloLavoratoreBean.setCitta(cittaInput);
-            profiloLavoratoreBean.setGenere(genereInput);
-            profiloLavoratoreBean.setOrari(orariSettimana);
-
-            return completaRegistrazioneLavoratore(profiloLavoratoreBean);
-
-        } catch (Exception e) {
-            Printer.perror("Errore durante la registrazione: " + e.getMessage());
-            return null;
+            if (risposta.equals("s")) {
+                Optional<Orario> orarioOpt = inserisciOrarioPerGiorno(giorno, scanner, formatter);
+                orarioOpt.ifPresent(orariSettimana::add);
+            }
         }
+
+
+
+
+        profiloLavoratoreBean.setTelefono(telefonoInput);
+        profiloLavoratoreBean.setEta(etaInput);
+        profiloLavoratoreBean.setCitta(cittaInput);
+        profiloLavoratoreBean.setGenere(genereInput);
+        profiloLavoratoreBean.setOrari(orariSettimana);
+
+        return completaRegistrazioneLavoratore(profiloLavoratoreBean);
+
+
     }
 
     protected abstract UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean);

@@ -2,10 +2,12 @@ package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
+import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -94,10 +96,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
             Printer.printf("Inserisci città:");
             String cittaInput = scanner.nextLine().trim();
 
-            java.sql.Date dataNascita = parseDataNascita(datadinascitaInput);
-            if (dataNascita == null) {
-                return null;
-            }
+            Date dataNascita = Date.valueOf(datadinascitaInput);
 
 
             profiloPadroneBean.setTelefonoPadrone(telefonoInput);
@@ -122,22 +121,11 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
             );
 
 
-        } catch (Exception e) {
+        } catch (DAOException e) {
             Printer.perror("Errore durante la registrazione: " + e.getMessage());
             return null;
         }
 
 
     }
-
-    private java.sql.Date parseDataNascita(String datadinascitaInput) {
-        try {
-            return java.sql.Date.valueOf(datadinascitaInput);
-        } catch (IllegalArgumentException e) {
-            Printer.perror("Formato data errato. Utilizza yyyy-mm-dd.");
-            return null;
-        }
-    }
-
-
 }
