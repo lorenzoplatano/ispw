@@ -116,10 +116,8 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
             }
         }
 
-
         try {
             profiloLavoratoreBean.setTelefono(telefonoInput);
-
             profiloLavoratoreBean.setEta(etaInput);
             profiloLavoratoreBean.setCitta(cittaInput);
             profiloLavoratoreBean.setGenere(genereInput);

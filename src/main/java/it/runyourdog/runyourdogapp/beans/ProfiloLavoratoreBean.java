@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ProfiloLavoratoreBean extends UserBean {
@@ -11,7 +12,7 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
     private int eta;
     private String genere;
     private String citta;
-    private List<Orario> orari;
+    private List<Orario> orari = new ArrayList<>();
     private String telefono;
 
     protected ProfiloLavoratoreBean(String[] dati, int eta, List<Orario> orari) throws InvalidInputException {
@@ -82,7 +83,7 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
     }
 
     public void setOrari(List<Orario> orari) throws InvalidInputException {
-        if (orari == null)
+        if (orari == null || orari.isEmpty())
             throw new InvalidInputException("La lista di orari non può essere nulla.");
         this.orari = orari;
     }

@@ -39,19 +39,22 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
         }
     }
 
-    protected void creaProfiloLavoratoreBean() {
+    protected boolean  creaProfiloLavoratoreBean() {
         try {
             profiloLavoratoreBean.setGenere(sesso.getValue());
             profiloLavoratoreBean.setCitta(citta.getText().trim());
             profiloLavoratoreBean.setTelefono(tel.getText().trim());
             profiloLavoratoreBean.setEta(Integer.parseInt(eta.getText().trim()));
             profiloLavoratoreBean.setOrari(creaListaOrari());
+            return true;
         } catch (InvalidInputException | NumberFormatException e) {
             showError(e.getMessage());
+            return false;
         }
     }
 
     protected List<Orario> creaListaOrari() throws InvalidInputException {
+
         List<Orario> orari = new ArrayList<>();
 
         aggiungiOrari(orari, lun.getText(), "Lunedì");

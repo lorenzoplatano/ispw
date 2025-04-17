@@ -98,7 +98,6 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
 
             Date dataNascita = Date.valueOf(datadinascitaInput);
 
-
             profiloPadroneBean.setTelefonoPadrone(telefonoInput);
             profiloPadroneBean.setIndirizzoPadrone(indirizzoInput);
             profiloPadroneBean.setNomeCane(nomeInput);
