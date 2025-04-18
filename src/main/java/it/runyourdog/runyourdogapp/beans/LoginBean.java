@@ -37,14 +37,14 @@ public class LoginBean {
         return this.password;
     }
 
-    public boolean isValidEmail(String email){
+    private boolean isValidEmail(String email){
         String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(emailPattern);
-        if(email == "") return false;
+        if(email.isEmpty()) return false;
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-    public boolean isValidPassword(String password){
-        return password != "";
+    private boolean isValidPassword(String password){
+        return !password.isEmpty();
     }
 }

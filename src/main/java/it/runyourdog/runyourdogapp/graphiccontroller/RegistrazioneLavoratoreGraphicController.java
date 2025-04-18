@@ -25,6 +25,8 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
     @FXML protected TextField sab;
     @FXML protected TextField dome;
 
+    private static final String ORARIOFORMAT = "^(?:[01]\\d|2[0-3]):[0-5]\\d$";
+
     protected ProfiloLavoratoreBean profiloLavoratoreBean;
 
     public void setProfiloLavoratoreBean(ProfiloLavoratoreBean bean) {
@@ -64,8 +66,6 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
         aggiungiOrari(orari, ven.getText(), "Venerdì");
         aggiungiOrari(orari, sab.getText(), "Sabato");
         aggiungiOrari(orari, dome.getText(), "Domenica");
-        if (orari.isEmpty())
-            throw new InvalidInputException("Devi inserire almeno un orario.");
         return orari;
     }
 
@@ -73,15 +73,18 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
         if (orariInput != null && !orariInput.trim().isEmpty()) {
             String[] orariSplit = orariInput.split("\\s*,\\s*");
             for (String orario : orariSplit) {
-                try {
-                    String[] intervallo = orario.trim().split("\\s*-\\s*");
-                    if (intervallo.length != 2) throw new IllegalArgumentException();
-                    Time inizio = Time.valueOf(intervallo[0] + ":00");
-                    Time fine = Time.valueOf(intervallo[1] + ":00");
-                    orari.add(new Orario(giorno, inizio, fine));
-                } catch (IllegalArgumentException e) {
-                    throw new InvalidInputException("Formato orario errato per " + giorno + ". Usa il formato hh:mm - hh:mm.");
+                String[] intervallo = orario.trim().split("\\s*-\\s*");
+                if (intervallo.length != 2 ||
+                        !intervallo[0].matches(ORARIOFORMAT) ||
+                        !intervallo[1].matches(ORARIOFORMAT)) {
+                    throw new InvalidInputException("Formato errato per " + giorno +
+                            ". Usa il formato hh:mm - hh:mm con valori tra 00:00 e 23:59.");
                 }
+
+                Time inizio = Time.valueOf(intervallo[0] + ":00");
+                Time fine = Time.valueOf(intervallo[1] + ":00");
+
+                orari.add(new Orario(giorno, inizio, fine));
             }
         }
     }

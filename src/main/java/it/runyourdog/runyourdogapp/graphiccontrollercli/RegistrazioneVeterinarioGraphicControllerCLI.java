@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneLavoratoreGraphicControllerCLI{
 
     @Override
-    protected UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) throws InvalidInputException {
+    protected UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) {
 
         if (!(bean instanceof ProfiloVeterinarioBean)) {
             Printer.perror("Errore interno: tipo di bean errato. Atteso ProfiloVeterinarioBean.");
@@ -22,26 +22,31 @@ public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneL
 
         Scanner scanner = new Scanner(System.in);
 
-        Printer.printf("Inserisci indirizzo dello studio:");
-        String indirizzo = scanner.nextLine().trim();
-
-        ProfiloVeterinarioBean veterinarioBean = (ProfiloVeterinarioBean) bean;
-        veterinarioBean.setIndirizzo(indirizzo);
 
         try {
+            Printer.printf("Inserisci indirizzo dello studio:");
+            String indirizzo = scanner.nextLine().trim();
+
+            ProfiloVeterinarioBean veterinarioBean = (ProfiloVeterinarioBean) bean;
+            veterinarioBean.setIndirizzo(indirizzo);
+
             controller.vetRegister(veterinarioBean);
             Printer.printf("Registrazione completata con successo!\nProfilo creato:\n" + veterinarioBean);
-        } catch (DAOException e) {
-            Printer.perror("Errore durante la registrazione nel database: " + e.getMessage());
+
+            return new UserBean(
+                    veterinarioBean.getUsername(),
+                    veterinarioBean.getEmail(),
+                    veterinarioBean.getPassword(),
+                    Role.VETERINARIO
+            );
+
+        } catch (DAOException | InvalidInputException e) {
+            Printer.perror(e.getMessage());
             return null;
+
         }
 
-        return new UserBean(
-                veterinarioBean.getUsername(),
-                veterinarioBean.getEmail(),
-                veterinarioBean.getPassword(),
-                Role.VETERINARIO
-        );
+
     }
 
 

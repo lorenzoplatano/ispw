@@ -54,8 +54,8 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
     }
 
     public void setGenere(String genere) throws InvalidInputException {
-        if (genere == null || (!"M".equalsIgnoreCase(genere) && !"F".equalsIgnoreCase(genere)))
-            throw new InvalidInputException("Genere non valido: " + genere);
+        if (!"M".equalsIgnoreCase(genere) && !"F".equalsIgnoreCase(genere))
+            throw new InvalidInputException("Genere non valido");
         this.genere = genere.toUpperCase();
     }
 
@@ -68,7 +68,28 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
     public void setOrari(List<Orario> orari) throws InvalidInputException {
         if (orari == null || orari.isEmpty())
             throw new InvalidInputException("Devi inserire almeno un orario.");
+
+        for (Orario o : orari) {
+            validateOrario(o);
+        }
         this.orari = orari;
+    }
+
+    private void validateOrario(Orario o) throws InvalidInputException {
+        if (o == null)
+            throw new InvalidInputException("Orario non può essere null.");
+
+        if (o.getGiorno() == null || o.getGiorno().trim().isEmpty())
+            throw new InvalidInputException("Giorno orario non valido.");
+
+        if (o.getOrainizio() == null || o.getOrafine() == null)
+            throw new InvalidInputException("Orario di inizio o fine mancante.");
+
+        if (! o.getOrafine().after(o.getOrainizio()))
+            throw new InvalidInputException(
+                    "L'orario di fine (" + o.getOrafine() +
+                            ") deve essere dopo l'orario di inizio (" + o.getOrainizio() + ")."
+            );
     }
 
     public void setTelefono(String telefono) throws InvalidInputException {

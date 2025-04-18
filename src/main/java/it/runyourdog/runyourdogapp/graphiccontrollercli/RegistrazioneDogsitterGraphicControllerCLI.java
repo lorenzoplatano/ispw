@@ -12,7 +12,7 @@ public class RegistrazioneDogsitterGraphicControllerCLI extends RegistrazioneLav
 
 
     @Override
-    protected UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) throws InvalidInputException {
+    protected UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) {
 
         if (!(bean instanceof ProfiloDogsitterBean)) {
             Printer.perror("Errore interno: tipo di bean errato");
@@ -24,17 +24,19 @@ public class RegistrazioneDogsitterGraphicControllerCLI extends RegistrazioneLav
         try {
             controller.dogRegister(dogsitterBean);
             Printer.printf("Registrazione completata con successo!\nProfilo creato:\n" + dogsitterBean);
-        } catch (DAOException e) {
-            Printer.perror("Errore durante la registrazione nel database: " + e.getMessage());
+
+            return new UserBean(
+                    bean.getUsername(),
+                    bean.getEmail(),
+                    bean.getPassword(),
+                    Role.DOGSITTER
+            );
+
+
+        } catch (InvalidInputException | DAOException e) {
+            Printer.perror(e.getMessage());
             return null;
         }
-
-        return new UserBean(
-                bean.getUsername(),
-                bean.getEmail(),
-                bean.getPassword(),
-                Role.DOGSITTER
-        );
     }
 
 

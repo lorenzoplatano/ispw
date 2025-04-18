@@ -126,13 +126,10 @@ public class RegistrazioneGraphicControllerCLI extends GenericGraphicControllerC
                 default -> throw new RoleException("Errore: ruolo non riconosciuto (" + ruolo + "). Registrazione interrotta.");
             }
 
-        } catch (RoleException e) {
+        } catch (RoleException | CredentialException e) {
             Printer.perror(e.getMessage());
         }
-        catch (CredentialException e)
-        {
-            Printer.print(e.getMessage());
-        }
+
     }
 
 

@@ -120,8 +120,9 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                     Role.PADRONE
             );
 
+
         } catch (InvalidInputException | DAOException e) {
-            Printer.perror("Errore durante la registrazione: " + e.getMessage());
+            Printer.perror(e.getMessage());
             return null;
         }
     }

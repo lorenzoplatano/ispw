@@ -75,9 +75,8 @@ public abstract class GenericLoginGraphicControllerCLI extends GenericGraphicCon
                 startProfile(loggedUser);
                 break;
 
-            } catch (CredentialException | InvalidInputException e) {
-                Printer.print("Errore: " + e.getMessage());
-            } catch (IOException | DAOException e) {
+
+            } catch (IOException | DAOException | CredentialException | InvalidInputException e) {
                 Printer.perror(e.getMessage());
             }
         }

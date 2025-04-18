@@ -53,7 +53,7 @@ public class UserBean {
     }
 
     public void setPassword(String password) throws InvalidInputException {
-        if (password == "" ) {
+        if (password.isEmpty()) {
             throw new InvalidInputException("Il campo password è obbligatorio.");
         }
         this.password = password;
@@ -70,7 +70,7 @@ public class UserBean {
         this.role = role;
     }
 
-    public boolean isValidEmail(String email){
+    private boolean isValidEmail(String email){
         String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(emailPattern);
         Matcher matcher = pattern.matcher(email);

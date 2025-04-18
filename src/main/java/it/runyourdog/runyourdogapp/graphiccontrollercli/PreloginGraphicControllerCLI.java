@@ -37,7 +37,7 @@ public class PreloginGraphicControllerCLI extends GenericGraphicControllerCLI {
                         break;
 
                     case 4:
-                        Printer.print("*\n---- REGISTRAZIONE ----*");
+                        Printer.print("\n*---- REGISTRAZIONE ----*");
                         new RegistrazioneGraphicControllerCLI().start();
                         break;
 
