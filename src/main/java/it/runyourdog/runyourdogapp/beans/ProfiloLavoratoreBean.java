@@ -1,10 +1,10 @@
+
 package it.runyourdog.runyourdogapp.beans;
 
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ProfiloLavoratoreBean extends UserBean {
@@ -12,7 +12,7 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
     private int eta;
     private String genere;
     private String citta;
-    private List<Orario> orari = new ArrayList<>();
+    private List<Orario> orari;
     private String telefono;
 
     protected ProfiloLavoratoreBean(String[] dati, int eta, List<Orario> orari) throws InvalidInputException {
@@ -34,29 +34,12 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
         setNome(nome);
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public int getEta() {
-        return eta;
-    }
-
-    public String getGenere() {
-        return genere;
-    }
-
-    public String getCitta() {
-        return citta;
-    }
-
-    public List<Orario> getOrari() {
-        return orari;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
+    public String getNome() { return nome; }
+    public int getEta() { return eta; }
+    public String getGenere() { return genere; }
+    public String getCitta() { return citta; }
+    public List<Orario> getOrari() { return orari; }
+    public String getTelefono() { return telefono; }
 
     public void setNome(String nome) throws InvalidInputException {
         if (nome == null || nome.trim().isEmpty())
@@ -71,7 +54,7 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
     }
 
     public void setGenere(String genere) throws InvalidInputException {
-        if (!"M".equalsIgnoreCase(genere) && !"F".equalsIgnoreCase(genere))
+        if (genere == null || (!"M".equalsIgnoreCase(genere) && !"F".equalsIgnoreCase(genere)))
             throw new InvalidInputException("Genere non valido: " + genere);
         this.genere = genere.toUpperCase();
     }
@@ -84,7 +67,7 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
 
     public void setOrari(List<Orario> orari) throws InvalidInputException {
         if (orari == null || orari.isEmpty())
-            throw new InvalidInputException("La lista di orari non può essere nulla.");
+            throw new InvalidInputException("Devi inserire almeno un orario.");
         this.orari = orari;
     }
 

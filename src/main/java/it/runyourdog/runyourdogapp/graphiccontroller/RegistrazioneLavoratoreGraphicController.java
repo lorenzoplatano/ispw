@@ -1,3 +1,4 @@
+
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
@@ -12,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class RegistrazioneLavoratoreGraphicController extends RegistrazioneGraphicController {
-
     @FXML protected TextField eta;
     @FXML protected ComboBox<String> sesso;
     @FXML protected TextField citta;
@@ -27,8 +27,8 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
 
     protected ProfiloLavoratoreBean profiloLavoratoreBean;
 
-    public void setProfiloLavoratoreBean(ProfiloLavoratoreBean profiloLavoratoreBean) {
-        this.profiloLavoratoreBean = profiloLavoratoreBean;
+    public void setProfiloLavoratoreBean(ProfiloLavoratoreBean bean) {
+        this.profiloLavoratoreBean = bean;
     }
 
     @FXML
@@ -39,24 +39,24 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
         }
     }
 
-    protected boolean  creaProfiloLavoratoreBean() {
+
+    protected void creaProfiloLavoratoreBean() throws InvalidInputException {
+        profiloLavoratoreBean.setGenere(sesso.getValue());
+        profiloLavoratoreBean.setCitta(citta.getText().trim());
+        profiloLavoratoreBean.setTelefono(tel.getText().trim());
+
         try {
-            profiloLavoratoreBean.setGenere(sesso.getValue());
-            profiloLavoratoreBean.setCitta(citta.getText().trim());
-            profiloLavoratoreBean.setTelefono(tel.getText().trim());
-            profiloLavoratoreBean.setEta(Integer.parseInt(eta.getText().trim()));
-            profiloLavoratoreBean.setOrari(creaListaOrari());
-            return true;
-        } catch (InvalidInputException | NumberFormatException e) {
-            showError(e.getMessage());
-            return false;
+            int e = Integer.parseInt(eta.getText().trim());
+            profiloLavoratoreBean.setEta(e);
+        } catch (NumberFormatException ex) {
+            throw new InvalidInputException("Inserisci un'età valida.");
         }
+
+        profiloLavoratoreBean.setOrari(creaListaOrari());
     }
 
     protected List<Orario> creaListaOrari() throws InvalidInputException {
-
         List<Orario> orari = new ArrayList<>();
-
         aggiungiOrari(orari, lun.getText(), "Lunedì");
         aggiungiOrari(orari, mar.getText(), "Martedì");
         aggiungiOrari(orari, mer.getText(), "Mercoledì");
@@ -64,27 +64,20 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
         aggiungiOrari(orari, ven.getText(), "Venerdì");
         aggiungiOrari(orari, sab.getText(), "Sabato");
         aggiungiOrari(orari, dome.getText(), "Domenica");
-
-        if (orari.isEmpty()) {
+        if (orari.isEmpty())
             throw new InvalidInputException("Devi inserire almeno un orario.");
-        }
-
         return orari;
     }
 
     protected void aggiungiOrari(List<Orario> orari, String orariInput, String giorno) throws InvalidInputException {
         if (orariInput != null && !orariInput.trim().isEmpty()) {
             String[] orariSplit = orariInput.split("\\s*,\\s*");
-
             for (String orario : orariSplit) {
                 try {
                     String[] intervallo = orario.trim().split("\\s*-\\s*");
-                    if (intervallo.length != 2) {
-                        throw new IllegalArgumentException();
-                    }
+                    if (intervallo.length != 2) throw new IllegalArgumentException();
                     Time inizio = Time.valueOf(intervallo[0] + ":00");
                     Time fine = Time.valueOf(intervallo[1] + ":00");
-
                     orari.add(new Orario(giorno, inizio, fine));
                 } catch (IllegalArgumentException e) {
                     throw new InvalidInputException("Formato orario errato per " + giorno + ". Usa il formato hh:mm - hh:mm.");

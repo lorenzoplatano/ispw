@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
 
-public abstract class GenericLoginGraphicController extends GenericGraphicController {
+public abstract class GenericLoginGraphicController<P> extends GenericGraphicController {
 
     @FXML
     protected TextField email;
@@ -37,7 +37,7 @@ public abstract class GenericLoginGraphicController extends GenericGraphicContro
                 throw new CredentialException("Accesso negato: solo " + getExpectedRole().name().toLowerCase() + " possono effettuare il login.");
             }
 
-            Object profile = retrieveProfile(loggedUser);
+            P profile = retrieveProfile(loggedUser);
             navigateToHome(profile);
 
         } catch (CredentialException | InvalidInputException e) {
@@ -49,7 +49,7 @@ public abstract class GenericLoginGraphicController extends GenericGraphicContro
 
     protected abstract Role getExpectedRole();
 
-    protected abstract Object retrieveProfile(UserBean user) throws ProfileRetrievalException, InvalidInputException;
+    protected abstract P retrieveProfile(UserBean user) throws ProfileRetrievalException, InvalidInputException;
 
-    protected abstract void navigateToHome(Object profile) throws IOException;
+    protected abstract void navigateToHome(P profile) throws IOException;
 }

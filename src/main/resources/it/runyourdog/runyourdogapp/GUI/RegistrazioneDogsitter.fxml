@@ -264,23 +264,6 @@
                   </TextField>
                </children>
             </VBox>
-            <VBox prefHeight="70.0" prefWidth="437.0">
-               <children>
-                  <Label text="Indirizzo" translateY="3.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="indirizzo" style="-fx-border-color: CC6C25;">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-            </VBox>
          </children>
       </VBox>
       <Button layoutX="107.0" layoutY="640.0" mnemonicParsing="false" onMouseClicked="#goToRegistrazione" prefHeight="27.0" prefWidth="71.0" style="-fx-border-radius: 5; -fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: cc6c25;" text="INDIETRO" AnchorPane.bottomAnchor="119.0">

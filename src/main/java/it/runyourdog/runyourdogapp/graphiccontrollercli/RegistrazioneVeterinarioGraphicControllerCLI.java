@@ -14,6 +14,7 @@ public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneL
 
     @Override
     protected UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) throws InvalidInputException {
+
         if (!(bean instanceof ProfiloVeterinarioBean)) {
             Printer.perror("Errore interno: tipo di bean errato. Atteso ProfiloVeterinarioBean.");
             return null;

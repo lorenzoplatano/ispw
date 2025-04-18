@@ -13,6 +13,7 @@ public class RegistrazioneDogsitterGraphicControllerCLI extends RegistrazioneLav
 
     @Override
     protected UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) throws InvalidInputException {
+
         if (!(bean instanceof ProfiloDogsitterBean)) {
             Printer.perror("Errore interno: tipo di bean errato");
             return null;
