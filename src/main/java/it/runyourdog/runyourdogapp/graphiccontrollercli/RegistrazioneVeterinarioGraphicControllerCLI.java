@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
@@ -15,19 +16,17 @@ public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneL
     @Override
     protected UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) {
 
-        if (!(bean instanceof ProfiloVeterinarioBean)) {
-            Printer.perror("Errore interno: tipo di bean errato. Atteso ProfiloVeterinarioBean.");
-            return null;
-        }
-
-        Scanner scanner = new Scanner(System.in);
-
 
         try {
+            if (!(bean instanceof ProfiloVeterinarioBean veterinarioBean)) {
+                throw new ProfileRetrievalException("Errore interno: tipo di bean errato. Atteso ProfiloVeterinarioBean.");
+            }
+
+            Scanner scanner = new Scanner(System.in);
+
             Printer.printf("Inserisci indirizzo dello studio:");
             String indirizzo = scanner.nextLine().trim();
 
-            ProfiloVeterinarioBean veterinarioBean = (ProfiloVeterinarioBean) bean;
             veterinarioBean.setIndirizzo(indirizzo);
 
             controller.vetRegister(veterinarioBean);
@@ -40,7 +39,7 @@ public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneL
                     Role.VETERINARIO
             );
 
-        } catch (DAOException | InvalidInputException e) {
+        } catch (DAOException | InvalidInputException | ProfileRetrievalException e) {
             Printer.perror(e.getMessage());
             return null;
 

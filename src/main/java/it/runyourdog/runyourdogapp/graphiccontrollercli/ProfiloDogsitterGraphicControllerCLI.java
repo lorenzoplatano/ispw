@@ -65,14 +65,8 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
             Printer.perror("Errore: " + e.getMessage());
         }
         showProfilo(profilo);
-
+        showOrario(profilo);
         showMenu();
-    }
-
-
-    @Override
-    protected void showProfiloSpecifico(ProfiloLavoratoreBean profilo) {
-        // Metodo intenzionalmente lasciato vuoto: questa sottoclasse non necessita di mostrare un profilo specifico
     }
 }
 

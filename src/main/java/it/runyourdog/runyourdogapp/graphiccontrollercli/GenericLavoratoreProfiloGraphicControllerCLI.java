@@ -6,7 +6,7 @@ import it.runyourdog.runyourdogapp.utils.Printer;
 
 public abstract class GenericLavoratoreProfiloGraphicControllerCLI extends GenericProfiloGraphicControllerCLI{
 
-    protected final void showProfilo(ProfiloLavoratoreBean profilo) {
+    protected void showProfilo(ProfiloLavoratoreBean profilo) {
 
         Printer.printf("Nome: " + profilo.getNome());
         Printer.printf("Genere: " + profilo.getGenere());
@@ -14,10 +14,9 @@ public abstract class GenericLavoratoreProfiloGraphicControllerCLI extends Gener
         Printer.printf("Email: " + profilo.getEmail());
         Printer.printf("Età: " + profilo.getEta());
         Printer.printf("Città: " + profilo.getCitta());
+    }
 
-        showProfiloSpecifico(profilo);
-
-
+    protected void showOrario(ProfiloLavoratoreBean profilo) {
         Printer.printf("\nOrari di disponibilità:");
         if (profilo.getOrari() != null && !profilo.getOrari().isEmpty()) {
             for (Orario orario : profilo.getOrari()) {
@@ -28,8 +27,6 @@ public abstract class GenericLavoratoreProfiloGraphicControllerCLI extends Gener
         }
         Printer.printf("\n");
     }
-
-    protected abstract void showProfiloSpecifico(ProfiloLavoratoreBean profilo);
 
 }
 

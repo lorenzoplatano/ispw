@@ -63,15 +63,9 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
 
         }
         showProfilo(profilo);
+        Printer.printf("Indirizzo: " + profilo.getIndirizzo());
+        showOrario(profilo);
         showMenu();
-    }
-
-    @Override
-    protected void showProfiloSpecifico(ProfiloLavoratoreBean profilo) {
-        ProfiloVeterinarioBean vetProfilo = (ProfiloVeterinarioBean) profilo;
-
-        Printer.printf("Indirizzo: " + vetProfilo.getIndirizzo());
-
     }
 
 
