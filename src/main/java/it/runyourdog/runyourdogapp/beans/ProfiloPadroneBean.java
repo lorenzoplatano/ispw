@@ -97,7 +97,11 @@ public class ProfiloPadroneBean extends UserBean {
     public void setTelefonoPadrone(String telefonoPadrone) throws InvalidInputException {
         if (telefonoPadrone == null || telefonoPadrone.trim().isEmpty())
             throw new InvalidInputException("Il telefono del padrone è obbligatorio.");
-        this.telefonoPadrone = telefonoPadrone.trim();
+        String trimmed = telefonoPadrone.trim();
+        if (!trimmed.matches("\\d+")) {
+            throw new InvalidInputException("Telefono non valido: deve contenere solo numeri.");
+        }
+        this.telefonoPadrone = trimmed;
     }
 
     public void setIndirizzoPadrone(String indirizzoPadrone) throws InvalidInputException {
