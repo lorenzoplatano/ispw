@@ -24,10 +24,19 @@ public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneL
 
             Scanner scanner = new Scanner(System.in);
 
-            Printer.printf("Inserisci indirizzo dello studio:");
-            String indirizzo = scanner.nextLine().trim();
 
-            veterinarioBean.setIndirizzo(indirizzo);
+            while (true) {
+                try {
+                    Printer.printf("Inserisci indirizzo dello studio:");
+                    String indirizzo = scanner.nextLine().trim();
+
+                    veterinarioBean.setIndirizzo(indirizzo);
+                    break;
+                } catch (InvalidInputException e) {
+                    System.out.println("Errore: " + e.getMessage());
+                }
+            }
+
 
             controller.vetRegister(veterinarioBean);
             Printer.printf("Registrazione completata con successo!\nProfilo creato:\n" + veterinarioBean);

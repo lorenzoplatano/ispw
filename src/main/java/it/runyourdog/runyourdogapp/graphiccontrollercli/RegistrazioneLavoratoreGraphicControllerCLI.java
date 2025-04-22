@@ -74,46 +74,93 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
     private UserBean registerLav(ProfiloLavoratoreBean profiloLavoratoreBean) throws InvalidInputException {
         Scanner scanner = new Scanner(System.in);
 
-        Printer.printf("Inserisci età:");
-        int etaInput = scanner.nextInt();
-        scanner.nextLine(); // flush newline
+        while (true) {
+            try {
+                Printer.printf("Inserisci età:");
+                int etaInput = scanner.nextInt();
+                scanner.nextLine();
 
-        Printer.printf("Inserisci città:");
-        String cittaInput = scanner.nextLine().trim();
-
-        Printer.printf("Inserisci telefono:");
-        String telefonoInput = scanner.nextLine().trim();
-
-        Printer.printf("Inserisci genere (M/F):");
-        String genereInput = scanner.nextLine().trim();
-
-        List<Orario> orariSettimana = new ArrayList<>();
-        String[] giorniSettimana = {
-                "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"
-        };
-
-        for (String giorno : giorniSettimana) {
-            Printer.printf("Vuoi inserire uno o più orari per " + giorno + "? (s/n):");
-            if (scanner.nextLine().trim().equalsIgnoreCase("s")) {
-                boolean aggiungiAltri = true;
-                while (aggiungiAltri) {
-                    Orario orario = inserisciOrarioValidoPerGiorno(giorno, scanner);
-                    orariSettimana.add(orario);
-
-                    Printer.printf("Vuoi aggiungere un altro orario per " + giorno + "? (s/n):");
-                    String risposta = scanner.nextLine().trim();
-                    aggiungiAltri = risposta.equalsIgnoreCase("s");
-                }
+                profiloLavoratoreBean.setEta(etaInput);
+                break;
+            } catch (InvalidInputException e) {
+                System.out.println("Errore: " + e.getMessage());
             }
         }
 
-        profiloLavoratoreBean.setTelefono(telefonoInput);
-        profiloLavoratoreBean.setEta(etaInput);
-        profiloLavoratoreBean.setCitta(cittaInput);
-        profiloLavoratoreBean.setGenere(genereInput);
-        profiloLavoratoreBean.setOrari(orariSettimana);
+        while (true) {
+            try {
+                Printer.printf("Inserisci città:");
+                String cittaInput = scanner.nextLine().trim();
+                profiloLavoratoreBean.setCitta(cittaInput);
+                break;
+            } catch (InvalidInputException e) {
+                System.out.println("Errore: " + e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                Printer.printf("Inserisci telefono:");
+                String telefonoInput = scanner.nextLine().trim();
+                profiloLavoratoreBean.setTelefono(telefonoInput);
+                break;
+            } catch (InvalidInputException e) {
+                System.out.println("Errore: " + e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                Printer.printf("Inserisci genere (M/F):");
+                String genereInput = scanner.nextLine().trim();
+                profiloLavoratoreBean.setGenere(genereInput);
+                break;
+            } catch (InvalidInputException e) {
+                System.out.println("Errore: " + e.getMessage());
+            }
+        }
+
+
+        List<Orario> orariSettimana;
+        boolean orariValidi = false;
+
+        do {
+            orariSettimana = new ArrayList<>();
+            String[] giorniSettimana = {
+                    "Lunedì", "Martedì", "Mercoledì", "Giovedì",
+                    "Venerdì", "Sabato", "Domenica"
+            };
+
+            for (String giorno : giorniSettimana) {
+                Printer.printf("Vuoi inserire uno o più orari per " + giorno + "? (s/n):");
+                if (scanner.nextLine().trim().equalsIgnoreCase("s")) {
+                    boolean aggiungiAltri = true;
+                    while (aggiungiAltri) {
+
+                        Orario orario = inserisciOrarioValidoPerGiorno(giorno, scanner);
+                        orariSettimana.add(orario);
+
+                        Printer.printf("Vuoi aggiungere un altro orario per " + giorno + "? (s/n):");
+                        aggiungiAltri = scanner.nextLine().trim().equalsIgnoreCase("s");
+                    }
+                }
+            }
+
+            try {
+
+                profiloLavoratoreBean.setOrari(orariSettimana);
+                orariValidi = true;
+            } catch (InvalidInputException e) {
+
+                System.out.println("Errore negli orari inseriti: " + e.getMessage());
+                System.out.println("Riproviamo l'inserimento di tutti gli orari.\n");
+
+            }
+        } while (!orariValidi);
+
 
         return completaRegistrazioneLavoratore(profiloLavoratoreBean);
+
     }
 
     protected abstract UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) throws InvalidInputException;
