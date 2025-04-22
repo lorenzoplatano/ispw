@@ -117,7 +117,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 profiloPadroneBean.setSessoCane(sessoInput);
                 break;
             } catch (InvalidInputException e) {
-                System.out.println("Errore: " + e.getMessage());
+                Printer.perror("Errore: " + e.getMessage());
             }
         }
 

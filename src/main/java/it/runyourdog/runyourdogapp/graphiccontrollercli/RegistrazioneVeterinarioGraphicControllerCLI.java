@@ -33,7 +33,7 @@ public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneL
                     veterinarioBean.setIndirizzo(indirizzo);
                     break;
                 } catch (InvalidInputException e) {
-                    System.out.println("Errore: " + e.getMessage());
+                    Printer.perror("Errore: " + e.getMessage());
                 }
             }
 

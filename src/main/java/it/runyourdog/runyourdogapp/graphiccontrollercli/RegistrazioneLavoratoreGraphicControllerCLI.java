@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -77,15 +78,20 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
         while (true) {
             try {
                 Printer.printf("Inserisci età:");
-                int etaInput = scanner.nextInt();
-                scanner.nextLine();
+                String input = scanner.nextLine().trim();
+
+                int etaInput = Integer.parseInt(input);
 
                 profiloLavoratoreBean.setEta(etaInput);
                 break;
+            } catch (NumberFormatException e) {
+                Printer.perror("Errore: devi inserire un numero intero valido!");
             } catch (InvalidInputException e) {
-                System.out.println("Errore: " + e.getMessage());
+                Printer.perror("Errore: " + e.getMessage());
             }
         }
+
+
 
         while (true) {
             try {
@@ -94,7 +100,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 profiloLavoratoreBean.setCitta(cittaInput);
                 break;
             } catch (InvalidInputException e) {
-                System.out.println("Errore: " + e.getMessage());
+                Printer.perror("Errore: " + e.getMessage());
             }
         }
 
@@ -105,7 +111,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 profiloLavoratoreBean.setTelefono(telefonoInput);
                 break;
             } catch (InvalidInputException e) {
-                System.out.println("Errore: " + e.getMessage());
+                Printer.perror("Errore: " + e.getMessage());
             }
         }
 
@@ -116,7 +122,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 profiloLavoratoreBean.setGenere(genereInput);
                 break;
             } catch (InvalidInputException e) {
-                System.out.println("Errore: " + e.getMessage());
+                Printer.perror("Errore: " + e.getMessage());
             }
         }
 
@@ -152,8 +158,8 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 orariValidi = true;
             } catch (InvalidInputException e) {
 
-                System.out.println("Errore negli orari inseriti: " + e.getMessage());
-                System.out.println("Riproviamo l'inserimento di tutti gli orari.\n");
+                Printer.perror("Errore negli orari inseriti: " + e.getMessage());
+                Printer.perror("Riproviamo l'inserimento di tutti gli orari.\n");
 
             }
         } while (!orariValidi);
