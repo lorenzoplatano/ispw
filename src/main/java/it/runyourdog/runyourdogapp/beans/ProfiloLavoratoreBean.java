@@ -5,7 +5,7 @@ import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
-import java.util.List;
+import java.util.*;
 
 public abstract class ProfiloLavoratoreBean extends UserBean {
     private String nome;
@@ -72,6 +72,9 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
         for (Orario o : orari) {
             validateOrario(o);
         }
+
+        checkSovrapposizioni(orari);
+
         this.orari = orari;
     }
 
@@ -90,6 +93,30 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
                     "L'orario di fine (" + o.getOrafine() +
                             ") deve essere dopo l'orario di inizio (" + o.getOrainizio() + ")."
             );
+    }
+
+    private void checkSovrapposizioni(List<Orario> orari) throws InvalidInputException {
+        Map<String, List<Orario>> map = new HashMap<>();
+        for (Orario o : orari) {
+            map.computeIfAbsent(o.getGiorno(), k -> new ArrayList<>())
+                    .add(o);
+        }
+
+        for (Map.Entry<String, List<Orario>> entry : map.entrySet()) {
+            List<Orario> lista = entry.getValue();
+            lista.sort(Comparator.comparing(Orario::getOrainizio));
+            for (int i = 0; i < lista.size() - 1; i++) {
+                Orario current = lista.get(i);
+                Orario next = lista.get(i + 1);
+                if (!current.getOrafine().before(next.getOrainizio())) {
+                    throw new InvalidInputException(
+                            "Sovrapposizione orari nel giorno " + entry.getKey() +
+                                    ": [" + current.getOrainizio() + "-" + current.getOrafine() + "] e [" +
+                                    next.getOrainizio() + "-" + next.getOrafine() + "]."
+                    );
+                }
+            }
+        }
     }
 
     public void setTelefono(String telefono) throws InvalidInputException {
