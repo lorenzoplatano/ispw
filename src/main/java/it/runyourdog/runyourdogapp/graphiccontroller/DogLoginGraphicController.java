@@ -23,7 +23,7 @@ public class DogLoginGraphicController extends GenericLoginGraphicController<Pro
 
     @Override
     protected void navigateToHome(ProfiloDogsitterBean profile) throws IOException {
-        SingletonStage.getStage(null).showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml", profile);
+        SingletonStage.getStage(null).showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml", profile);
     }
 }
 
