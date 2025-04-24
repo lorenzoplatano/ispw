@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,14 +14,17 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.graphiccontroller.PrenotazionePadroneGraphicController">
    <children>
-      <AnchorPane layoutX="168.0" layoutY="191.0" prefHeight="535.0" prefWidth="850.0" style="-fx-background-color: B4B3B3; -fx-background-radius: 4; -fx-border-color: BLACK; -fx-border-radius: 4;" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="182.0" AnchorPane.topAnchor="191.0">
+      <AnchorPane layoutX="168.0" layoutY="144.6" prefHeight="535.0" prefWidth="850.0" style="-fx-background-color: B4B3B3; -fx-background-radius: 4; -fx-border-color: BLACK; -fx-border-radius: 4;" AnchorPane.bottomAnchor="113.79999999999995" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="182.39999999999998" AnchorPane.topAnchor="144.6">
          <children>
             <Button layoutX="260.0" layoutY="438.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#prenota" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="PROSEGUI" AnchorPane.bottomAnchor="60.0" AnchorPane.topAnchor="427.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="logout" layoutX="711.0" layoutY="469.0" mnemonicParsing="false" onMouseClicked="#changeRole" prefHeight="27.0" prefWidth="71.0" style="-fx-border-radius: 5; -fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: cc6c25;" text="LOGOUT" AnchorPane.bottomAnchor="60.0" AnchorPane.topAnchor="454.0">
+            <Button layoutX="711.0" layoutY="469.0" mnemonicParsing="false" onMouseClicked="#changeRole" prefHeight="27.0" prefWidth="71.0" style="-fx-border-radius: 5; -fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: cc6c25;" text="LOGOUT" AnchorPane.bottomAnchor="60.0" AnchorPane.topAnchor="454.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -76,7 +80,7 @@
                   </TextFlow>
                </children>
             </Pane>
-            <Button maxHeight="-Infinity" maxWidth="309.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#prenota" prefHeight="100.0" prefWidth="151.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="PROFILO">
+            <Button maxHeight="-Infinity" maxWidth="309.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#goToProfilo" prefHeight="100.0" prefWidth="151.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="PROFILO">
                <font>
                   <Font size="18.0" />
                </font>
@@ -110,5 +114,10 @@
             </Button>
          </children>
       </HBox>
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="252.0" layoutY="704.0" prefHeight="56.0" prefWidth="734.0" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
