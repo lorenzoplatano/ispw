@@ -34,6 +34,19 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
         setNome(nome);
     }
 
+    protected ProfiloLavoratoreBean(String email,
+                                    String telefono,
+                                    int eta,
+                                    String genere,
+                                    String nome) throws InvalidInputException {
+        super(email);
+        setNome(nome);
+        setEta(eta);
+        setGenere(genere);
+        setCitta(nome);
+        setTelefono(telefono);
+    }
+
     public String getNome() { return nome; }
     public int getEta() { return eta; }
     public String getGenere() { return genere; }

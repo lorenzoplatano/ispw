@@ -1,8 +1,11 @@
 package it.runyourdog.runyourdogapp.model.dao;
 
+import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.entities.Dog;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
+import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 
 
 import java.sql.*;
@@ -120,4 +123,32 @@ public class PadroneDao {
         }
 
     }
+
+    public List<ProfiloDogsitterBean> findDogsitter(Prenotazione prenotazione) throws DAOException, InvalidInputException {
+        List<ProfiloDogsitterBean> list = new ArrayList<>();
+        ResultSet rs;
+
+        try {
+            this.cs = this.conn.prepareCall("{call getDogsitterDisponibili(?,?,?,?)}");
+            this.cs.setDate(1, prenotazione.getData());
+            this.cs.setString(2, prenotazione.getLavoratore().getCitta());
+            this.cs.setTime(3, prenotazione.getOraInizio());
+            this.cs.setTime(4, prenotazione.getOraFine());
+
+
+            boolean hasResult = cs.execute();
+            if (hasResult) {
+                rs = cs.getResultSet();
+                while (rs.next()) {
+                    ProfiloDogsitterBean bean = new ProfiloDogsitterBean(rs.getString(1), rs.getString(5), rs.getInt(3), rs.getString(4), rs.getString(2));
+                    list.add(bean);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Errore nel recupero dei dogsitter disponibili: " + e.getMessage(), e);
+        }
+
+        return list;
+    }
+
 }

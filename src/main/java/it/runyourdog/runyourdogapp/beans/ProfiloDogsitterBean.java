@@ -22,4 +22,9 @@ public class ProfiloDogsitterBean extends ProfiloLavoratoreBean {
             throws InvalidInputException {
         super(username, email, password, ruolo, nome);
     }
+
+    public ProfiloDogsitterBean(String email, String telefono, int eta, String genere, String nome)
+            throws InvalidInputException {
+        super(email, telefono, eta, genere, nome);
+    }
 }
