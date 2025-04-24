@@ -4,6 +4,7 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.fxml.FXML;
@@ -68,6 +69,8 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
             bean.setData(inputDate);
             bean.setCitta(city);
 
+            controller.prenota(bean);
+
         } catch (DateTimeParseException e) {
 
             System.err.println("Formato orario non valido" );
@@ -76,12 +79,9 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
 
             System.err.println("Errore nell'inserimento degli input" );
 
+        } catch (DAOException e) {
+
+            System.err.println("DAO error");
         }
-
-        controller.prenota(bean);
-
-
-
     }
-
 }
