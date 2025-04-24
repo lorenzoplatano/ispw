@@ -4,7 +4,9 @@ import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.List;
+
 
 public class PrenotazionePadrone2GraphicController extends PrenotazionePadroneGraphicController{
 
@@ -30,4 +32,7 @@ public class PrenotazionePadrone2GraphicController extends PrenotazionePadroneGr
     private ProfiloDogsitterBean dogsitterChoice;
 
 
+    public void setDogsitterList(List<ProfiloDogsitterBean> list) {
+        System.out.println("setDogsitterList");
+    }
 }

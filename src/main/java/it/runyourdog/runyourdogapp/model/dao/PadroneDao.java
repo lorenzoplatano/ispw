@@ -145,7 +145,7 @@ public class PadroneDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException("Errore nel recupero dei dogsitter disponibili: " + e.getMessage(), e);
+            throw new DAOException("Errore nel recupero dei dogsitter disponibili: " + e.getMessage());
         }
 
         return list;

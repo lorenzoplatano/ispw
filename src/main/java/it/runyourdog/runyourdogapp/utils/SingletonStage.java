@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SingletonStage {
 
@@ -91,4 +92,13 @@ public class SingletonStage {
         stage.setScene(scene);
     }
 
+    public void showPadronePrenotazione2DogsitterPage(String fxmlPath, List<ProfiloDogsitterBean> list, UserBean loggedPad) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        PrenotazionePadrone2GraphicController controller = fxmlLoader.getController();
+        controller.setLoggedUser(loggedPad);
+        controller.setDogsitterList(list);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
 }

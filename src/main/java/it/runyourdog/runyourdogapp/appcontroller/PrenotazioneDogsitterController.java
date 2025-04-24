@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PrenotazioneDogsitterController {
 
-    public void prenota(PrenotazioneBean bean) throws DAOException, InvalidInputException {
+    public List<ProfiloDogsitterBean> cercaDogsitter(PrenotazioneBean bean) throws DAOException, InvalidInputException {
 
         Time inizio = bean.getOrarioInizio();
         Time fine = bean.getOrarioFine();
@@ -30,22 +30,9 @@ public class PrenotazioneDogsitterController {
 
         PadroneDao dao = new PadroneDao();
         List<ProfiloDogsitterBean> list = dao.findDogsitter(prenotazione);
+        return list;
 
 
-        if (list.isEmpty()) {
-            System.out.println("Nessun dogsitter disponibile per i parametri forniti.");
-        } else {
-            System.out.println("Dogsitter disponibili:");
-            for (ProfiloDogsitterBean ds : list) {
-                System.out.println(
-                        "Email: "    + ds.getEmail()    +
-                                ", Nome: "   + ds.getNome()     +
-                                ", Età: "    + ds.getEta()      +
-                                ", Genere: " + ds.getGenere()   +
-                                ", Telefono:" + ds.getTelefono()
-                );
-            }
-        }
 
 
 
@@ -55,4 +42,6 @@ public class PrenotazioneDogsitterController {
 
 
     }
+
+
 }

@@ -3,9 +3,11 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
+import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -19,6 +21,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 
 
 public class PrenotazionePadroneGraphicController extends GenericGraphicController {
@@ -42,7 +45,7 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
     }
 
     @FXML
-    public void prenota(){
+    public void prenota() throws IOException {
 
         PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
 
@@ -53,35 +56,21 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
         String inizio = orarioinizio.getText();
         String fine = orariofine.getText();
 
-        Date inputDate = Date.valueOf(date);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
         try {
-            LocalTime ltInizio = LocalTime.parse(inizio, formatter);
-            LocalTime ltFine   = LocalTime.parse(fine,   formatter);
 
-            Time inizioInput = Time.valueOf(ltInizio);
-            Time fineInput   = Time.valueOf(ltFine);
-
-            bean.setOrarioInizio(inizioInput);
-            bean.setOrarioFine(fineInput);
-            bean.setData(inputDate);
+            bean.setOrarioInizio(Time.valueOf(inizio));
+            bean.setOrarioFine(Time.valueOf(fine));
+            bean.setData(Date.valueOf(date));
             bean.setCitta(city);
 
-            controller.prenota(bean);
+            List<ProfiloDogsitterBean> list = controller.cercaDogsitter(bean);
+            SingletonStage.getStage(null).showPadronePrenotazione2DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone2.fxml",  list, loggedUser);
 
-        } catch (DateTimeParseException e) {
-
-            System.err.println("Formato orario non valido" );
-
-        } catch (InvalidInputException e){
-
-            System.err.println("Errore nell'inserimento degli input" );
-
-        } catch (DAOException e) {
-
-            System.err.println("DAO error");
+        }catch (DAOException e) {
+            Printer.perror(e.getMessage());
+        }catch (InvalidInputException e) {
+            showError(e.getMessage());
         }
     }
 }
