@@ -72,25 +72,25 @@
                </cursor>
             </Button>
             <DatePicker layoutX="58.0" layoutY="142.0" prefHeight="41.0" prefWidth="326.0" promptText="Seleziona data di inzio" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="453.0" AnchorPane.topAnchor="141.0" />
-            <Text layoutX="67.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data di inizio" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="677.0" AnchorPane.topAnchor="94.0">
+            <Text layoutX="58.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="754.562890625" AnchorPane.topAnchor="106.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
             <TextField layoutX="475.0" layoutY="137.0" prefHeight="41.0" prefWidth="326.0" promptText="Seleziona la città" AnchorPane.leftAnchor="453.0" AnchorPane.rightAnchor="57.0" AnchorPane.topAnchor="141.0" />
-            <Text layoutX="477.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Città" AnchorPane.leftAnchor="463.0" AnchorPane.topAnchor="94.0">
+            <Text layoutX="454.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Città" AnchorPane.leftAnchor="454.0" AnchorPane.topAnchor="108.576171875">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
             <TextField layoutX="66.0" layoutY="306.0" prefHeight="41.0" prefWidth="326.0" promptText="HH:mm" AnchorPane.leftAnchor="57.0" AnchorPane.topAnchor="299.0" />
-            <Text layoutX="68.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orario inizio" AnchorPane.leftAnchor="67.0" AnchorPane.topAnchor="262.0">
+            <Text layoutX="59.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orario inizio" AnchorPane.leftAnchor="59.0" AnchorPane.topAnchor="262.576171875">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
             <TextField layoutX="464.0" layoutY="298.0" prefHeight="41.0" prefWidth="326.0" promptText="HH:mm" AnchorPane.leftAnchor="453.0" AnchorPane.topAnchor="299.0" />
-            <Text layoutX="466.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orario fine" AnchorPane.leftAnchor="463.0" AnchorPane.topAnchor="262.0">
+            <Text layoutX="455.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orario fine" AnchorPane.leftAnchor="455.0" AnchorPane.topAnchor="262.576171875">
                <font>
                   <Font size="18.0" />
                </font>
