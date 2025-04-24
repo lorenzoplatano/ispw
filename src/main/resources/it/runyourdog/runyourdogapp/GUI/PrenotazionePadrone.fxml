@@ -33,7 +33,7 @@
                   </TextFlow>
                </children>
             </Pane>
-            <Button maxHeight="-Infinity" maxWidth="309.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#goToProfile" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="PROFILO">
+            <Button maxHeight="-Infinity" maxWidth="309.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#prenota" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="PROFILO">
                <font>
                   <Font size="18.0" />
                </font>
