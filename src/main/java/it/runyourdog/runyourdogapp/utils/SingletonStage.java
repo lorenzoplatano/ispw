@@ -1,10 +1,6 @@
 package it.runyourdog.runyourdogapp.utils;
 
-import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
-import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
+import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.graphiccontroller.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -86,7 +82,7 @@ public class SingletonStage {
         stage.setScene(scene);
     }
 
-    public void showPadronePrenotazionePage(String fxmlPath, ProfiloPadroneBean loggedPad) throws IOException {
+    public void showPadronePrenotazioneDogsitterPage(String fxmlPath, UserBean loggedPad) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
         Parent root = fxmlLoader.load();
         PrenotazionePadroneGraphicController controller = fxmlLoader.getController();

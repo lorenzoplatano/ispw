@@ -1,6 +1,5 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
-import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.fxml.FXML;
@@ -57,7 +56,7 @@ public class ProfiloPadroneGraphicController extends GenericGraphicController{
 
     @FXML
     private void goToPrenotazione() throws IOException {
-        SingletonStage.getStage(null).showPadronePrenotazionePage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone.fxml", (ProfiloPadroneBean) loggedUser);
+        SingletonStage.getStage(null).showPadronePrenotazioneDogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone.fxml",  loggedUser);
     }
 
 
