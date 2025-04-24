@@ -6,6 +6,7 @@ public class Orario {
     private String giorno;
     private Time orainizio;
     private Time orafine;
+
     public Orario(String giorno, Time orainizio, Time orafine) {
         this.giorno = giorno;
         this.orainizio = orainizio;

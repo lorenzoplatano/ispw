@@ -8,6 +8,9 @@ public class Lavoratore extends User {
     private String citta;
     private String telefono;
 
+    public Lavoratore () {};
+
+    public Lavoratore (String citta) {this.citta = citta;}
 
     public Lavoratore(String email, String password) {
         super(email, password);
