@@ -40,6 +40,9 @@ public class SingletonStage {
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
         Parent root = fxmlLoader.load();
         ProfiloPadroneGraphicController controller = fxmlLoader.getController();
+
+        controller.setLoggedUser(loggedPad);
+
         controller.populate(loggedPad);
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -79,6 +82,15 @@ public class SingletonStage {
         Parent root = fxmlLoader.load();
         RegistrazioneLavoratoreGraphicController controller = fxmlLoader.getController();
         controller.setProfiloLavoratoreBean(bean);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
+
+    public void showPadronePrenotazionePage(String fxmlPath, ProfiloPadroneBean loggedPad) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        PrenotazionePadroneGraphicController controller = fxmlLoader.getController();
+        controller.setLoggedUser(loggedPad);
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }

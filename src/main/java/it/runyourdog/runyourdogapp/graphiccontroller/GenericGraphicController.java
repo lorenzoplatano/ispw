@@ -1,5 +1,7 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
+import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -9,6 +11,12 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 public abstract class GenericGraphicController {
+
+    protected UserBean loggedUser;
+
+    public void setLoggedUser(UserBean loggedUser) {
+        this.loggedUser = loggedUser;
+    }
 
     @FXML
     protected Label errorLabel;

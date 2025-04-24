@@ -1,9 +1,13 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
+import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.TextArea;
+
+import java.io.IOException;
 
 
 public class ProfiloPadroneGraphicController extends GenericGraphicController{
@@ -49,6 +53,11 @@ public class ProfiloPadroneGraphicController extends GenericGraphicController{
         telArea.setText(loggedPad.getTelefonoPadrone());
         indArea.setText(loggedPad.getIndirizzoPadrone());
         cittaArea.setText(loggedPad.getCittaPadrone());
+    }
+
+    @FXML
+    private void goToPrenotazione() throws IOException {
+        SingletonStage.getStage(null).showPadronePrenotazionePage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone.fxml", (ProfiloPadroneBean) loggedUser);
     }
 
 
