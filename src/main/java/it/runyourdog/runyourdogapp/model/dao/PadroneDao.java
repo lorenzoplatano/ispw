@@ -38,10 +38,10 @@ public class PadroneDao {
                 ResultSet rs = cs.getResultSet();
                 while(rs.next())
                 {
-                    nome = rs.getString(3);
-                    telefono = rs.getLong(4);
-                    indirizzo = rs.getString(5);
-                    citta = rs.getString(7);
+                    nome = rs.getString(2);
+                    telefono = rs.getLong(3);
+                    indirizzo = rs.getString(4);
+                    citta = rs.getString(6);
                 }
             }
         } catch(SQLException e) {
@@ -152,6 +152,9 @@ public class PadroneDao {
     }
 
     public void mandaRichiesta(Prenotazione sendingReq) {
+
+
+
 
     }
 }

@@ -37,12 +37,12 @@ public class VeterinarioDao {
                 ResultSet rs = cs.getResultSet();
                 while(rs.next())
                 {
-                    nome = rs.getString(3);
-                    genere = rs.getString(4);
-                    citta = rs.getString(6);
-                    eta = rs.getInt(5);
-                    indirizzo = rs.getString(7);
-                    telefono = rs.getInt(8);
+                    nome = rs.getString(2);
+                    genere = rs.getString(3);
+                    citta = rs.getString(5);
+                    eta = rs.getInt(4);
+                    indirizzo = rs.getString(6);
+                    telefono = rs.getInt(7);
                 }
             }
         } catch(SQLException e) {

@@ -35,11 +35,11 @@ public class DogsitterDao {
                 ResultSet rs = cs.getResultSet();
                 while(rs.next())
                 {
-                    nome = rs.getString(3);
-                    genere = rs.getString(4);
-                    citta = rs.getString(6);
-                    eta = rs.getInt(5);
-                    telefono = rs.getLong(7);
+                    nome = rs.getString(2);
+                    genere = rs.getString(3);
+                    citta = rs.getString(5);
+                    eta = rs.getInt(4);
+                    telefono = rs.getLong(6);
                 }
             }
         } catch(SQLException e) {

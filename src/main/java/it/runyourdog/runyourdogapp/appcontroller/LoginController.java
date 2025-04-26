@@ -61,6 +61,7 @@ public class LoginController {
             return new ProfiloPadroneBean(dog.getDataNascita(), dog.getVaccinazioni(), datiCane);
 
         } catch (DAOException e) {
+            Printer.perror(e.getMessage());
             throw new ProfileRetrievalException("Errore nel recupero del profilo del padrone", e);
         }
     }

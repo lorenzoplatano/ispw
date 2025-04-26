@@ -24,12 +24,13 @@ public class PrenotazioneBean {
         if (inputDate == null) {
             throw new InvalidInputException("Data non valida.");
         }
+        LocalDate inputLocalDate = inputDate.toLocalDate();
         LocalDate today = LocalDate.now();
-        LocalDate inputLocalDate = inputDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         if (inputLocalDate.isBefore(today)) {
             throw new InvalidInputException("La data della prenotazione non può essere antecedente a oggi.");
         }
+
         this.data = inputDate;
     }
 
