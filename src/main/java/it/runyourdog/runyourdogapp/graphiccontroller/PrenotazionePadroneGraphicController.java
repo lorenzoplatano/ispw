@@ -18,9 +18,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 
 
@@ -66,12 +63,12 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
                 throw new InvalidInputException("Selezionare una data.");
             }
 
-            if (inizio.isEmpty() || fine.isEmpty() || inizio.matches(ORARIOFORMAT) || fine.matches(ORARIOFORMAT)) {
+            if (inizio.isEmpty() || fine.isEmpty() || !inizio.matches(ORARIOFORMAT) || !fine.matches(ORARIOFORMAT)) {
                 throw new InvalidInputException("Specificare orari nel formato corretto: HH:mm.");
             }
 
-            bean.setOrarioInizio(Time.valueOf(inizio));
-            bean.setOrarioFine(Time.valueOf(fine));
+            bean.setOrarioInizio(Time.valueOf(inizio + ":00"));
+            bean.setOrarioFine(Time.valueOf(fine + ":00"));
             bean.setData(Date.valueOf(date));
             bean.setCitta(city);
 
