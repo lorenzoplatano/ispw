@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.beans;
 import java.sql.Date;
 import java.sql.Time;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.model.entities.Lavoratore;
 
 public class PrenotazioneBean {
 
@@ -10,6 +11,8 @@ public class PrenotazioneBean {
     private String citta;
     private Time inizio;
     private Time fine;
+    private ProfiloLavoratoreBean prenotato;
+    private ProfiloPadroneBean prenotante;
 
     public void setData(Date inputDate) throws InvalidInputException {
         if (inputDate == null) {

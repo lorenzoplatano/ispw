@@ -38,6 +38,8 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
 
     private static final String ORARIOFORMAT = "^(?:[01]\\d|2[0-3]):[0-5]\\d$";
 
+    protected PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
+
 
     @FXML
     public void goToProfilo() throws IOException {
@@ -46,8 +48,6 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
 
     @FXML
     public void prenota() throws IOException {
-
-        PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
 
         PrenotazioneBean bean = new PrenotazioneBean();
 

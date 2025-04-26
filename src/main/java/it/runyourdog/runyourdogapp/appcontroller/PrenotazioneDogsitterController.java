@@ -35,4 +35,6 @@ public class PrenotazioneDogsitterController {
     }
 
 
+    public void sendRequest(ProfiloDogsitterBean dogsitterChoice) {
+    }
 }

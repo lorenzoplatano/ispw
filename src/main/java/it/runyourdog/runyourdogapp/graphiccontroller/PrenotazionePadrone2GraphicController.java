@@ -64,4 +64,13 @@ public class PrenotazionePadrone2GraphicController extends PrenotazionePadroneGr
 
         dogsitterTable.getItems().addAll(list);
     }
+
+    @FXML
+    public void reserve()
+    {
+        ProfiloDogsitterBean dogsitterChoice = dogsitterTable.getSelectionModel().getSelectedItem();
+
+        controller.sendRequest(dogsitterChoice);
+
+    }
 }
