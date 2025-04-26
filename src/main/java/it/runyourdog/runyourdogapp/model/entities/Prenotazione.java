@@ -1,5 +1,7 @@
 package it.runyourdog.runyourdogapp.model.entities;
 
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
+
 import java.sql.Date;
 import java.sql.Time;
 
@@ -10,6 +12,7 @@ public class Prenotazione {
     private Time oraFine;
     private Lavoratore lavoratore;
     private Padrone padrone;
+    private ReservationState stato;
 
     public Prenotazione(Date data, Time oraInizio, Time oraFine, Lavoratore lavoratore, Padrone padrone) {
         this.data = data;
@@ -66,5 +69,9 @@ public class Prenotazione {
     public void setPadrone(Padrone padrone) {
         this.padrone = padrone;
     }
+
+    public ReservationState getStato() {return stato;}
+
+    public void setStato(ReservationState stato) {this.stato = stato;}
 }
 

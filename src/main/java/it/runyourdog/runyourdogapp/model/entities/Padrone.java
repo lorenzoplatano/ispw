@@ -13,6 +13,10 @@ public class Padrone extends User {
         super(email, password);
     }
 
+    public Padrone(String email) {
+        super(email);
+    }
+
     public Padrone(String username, String email, String password, Role role, String[] dati) {
         super(username, email, password, role);
         this.nome = dati[0];

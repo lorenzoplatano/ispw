@@ -2,8 +2,12 @@ package it.runyourdog.runyourdogapp.beans;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.entities.Lavoratore;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 
 public class PrenotazioneBean {
 
@@ -13,10 +17,18 @@ public class PrenotazioneBean {
     private Time fine;
     private ProfiloLavoratoreBean prenotato;
     private ProfiloPadroneBean prenotante;
+    private ReservationState stato;
+
 
     public void setData(Date inputDate) throws InvalidInputException {
         if (inputDate == null) {
             throw new InvalidInputException("Data non valida.");
+        }
+        LocalDate today = LocalDate.now();
+        LocalDate inputLocalDate = inputDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        if (inputLocalDate.isBefore(today)) {
+            throw new InvalidInputException("La data della prenotazione non può essere antecedente a oggi.");
         }
         this.data = inputDate;
     }
@@ -51,6 +63,26 @@ public class PrenotazioneBean {
         this.fine = fineInput;
     }
 
+    public void setPrenotato(ProfiloLavoratoreBean prenotato) throws InvalidInputException {
+        if (prenotato == null) {
+            throw new InvalidInputException("Prenotato non valido.");
+        }
+        this.prenotato = prenotato;
+    }
+
+    public void setPrenotante(ProfiloPadroneBean prenotante) throws InvalidInputException {
+        if (prenotante == null) {
+            throw new InvalidInputException("Prenotante non valido.");
+        }
+        this.prenotante = prenotante;
+    }
+
+    public void setStato(ReservationState stato) throws InvalidInputException {
+        if (stato == null) {
+            throw new InvalidInputException("Stato della prenotazione non valido.");
+        }
+        this.stato = stato;
+    }
 
     public Date getData() {
         return data;
@@ -66,5 +98,17 @@ public class PrenotazioneBean {
 
     public Time getOrarioFine() {
         return fine;
+    }
+
+    public ProfiloLavoratoreBean getPrenotato() {
+        return prenotato;
+    }
+
+    public ProfiloPadroneBean getPrenotante() {
+        return prenotante;
+    }
+
+    public ReservationState getStato() {
+        return stato;
     }
 }

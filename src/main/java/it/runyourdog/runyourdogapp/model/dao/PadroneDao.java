@@ -151,4 +151,7 @@ public class PadroneDao {
         return list;
     }
 
+    public void mandaRichiesta(Prenotazione sendingReq) {
+
+    }
 }

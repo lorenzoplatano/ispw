@@ -40,6 +40,12 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
 
     protected PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
 
+    protected PrenotazioneBean prenotazioneBean;
+
+    public void setPrenotazioneBean(PrenotazioneBean bean)
+    {
+        this.prenotazioneBean = bean;
+    }
 
     @FXML
     public void goToProfilo() throws IOException {
@@ -49,7 +55,6 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
     @FXML
     public void prenota() throws IOException {
 
-        PrenotazioneBean bean = new PrenotazioneBean();
 
         LocalDate date = data.getValue();
         String city = citta.getText();
@@ -67,13 +72,15 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
                 throw new InvalidInputException("Specificare orari nel formato corretto: HH:mm.");
             }
 
-            bean.setOrarioInizio(Time.valueOf(inizio + ":00"));
-            bean.setOrarioFine(Time.valueOf(fine + ":00"));
-            bean.setData(Date.valueOf(date));
-            bean.setCitta(city);
+            prenotazioneBean = new PrenotazioneBean();
+            prenotazioneBean.setOrarioInizio(Time.valueOf(inizio + ":00"));
+            prenotazioneBean.setOrarioFine(Time.valueOf(fine + ":00"));
+            prenotazioneBean.setData(Date.valueOf(date));
+            prenotazioneBean.setCitta(city);
+            prenotazioneBean.setPrenotante((ProfiloPadroneBean) loggedUser);
 
-            List<ProfiloDogsitterBean> list = controller.cercaDogsitter(bean);
-            SingletonStage.getStage(null).showPadronePrenotazione2DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone2.fxml",  list, loggedUser);
+            List<ProfiloDogsitterBean> list = controller.cercaDogsitter(prenotazioneBean);
+            SingletonStage.getStage(null).showPadronePrenotazione2DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone2.fxml", list, loggedUser, prenotazioneBean);
 
         }catch (DAOException e) {
             Printer.perror(e.getMessage());

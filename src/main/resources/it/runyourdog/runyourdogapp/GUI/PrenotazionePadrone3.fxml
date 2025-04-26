@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.graphiccontroller.PrenotazionePadroneGraphicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.graphiccontroller.PrenotazionePadrone3GraphicController">
    <children>
       <AnchorPane layoutX="168.0" layoutY="288.8" prefHeight="266.0" prefWidth="870.0" style="-fx-background-color: B4B3B3; -fx-background-radius: 4; -fx-border-color: BLACK; -fx-border-radius: 4;" AnchorPane.bottomAnchor="245.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="162.0" AnchorPane.topAnchor="289.0">
          <children>
@@ -18,7 +18,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Button layoutX="227.0" layoutY="141.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="414.0" style="-fx-background-color: E1A15C; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="VISUALIZZA PRENOTAZIONI IN ATTESA">
+            <Button layoutX="227.0" layoutY="141.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#goToReservationMenu" prefHeight="54.0" prefWidth="414.0" style="-fx-background-color: E1A15C; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="VISUALIZZA PRENOTAZIONI IN ATTESA">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -50,7 +50,7 @@
                   </TextFlow>
                </children>
             </Pane>
-            <Button maxHeight="-Infinity" maxWidth="309.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#prenota" prefHeight="100.0" prefWidth="151.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="PROFILO">
+            <Button maxHeight="-Infinity" maxWidth="309.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#goToProfilo" prefHeight="100.0" prefWidth="151.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="PROFILO">
                <font>
                   <Font size="18.0" />
                </font>

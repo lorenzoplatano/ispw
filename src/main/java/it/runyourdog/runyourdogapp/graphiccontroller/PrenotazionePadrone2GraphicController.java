@@ -1,13 +1,20 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
+import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
+import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.utils.Printer;
+import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -33,7 +40,6 @@ public class PrenotazionePadrone2GraphicController extends PrenotazionePadroneGr
 
 
     private ProfiloDogsitterBean dogsitterChoice;
-
 
     @FXML
     public void initialize() {
@@ -63,14 +69,28 @@ public class PrenotazionePadrone2GraphicController extends PrenotazionePadroneGr
         dogsitterTable.getItems().clear();
 
         dogsitterTable.getItems().addAll(list);
+
     }
 
     @FXML
-    public void reserve()
+    public void reserve()throws IOException
     {
-        ProfiloDogsitterBean dogsitterChoice = dogsitterTable.getSelectionModel().getSelectedItem();
 
-        controller.sendRequest(dogsitterChoice);
+
+        try {
+            dogsitterChoice = dogsitterTable.getSelectionModel().getSelectedItem();
+            prenotazioneBean.setPrenotato(dogsitterChoice);
+            controller.sendRequest(prenotazioneBean);
+
+            SingletonStage.getStage(null).showPadronePrenotazione3DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone3.fxml", loggedUser, prenotazioneBean);
+
+
+        } catch (InvalidInputException e) {
+            showError(e.getMessage());
+        } catch (DAOException e) {
+            Printer.perror(e.getMessage());
+        }
+
 
     }
 }
