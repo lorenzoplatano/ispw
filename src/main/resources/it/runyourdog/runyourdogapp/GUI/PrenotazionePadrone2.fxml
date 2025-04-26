@@ -85,7 +85,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Button layoutX="63.0" layoutY="454.0" mnemonicParsing="false" onMouseClicked="#changeRole" prefHeight="27.0" prefWidth="71.0" style="-fx-border-radius: 5; -fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: cc6c25;" text="INDIETRO">
+            <Button layoutX="63.0" layoutY="454.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="71.0" style="-fx-border-radius: 5; -fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: cc6c25;" text="INDIETRO">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -101,7 +101,7 @@
             </TableView>
          </children>
       </AnchorPane>
-      <Label fx:id="errorLabel" alignment="CENTER" layoutX="252.0" layoutY="704.0" prefHeight="56.0" prefWidth="734.0" textAlignment="CENTER">
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="252.0" layoutY="704.0" onMouseClicked="#changeRole" prefHeight="56.0" prefWidth="734.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
