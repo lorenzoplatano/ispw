@@ -136,8 +136,8 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
         if (telefono == null || telefono.trim().isEmpty())
             throw new InvalidInputException("Telefono non valido.");
         String trimmed = telefono.trim();
-        if (!trimmed.matches("\\d+")) {
-            throw new InvalidInputException("Telefono non valido: deve contenere solo numeri.");
+        if (!trimmed.matches("^\\d{1,10}$")) {
+            throw new InvalidInputException("Telefono non valido: deve contenere solo numeri e massimo 10 cifre.");
         }
         this.telefono = trimmed;
     }

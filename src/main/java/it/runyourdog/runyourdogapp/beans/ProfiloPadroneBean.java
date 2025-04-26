@@ -98,8 +98,8 @@ public class ProfiloPadroneBean extends UserBean {
         if (telefonoPadrone == null || telefonoPadrone.trim().isEmpty())
             throw new InvalidInputException("Il telefono del padrone è obbligatorio.");
         String trimmed = telefonoPadrone.trim();
-        if (!trimmed.matches("\\d+")) {
-            throw new InvalidInputException("Telefono non valido: deve contenere solo numeri.");
+        if (!trimmed.matches("^\\d{1,10}$")) {
+            throw new InvalidInputException("Telefono non valido: deve contenere solo numeri e massimo 10 cifre.");
         }
         this.telefonoPadrone = trimmed;
     }

@@ -22,7 +22,7 @@ public class DogsitterDao {
         String genere = null;
         String citta = null;
         int eta = 0;
-        int telefono = 0;
+        Long telefono = null;
 
         try{
 
@@ -39,7 +39,7 @@ public class DogsitterDao {
                     genere = rs.getString(4);
                     citta = rs.getString(6);
                     eta = rs.getInt(5);
-                    telefono = rs.getInt(7);
+                    telefono = rs.getLong(7);
                 }
             }
         } catch(SQLException e) {

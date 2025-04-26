@@ -23,7 +23,7 @@ public class PadroneDao {
 
     public Padrone padInfo(Padrone pad) throws DAOException {
         String nome = null;
-        int telefono = 0;
+        Long telefono = null;
         String indirizzo = null;
         String citta = null;
 
@@ -39,7 +39,7 @@ public class PadroneDao {
                 while(rs.next())
                 {
                     nome = rs.getString(3);
-                    telefono = rs.getInt(4);
+                    telefono = rs.getLong(4);
                     indirizzo = rs.getString(5);
                     citta = rs.getString(7);
                 }
