@@ -66,8 +66,6 @@ public class PrenotazionePadrone2GraphicController extends PrenotazionePadroneGr
 
     public void setDogsitterList(List<ProfiloDogsitterBean> list) {
 
-        dogsitterTable.getItems().clear();
-
         dogsitterTable.getItems().addAll(list);
 
     }

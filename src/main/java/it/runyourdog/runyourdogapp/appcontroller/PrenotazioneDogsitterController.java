@@ -2,6 +2,7 @@ package it.runyourdog.runyourdogapp.appcontroller;
 
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
+import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
@@ -59,5 +60,11 @@ public class PrenotazioneDogsitterController {
         Prenotazione sendingReq = new Prenotazione(data, oraInizio, oraFine, lavoratore, padrone);
         padroneDao.mandaRichiesta(sendingReq);
 
+    }
+
+    public List<PrenotazioneBean> mostraPrenotazioni(ProfiloPadroneBean padrone) throws DAOException, InvalidInputException {
+        Padrone pad = new Padrone(padrone.getEmail());
+        List<PrenotazioneBean> list = padroneDao.showReservations(pad);
+        return list;
     }
 }

@@ -1,5 +1,6 @@
 package it.runyourdog.runyourdogapp.model.dao;
 
+import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -153,8 +154,9 @@ public class PadroneDao {
 
     public void mandaRichiesta(Prenotazione sendingReq) {
 
+    }
 
-
-
+    public List<PrenotazioneBean> showReservations(Padrone pad) {
+        return null;
     }
 }
