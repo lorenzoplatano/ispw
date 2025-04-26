@@ -39,6 +39,9 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
     private TextField orariofine;
 
 
+    private static final String ORARIOFORMAT = "^(?:[01]\\d|2[0-3]):[0-5]\\d$";
+
+
     @FXML
     public void goToProfilo() throws IOException {
         SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", (ProfiloPadroneBean) loggedUser);
@@ -58,6 +61,14 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
 
 
         try {
+
+            if (date == null) {
+                throw new InvalidInputException("Selezionare una data.");
+            }
+
+            if (inizio.isEmpty() || fine.isEmpty() || inizio.matches(ORARIOFORMAT) || fine.matches(ORARIOFORMAT)) {
+                throw new InvalidInputException("Specificare orari nel formato corretto: HH:mm.");
+            }
 
             bean.setOrarioInizio(Time.valueOf(inizio));
             bean.setOrarioFine(Time.valueOf(fine));

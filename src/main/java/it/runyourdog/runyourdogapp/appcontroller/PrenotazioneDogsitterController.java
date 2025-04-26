@@ -21,24 +21,15 @@ public class PrenotazioneDogsitterController {
         String citta = bean.getCitta();
         Date data = bean.getData();
 
-
-
         Dogsitter dogsitter = new Dogsitter(citta);
-
 
         Prenotazione prenotazione = new Prenotazione(data, inizio, fine, dogsitter);
 
         PadroneDao dao = new PadroneDao();
+
         List<ProfiloDogsitterBean> list = dao.findDogsitter(prenotazione);
+
         return list;
-
-
-
-
-
-
-
-
 
 
     }
