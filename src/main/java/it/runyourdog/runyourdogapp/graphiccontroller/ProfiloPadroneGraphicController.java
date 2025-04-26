@@ -54,10 +54,4 @@ public class ProfiloPadroneGraphicController extends GenericGraphicController{
         cittaArea.setText(loggedPad.getCittaPadrone());
     }
 
-    @FXML
-    private void goToPrenotazione() throws IOException {
-        SingletonStage.getStage(null).showPadronePrenotazioneDogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone.fxml",  loggedUser);
-    }
-
-
 }
