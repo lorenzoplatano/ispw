@@ -54,10 +54,17 @@ public class PrenotazioneDogsitterController {
         Date data = request.getData();
         Time oraInizio = request.getOrarioInizio();
         Time oraFine = request.getOrarioFine();
-        Lavoratore lavoratore = new Lavoratore(request.getPrenotato().getEmail());
+
+
+
+        Dogsitter dogsitter = new Dogsitter();
+        dogsitter.setEmail(request.getPrenotato().getEmail());
+
         Padrone padrone = new Padrone(request.getPrenotante().getEmail());
 
-        Prenotazione sendingReq = new Prenotazione(data, oraInizio, oraFine, lavoratore, padrone);
+        Prenotazione sendingReq = new Prenotazione(data, oraInizio, oraFine, dogsitter, padrone);
+
+
         padroneDao.mandaRichiesta(sendingReq);
 
     }

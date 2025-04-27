@@ -49,6 +49,7 @@ public class SingletonStage {
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
         Parent root = fxmlLoader.load();
         ProfiloVeterinarioGraphicController controller = fxmlLoader.getController();
+        controller.setLoggedUser(loggedVet);
         controller.populate(loggedVet);
         controller.populateAddress(loggedVet);
         Scene scene = new Scene(root);
@@ -59,6 +60,7 @@ public class SingletonStage {
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
         Parent root = fxmlLoader.load();
         ProfiloDogsitterGraphicController controller = fxmlLoader.getController();
+        controller.setLoggedUser(loggedDogs);
         controller.populate(loggedDogs);
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -68,7 +70,9 @@ public class SingletonStage {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
         Parent root = fxmlLoader.load();
         RegistrazionePadroneGraphicController controller = fxmlLoader.getController();
+        controller.setLoggedUser(bean);
         controller.setProfiloPadroneBean(bean);
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
@@ -78,6 +82,7 @@ public class SingletonStage {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
         Parent root = fxmlLoader.load();
         RegistrazioneLavoratoreGraphicController controller = fxmlLoader.getController();
+        controller.setLoggedUser(bean);
         controller.setProfiloLavoratoreBean(bean);
         Scene scene = new Scene(root);
         stage.setScene(scene);

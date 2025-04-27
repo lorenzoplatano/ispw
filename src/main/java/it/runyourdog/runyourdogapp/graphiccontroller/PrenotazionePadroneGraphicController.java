@@ -79,6 +79,7 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
             prenotazioneBean.setCitta(city);
             prenotazioneBean.setPrenotante((ProfiloPadroneBean) loggedUser);
 
+
             List<ProfiloDogsitterBean> list = controller.cercaDogsitter(prenotazioneBean);
             SingletonStage.getStage(null).showPadronePrenotazione2DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone2.fxml", list, loggedUser, prenotazioneBean);
 

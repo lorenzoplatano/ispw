@@ -46,6 +46,7 @@ public abstract class GenericGraphicController {
 
     @FXML
     private void goToPrenotazione() throws IOException {
+
         SingletonStage.getStage(null).showPadronePrenotazioneDogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone.fxml",  loggedUser);
     }
 

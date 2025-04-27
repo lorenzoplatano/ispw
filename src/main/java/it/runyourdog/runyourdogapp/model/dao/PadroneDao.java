@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.entities.Dog;
+import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 
@@ -12,6 +13,8 @@ import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class PadroneDao {
 
@@ -152,8 +155,29 @@ public class PadroneDao {
         return list;
     }
 
-    public void mandaRichiesta(Prenotazione sendingReq) {
+    public void mandaRichiesta(Prenotazione sendingReq) throws DAOException{
+        try {
+            Padrone pad = sendingReq.getPadrone();
+            Dogsitter dogsitter = (Dogsitter) sendingReq.getLavoratore();
+            Date data = sendingReq.getData();
+            Time inizio = sendingReq.getOraInizio();
+            Time fine = sendingReq.getOraFine();
 
+
+
+            this.cs = this.conn.prepareCall("{call creaPrenotazioneDogsitter(?,?,?,?,?)}");
+            this.cs.setString(1, dogsitter.getEmail());
+            this.cs.setString(2, pad.getEmail());
+            this.cs.setDate(3, data);
+            this.cs.setTime(4, inizio);
+            this.cs.setTime(5, fine);
+
+            this.cs.execute();
+
+
+        }catch (SQLException e) {
+            throw new DAOException("Errore nella creazione della prenotazione: " + e.getMessage());
+        }
     }
 
     public List<PrenotazioneBean> showReservations(Padrone pad) {

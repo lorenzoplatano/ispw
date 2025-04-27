@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 import java.util.List;
 
-public class PrenotazionePadrone3GraphicController extends PrenotazionePadrone2GraphicController{
+public class PrenotazionePadrone3GraphicController extends PrenotazionePadroneGraphicController{
 
     @FXML
     public void goToReservationMenu()throws IOException {

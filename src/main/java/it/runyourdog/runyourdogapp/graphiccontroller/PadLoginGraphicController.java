@@ -26,7 +26,14 @@ public class PadLoginGraphicController extends GenericLoginGraphicController {
 
     @Override
     protected Object retrieveProfile(UserBean user) throws ProfileRetrievalException, InvalidInputException {
-        return controller.getPadProfileInfo(user);
+
+
+        ProfiloPadroneBean profile = controller.getPadProfileInfo(user);
+
+
+        profile.setEmail(user.getEmail());
+
+        return profile;
     }
 
     @Override

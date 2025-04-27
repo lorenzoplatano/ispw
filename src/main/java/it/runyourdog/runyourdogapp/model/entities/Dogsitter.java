@@ -10,4 +10,8 @@ public class Dogsitter extends Lavoratore {
     }
 
     public Dogsitter(String citta) {super(citta);}
+
+    public Dogsitter() {
+
+    }
 }

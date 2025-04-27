@@ -77,7 +77,9 @@ public class PrenotazionePadrone2GraphicController extends PrenotazionePadroneGr
 
         try {
             dogsitterChoice = dogsitterTable.getSelectionModel().getSelectedItem();
+
             prenotazioneBean.setPrenotato(dogsitterChoice);
+
             controller.sendRequest(prenotazioneBean);
 
             SingletonStage.getStage(null).showPadronePrenotazione3DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone3.fxml", loggedUser, prenotazioneBean);
