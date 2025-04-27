@@ -89,4 +89,22 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
             showError(e.getMessage());
         }
     }
+
+    @FXML
+    public void goToReservationMenu()throws IOException {
+
+
+        try {
+            ProfiloPadroneBean padrone = new ProfiloPadroneBean();
+            padrone.setEmail(loggedUser.getEmail());
+            List<PrenotazioneBean> list = controller.mostraPrenotazioni(padrone);
+
+            SingletonStage.getStage(null).showPadroneReservationMenu("/it/runyourdog/runyourdogapp/GUI/MenuPrenotazioniPadrone.fxml", loggedUser, list);
+
+        } catch (DAOException e) {
+            Printer.perror(e.getMessage());
+        } catch (InvalidInputException e) {
+            showError(e.getMessage());
+        }
+    }
 }

@@ -39,6 +39,8 @@ public class ProfiloPadroneBean extends UserBean {
         setNomePadrone(nomePadrone);
     }
 
+    public ProfiloPadroneBean() {}
+
 
     public String getNomeCane()               { return nomeCane; }
     public String getSessoCane()              { return sessoCane; }

@@ -111,7 +111,7 @@ public class SingletonStage {
     public void showPadronePrenotazione3DogsitterPage(String fxmlPath, UserBean loggedUser, PrenotazioneBean prenotazioneBean) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
         Parent root = fxmlLoader.load();
-        PrenotazionePadrone3GraphicController controller = fxmlLoader.getController();
+        PrenotazionePadroneGraphicController controller = fxmlLoader.getController();
         controller.setLoggedUser(loggedUser);
         controller.setPrenotazioneBean(prenotazioneBean);
         Scene scene = new Scene(root);

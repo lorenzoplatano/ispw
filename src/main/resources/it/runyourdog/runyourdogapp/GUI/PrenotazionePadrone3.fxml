@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.graphiccontroller.PrenotazionePadrone3GraphicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.graphiccontroller.PrenotazionePadroneGraphicController">
    <children>
       <AnchorPane layoutX="168.0" layoutY="288.8" prefHeight="266.0" prefWidth="870.0" style="-fx-background-color: B4B3B3; -fx-background-radius: 4; -fx-border-color: BLACK; -fx-border-radius: 4;" AnchorPane.bottomAnchor="245.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="162.0" AnchorPane.topAnchor="289.0">
          <children>
@@ -74,7 +74,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxHeight="-Infinity" maxWidth="293.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="211.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="LE MIE PRENOTAZIONI">
+            <Button maxHeight="-Infinity" maxWidth="293.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#goToReservationMenu" prefHeight="100.0" prefWidth="211.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="LE MIE PRENOTAZIONI">
                <font>
                   <Font size="18.0" />
                </font>

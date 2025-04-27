@@ -50,4 +50,6 @@ public abstract class GenericGraphicController {
         SingletonStage.getStage(null).showPadronePrenotazioneDogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone.fxml",  loggedUser);
     }
 
+
+
 }

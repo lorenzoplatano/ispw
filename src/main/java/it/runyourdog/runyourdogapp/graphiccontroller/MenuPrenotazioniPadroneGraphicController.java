@@ -1,8 +1,6 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
@@ -12,7 +10,7 @@ import javafx.scene.control.TableView;
 import java.sql.Date;
 import java.util.List;
 
-public class MenuPrenotazioniPadroneGraphicController extends GenericGraphicController {
+public class MenuPrenotazioniPadroneGraphicController extends PrenotazionePadroneGraphicController {
 
     @FXML
     private TableView<PrenotazioneBean> reservationTable;
@@ -30,27 +28,25 @@ public class MenuPrenotazioniPadroneGraphicController extends GenericGraphicCont
     private TableColumn<PrenotazioneBean, String> colStato;
 
     @FXML
+    private TableColumn<PrenotazioneBean, Integer> colID;
+
+    @FXML
     public void initialize() {
+
+        colID.setCellValueFactory(cd ->
+                new SimpleObjectProperty<>(cd.getValue().getId())
+        );
 
         colData.setCellValueFactory(cd ->
                 new SimpleObjectProperty<>(cd.getValue().getData())
         );
 
-        colTipo.setCellValueFactory(cd -> {
-            Object pren = cd.getValue().getPrenotato();
-            String tipo;
-            if (pren instanceof ProfiloDogsitterBean) {
-                tipo = "Dogsitter";
-            } else if (pren instanceof ProfiloVeterinarioBean) {
-                tipo = "Veterinario";
-            } else {
-                tipo = "Altro";
-            }
-            return new SimpleStringProperty(tipo);
-        });
+        colTipo.setCellValueFactory(cd ->
+                new SimpleStringProperty(cd.getValue().getTipo().name())
+        );
 
         colNomeLavoratore.setCellValueFactory(cd ->
-                new SimpleStringProperty(cd.getValue().getPrenotato().getNome())
+                new SimpleStringProperty(cd.getValue().getNomePrenotato())
         );
 
         colStato.setCellValueFactory(cd ->
