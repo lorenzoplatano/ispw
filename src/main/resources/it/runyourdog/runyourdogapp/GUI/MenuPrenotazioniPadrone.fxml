@@ -87,10 +87,11 @@
             </Text>
             <TableView fx:id="reservationTable" layoutX="151.0" layoutY="96.0" prefHeight="288.0" prefWidth="526.0">
                <columns>
-                  <TableColumn fx:id="colData" prefWidth="94.0" text="Data" />
-                  <TableColumn fx:id="colTipo" prefWidth="116.0" text="Tipo" />
-                  <TableColumn fx:id="colNomeLavoratore" prefWidth="184.0" text="Nome Lavoratore" />
-                  <TableColumn fx:id="colStato" prefWidth="134.0" text="Stato" />
+                  <TableColumn fx:id="colID" prefWidth="94.0" text="ID" />
+                  <TableColumn fx:id="colData" prefWidth="95.0" text="Data" />
+                  <TableColumn fx:id="colTipo" prefWidth="96.0" text="Tipo" />
+                  <TableColumn fx:id="colNomeLavoratore" prefWidth="132.0" text="Nome Lavoratore" />
+                  <TableColumn fx:id="colStato" prefWidth="108.0" text="Stato" />
                </columns>
             </TableView>
          </children>
