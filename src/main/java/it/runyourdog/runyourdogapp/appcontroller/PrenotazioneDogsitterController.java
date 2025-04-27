@@ -2,6 +2,7 @@ package it.runyourdog.runyourdogapp.appcontroller;
 
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
+import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -13,9 +14,11 @@ import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 import it.runyourdog.runyourdogapp.model.entities.Lavoratore;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PrenotazioneDogsitterController {
@@ -41,7 +44,18 @@ public class PrenotazioneDogsitterController {
         Prenotazione prenotazione = new Prenotazione(data, inizio, fine, dogsitter);
 
 
-        List<ProfiloDogsitterBean> list = padroneDao.findDogsitter(prenotazione);
+        List<Dogsitter> listDog = padroneDao.findDogsitter(prenotazione);
+
+        List<ProfiloDogsitterBean> list = new ArrayList<>();
+        for (Dogsitter d : listDog) {
+            list.add(new ProfiloDogsitterBean(
+                    d.getEmail(),
+                    d.getTelefono(),
+                    d.getEta(),
+                    d.getGenere(),
+                    d.getNome()
+            ));
+        }
 
         return list;
 
@@ -71,7 +85,19 @@ public class PrenotazioneDogsitterController {
 
     public List<PrenotazioneBean> mostraPrenotazioni(ProfiloPadroneBean padrone) throws DAOException, InvalidInputException {
         Padrone pad = new Padrone(padrone.getEmail());
-        List<PrenotazioneBean> list = padroneDao.showReservations(pad);
-        return list;
+        List<Prenotazione> list = padroneDao.showReservations(pad);
+
+        List<PrenotazioneBean> listBean = new ArrayList<>();
+        for (Prenotazione d : list) {
+            PrenotazioneBean bean = new PrenotazioneBean();
+            bean.setTipo(d.getTipo());
+            bean.setData(d.getData());
+            bean.setStato(d.getStato());
+            bean.setId(d.getId());
+            bean.setNomePrenotato(d.getLavoratore().getNome());
+            listBean.add(bean);
+        }
+
+        return listBean;
     }
 }

@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.entities.Lavoratore;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
 public class PrenotazioneBean {
 
@@ -18,6 +19,9 @@ public class PrenotazioneBean {
     private ProfiloLavoratoreBean prenotato;
     private ProfiloPadroneBean prenotante;
     private ReservationState stato;
+    private ReservationType type;
+    private int id;
+    private String nomePrenotato;
 
 
     public void setData(Date inputDate) throws InvalidInputException {
@@ -85,6 +89,32 @@ public class PrenotazioneBean {
         this.stato = stato;
     }
 
+    public void setTipo(ReservationType tipo) throws InvalidInputException {
+        if (tipo == null) {
+            throw new InvalidInputException("Tipo della prenotazione non valido.");
+        }
+        this.type = tipo;
+    }
+
+    public void setId(int id) throws InvalidInputException {
+        if (id <= 0) {
+            throw new InvalidInputException("Id della prenotazione non valido.");
+        }
+        this.id = id;
+    }
+
+    public void setNomePrenotato(String nome) throws InvalidInputException {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new InvalidInputException("Nome prenotato non valido.");
+        }
+        this.nomePrenotato = nome.trim();
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
     public Date getData() {
         return data;
     }
@@ -111,5 +141,13 @@ public class PrenotazioneBean {
 
     public ReservationState getStato() {
         return stato;
+    }
+
+    public ReservationType getTipo() {
+        return type;
+    }
+
+    public String getNomePrenotato() {
+        return nomePrenotato;
     }
 }
