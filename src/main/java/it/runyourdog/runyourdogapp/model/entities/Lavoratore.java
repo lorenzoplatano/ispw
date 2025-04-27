@@ -24,6 +24,14 @@ public class Lavoratore extends User {
         this.telefono = telefono;
     }
 
+    public Lavoratore(String email, String nome, int eta, String genere, String telefono) {
+        super(email);
+        this.nome = nome;
+        this.eta = eta;
+        this.genere = genere;
+        this.telefono = telefono;
+    }
+
     public String getNome() {
         return nome;
     }

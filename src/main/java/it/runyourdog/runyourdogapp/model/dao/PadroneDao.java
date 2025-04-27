@@ -4,10 +4,9 @@ import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
-import it.runyourdog.runyourdogapp.model.entities.Dog;
-import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
-import it.runyourdog.runyourdogapp.model.entities.Padrone;
-import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
+import it.runyourdog.runyourdogapp.model.entities.*;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
 
 import java.sql.*;
@@ -128,8 +127,8 @@ public class PadroneDao {
 
     }
 
-    public List<ProfiloDogsitterBean> findDogsitter(Prenotazione prenotazione) throws DAOException, InvalidInputException {
-        List<ProfiloDogsitterBean> list = new ArrayList<>();
+    public List<Dogsitter> findDogsitter(Prenotazione prenotazione) throws DAOException {
+        List<Dogsitter> list = new ArrayList<>();
         ResultSet rs;
 
         try {
@@ -144,8 +143,8 @@ public class PadroneDao {
             if (hasResult) {
                 rs = cs.getResultSet();
                 while (rs.next()) {
-                    ProfiloDogsitterBean bean = new ProfiloDogsitterBean(rs.getString(1), rs.getString(5), rs.getInt(3), rs.getString(4), rs.getString(2));
-                    list.add(bean);
+                    Dogsitter ds = new Dogsitter(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5));
+                    list.add(ds);
                 }
             }
         } catch (SQLException e) {
@@ -180,7 +179,40 @@ public class PadroneDao {
         }
     }
 
-    public List<PrenotazioneBean> showReservations(Padrone pad) {
-        return null;
+    public List<Prenotazione> showReservations(Padrone pad) throws DAOException {
+
+        List<Prenotazione> list = new ArrayList<>();
+        ResultSet rs;
+
+
+        try {
+            this.cs = this.conn.prepareCall("{call getPrenotazioniPadrone(?)}");
+            this.cs.setString(1, pad.getEmail());
+
+            this.cs.execute();
+
+            boolean hasResult = cs.execute();
+            if (hasResult) {
+                rs = cs.getResultSet();
+                while (rs.next()) {
+                    int id = rs.getInt(1);
+                    Date date = rs.getDate(2);
+                    int typeId = rs.getInt(3);
+                    ReservationType tipo = ReservationType.fromInt(typeId);
+                    String nomeLav = rs.getString(4);
+                    Lavoratore lav = new Lavoratore();
+                    lav.setNome(nomeLav);
+                    int stateId = rs.getInt(5);
+                    ReservationState stato = ReservationState.fromInt(stateId);
+                    Prenotazione pre = new Prenotazione(id, date, tipo, lav, stato);
+                    list.add(pre);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Errore nella acquisizione delle prenotazioni: " + e.getMessage());
+        }
+
+        return list;
     }
 }
