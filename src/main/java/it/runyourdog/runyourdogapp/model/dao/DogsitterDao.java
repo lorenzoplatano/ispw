@@ -131,9 +131,9 @@ public class DogsitterDao {
             this.cs = this.conn.prepareCall("{call getPrenotazioniDogsitter(?)}");
             this.cs.setString(1, ds.getEmail());
 
-            this.cs.execute();
 
-            boolean hasResult = cs.execute();
+            boolean hasResult = this.cs.execute();
+
             if (hasResult) {
                 rs = cs.getResultSet();
                 while (rs.next()) {

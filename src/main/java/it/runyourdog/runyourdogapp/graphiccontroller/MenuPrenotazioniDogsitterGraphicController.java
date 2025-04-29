@@ -85,4 +85,6 @@ public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicCo
     public void setPrenotazioniList(List<PrenotazioneBean> list) {
         reservationTable.getItems().setAll(list);
     }
+
+
 }

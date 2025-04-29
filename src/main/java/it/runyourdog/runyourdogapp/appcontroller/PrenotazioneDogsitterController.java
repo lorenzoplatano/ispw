@@ -117,7 +117,8 @@ public class PrenotazioneDogsitterController {
     }
 
     public List<PrenotazioneBean> mostraPrenotazioniDog(ProfiloDogsitterBean dogsitter) throws DAOException, InvalidInputException {
-        Dogsitter ds = new Dogsitter(dogsitter.getEmail());
+        Dogsitter ds = new Dogsitter();
+        ds.setEmail(dogsitter.getEmail());
         List<Prenotazione> list = dogsitterDao.showReservations(ds);
 
         List<PrenotazioneBean> listBean = new ArrayList<>();

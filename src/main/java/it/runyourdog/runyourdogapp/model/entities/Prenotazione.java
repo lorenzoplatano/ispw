@@ -31,7 +31,6 @@ public class Prenotazione {
         this.oraInizio = oraInizio;
         this.oraFine = oraFine;
         this.lavoratore = lavoratore;
-
     }
 
     public Prenotazione(int id, Date data, ReservationType type, Lavoratore lavoratore, ReservationState stato) {
@@ -40,7 +39,6 @@ public class Prenotazione {
         this.type = type;
         this.lavoratore = lavoratore;
         this.stato = stato;
-
     }
 
     public Prenotazione(int id, Date data, Dog dog, Padrone padrone, ReservationState stato) {
@@ -49,7 +47,6 @@ public class Prenotazione {
         this.padrone = padrone;
         this.stato = stato;
         this.cane = dog;
-
     }
 
     public Date getData() {

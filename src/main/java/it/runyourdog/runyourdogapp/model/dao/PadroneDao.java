@@ -189,9 +189,9 @@ public class PadroneDao {
             this.cs = this.conn.prepareCall("{call getPrenotazioniPadrone(?)}");
             this.cs.setString(1, pad.getEmail());
 
-            this.cs.execute();
 
-            boolean hasResult = cs.execute();
+
+            boolean hasResult = this.cs.execute();
             if (hasResult) {
                 rs = cs.getResultSet();
                 while (rs.next()) {
