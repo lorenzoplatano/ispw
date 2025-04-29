@@ -1,8 +1,9 @@
 package it.runyourdog.runyourdogapp.model.dao;
 
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
-import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
-import it.runyourdog.runyourdogapp.model.entities.Orario;
+import it.runyourdog.runyourdogapp.model.entities.*;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -117,6 +118,44 @@ public class DogsitterDao {
             throw new DAOException("Errore nella registrazione del Dogsitter: " + e.getMessage());
 
         }
+    }
+
+
+    public List<Prenotazione> showReservations(Dogsitter ds) throws DAOException {
+
+        List<Prenotazione> list = new ArrayList<>();
+        ResultSet rs;
+
+
+        try {
+            this.cs = this.conn.prepareCall("{call getPrenotazioniDogsitter(?)}");
+            this.cs.setString(1, ds.getEmail());
+
+            this.cs.execute();
+
+            boolean hasResult = cs.execute();
+            if (hasResult) {
+                rs = cs.getResultSet();
+                while (rs.next()) {
+                    int id = rs.getInt(1);
+                    Date date = rs.getDate(2);
+                    String nomeCane = rs.getString(3);
+                    String razzaCane = rs.getString(4);
+                    Dog cane = new Dog(nomeCane, razzaCane);
+                    String nomePad = rs.getString(5);
+                    Padrone pad = new Padrone(nomePad);
+                    int stateId = rs.getInt(6);
+                    ReservationState stato = ReservationState.fromInt(stateId);
+                    Prenotazione pre = new Prenotazione(id, date, cane, pad, stato);
+                    list.add(pre);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Errore nella acquisizione delle prenotazioni: " + e.getMessage());
+        }
+
+        return list;
     }
 
 }
