@@ -14,6 +14,7 @@ public class Prenotazione {
     private Time oraFine;
     private Lavoratore lavoratore;
     private Padrone padrone;
+    private Dog cane;
     private ReservationState stato;
     private ReservationType type;
 
@@ -97,5 +98,9 @@ public class Prenotazione {
     public void setId(int id) {
         this.id = id;
     }
+
+    public Dog getCane(){return cane;}
+
+    public void setCane(Dog cane){this.cane = cane;}
 }
 
