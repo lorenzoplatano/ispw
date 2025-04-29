@@ -63,15 +63,15 @@ public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicCo
         );
 
         colNomeCane.setCellValueFactory(cd ->
-                new SimpleStringProperty(cd.getValue().getNomeCane())
+                new SimpleStringProperty(cd.getValue().getPrenotante().getNomeCane())
         );
 
         colRazza.setCellValueFactory(cd ->
-                new SimpleStringProperty(cd.getValue().getRazzaCane())
+                new SimpleStringProperty(cd.getValue().getPrenotante().getRazzaCane())
         );
 
         colNomeLavoratore.setCellValueFactory(cd ->
-                new SimpleStringProperty(cd.getValue().getNomePrenotante())
+                new SimpleStringProperty(cd.getValue().getPrenotante().getNomePadrone())
         );
 
         colStato.setCellValueFactory(cd ->
