@@ -117,6 +117,26 @@ public class PrenotazioneDogsitterController {
     }
 
     public List<PrenotazioneBean> mostraPrenotazioniDog(ProfiloDogsitterBean dogsitter) throws DAOException, InvalidInputException {
-        return null;
+        Dogsitter ds = new Dogsitter(dogsitter.getEmail());
+        List<Prenotazione> list = dogsitterDao.showReservations(ds);
+
+        List<PrenotazioneBean> listBean = new ArrayList<>();
+        for (Prenotazione d : list) {
+            PrenotazioneBean bean = new PrenotazioneBean();
+
+            bean.setData(d.getData());
+            bean.setStato(d.getStato());
+            bean.setId(d.getId());
+
+            ProfiloPadroneBean padBean = new ProfiloPadroneBean();
+            padBean.setNomeCane(d.getCane().getNome());
+            padBean.setRazzaCane(d.getCane().getRazza());
+            padBean.setNomePadrone(d.getPadrone().getNome());
+            bean.setPrenotante(padBean);
+
+            listBean.add(bean);
+        }
+
+        return listBean;
     }
 }
