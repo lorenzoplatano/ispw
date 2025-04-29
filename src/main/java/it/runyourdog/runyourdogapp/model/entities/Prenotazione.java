@@ -43,6 +43,15 @@ public class Prenotazione {
 
     }
 
+    public Prenotazione(int id, Date data, Dog dog, Padrone padrone, ReservationState stato) {
+        this.id = id;
+        this.data = data;
+        this.padrone = padrone;
+        this.stato = stato;
+        this.cane = dog;
+
+    }
+
     public Date getData() {
         return data;
     }
