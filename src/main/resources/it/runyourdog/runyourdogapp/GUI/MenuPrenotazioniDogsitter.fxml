@@ -88,7 +88,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <Label fx:id="errorLabel" alignment="CENTER" layoutX="236.0" layoutY="723.0" onMouseClicked="#changeRole" prefHeight="56.0" prefWidth="734.0" textAlignment="CENTER">
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="236.0" layoutY="723.0" prefHeight="56.0" prefWidth="734.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
