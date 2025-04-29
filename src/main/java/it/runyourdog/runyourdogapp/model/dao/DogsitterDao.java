@@ -143,7 +143,8 @@ public class DogsitterDao {
                     String razzaCane = rs.getString(4);
                     Dog cane = new Dog(nomeCane, razzaCane);
                     String nomePad = rs.getString(5);
-                    Padrone pad = new Padrone(nomePad);
+                    Padrone pad = new Padrone();
+                    pad.setNome(nomePad);
                     int stateId = rs.getInt(6);
                     ReservationState stato = ReservationState.fromInt(stateId);
                     Prenotazione pre = new Prenotazione(id, date, cane, pad, stato);

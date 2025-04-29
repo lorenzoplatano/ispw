@@ -25,6 +25,8 @@ public class Padrone extends User {
         this.citta = dati[3];
     }
 
+    public Padrone() {}
+
 
     public String getNome() {
         return nome;
