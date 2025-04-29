@@ -10,7 +10,7 @@ import javafx.scene.control.TableView;
 import java.sql.Date;
 import java.util.List;
 
-public class MenuPrenotazioniPadroneGraphicController extends PrenotazionePadroneGraphicController {
+public class MenuPrenotazioniPadroneGraphicController extends PrenotazioneDogsitterGraphicController {
 
     @FXML
     private TableView<PrenotazioneBean> reservationTable;

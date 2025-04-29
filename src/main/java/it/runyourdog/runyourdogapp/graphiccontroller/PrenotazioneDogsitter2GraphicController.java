@@ -1,6 +1,5 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
-import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -12,13 +11,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.util.List;
 
 
-public class PrenotazionePadrone2GraphicController extends PrenotazionePadroneGraphicController{
+public class PrenotazioneDogsitter2GraphicController extends PrenotazioneDogsitterGraphicController {
 
     @FXML
     private TableView<ProfiloDogsitterBean> dogsitterTable;
@@ -82,7 +80,7 @@ public class PrenotazionePadrone2GraphicController extends PrenotazionePadroneGr
 
             controller.sendRequest(prenotazioneBean);
 
-            SingletonStage.getStage(null).showPadronePrenotazione3DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone3.fxml", loggedUser, prenotazioneBean);
+            SingletonStage.getStage(null).showPadronePrenotazione3DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter3.fxml", loggedUser, prenotazioneBean);
 
 
         } catch (InvalidInputException e) {

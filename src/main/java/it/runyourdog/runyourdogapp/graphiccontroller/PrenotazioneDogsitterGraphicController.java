@@ -21,7 +21,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-public class PrenotazionePadroneGraphicController extends GenericGraphicController {
+public class PrenotazioneDogsitterGraphicController extends GenericGraphicController {
 
     @FXML
     private DatePicker data;
@@ -81,7 +81,7 @@ public class PrenotazionePadroneGraphicController extends GenericGraphicControll
 
 
             List<ProfiloDogsitterBean> list = controller.cercaDogsitter(prenotazioneBean);
-            SingletonStage.getStage(null).showPadronePrenotazione2DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazionePadrone2.fxml", list, loggedUser, prenotazioneBean);
+            SingletonStage.getStage(null).showPadronePrenotazione2DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter2.fxml", list, loggedUser, prenotazioneBean);
 
         }catch (DAOException e) {
             Printer.perror(e.getMessage());

@@ -91,7 +91,7 @@ public class SingletonStage {
     public void showPadronePrenotazioneDogsitterPage(String fxmlPath, UserBean loggedPad) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
         Parent root = fxmlLoader.load();
-        PrenotazionePadroneGraphicController controller = fxmlLoader.getController();
+        PrenotazioneDogsitterGraphicController controller = fxmlLoader.getController();
         controller.setLoggedUser(loggedPad);
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -100,7 +100,7 @@ public class SingletonStage {
     public void showPadronePrenotazione2DogsitterPage(String fxmlPath, List<ProfiloDogsitterBean> list, UserBean loggedPad, PrenotazioneBean bean) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
         Parent root = fxmlLoader.load();
-        PrenotazionePadrone2GraphicController controller = fxmlLoader.getController();
+        PrenotazioneDogsitter2GraphicController controller = fxmlLoader.getController();
         controller.setLoggedUser(loggedPad);
         controller.setPrenotazioneBean(bean);
         controller.setDogsitterList(list);
@@ -111,7 +111,7 @@ public class SingletonStage {
     public void showPadronePrenotazione3DogsitterPage(String fxmlPath, UserBean loggedUser, PrenotazioneBean prenotazioneBean) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
         Parent root = fxmlLoader.load();
-        PrenotazionePadroneGraphicController controller = fxmlLoader.getController();
+        PrenotazioneDogsitterGraphicController controller = fxmlLoader.getController();
         controller.setLoggedUser(loggedUser);
         controller.setPrenotazioneBean(prenotazioneBean);
         Scene scene = new Scene(root);
