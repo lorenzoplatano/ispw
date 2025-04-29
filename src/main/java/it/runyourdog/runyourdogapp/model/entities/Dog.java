@@ -13,6 +13,11 @@ public class Dog {
     private Date dataNascita;
     private List<String> vaccinazioni;
 
+    public Dog(String nome, String razza){
+        this.nome = nome;
+        this.razza = razza;
+    }
+
     public Dog(String nome, String sesso, String razza, String microchip, Date dataNascita, List<String> vaccinazioni) {
         this.nome = nome;
         this.sesso = sesso;
