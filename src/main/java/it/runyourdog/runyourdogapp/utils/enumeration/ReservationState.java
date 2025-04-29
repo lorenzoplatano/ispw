@@ -5,7 +5,8 @@ public enum ReservationState {
     IN_ATTESA(1),
     ACCETTATA(2),
     RIFIUTATA(3),
-    CANCELLATA(4);
+    CANCELLATA(4),
+    CONCLUSA(5);
 
     private final int id;
 

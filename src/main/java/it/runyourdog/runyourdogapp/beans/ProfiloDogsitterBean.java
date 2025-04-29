@@ -27,4 +27,8 @@ public class ProfiloDogsitterBean extends ProfiloLavoratoreBean {
             throws InvalidInputException {
         super(email, telefono, eta, genere, nome);
     }
+
+    public ProfiloDogsitterBean() {
+        super();
+    }
 }

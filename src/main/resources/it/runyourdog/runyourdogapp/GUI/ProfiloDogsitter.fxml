@@ -15,52 +15,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.runyourdog.runyourdogapp.graphiccontroller.ProfiloDogsitterGraphicController">
    <children>
-      <HBox layoutX="-2.0" layoutY="44.0" prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: B4B3B3;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Pane prefHeight="100.0" prefWidth="300.0" style="-fx-border-color: black;">
-               <children>
-                  <TextFlow layoutY="33.0" minWidth="-Infinity" prefHeight="31.0" prefWidth="300.0" textAlignment="CENTER">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RUN ">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Text>
-                        <Text fill="#cc6c25" strokeType="OUTSIDE" strokeWidth="0.0" text="YOUR DOG">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </TextFlow>
-               </children>
-            </Pane>
-            <Button maxHeight="-Infinity" maxWidth="309.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: d2d1d1; -fx-border-color: BLACK;" text="PROFILO">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button maxHeight="-Infinity" maxWidth="307.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="LE MIE PRENOTAZIONI">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button maxHeight="-Infinity" maxWidth="293.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="PRENOTAZIONE VETERINARIO">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </HBox>
       <AnchorPane layoutX="129.0" layoutY="151.0" prefHeight="566.0" prefWidth="943.0" style="-fx-background-color: B4B3B3; -fx-background-radius: 4; -fx-border-color: BLACK; -fx-border-radius: 4;" AnchorPane.leftAnchor="129.0" AnchorPane.rightAnchor="128.0">
          <children>
             <GridPane gridLinesVisible="true" layoutX="41.0" layoutY="122.0" prefHeight="262.0" prefWidth="406.0" AnchorPane.leftAnchor="37.0">
@@ -310,5 +264,43 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <HBox prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: B4B3B3;">
+         <children>
+            <Pane prefHeight="100.0" prefWidth="300.0" style="-fx-border-color: black;">
+               <children>
+                  <TextFlow layoutY="33.0" minWidth="-Infinity" prefHeight="31.0" prefWidth="300.0" textAlignment="CENTER">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RUN ">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#cc6c25" strokeType="OUTSIDE" strokeWidth="0.0" text="YOUR DOG">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </TextFlow>
+               </children>
+            </Pane>
+            <Button maxHeight="-Infinity" maxWidth="309.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="450.0" style="-fx-background-color: d2d1d1; -fx-border-color: BLACK;" text="PROFILO">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button maxHeight="-Infinity" maxWidth="307.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="450.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="LE MIE PRENOTAZIONI">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
