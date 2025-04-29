@@ -1,9 +1,6 @@
 package it.runyourdog.runyourdogapp.appcontroller;
 
-import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
@@ -94,10 +91,32 @@ public class PrenotazioneDogsitterController {
             bean.setData(d.getData());
             bean.setStato(d.getStato());
             bean.setId(d.getId());
-            bean.setNomePrenotato(d.getLavoratore().getNome());
+
+            ProfiloLavoratoreBean profilo;
+            if (d.getTipo() == ReservationType.DOGSITTER) {
+                ProfiloDogsitterBean dsBean = new ProfiloDogsitterBean();
+                dsBean.setNome(d.getLavoratore().getNome());
+                profilo = dsBean;
+
+            } else if (d.getTipo() == ReservationType.VETERINARIO) {
+                ProfiloVeterinarioBean vBean = new ProfiloVeterinarioBean();
+                vBean.setNome(d.getLavoratore().getNome());
+
+                profilo = vBean;
+
+            } else {
+                throw new IllegalArgumentException(
+                        "Tipo di prenotazione non supportato: " + d.getTipo()
+                );
+            }
+            bean.setPrenotato(profilo);
             listBean.add(bean);
         }
 
         return listBean;
+    }
+
+    public List<PrenotazioneBean> mostraPrenotazioniDog(ProfiloDogsitterBean dogsitter) throws DAOException, InvalidInputException {
+        return null;
     }
 }

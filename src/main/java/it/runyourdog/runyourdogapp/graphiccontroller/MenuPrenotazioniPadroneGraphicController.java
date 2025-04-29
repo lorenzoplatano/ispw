@@ -46,7 +46,7 @@ public class MenuPrenotazioniPadroneGraphicController extends PrenotazioneDogsit
         );
 
         colNomeLavoratore.setCellValueFactory(cd ->
-                new SimpleStringProperty(cd.getValue().getNomePrenotato())
+                new SimpleStringProperty(cd.getValue().getPrenotato().getNome())
         );
 
         colStato.setCellValueFactory(cd ->

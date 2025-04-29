@@ -127,4 +127,14 @@ public class SingletonStage {
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
+
+    public void showDogsitterReservationMenu(String fxmlPath, UserBean loggedUser, List<PrenotazioneBean> list) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        MenuPrenotazioniDogsitterGraphicController controller = fxmlLoader.getController();
+        controller.setLoggedUser(loggedUser);
+        controller.setPrenotazioniList(list);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
 }

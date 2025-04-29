@@ -28,7 +28,5 @@ public class ProfiloDogsitterBean extends ProfiloLavoratoreBean {
         super(email, telefono, eta, genere, nome);
     }
 
-    public ProfiloDogsitterBean() {
-        super();
-    }
+    public ProfiloDogsitterBean() {}
 }

@@ -4,14 +4,15 @@ import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
-import javafx.scene.control.Button;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.util.List;
 
 
 public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicController{
@@ -23,7 +24,7 @@ public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicCo
     private TableColumn<PrenotazioneBean, Integer> colID;
 
     @FXML
-    private TableColumn<PrenotazioneBean, String> colData;
+    private TableColumn<PrenotazioneBean, Date> colData;
 
     @FXML
     private TableColumn<PrenotazioneBean, String> colNomeCane;
@@ -49,5 +50,39 @@ public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicCo
     @FXML
     public void goToProfilo() throws IOException {
         SingletonStage.getStage(null).showDogsitterHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml", (ProfiloDogsitterBean) loggedUser);
+    }
+
+    @FXML
+    public void initialize() {
+        colID.setCellValueFactory(cd ->
+                new SimpleObjectProperty<>(cd.getValue().getId())
+        );
+
+        colData.setCellValueFactory(cd ->
+                new SimpleObjectProperty<>(cd.getValue().getData())
+        );
+
+        colNomeCane.setCellValueFactory(cd ->
+                new SimpleStringProperty(cd.getValue().getNomeCane())
+        );
+
+        colRazza.setCellValueFactory(cd ->
+                new SimpleStringProperty(cd.getValue().getRazzaCane())
+        );
+
+        colNomeLavoratore.setCellValueFactory(cd ->
+                new SimpleStringProperty(cd.getValue().getNomePrenotante())
+        );
+
+        colStato.setCellValueFactory(cd ->
+                new SimpleStringProperty(cd.getValue().getStato().name())
+        );
+
+
+        reservationTable.setPlaceholder(new Label("Nessuna prenotazione disponibile"));
+    }
+
+    public void setPrenotazioniList(List<PrenotazioneBean> list) {
+        reservationTable.getItems().setAll(list);
     }
 }

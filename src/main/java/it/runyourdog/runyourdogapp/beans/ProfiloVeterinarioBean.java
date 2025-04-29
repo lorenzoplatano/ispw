@@ -19,6 +19,8 @@ public class ProfiloVeterinarioBean extends ProfiloLavoratoreBean {
         super(username, email, password, ruolo, nome);
     }
 
+    public ProfiloVeterinarioBean() {    }
+
     public String getIndirizzo() {
         return indirizzo;
     }

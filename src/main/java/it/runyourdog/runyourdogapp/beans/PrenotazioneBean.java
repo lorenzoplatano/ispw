@@ -21,7 +21,7 @@ public class PrenotazioneBean {
     private ReservationState stato;
     private ReservationType type;
     private int id;
-    private String nomePrenotato;
+
 
 
     public void setData(Date inputDate) throws InvalidInputException {
@@ -103,12 +103,8 @@ public class PrenotazioneBean {
         this.id = id;
     }
 
-    public void setNomePrenotato(String nome) throws InvalidInputException {
-        if (nome == null || nome.trim().isEmpty()) {
-            throw new InvalidInputException("Nome prenotato non valido.");
-        }
-        this.nomePrenotato = nome.trim();
-    }
+
+
 
 
     public int getId() {
@@ -147,7 +143,5 @@ public class PrenotazioneBean {
         return type;
     }
 
-    public String getNomePrenotato() {
-        return nomePrenotato;
-    }
+
 }
