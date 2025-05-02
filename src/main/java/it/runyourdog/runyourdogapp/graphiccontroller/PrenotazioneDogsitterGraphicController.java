@@ -61,12 +61,18 @@ public class PrenotazioneDogsitterGraphicController extends GenericGraphicContro
         String inizio = orarioinizio.getText();
         String fine = orariofine.getText();
 
+        LocalDate today = LocalDate.now();
+
 
         try {
 
             if (date == null) {
                 throw new InvalidInputException("Selezionare una data.");
             }
+
+            if (date.isBefore(today)) {
+                 throw new InvalidInputException("La data della prenotazione non può essere antecedente a oggi.");
+             }
 
             if (inizio.isEmpty() || fine.isEmpty() || !inizio.matches(ORARIOFORMAT) || !fine.matches(ORARIOFORMAT)) {
                 throw new InvalidInputException("Specificare orari nel formato corretto: HH:mm.");

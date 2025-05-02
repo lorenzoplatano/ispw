@@ -2,11 +2,7 @@ package it.runyourdog.runyourdogapp.beans;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDate;
-import java.time.ZoneId;
-
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
-import it.runyourdog.runyourdogapp.model.entities.Lavoratore;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
@@ -28,13 +24,6 @@ public class PrenotazioneBean {
         if (inputDate == null) {
             throw new InvalidInputException("Data non valida.");
         }
-        LocalDate inputLocalDate = inputDate.toLocalDate();
-        LocalDate today = LocalDate.now();
-
-       // if (inputLocalDate.isBefore(today)) {
-       //     throw new InvalidInputException("La data della prenotazione non può essere antecedente a oggi.");
-       // }
-
         this.data = inputDate;
     }
 

@@ -11,6 +11,7 @@ import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 import it.runyourdog.runyourdogapp.model.entities.Lavoratore;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
 import java.sql.Date;
@@ -140,4 +141,27 @@ public class PrenotazioneDogsitterController {
 
         return listBean;
     }
+
+
+    public void gestisciPrenotazione(PrenotazioneBean selected, ReservationState stato) throws DAOException {
+
+        DogsitterDao dao = new DogsitterDao();
+        int id = selected.getId();
+        Prenotazione prenotazione = new Prenotazione(id);
+
+        switch (stato) {
+            case ACCETTATA:
+                dao.acceptReservation(prenotazione);
+                break;
+            case RIFIUTATA:
+                dao.refuseReservation(prenotazione);
+                break;
+
+            default:
+                throw new IllegalArgumentException("Stato non supportato: " + stato);
+        }
+    }
+
+
 }
+

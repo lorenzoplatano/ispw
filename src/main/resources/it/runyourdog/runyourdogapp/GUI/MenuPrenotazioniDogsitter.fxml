@@ -81,7 +81,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Button fx:id="confermaChoice" layoutX="808.0" layoutY="460.0" mnemonicParsing="false" onMouseClicked="#changeRole" prefHeight="27.0" prefWidth="102.0" style="-fx-border-radius: 5; -fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: cc6c25;" text="CONFERMA" visible="false">
+            <Button fx:id="confermaChoice" layoutX="808.0" layoutY="460.0" mnemonicParsing="false" onMouseClicked="#onConfermaChoice" prefHeight="27.0" prefWidth="102.0" style="-fx-border-radius: 5; -fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: cc6c25;" text="CONFERMA" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
