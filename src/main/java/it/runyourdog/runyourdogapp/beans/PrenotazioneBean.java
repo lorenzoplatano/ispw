@@ -31,9 +31,9 @@ public class PrenotazioneBean {
         LocalDate inputLocalDate = inputDate.toLocalDate();
         LocalDate today = LocalDate.now();
 
-        if (inputLocalDate.isBefore(today)) {
-            throw new InvalidInputException("La data della prenotazione non può essere antecedente a oggi.");
-        }
+       // if (inputLocalDate.isBefore(today)) {
+       //     throw new InvalidInputException("La data della prenotazione non può essere antecedente a oggi.");
+       // }
 
         this.data = inputDate;
     }
