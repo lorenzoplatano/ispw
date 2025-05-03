@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.beans;
 import java.sql.Date;
 import java.sql.Time;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.utils.Validator;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
@@ -31,7 +32,12 @@ public class PrenotazioneBean {
         if (city == null || city.trim().isEmpty()) {
             throw new InvalidInputException("Città non valida.");
         }
-        this.citta = city.trim();
+
+        if (city.matches(".*\\d.*")) {
+            throw new InvalidInputException("La città non può contenere numeri.");
+        }
+
+        this.citta = Validator.formatCity(city);
     }
 
     public void setOrarioInizio(Time inizioInput) throws InvalidInputException {

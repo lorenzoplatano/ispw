@@ -1,5 +1,6 @@
 package it.runyourdog.runyourdogapp.beans;
 
+import it.runyourdog.runyourdogapp.utils.Validator;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import java.sql.Date;
 import java.util.List;
@@ -115,6 +116,10 @@ public class ProfiloPadroneBean extends UserBean {
     public void setCittaPadrone(String cittaPadrone) throws InvalidInputException {
         if (cittaPadrone == null || cittaPadrone.trim().isEmpty())
             throw new InvalidInputException("La città del padrone è obbligatoria.");
-        this.cittaPadrone = cittaPadrone.trim();
+
+        if (cittaPadrone.matches(".*\\d.*")) {
+            throw new InvalidInputException("La città non può contenere numeri.");
+        }
+        this.cittaPadrone = Validator.formatCity(cittaPadrone);
     }
 }

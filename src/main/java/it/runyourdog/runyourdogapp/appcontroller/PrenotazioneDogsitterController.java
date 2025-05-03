@@ -145,6 +145,7 @@ public class PrenotazioneDogsitterController {
 
     public void gestisciPrenotazione(PrenotazioneBean selected, ReservationState stato) throws DAOException {
 
+
         DogsitterDao dao = new DogsitterDao();
         int id = selected.getId();
         Prenotazione prenotazione = new Prenotazione(id);
@@ -156,8 +157,11 @@ public class PrenotazioneDogsitterController {
             case RIFIUTATA:
                 dao.refuseReservation(prenotazione);
                 break;
-
+            case CANCELLATA:
+                dao.cancelReservation(prenotazione);
+                break;
             default:
+
                 throw new IllegalArgumentException("Stato non supportato: " + stato);
         }
     }

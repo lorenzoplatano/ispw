@@ -193,5 +193,21 @@ public class DogsitterDao {
             throw new DAOException("Errore nel rifiuto della prenotazione: " + e.getMessage());
         }
     }
+
+    public void cancelReservation(Prenotazione prenotazione)throws DAOException {
+        try {
+
+            int id = prenotazione.getId();
+            this.cs = this.conn.prepareCall("{call cancellaPrenotazioneDogsitter(?)}");
+            this.cs.setInt(1, id);
+
+
+            this.cs.execute();
+
+
+        }catch (SQLException e) {
+            throw new DAOException("Errore nella cancellazione della prenotazione: " + e.getMessage());
+        }
+    }
 }
 

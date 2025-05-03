@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 
+import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
@@ -118,9 +119,9 @@ public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicCo
             List<PrenotazioneBean> nuove = con.mostraPrenotazioniDog(dogsitter);
             setPrenotazioniList(nuove);
         } catch (InvalidInputException e) {
-            throw new RuntimeException(e);
-        } catch (DAOException e) {
             showError(e.getMessage());
+        } catch (DAOException e) {
+            Printer.perror("Errore: " + e.getMessage());
         }
     }
 
@@ -128,7 +129,7 @@ public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicCo
     private void onConfermaChoice() {
         try {
             PrenotazioneBean selected = reservationTable.getSelectionModel().getSelectedItem();
-            if (selected == null) return;
+
             PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
 
             String choice = comboChoice.getValue();
@@ -143,7 +144,7 @@ public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicCo
                 case "Rifiuta":
                     newState = ReservationState.RIFIUTATA;
                     break;
-                case "Cancellata":
+                case "Cancella":
                     newState = ReservationState.CANCELLATA;
                     break;
                 default:

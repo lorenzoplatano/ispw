@@ -68,32 +68,42 @@
             </Button>
          </children>
       </HBox>
-      <AnchorPane layoutX="168.0" layoutY="153.4" prefHeight="535.0" prefWidth="850.0" style="-fx-background-color: B4B3B3; -fx-background-radius: 4; -fx-border-color: BLACK; -fx-border-radius: 4;" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="182.39999999999998" AnchorPane.topAnchor="153.4">
+      <AnchorPane layoutX="80.0" layoutY="150.0" prefHeight="542.0" prefWidth="1027.0" style="-fx-background-color: B4B3B3; -fx-background-radius: 4; -fx-border-color: BLACK; -fx-border-radius: 4;" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="93.0" AnchorPane.topAnchor="150.0">
          <children>
-            <Button layoutX="251.0" layoutY="429.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="GESTISCI PRENOTAZIONE" AnchorPane.bottomAnchor="59.7999999999999" AnchorPane.topAnchor="429.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
-            <Button layoutX="711.0" layoutY="469.0" mnemonicParsing="false" onMouseClicked="#changeRole" prefHeight="27.0" prefWidth="71.0" style="-fx-border-radius: 5; -fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: cc6c25;" text="LOGOUT" AnchorPane.bottomAnchor="60.0" AnchorPane.topAnchor="454.0">
+            <Button layoutX="895.0" layoutY="459.0" mnemonicParsing="false" onMouseClicked="#changeRole" prefHeight="32.0" prefWidth="71.0" style="-fx-border-radius: 5; -fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: cc6c25;" text="LOGOUT" AnchorPane.bottomAnchor="52.0" AnchorPane.topAnchor="458.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Text layoutX="102.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona una delle prenotazioni in attesa o confermate per continuare">
+            <Text layoutX="202.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona una delle prenotazioni in attesa o confermate per continuare" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="202.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <TableView fx:id="reservationTable" layoutX="151.0" layoutY="96.0" prefHeight="288.0" prefWidth="526.0">
+            <TableView fx:id="reservationTable" layoutX="253.0" layoutY="97.0" prefHeight="288.0" prefWidth="526.0" AnchorPane.leftAnchor="247.0" AnchorPane.rightAnchor="247.0">
                <columns>
                   <TableColumn fx:id="colID" prefWidth="94.0" text="ID" />
                   <TableColumn fx:id="colData" prefWidth="95.0" text="Data" />
                   <TableColumn fx:id="colTipo" prefWidth="96.0" text="Tipo" />
                   <TableColumn fx:id="colNomeLavoratore" prefWidth="132.0" text="Nome Lavoratore" />
-                  <TableColumn fx:id="colStato" prefWidth="108.0" text="Stato" />
+                  <TableColumn fx:id="colStato" prefWidth="113.0" text="Stato" />
                </columns>
             </TableView>
+            <Button fx:id="confermaChoice" layoutX="864.0" layoutY="404.0" mnemonicParsing="false" onMouseClicked="#onConfermaChoice" prefHeight="27.0" prefWidth="102.0" style="-fx-border-radius: 5; -fx-background-color: E1A15C; -fx-background-radius: 5; -fx-border-color: cc6c25;" text="CONFERMA" visible="false">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text fx:id="testoChoice" layoutX="253.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliccare su conferma per annullare la richiesta di prenotazione selezionata" visible="false">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="testoChoice1" layoutX="293.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliccare su conferma per annullare la prenotazione selezionata" visible="false">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <Label fx:id="errorLabel" alignment="CENTER" layoutX="226.0" layoutY="709.0" prefHeight="56.0" prefWidth="734.0" textAlignment="CENTER">

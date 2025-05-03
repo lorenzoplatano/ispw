@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.beans;
 
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
+import it.runyourdog.runyourdogapp.utils.Validator;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
 import java.util.*;
@@ -77,7 +78,10 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
     public void setCitta(String citta) throws InvalidInputException {
         if (citta == null || citta.trim().isEmpty())
             throw new InvalidInputException("Città non valida.");
-        this.citta = citta.trim();
+        if (citta.matches(".*\\d.*")) {
+            throw new InvalidInputException("La città non può contenere numeri.");
+        }
+        this.citta = Validator.formatCity(citta);
     }
 
     public void setOrari(List<Orario> orari) throws InvalidInputException {
