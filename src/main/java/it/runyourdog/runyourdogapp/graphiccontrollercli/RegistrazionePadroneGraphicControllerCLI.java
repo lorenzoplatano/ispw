@@ -64,116 +64,45 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
         while (true) {
             try {
                 Printer.printf("Inserisci telefono padrone:");
-                String telefonoInput = scanner.nextLine().trim();
-                profiloPadroneBean.setTelefonoPadrone(telefonoInput);
-                break;
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
+                profiloPadroneBean.setTelefonoPadrone(scanner.nextLine().trim());
 
-
-        while (true) {
-            try {
                 Printer.printf("Inserisci indirizzo padrone:");
-                String indirizzoInput = scanner.nextLine().trim();
-                profiloPadroneBean.setIndirizzoPadrone(indirizzoInput);
-                break;
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
+                profiloPadroneBean.setIndirizzoPadrone(scanner.nextLine().trim());
 
-
-        while (true) {
-            try {
                 Printer.printf("Inserisci nome del cane:");
-                String nomeInput = scanner.nextLine().trim();
-                profiloPadroneBean.setNomeCane(nomeInput);
-                break;
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
+                profiloPadroneBean.setNomeCane(scanner.nextLine().trim());
 
-
-        while (true) {
-            try {
                 Printer.printf("Inserisci razza del cane:");
-                String razzaInput = scanner.nextLine().trim();
-                profiloPadroneBean.setRazzaCane(razzaInput);
-                break;
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
+                profiloPadroneBean.setRazzaCane(scanner.nextLine().trim());
 
-
-
-        while (true) {
-            try {
                 Printer.printf("Inserisci sesso del cane (M/F):");
-                String sessoInput = scanner.nextLine().trim().toUpperCase();
-                profiloPadroneBean.setSessoCane(sessoInput);
-                break;
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
+                profiloPadroneBean.setSessoCane(scanner.nextLine().trim().toUpperCase());
 
-        while (true) {
-            try {
                 Printer.printf("Inserisci microchip del cane:");
-                String microchipInput = scanner.nextLine().trim();
-                profiloPadroneBean.setMicrochip(microchipInput);
-                break;
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
+                profiloPadroneBean.setMicrochip(scanner.nextLine().trim());
 
-
-        while (true) {
-            try {
                 Printer.printf("Inserisci vaccinazioni separate da virgola (es. Rabbia, Cimurro):");
-                String line = scanner.nextLine().trim();
-                List<String> vaccinazioniList = Arrays.stream(line.split("\\s*,\\s*"))
+                List<String> vaccinazioni = Arrays.stream(
+                                scanner.nextLine().trim().split("\\s*,\\s*"))
                         .filter(s -> !s.isEmpty())
                         .toList();
-                profiloPadroneBean.setVaccinazioniCane(vaccinazioniList);
-                break;
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
+                profiloPadroneBean.setVaccinazioniCane(vaccinazioni);
 
-
-        while (true) {
-            try {
                 Printer.printf("Inserisci data di nascita del cane (yyyy-MM-dd):");
-                String dateStr = scanner.nextLine().trim();
-                Date dataNascita = Date.valueOf(dateStr);
+                Date dataNascita = Date.valueOf(scanner.nextLine().trim());
                 profiloPadroneBean.setDataNascitaCane(dataNascita);
-                break;
-            } catch (IllegalArgumentException _) {
-                Printer.perror("Formato data non valido. Usa yyyy-MM-dd (es. 2020-05-17).");
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
 
-
-        while (true) {
-            try {
                 Printer.printf("Inserisci città del padrone:");
-                String cittaInput = scanner.nextLine().trim();
-                profiloPadroneBean.setCittaPadrone(cittaInput);
+                profiloPadroneBean.setCittaPadrone(scanner.nextLine().trim());
+
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
+                Printer.perror("Errore: " + e.getMessage());
+            } catch (IllegalArgumentException e) {
+                Printer.perror("Formato data non valido. Usa yyyy-MM-dd (es. 2020-05-17).");
             }
+            Printer.perror("Riprova l'inserimento di tutti i dati.\n");
         }
-
 
         try {
             controller.padRegister(profiloPadroneBean);
@@ -190,5 +119,6 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
             return null;
         }
     }
+
 
 }
