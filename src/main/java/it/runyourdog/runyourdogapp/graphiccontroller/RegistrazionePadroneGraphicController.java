@@ -81,7 +81,7 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
             new RegistrazioneController().padRegister(profiloPadroneBean);
             SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", profiloPadroneBean);
 
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException _) {
             showError("Formato data errato. Utilizza yyyy-mm-dd.");
         } catch (InvalidInputException e) {
             showError(e.getMessage());

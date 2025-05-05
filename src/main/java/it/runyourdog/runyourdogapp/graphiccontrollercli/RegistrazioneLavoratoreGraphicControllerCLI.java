@@ -84,7 +84,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
 
                 profiloLavoratoreBean.setEta(etaInput);
                 break;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException _) {
                 Printer.perror("Errore: devi inserire un numero intero valido!");
             } catch (InvalidInputException e) {
                 Printer.perror("Errore: " + e.getMessage());
@@ -187,7 +187,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
 
                 return new Orario(giorno, Time.valueOf(inizio), Time.valueOf(fine));
 
-            } catch (DateTimeParseException e) {
+            } catch (DateTimeParseException _) {
                 Printer.perror("Formato orario non valido. Usa il formato HH:mm (es. 09:30) e inserisci valori compresi tra 00:00 e le 23:59.");
             }
         }

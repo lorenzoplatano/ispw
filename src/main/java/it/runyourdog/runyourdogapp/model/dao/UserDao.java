@@ -52,7 +52,7 @@ public class UserDao {
             result = this.cs.getInt(2);
 
         }catch(SQLException e){
-            throw new DAOException("Errore: l'email inserita già è in uso");
+            throw new DAOException("Errore: " + e.getMessage());
         }
 
         return (result == 0);

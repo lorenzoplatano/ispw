@@ -155,7 +155,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 Date dataNascita = Date.valueOf(dateStr);
                 profiloPadroneBean.setDataNascitaCane(dataNascita);
                 break;
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException _) {
                 Printer.perror("Formato data non valido. Usa yyyy-MM-dd (es. 2020-05-17).");
             } catch (InvalidInputException e) {
                 Printer.perror("Errore: " + e.getMessage());

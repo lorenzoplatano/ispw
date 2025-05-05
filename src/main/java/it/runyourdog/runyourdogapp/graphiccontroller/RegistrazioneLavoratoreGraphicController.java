@@ -50,7 +50,7 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
         try {
             int e = Integer.parseInt(eta.getText().trim());
             profiloLavoratoreBean.setEta(e);
-        } catch (NumberFormatException ex) {
+        } catch (NumberFormatException _) {
             throw new InvalidInputException("Inserisci un'età valida.");
         }
 
