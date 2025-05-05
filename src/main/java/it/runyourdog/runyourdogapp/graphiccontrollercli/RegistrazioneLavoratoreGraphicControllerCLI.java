@@ -75,61 +75,34 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
     private UserBean registerLav(ProfiloLavoratoreBean profiloLavoratoreBean) throws InvalidInputException {
         Scanner scanner = new Scanner(System.in);
 
+
         while (true) {
             try {
                 Printer.printf("Inserisci età:");
-                String input = scanner.nextLine().trim();
-
-                int etaInput = Integer.parseInt(input);
-
+                int etaInput = Integer.parseInt(scanner.nextLine().trim());
                 profiloLavoratoreBean.setEta(etaInput);
-                break;
-            } catch (NumberFormatException _) {
-                Printer.perror("Errore: devi inserire un numero intero valido!");
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
 
-
-
-        while (true) {
-            try {
                 Printer.printf("Inserisci città:");
-                String cittaInput = scanner.nextLine().trim();
-                profiloLavoratoreBean.setCitta(cittaInput);
-                break;
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
+                profiloLavoratoreBean.setCitta(scanner.nextLine().trim());
 
-        while (true) {
-            try {
                 Printer.printf("Inserisci telefono:");
-                String telefonoInput = scanner.nextLine().trim();
-                profiloLavoratoreBean.setTelefono(telefonoInput);
-                break;
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
+                profiloLavoratoreBean.setTelefono(scanner.nextLine().trim());
 
-        while (true) {
-            try {
                 Printer.printf("Inserisci genere (M/F):");
-                String genereInput = scanner.nextLine().trim();
-                profiloLavoratoreBean.setGenere(genereInput);
-                break;
-            } catch (InvalidInputException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
+                profiloLavoratoreBean.setGenere(scanner.nextLine().trim());
 
+                break;
+
+            } catch (NumberFormatException nfe) {
+                Printer.perror("Errore: devi inserire un numero intero valido per l'età!");
+            } catch (InvalidInputException iie) {
+                Printer.perror("Errore: " + iie.getMessage());
+            }
+
+        }
 
         List<Orario> orariSettimana;
         boolean orariValidi = false;
-
         do {
             orariSettimana = new ArrayList<>();
             String[] giorniSettimana = {
@@ -142,10 +115,8 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 if (scanner.nextLine().trim().equalsIgnoreCase("s")) {
                     boolean aggiungiAltri = true;
                     while (aggiungiAltri) {
-
                         Orario orario = inserisciOrarioValidoPerGiorno(giorno, scanner);
                         orariSettimana.add(orario);
-
                         Printer.printf("Vuoi aggiungere un altro orario per " + giorno + "? (s/n):");
                         aggiungiAltri = scanner.nextLine().trim().equalsIgnoreCase("s");
                     }
@@ -153,21 +124,18 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
             }
 
             try {
-
                 profiloLavoratoreBean.setOrari(orariSettimana);
                 orariValidi = true;
             } catch (InvalidInputException e) {
-
                 Printer.perror("Errore negli orari inseriti: " + e.getMessage());
                 Printer.perror("Riproviamo l'inserimento di tutti gli orari.\n");
-
             }
         } while (!orariValidi);
 
 
         return completaRegistrazioneLavoratore(profiloLavoratoreBean);
-
     }
+
 
     protected abstract UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) throws InvalidInputException;
 
