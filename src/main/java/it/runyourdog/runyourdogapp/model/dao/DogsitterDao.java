@@ -3,7 +3,7 @@ package it.runyourdog.runyourdogapp.model.dao;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.entities.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
-import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
+
 
 import java.sql.*;
 import java.util.ArrayList;

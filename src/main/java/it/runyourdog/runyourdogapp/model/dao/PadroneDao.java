@@ -1,9 +1,7 @@
 package it.runyourdog.runyourdogapp.model.dao;
 
-import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
-import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+
 import it.runyourdog.runyourdogapp.model.entities.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
