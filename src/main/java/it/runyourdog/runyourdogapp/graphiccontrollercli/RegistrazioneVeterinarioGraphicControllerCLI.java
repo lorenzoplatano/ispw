@@ -11,36 +11,20 @@ import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
 import java.util.Scanner;
 
-public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneLavoratoreGraphicControllerCLI{
+public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneLavoratoreGraphicControllerCLI {
 
     @Override
     protected UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) {
-
-
         try {
             if (!(bean instanceof ProfiloVeterinarioBean veterinarioBean)) {
                 throw new ProfileRetrievalException("Errore interno: tipo di bean errato. Atteso ProfiloVeterinarioBean.");
             }
 
-            Scanner scanner = new Scanner(System.in);
 
-
-            while (true) {
-                try {
-                    Printer.printf("Inserisci indirizzo dello studio:");
-                    String indirizzo = scanner.nextLine().trim();
-
-                    veterinarioBean.setIndirizzo(indirizzo);
-                    break;
-                } catch (InvalidInputException e) {
-                    Printer.perror("Errore: " + e.getMessage());
-                }
-            }
-
+            readStudioAddress(veterinarioBean);
 
             controller.vetRegister(veterinarioBean);
             Printer.printf("Registrazione completata con successo!\nProfilo creato:\n" + veterinarioBean);
-
             return new UserBean(
                     veterinarioBean.getUsername(),
                     veterinarioBean.getEmail(),
@@ -51,11 +35,21 @@ public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneL
         } catch (DAOException | InvalidInputException | ProfileRetrievalException e) {
             Printer.perror(e.getMessage());
             return null;
-
         }
-
-
     }
 
 
+    private void readStudioAddress(ProfiloVeterinarioBean veterinarioBean) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                Printer.printf("Inserisci indirizzo dello studio:");
+                String indirizzo = scanner.nextLine().trim();
+                veterinarioBean.setIndirizzo(indirizzo);
+                break;
+            } catch (InvalidInputException e) {
+                Printer.perror("Errore: " + e.getMessage());
+            }
+        }
+    }
 }
