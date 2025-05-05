@@ -68,7 +68,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 profiloPadroneBean.setTelefonoPadrone(telefonoInput);
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
@@ -80,7 +80,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 profiloPadroneBean.setIndirizzoPadrone(indirizzoInput);
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
@@ -92,7 +92,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 profiloPadroneBean.setNomeCane(nomeInput);
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
@@ -104,7 +104,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 profiloPadroneBean.setRazzaCane(razzaInput);
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
@@ -117,7 +117,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 profiloPadroneBean.setSessoCane(sessoInput);
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
@@ -128,7 +128,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 profiloPadroneBean.setMicrochip(microchipInput);
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
@@ -143,7 +143,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 profiloPadroneBean.setVaccinazioniCane(vaccinazioniList);
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
@@ -158,7 +158,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
             } catch (IllegalArgumentException _) {
                 Printer.perror("Formato data non valido. Usa yyyy-MM-dd (es. 2020-05-17).");
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
@@ -170,7 +170,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 profiloPadroneBean.setCittaPadrone(cittaInput);
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 

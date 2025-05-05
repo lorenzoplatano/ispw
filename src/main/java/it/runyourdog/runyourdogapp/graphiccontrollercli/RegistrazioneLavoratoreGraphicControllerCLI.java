@@ -87,7 +87,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
             } catch (NumberFormatException _) {
                 Printer.perror("Errore: devi inserire un numero intero valido!");
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
@@ -100,7 +100,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 profiloLavoratoreBean.setCitta(cittaInput);
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
@@ -111,7 +111,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 profiloLavoratoreBean.setTelefono(telefonoInput);
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
@@ -122,7 +122,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 profiloLavoratoreBean.setGenere(genereInput);
                 break;
             } catch (InvalidInputException e) {
-                Printer.perror("Errore: " + e.getMessage());
+                Printer.perror(e.getMessage());
             }
         }
 
