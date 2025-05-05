@@ -48,7 +48,7 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
         setTelefono(telefono);
     }
 
-    public ProfiloLavoratoreBean() {}
+    protected ProfiloLavoratoreBean() {}
 
     public String getNome() { return nome; }
     public int getEta() { return eta; }

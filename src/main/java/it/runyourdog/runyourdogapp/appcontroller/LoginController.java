@@ -10,7 +10,6 @@ import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
 import it.runyourdog.runyourdogapp.model.dao.PadroneDao;
 import it.runyourdog.runyourdogapp.model.entities.*;
 import it.runyourdog.runyourdogapp.utils.Printer;
-import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import javax.security.auth.login.CredentialException;
 import java.util.List;
 

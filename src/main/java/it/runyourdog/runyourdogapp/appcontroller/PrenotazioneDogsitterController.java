@@ -5,10 +5,9 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
 import it.runyourdog.runyourdogapp.model.dao.PadroneDao;
-import it.runyourdog.runyourdogapp.model.dao.UserDao;
-import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
+
 import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
-import it.runyourdog.runyourdogapp.model.entities.Lavoratore;
+
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
@@ -61,7 +60,7 @@ public class PrenotazioneDogsitterController {
     }
 
 
-    public void sendRequest(PrenotazioneBean request) throws DAOException, InvalidInputException {
+    public void sendRequest(PrenotazioneBean request) throws DAOException {
 
         Date data = request.getData();
         Time oraInizio = request.getOrarioInizio();
