@@ -72,9 +72,9 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
         }
     }
 
-    private UserBean registerLav(ProfiloLavoratoreBean profiloLavoratoreBean) throws InvalidInputException {
-        Scanner scanner = new Scanner(System.in);
 
+    protected UserBean registerLav(ProfiloLavoratoreBean profiloLavoratoreBean) throws InvalidInputException {
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             try {
@@ -92,15 +92,20 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 profiloLavoratoreBean.setGenere(scanner.nextLine().trim());
 
                 break;
-
             } catch (NumberFormatException nfe) {
                 Printer.perror("Errore: devi inserire un numero intero valido per l'età!");
             } catch (InvalidInputException iie) {
                 Printer.perror("Errore: " + iie.getMessage());
             }
-
         }
 
+        List<Orario> orariSettimana = collectOrari(scanner);
+        profiloLavoratoreBean.setOrari(orariSettimana);
+
+        return completaRegistrazioneLavoratore(profiloLavoratoreBean);
+    }
+
+    private List<Orario> collectOrari(Scanner scanner) {
         List<Orario> orariSettimana;
         boolean orariValidi = false;
         do {
@@ -109,7 +114,6 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                     "Lunedì", "Martedì", "Mercoledì", "Giovedì",
                     "Venerdì", "Sabato", "Domenica"
             };
-
             for (String giorno : giorniSettimana) {
                 Printer.printf("Vuoi inserire uno o più orari per " + giorno + "? (s/n):");
                 if (scanner.nextLine().trim().equalsIgnoreCase("s")) {
@@ -122,7 +126,6 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                     }
                 }
             }
-
             try {
                 profiloLavoratoreBean.setOrari(orariSettimana);
                 orariValidi = true;
@@ -131,10 +134,9 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 Printer.perror("Riproviamo l'inserimento di tutti gli orari.\n");
             }
         } while (!orariValidi);
-
-
-        return completaRegistrazioneLavoratore(profiloLavoratoreBean);
+        return orariSettimana;
     }
+
 
 
     protected abstract UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) throws InvalidInputException;
