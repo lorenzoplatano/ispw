@@ -25,7 +25,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
             Printer.printf("1) Mostra profilo");
             Printer.printf("2) Modifica informazioni personali");
             Printer.printf("3) Modifica orari di lavoro");
-            Printer.printf("4) Gestisci le tue prenotazioni");
+            Printer.printf("4) Gestisci prenotazioni");
             Printer.printf("5) Logout");
             Printer.printf("6) Esci");
 

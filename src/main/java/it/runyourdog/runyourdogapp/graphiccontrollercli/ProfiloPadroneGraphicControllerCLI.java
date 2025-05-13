@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
+import it.runyourdog.runyourdogapp.graphiccontroller.PrenotazioneDogsitterGraphicController;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
 public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicControllerCLI {
@@ -12,8 +13,6 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
     public ProfiloPadroneGraphicControllerCLI(UserBean loggedUser) {
         this.loggedUser = loggedUser;
     }
-
-
 
 
     @Override
@@ -28,8 +27,9 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
             Printer.printf("2) Modifica profilo");
             Printer.printf("3) Prenota Dogsitter");
             Printer.printf("4) Prenota Veterinario");
-            Printer.printf("5) Logout");
-            Printer.printf("6) Esci");
+            Printer.printf("5) Gestisci prenotazioni");
+            Printer.printf("6) Logout");
+            Printer.printf("7) Esci");
 
 
             choice = getChoice(1,6);
@@ -38,10 +38,11 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
                 switch (choice) {
                     case 1 -> this.getProfilo(loggedUser);
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 3 -> new PrenotazioneDogsitterGraphicControllerCLI(loggedUser).start();
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 5 -> new PreloginGraphicControllerCLI().start();
-                    case 6 -> System.exit(0);
+                    case 5 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 6 -> new PreloginGraphicControllerCLI().start();
+                    case 7 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
                 }
 
