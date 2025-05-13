@@ -213,4 +213,20 @@ public class PadroneDao {
 
         return list;
     }
+
+    public int countOverlapping(String email, Date data, Time orarioInizio, Time orarioFine) throws DAOException{
+
+        try {
+            this.cs = this.conn.prepareCall("{call check_overlap(?,?,?,?,?)}");
+            cs.setString(1, email);
+            cs.setDate(2, data);
+            cs.setTime(3, orarioInizio);
+            cs.setTime(4, orarioFine);
+            cs.registerOutParameter(5, Types.INTEGER);
+            cs.execute();
+            return cs.getInt(5);
+        } catch (SQLException e) {
+            throw new DAOException("Errore nel controllo di sovrapposizione degli orari: " + e.getMessage());
+        }
+    }
 }
