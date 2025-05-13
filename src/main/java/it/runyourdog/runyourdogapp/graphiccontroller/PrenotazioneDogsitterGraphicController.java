@@ -85,6 +85,7 @@ public class PrenotazioneDogsitterGraphicController extends GenericGraphicContro
             prenotazioneBean.setCitta(city);
             prenotazioneBean.setPrenotante((ProfiloPadroneBean) loggedUser);
 
+            controller.validateNoOverlap(prenotazioneBean);
 
             List<ProfiloDogsitterBean> list = controller.cercaDogsitter(prenotazioneBean);
             SingletonStage.getStage(null).showPadronePrenotazione2DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter2.fxml", list, loggedUser, prenotazioneBean);

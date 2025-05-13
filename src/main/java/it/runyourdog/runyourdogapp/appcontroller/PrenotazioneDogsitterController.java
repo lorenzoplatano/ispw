@@ -166,5 +166,21 @@ public class PrenotazioneDogsitterController {
     }
 
 
+    public void validateNoOverlap(PrenotazioneBean nuova) throws DAOException, InvalidInputException {
+
+        int count = padroneDao.countOverlapping(
+                nuova.getPrenotante().getEmail(),
+                nuova.getData(),
+                nuova.getOrarioInizio(),
+                nuova.getOrarioFine()
+        );
+
+        if (count > 0) {
+            throw new InvalidInputException(
+                    "Hai già una prenotazione che si sovrappone nell'intervallo di orari scelto.");
+        }
+    }
+
+
 }
 
