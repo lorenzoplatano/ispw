@@ -8,6 +8,7 @@ import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -41,24 +42,22 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
 
             Printer.printf("1) Inizia prenotazione dogsitter");
             Printer.printf("2) Torna al profilo");
-            Printer.printf("3) Prenotazione Veterinario");
-            Printer.printf("4) Gestisci prenotazioni");
-            Printer.printf("5) Prenota Veterinario");
-            Printer.printf("6) Logout");
-            Printer.printf("7) Esci");
+            Printer.printf("3) Gestisci prenotazioni");
+            Printer.printf("4) Prenota Veterinario");
+            Printer.printf("5) Logout");
+            Printer.printf("6) Esci");
 
 
-            choice = getChoice(1, 7);
+            choice = getChoice(1, 6);
 
             try {
                 switch (choice) {
                     case 1 -> startBooking();
                     case 2 -> new ProfiloPadroneGraphicControllerCLI(loggedUser).start();
-                    case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 3 -> manageReservations();
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 5 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 6 -> new PreloginGraphicControllerCLI().start();
-                    case 7 -> System.exit(0);
+                    case 5 -> new PreloginGraphicControllerCLI().start();
+                    case 6 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
                 }
 
@@ -73,7 +72,7 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
     private void startBooking() {
         try {
             PrenotazioneBean request = findDogsitter();
-            if (request.getPrenotato() == null) {
+            if (request == null) {
                 Printer.printf("Richiesta di prenotazione annullata!\n");
                 showMenu();
             }
@@ -138,9 +137,11 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
                 Printer.printf("Nessun dogsitter disponibile per i criteri specificati.");
             } else {
                 Printer.printf("Dogsitter trovati:");
-                for (ProfiloDogsitterBean d : results) {
+                for (int i = 0; i < results.size(); i++) {
+                    ProfiloDogsitterBean d = results.get(i);
                     String line = String.format(
-                            "- %s, %d anni, %s, Tel: %s, Email: %s",
+                            "%d) %s, %d anni, %s, Tel: %s, Email: %s",
+                            i + 1,
                             d.getNome(),
                             d.getEta(),
                             d.getGenere(),
@@ -159,7 +160,6 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
                     idx = Integer.parseInt(scanner.nextLine());
 
                     if (idx == 0) {
-                        bean.setPrenotato(null);
                         return null;
                     }
 
@@ -187,4 +187,114 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
     return null;
 
     }
-}
+
+    public void manageReservations() {
+        try {
+            List<PrenotazioneBean> prenList = controller.mostraPrenotazioni(profilo);
+
+            if (prenList.isEmpty()) {
+                Printer.printf("Non ci sono prenotazioni da gestire.\n");
+                return;
+            }
+
+
+            Printer.printf("Prenotazioni correnti:");
+            for (int i = 0; i < prenList.size(); i++) {
+                PrenotazioneBean p = prenList.get(i);
+                String line = String.format(
+                        "%d) ID %d - %s - %s - Stato: %s",
+                        i + 1,
+                        p.getId(),
+                        p.getData().toString(),
+                        p.getTipo(),
+                        p.getStato()
+                );
+                Printer.printf(line);
+            }
+
+            Scanner scanner = new Scanner(System.in);
+            int sceltaPren;
+            while (true) {
+                Printer.printf("Seleziona il numero della prenotazione da gestire (0 per annullare):");
+                String line = scanner.nextLine();
+
+                try {
+                    sceltaPren = Integer.parseInt(line);
+
+                    if (sceltaPren == 0) {
+                        Printer.printf("Operazione annullata, torno al menu.\n");
+                        return;
+                    }
+                    if (sceltaPren < 1 || sceltaPren > prenList.size()) {
+                        throw new InvalidInputException("Scelta non valida.");
+                    }
+
+
+                    break;
+
+                } catch (NumberFormatException e) {
+                    Printer.perror("Inserisci un numero valido.");
+                } catch (InvalidInputException e) {
+                    Printer.perror(e.getMessage());
+                }
+            }
+
+            PrenotazioneBean selected = prenList.get(sceltaPren - 1);
+
+
+            int sceltaStato;
+            while (true) {
+                Printer.printf("Scegli il nuovo stato:");
+                Printer.printf("1) ACCETTATA");
+                Printer.printf("2) RIFIUTATA");
+                Printer.printf("3) CANCELLATA");
+                Printer.printf("Inserisci la tua scelta:");
+
+                String line = scanner.nextLine();
+                try {
+                    sceltaStato = Integer.parseInt(line);
+
+                    if (sceltaStato < 1 || sceltaStato > 3) {
+                        throw new InvalidInputException("Scelta non valida.");
+                    }
+
+                    break;
+
+                } catch (NumberFormatException e) {
+                    Printer.perror("Inserisci un numero valido.");
+                } catch (InvalidInputException e) {
+                    Printer.perror(e.getMessage());
+                }
+            }
+
+
+            ReservationState newState;
+            switch (sceltaStato) {
+                case 1 -> newState = ReservationState.ACCETTATA;
+                case 2 -> newState = ReservationState.RIFIUTATA;
+                case 3 -> newState = ReservationState.CANCELLATA;
+                default -> newState = ReservationState.IN_ATTESA;
+            }
+
+
+            controller.gestisciPrenotazione(selected, newState);
+
+
+            Printer.printf(String.format(
+                    "Prenotazione ID %d ora è %s.",
+                    selected.getId(),
+                    newState
+            ));
+
+
+        } catch (DAOException e) {
+            Printer.perror("Errore nel recupero o aggiornamento: " + e.getMessage());
+        }catch (InvalidInputException e){
+            Printer.perror(e.getMessage());
+        }
+    }
+
+
+    }
+
+

@@ -46,7 +46,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 3 -> new PrenotazioneDogsitterGraphicControllerCLI(loggedUser, profilo).start();
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 5 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 5 -> new PrenotazioneDogsitterGraphicControllerCLI(loggedUser, profilo).manageReservations();
                     case 6 -> new PreloginGraphicControllerCLI().start();
                     case 7 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
