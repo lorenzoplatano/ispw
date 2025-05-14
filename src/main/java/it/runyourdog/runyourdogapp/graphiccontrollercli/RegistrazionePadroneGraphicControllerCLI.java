@@ -36,7 +36,9 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 switch (choice) {
                     case 1:
                         UserBean user = this.registerPad(profiloPadroneBean);
-                        new ProfiloPadroneGraphicControllerCLI(user).start();
+                        ProfiloPadroneGraphicControllerCLI cli = new ProfiloPadroneGraphicControllerCLI(user);
+                        cli.setProfiloPadrone(profiloPadroneBean);
+                        cli.start();
                         break;
 
                     case 2:
@@ -106,8 +108,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
 
         try {
             controller.padRegister(profiloPadroneBean);
-            Printer.printf("Registrazione completata con successo!\nProfilo creato:\n"
-                    + profiloPadroneBean);
+            Printer.printf("Registrazione completata con successo!\n");
             return new UserBean(
                     profiloPadroneBean.getUsername(),
                     profiloPadroneBean.getEmail(),

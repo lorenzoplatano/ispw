@@ -23,7 +23,7 @@ public class RegistrazioneDogsitterGraphicControllerCLI extends RegistrazioneLav
             }
 
             controller.dogRegister(dogsitterBean);
-            Printer.printf("Registrazione completata con successo!\nProfilo creato:\n" + dogsitterBean);
+            Printer.printf("Registrazione completata con successo!\n");
 
             return new UserBean(
                     bean.getUsername(),

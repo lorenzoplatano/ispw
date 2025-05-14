@@ -24,7 +24,7 @@ public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneL
             readStudioAddress(veterinarioBean);
 
             controller.vetRegister(veterinarioBean);
-            Printer.printf("Registrazione completata con successo!\nProfilo creato:\n" + veterinarioBean);
+            Printer.printf("Registrazione completata con successo!\n");
             return new UserBean(
                     veterinarioBean.getUsername(),
                     veterinarioBean.getEmail(),

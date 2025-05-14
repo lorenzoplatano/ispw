@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.graphiccontrollercli;
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
+import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -15,19 +16,23 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
-public class PrenotazioneDogsitterGraphicControllerCLI extends GenericGraphicControllerCLI{
+public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGraphicControllerCLI{
 
-    public PrenotazioneDogsitterGraphicControllerCLI(UserBean loggedUser) {
-        this.loggedUser = loggedUser;
+
+
+    public PrenotazioneDogsitterGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean padrone) {
+        super(loggedUser);
+        this.profilo = padrone;
         this.controller = new PrenotazioneDogsitterController();
     }
+
 
     protected PrenotazioneDogsitterController controller;
 
     private static final String ORARIOFORMAT = "^(?:[01]\\d|2[0-3]):[0-5]\\d$";
 
     @Override
-    protected void showMenu() {
+    public void showMenu() {
         Printer.printf("*---- PRENOTAZIONE DOGSITTER ----*");
 
         int choice;
@@ -47,7 +52,7 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends GenericGraphicCon
 
             try {
                 switch (choice) {
-                    case 1 -> this.book();
+                    case 1 -> startBooking();
                     case 2 -> new ProfiloPadroneGraphicControllerCLI(loggedUser).start();
                     case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
@@ -65,7 +70,21 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends GenericGraphicCon
         }
     }
 
-    private void book() {
+    private void startBooking() {
+        try {
+            PrenotazioneBean request = findDogsitter();
+            if (request.getPrenotato() == null) {
+                Printer.printf("Richiesta di prenotazione annullata!\n");
+                showMenu();
+            }
+            controller.sendRequest(request);
+            Printer.printf("Richiesta inviata con successo!\n");
+        } catch (DAOException e) {
+            Printer.perror("Errore durante l'invio della richiesta: " + e.getMessage());
+        }
+    }
+
+    private PrenotazioneBean findDogsitter() {
         Scanner scanner = new Scanner(System.in);
         LocalDate today = LocalDate.now();
         PrenotazioneBean bean = new PrenotazioneBean();
@@ -132,6 +151,32 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends GenericGraphicCon
                 }
             }
 
+            int idx = -1;
+            while (idx < 1 || idx > results.size()) {
+                Printer.printf("Seleziona il numero del dogsitter desiderato (0 per annullare):");
+                try {
+                    
+                    idx = Integer.parseInt(scanner.nextLine());
+
+                    if (idx == 0) {
+                        bean.setPrenotato(null);
+                        return null;
+                    }
+
+                    if (idx < 1 || idx > results.size()) {
+                        throw new InvalidInputException("Scelta non valida.");
+                    }
+                } catch (NumberFormatException e) {
+                    Printer.perror("Inserisci un numero valido.");
+                }
+            }
+
+
+            bean.setPrenotato(results.get(idx - 1));
+            bean.setPrenotante(profilo);
+            return bean;
+
+
 
         } catch (DAOException e) {
             Printer.perror("Errore di accesso ai dati: " + e.getMessage());
@@ -139,6 +184,7 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends GenericGraphicCon
             Printer.perror(e.getMessage());
         }
 
+    return null;
 
     }
 }
