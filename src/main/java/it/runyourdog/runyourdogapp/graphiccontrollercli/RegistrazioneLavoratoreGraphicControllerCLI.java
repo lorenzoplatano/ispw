@@ -92,7 +92,7 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                 profiloLavoratoreBean.setGenere(scanner.nextLine().trim());
 
                 break;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException _) {
                 Printer.perror("Errore: devi inserire un numero intero valido per l'età!");
             } catch (InvalidInputException e) {
                 Printer.perror("Errore: " + e.getMessage());
