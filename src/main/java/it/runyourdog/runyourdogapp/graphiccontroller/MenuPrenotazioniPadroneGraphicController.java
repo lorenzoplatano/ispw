@@ -2,7 +2,7 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
+
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 public class MenuPrenotazioniPadroneGraphicController extends PrenotazioneDogsitterGraphicController {
@@ -30,6 +31,12 @@ public class MenuPrenotazioniPadroneGraphicController extends PrenotazioneDogsit
 
     @FXML
     private TableColumn<PrenotazioneBean, String> colNomeLavoratore;
+
+    @FXML
+    private TableColumn<PrenotazioneBean, Time> colOraInizio;
+
+    @FXML
+    private TableColumn<PrenotazioneBean, Time> colOraFine;
 
     @FXML
     private TableColumn<PrenotazioneBean, String> colStato;
@@ -55,6 +62,14 @@ public class MenuPrenotazioniPadroneGraphicController extends PrenotazioneDogsit
 
         colData.setCellValueFactory(cd ->
                 new SimpleObjectProperty<>(cd.getValue().getData())
+        );
+
+        colOraInizio.setCellValueFactory(cd ->
+                new SimpleObjectProperty<>(cd.getValue().getOrarioInizio())
+        );
+
+        colOraFine.setCellValueFactory(cd ->
+                        new SimpleObjectProperty<>(cd.getValue().getOrarioFine())
         );
 
         colTipo.setCellValueFactory(cd ->

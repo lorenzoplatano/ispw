@@ -91,9 +91,11 @@ public class PrenotazioneDogsitterController {
             bean.setData(d.getData());
             bean.setStato(d.getStato());
             bean.setId(d.getId());
+            bean.setOrarioInizio(d.getOraInizio());
 
             ProfiloLavoratoreBean profilo;
             if (d.getTipo() == ReservationType.DOGSITTER) {
+                bean.setOrarioFine(d.getOraFine());
                 ProfiloDogsitterBean dsBean = new ProfiloDogsitterBean();
                 dsBean.setNome(d.getLavoratore().getNome());
                 profilo = dsBean;
@@ -101,7 +103,6 @@ public class PrenotazioneDogsitterController {
             } else if (d.getTipo() == ReservationType.VETERINARIO) {
                 ProfiloVeterinarioBean vBean = new ProfiloVeterinarioBean();
                 vBean.setNome(d.getLavoratore().getNome());
-
                 profilo = vBean;
 
             } else {

@@ -200,9 +200,19 @@ public class PadroneDao {
                     String nomeLav = rs.getString(4);
                     Lavoratore lav = new Lavoratore();
                     lav.setNome(nomeLav);
-                    int stateId = rs.getInt(5);
+                    Time inizio = rs.getTime(5);
+                    int stateId = rs.getInt(7);
                     ReservationState stato = ReservationState.fromInt(stateId);
-                    Prenotazione pre = new Prenotazione(id, date, tipo, lav, stato);
+
+                    Prenotazione pre = null;
+                    if(typeId == 1)
+                    {
+                         pre = new Prenotazione(id, date, tipo, lav, stato, inizio);
+                    } else if (typeId == 2) {
+                        Time fine = rs.getTime(6);
+                         pre = new Prenotazione(id, date, tipo, lav, stato, inizio, fine);
+                    }
+
                     list.add(pre);
                 }
             }
