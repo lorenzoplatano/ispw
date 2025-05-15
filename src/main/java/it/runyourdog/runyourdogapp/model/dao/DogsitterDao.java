@@ -145,10 +145,10 @@ public class DogsitterDao {
                     String nomePad = rs.getString(5);
                     Padrone pad = new Padrone();
                     pad.setNome(nomePad);
-                    int stateId = rs.getInt(6);
+                    int stateId = rs.getInt(8);
                     ReservationState stato = ReservationState.fromInt(stateId);
-                    Time inizio = rs.getTime(7);
-                    Time fine = rs.getTime(8);
+                    Time inizio = rs.getTime(6);
+                    Time fine = rs.getTime(7);
                     Prenotazione pre = new Prenotazione(id, date, cane, pad, stato, inizio, fine);
                     list.add(pre);
                 }
