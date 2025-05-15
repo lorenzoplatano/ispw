@@ -62,6 +62,26 @@ public class Prenotazione {
         this.oraFine = oraFine;
     }
 
+    public Prenotazione(int id, Date data, ReservationType type, Lavoratore lavoratore, ReservationState stato, Time oraInizio, Time orafine) {
+        this.id = id;
+        this.data = data;
+        this.type = type;
+        this.lavoratore = lavoratore;
+        this.stato = stato;
+        this.oraInizio = oraInizio;
+        this.oraFine = orafine;
+    }
+
+    public Prenotazione(int id, Date data, ReservationType type, Lavoratore lavoratore, ReservationState stato, Time oraInizio) {
+        this.id = id;
+        this.data = data;
+        this.type = type;
+        this.lavoratore = lavoratore;
+        this.stato = stato;
+        this.oraInizio = oraInizio;
+
+    }
+
     public Date getData() {
         return data;
     }
