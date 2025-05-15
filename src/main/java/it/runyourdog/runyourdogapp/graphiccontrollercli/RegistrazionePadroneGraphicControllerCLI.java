@@ -100,7 +100,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 break;
             } catch (InvalidInputException e) {
                 Printer.perror("Errore: " + e.getMessage());
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException _) {
                 Printer.perror("Formato data non valido. Usa yyyy-MM-dd (es. 2020-05-17).");
             }
             Printer.perror("Riprova l'inserimento di tutti i dati.\n");
