@@ -76,20 +76,19 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
 
                 if (allowed.isEmpty()) {
                     Printer.printf("Nessuna azione disponibile per lo stato attuale\n");
-                    continue;
+                } else {
+                    displayStateOptions(allowed);
+                    int stateIndex = promptStateSelection(allowed.size());
+                    if (stateIndex > -1) {
+                        ReservationState newState = allowed.get(stateIndex);
+                        controller.gestisciPrenotazione(selected, newState);
+                        Printer.printf(String.format(
+                                "Prenotazione ID %d ora è %s.",
+                                selected.getId(), newState
+                        ));
+                        prenList = controller.mostraPrenotazioni(profilo);
+                    }
                 }
-
-                displayStateOptions(allowed);
-                int stateIndex = promptStateSelection(allowed.size());
-                if (stateIndex == -1) continue;
-
-                ReservationState newState = allowed.get(stateIndex);
-                controller.gestisciPrenotazione(selected, newState);
-                Printer.printf(String.format(
-                        "Prenotazione ID %d ora è %s.",
-                        selected.getId(), newState
-                ));
-                prenList = controller.mostraPrenotazioni(profilo);
             }
         } catch (DAOException e) {
             Printer.perror("Errore nel recupero o aggiornamento: " + e.getMessage());
