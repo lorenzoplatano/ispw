@@ -11,18 +11,22 @@ public abstract class GenericGraphicControllerCLI {
 
     protected int getChoice(int start, int end) {
         Scanner scanner = new Scanner(System.in);
-        int choice = 0;
+        int choice;
 
-        while(true) {
+        while (true) {
             Printer.printf("Inserisci la tua scelta: ");
-            choice = scanner.nextInt();
-            if(choice >= start && choice <= end) {
-                break;
-            }else {
-                Printer.printf("Invalid choice");
+            String input = scanner.nextLine();
+            try {
+                choice = Integer.parseInt(input);
+                if (choice >= start && choice <= end) {
+                    return choice;
+                } else {
+                    Printer.printf("Scelta non valida. Inserisci un numero tra " + start + " e " + end);
+                }
+            } catch (NumberFormatException e) {
+                Printer.printf("Errore: inserisci solo numeri.");
             }
         }
-        return choice;
     }
 
     protected void showAppName() {
