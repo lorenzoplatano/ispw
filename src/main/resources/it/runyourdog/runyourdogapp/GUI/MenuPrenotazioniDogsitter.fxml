@@ -64,9 +64,9 @@
                <columns>
                   <TableColumn fx:id="colID" prefWidth="53.600006103515625" text="ID" />
                   <TableColumn fx:id="colData" prefWidth="94.4000244140625" text="Data" />
-                  <TableColumn fx:id="colNomeCane" prefWidth="93.60000610351562" text="Nome Cane" />
                   <TableColumn fx:id="colOraInizio" prefWidth="93.60000610351562" text="Ora Inizio" />
                   <TableColumn fx:id="colOraFine" prefWidth="93.60000610351562" text="Ora Fine" />
+                  <TableColumn fx:id="colNomeCane" prefWidth="93.60000610351562" text="Nome Cane" />
                   <TableColumn fx:id="colRazza" prefWidth="135.19992065429688" text="Razza Cane" />
                   <TableColumn fx:id="colNomeLavoratore" prefWidth="125.0" text="Nome Padrone" />
                   <TableColumn fx:id="colStato" prefWidth="131.0" text="Stato" />
