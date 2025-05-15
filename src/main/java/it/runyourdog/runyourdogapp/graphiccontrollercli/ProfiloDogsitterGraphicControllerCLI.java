@@ -38,7 +38,7 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
                     case 1 -> this.getProfilo(loggedUser);
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 4 -> new MenuPrenotazioniDogsitterGraphicControllerCLI().start();
                     case 5 -> new PreloginGraphicControllerCLI().start();
                     case 6 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");

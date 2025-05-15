@@ -30,6 +30,13 @@ public class Prenotazione {
         this.padrone = padrone;
     }
 
+    public Prenotazione(Padrone padrone, Date data, Time oraInizio, Time oraFine) {
+        this.data = data;
+        this.oraInizio = oraInizio;
+        this.oraFine = oraFine;
+        this.padrone = padrone;
+    }
+
     public Prenotazione(Date data, Time oraInizio, Time oraFine, Lavoratore lavoratore) {
         this.data = data;
         this.oraInizio = oraInizio;
