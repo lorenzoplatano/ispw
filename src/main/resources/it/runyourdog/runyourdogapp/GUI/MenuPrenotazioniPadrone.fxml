@@ -80,10 +80,12 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <TableView fx:id="reservationTable" layoutX="253.0" layoutY="97.0" prefHeight="288.0" prefWidth="526.0" AnchorPane.leftAnchor="247.0" AnchorPane.rightAnchor="247.0">
+            <TableView fx:id="reservationTable" layoutX="152.0" layoutY="96.0" prefHeight="288.0" prefWidth="724.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="153.0">
                <columns>
                   <TableColumn fx:id="colID" prefWidth="94.0" text="ID" />
                   <TableColumn fx:id="colData" prefWidth="95.0" text="Data" />
+                  <TableColumn fx:id="colOraInizio" prefWidth="95.0" text="Ora Inizio" />
+                  <TableColumn fx:id="colOraFine" prefWidth="95.0" text="Ora Fine" />
                   <TableColumn fx:id="colTipo" prefWidth="96.0" text="Tipo" />
                   <TableColumn fx:id="colNomeLavoratore" prefWidth="132.0" text="Nome Lavoratore" />
                   <TableColumn fx:id="colStato" prefWidth="113.0" text="Stato" />
