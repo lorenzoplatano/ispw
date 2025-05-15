@@ -14,6 +14,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -54,7 +55,7 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
                 switch (choice) {
                     case 1 -> startBooking();
                     case 2 -> new ProfiloPadroneGraphicControllerCLI(loggedUser).start();
-                    case 3 -> manageReservations();
+                    case 3 -> new MenuPrenotazioniPadroneGraphicControllerCLI(loggedUser, profilo).start();
                     case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 5 -> new PreloginGraphicControllerCLI().start();
                     case 6 -> System.exit(0);
@@ -78,6 +79,7 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
             }
             controller.sendRequest(request);
             Printer.printf("Richiesta inviata con successo!\n");
+            showMenu();
         } catch (DAOException e) {
             Printer.perror("Errore durante l'invio della richiesta: " + e.getMessage());
         }
@@ -188,113 +190,8 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
 
     }
 
-    public void manageReservations() {
-        try {
-            List<PrenotazioneBean> prenList = controller.mostraPrenotazioni(profilo);
-
-            if (prenList.isEmpty()) {
-                Printer.printf("Non ci sono prenotazioni da gestire.\n");
-                return;
-            }
 
 
-            Printer.printf("Prenotazioni correnti:");
-            for (int i = 0; i < prenList.size(); i++) {
-                PrenotazioneBean p = prenList.get(i);
-                String line = String.format(
-                        "%d) ID %d - %s - %s - Stato: %s",
-                        i + 1,
-                        p.getId(),
-                        p.getData().toString(),
-                        p.getTipo(),
-                        p.getStato()
-                );
-                Printer.printf(line);
-            }
-
-            Scanner scanner = new Scanner(System.in);
-            int sceltaPren;
-            while (true) {
-                Printer.printf("Seleziona il numero della prenotazione da gestire (0 per annullare):");
-                String line = scanner.nextLine();
-
-                try {
-                    sceltaPren = Integer.parseInt(line);
-
-                    if (sceltaPren == 0) {
-                        Printer.printf("Operazione annullata, torno al menu.\n");
-                        return;
-                    }
-                    if (sceltaPren < 1 || sceltaPren > prenList.size()) {
-                        throw new InvalidInputException("Scelta non valida.");
-                    }
-
-
-                    break;
-
-                } catch (NumberFormatException e) {
-                    Printer.perror("Inserisci un numero valido.");
-                } catch (InvalidInputException e) {
-                    Printer.perror(e.getMessage());
-                }
-            }
-
-            PrenotazioneBean selected = prenList.get(sceltaPren - 1);
-
-
-            int sceltaStato;
-            while (true) {
-                Printer.printf("Scegli il nuovo stato:");
-                Printer.printf("1) ACCETTATA");
-                Printer.printf("2) RIFIUTATA");
-                Printer.printf("3) CANCELLATA");
-                Printer.printf("Inserisci la tua scelta:");
-
-                String line = scanner.nextLine();
-                try {
-                    sceltaStato = Integer.parseInt(line);
-
-                    if (sceltaStato < 1 || sceltaStato > 3) {
-                        throw new InvalidInputException("Scelta non valida.");
-                    }
-
-                    break;
-
-                } catch (NumberFormatException e) {
-                    Printer.perror("Inserisci un numero valido.");
-                } catch (InvalidInputException e) {
-                    Printer.perror(e.getMessage());
-                }
-            }
-
-
-            ReservationState newState;
-            switch (sceltaStato) {
-                case 1 -> newState = ReservationState.ACCETTATA;
-                case 2 -> newState = ReservationState.RIFIUTATA;
-                case 3 -> newState = ReservationState.CANCELLATA;
-                default -> newState = ReservationState.IN_ATTESA;
-            }
-
-
-            controller.gestisciPrenotazione(selected, newState);
-
-
-            Printer.printf(String.format(
-                    "Prenotazione ID %d ora è %s.",
-                    selected.getId(),
-                    newState
-            ));
-
-
-        } catch (DAOException e) {
-            Printer.perror("Errore nel recupero o aggiornamento: " + e.getMessage());
-        }catch (InvalidInputException e){
-            Printer.perror(e.getMessage());
-        }
-    }
-
-
-    }
+}
 
 
