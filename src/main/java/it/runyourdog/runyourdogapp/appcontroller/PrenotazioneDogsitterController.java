@@ -128,6 +128,8 @@ public class PrenotazioneDogsitterController {
             bean.setData(d.getData());
             bean.setStato(d.getStato());
             bean.setId(d.getId());
+            bean.setOrarioInizio(d.getOraInizio());
+            bean.setOrarioFine(d.getOraFine());
 
             ProfiloPadroneBean padBean = new ProfiloPadroneBean();
             padBean.setNomeCane(d.getCane().getNome());

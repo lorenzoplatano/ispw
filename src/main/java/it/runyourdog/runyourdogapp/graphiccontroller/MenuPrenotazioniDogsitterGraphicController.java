@@ -18,6 +18,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicController {
@@ -31,6 +32,10 @@ public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicCo
     @FXML private TableColumn<PrenotazioneBean, String> colNomeCane;
 
     @FXML private TableColumn<PrenotazioneBean, String> colRazza;
+
+    @FXML private TableColumn<PrenotazioneBean, Time> colOraInizio;
+
+    @FXML private TableColumn<PrenotazioneBean, Time> colOraFine;
 
     @FXML private TableColumn<PrenotazioneBean, String> colNomeLavoratore;
 
@@ -63,6 +68,12 @@ public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicCo
         );
         colNomeCane.setCellValueFactory(cd ->
                 new SimpleStringProperty(cd.getValue().getPrenotante().getNomeCane())
+        );
+        colOraInizio.setCellValueFactory(cd ->
+                new SimpleObjectProperty<>(cd.getValue().getOrarioInizio())
+        );
+        colOraFine.setCellValueFactory(cd ->
+                new SimpleObjectProperty<>(cd.getValue().getOrarioFine())
         );
         colRazza.setCellValueFactory(cd ->
                 new SimpleStringProperty(cd.getValue().getPrenotante().getRazzaCane())

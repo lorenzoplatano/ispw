@@ -60,14 +60,16 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TableView fx:id="reservationTable" layoutX="160.0" layoutY="60.0" prefHeight="356.0" prefWidth="602.0">
+            <TableView fx:id="reservationTable" layoutX="49.0" layoutY="64.0" prefHeight="356.0" prefWidth="824.0">
                <columns>
                   <TableColumn fx:id="colID" prefWidth="53.600006103515625" text="ID" />
                   <TableColumn fx:id="colData" prefWidth="94.4000244140625" text="Data" />
                   <TableColumn fx:id="colNomeCane" prefWidth="93.60000610351562" text="Nome Cane" />
+                  <TableColumn fx:id="colOraInizio" prefWidth="93.60000610351562" text="Ora Inizio" />
+                  <TableColumn fx:id="colOraFine" prefWidth="93.60000610351562" text="Ora Fine" />
                   <TableColumn fx:id="colRazza" prefWidth="135.19992065429688" text="Razza Cane" />
-                  <TableColumn fx:id="colNomeLavoratore" prefWidth="108.79998779296875" text="Nome Padrone" />
-                  <TableColumn fx:id="colStato" prefWidth="117.60003662109375" text="Stato" />
+                  <TableColumn fx:id="colNomeLavoratore" prefWidth="125.0" text="Nome Padrone" />
+                  <TableColumn fx:id="colStato" prefWidth="131.0" text="Stato" />
                </columns>
             </TableView>
             <ComboBox fx:id="comboChoice" layoutX="603.0" layoutY="461.0" prefWidth="150.0" visible="false" />

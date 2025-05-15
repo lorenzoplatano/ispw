@@ -52,12 +52,14 @@ public class Prenotazione {
         this.stato = stato;
     }
 
-    public Prenotazione(int id, Date data, Dog dog, Padrone padrone, ReservationState stato) {
+    public Prenotazione(int id, Date data, Dog dog, Padrone padrone, ReservationState stato, Time oraInizio, Time oraFine) {
         this.id = id;
         this.data = data;
         this.padrone = padrone;
         this.stato = stato;
         this.cane = dog;
+        this.oraInizio = oraInizio;
+        this.oraFine = oraFine;
     }
 
     public Date getData() {
