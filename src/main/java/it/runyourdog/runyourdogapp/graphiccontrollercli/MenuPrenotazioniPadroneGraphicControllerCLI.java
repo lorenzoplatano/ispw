@@ -108,7 +108,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
         }
     }
 
-    private int promptReservationSelection(int max) {
+    private int promptReservationSelection(int max) throws InvalidInputException {
         Printer.printf("Seleziona il numero della prenotazione da gestire (0 per tornare al menu):");
         String line = scanner.nextLine();
         try {
@@ -119,7 +119,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
             }
             if (choice < 1 || choice > max) throw new InvalidInputException("Scelta non valida.");
             return choice - 1;
-        } catch (NumberFormatException | InvalidInputException e) {
+        } catch (NumberFormatException _) {
             Printer.perror("Inserisci un numero valido.");
             return promptReservationSelection(max);
         }
@@ -141,7 +141,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
         Printer.printf("0) Torna alla lista prenotazioni");
     }
 
-    private int promptStateSelection(int max) {
+    private int promptStateSelection(int max) throws InvalidInputException{
         Printer.printf("Seleziona un'azione:");
         String input = scanner.nextLine();
         try {
@@ -149,7 +149,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
             if (choice == 0) return -1;
             if (choice < 1 || choice > max) throw new InvalidInputException("Scelta non valida.");
             return choice - 1;
-        } catch (NumberFormatException | InvalidInputException e) {
+        } catch (NumberFormatException _) {
             Printer.perror("Inserisci un numero valido.");
             return promptStateSelection(max);
         }
