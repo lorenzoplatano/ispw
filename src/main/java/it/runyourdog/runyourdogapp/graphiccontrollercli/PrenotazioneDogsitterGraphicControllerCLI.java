@@ -8,13 +8,13 @@ import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
-import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
+
 
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -149,7 +149,7 @@ private boolean collectDetails(PrenotazioneBean bean) {
 
                 controller.validateNoOverlap(bean);
                 return true;
-            } catch (DateTimeParseException e) {
+            } catch (DateTimeParseException _) {
                 Printer.perror("Formato data invalido.");
             } catch (InvalidInputException | DAOException e) {
                 Printer.perror(e.getMessage());
