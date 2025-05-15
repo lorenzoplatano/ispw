@@ -168,12 +168,9 @@ public class PrenotazioneDogsitterController {
 
     public void validateNoOverlap(PrenotazioneBean nuova) throws DAOException, InvalidInputException {
 
-        int count = padroneDao.countOverlapping(
-                nuova.getPrenotante().getEmail(),
-                nuova.getData(),
-                nuova.getOrarioInizio(),
-                nuova.getOrarioFine()
-        );
+        Prenotazione p = new Prenotazione(new Padrone(nuova.getPrenotante().getEmail()), nuova.getData(), nuova.getOrarioInizio(), nuova.getOrarioFine());
+
+        int count = padroneDao.countOverlapping(p);
 
         if (count > 0) {
             throw new InvalidInputException(

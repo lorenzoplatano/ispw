@@ -119,16 +119,21 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
                 Time fine = Time.valueOf(orarioFi + ":00");
 
 
+
+
                 bean.setCitta(citta);
                 bean.setData(data);
                 bean.setOrarioInizio(inizio);
                 bean.setOrarioFine(fine);
+                bean.setPrenotante(profilo);
+
+                controller.validateNoOverlap(bean);
 
                 break;
 
             } catch (DateTimeParseException e) {
                 Printer.perror("Formato data non valido. Usa YYYY-MM-DD.");
-            } catch (IllegalArgumentException | InvalidInputException e) {
+            } catch (IllegalArgumentException | InvalidInputException | DAOException e) {
                 Printer.perror(e.getMessage());
             }
         }

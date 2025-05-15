@@ -214,14 +214,14 @@ public class PadroneDao {
         return list;
     }
 
-    public int countOverlapping(String email, Date data, Time orarioInizio, Time orarioFine) throws DAOException{
+    public int countOverlapping(Prenotazione prenotazione) throws DAOException{
 
         try {
             this.cs = this.conn.prepareCall("{call check_overlap(?,?,?,?,?)}");
-            cs.setString(1, email);
-            cs.setDate(2, data);
-            cs.setTime(3, orarioInizio);
-            cs.setTime(4, orarioFine);
+            cs.setString(1, prenotazione.getPadrone().getEmail());
+            cs.setDate(2, prenotazione.getData());
+            cs.setTime(3, prenotazione.getOraInizio());
+            cs.setTime(4, prenotazione.getOraFine());
             cs.registerOutParameter(5, Types.INTEGER);
             cs.execute();
             return cs.getInt(5);
