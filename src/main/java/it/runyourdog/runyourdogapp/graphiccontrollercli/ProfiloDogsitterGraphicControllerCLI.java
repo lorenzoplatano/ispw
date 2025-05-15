@@ -38,7 +38,7 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
                     case 1 -> this.getProfilo(loggedUser);
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 4 -> new MenuPrenotazioniDogsitterGraphicControllerCLI().start();
+                    case 4 -> new MenuPrenotazioniDogsitterGraphicControllerCLI(loggedUser, this.retrieveProfilo(loggedUser)).start();
                     case 5 -> new PreloginGraphicControllerCLI().start();
                     case 6 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
@@ -65,6 +65,21 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
         showProfilo(profilo);
         showOrario(profilo);
         showMenu();
+    }
+
+    public ProfiloDogsitterBean retrieveProfilo(UserBean loggedUser) {
+
+        ProfiloDogsitterBean p = null;
+        try {
+            LoginController controller = new LoginController();
+            p = controller.getDogProfileInfo(loggedUser);
+
+        } catch (ProfileRetrievalException | InvalidInputException e) {
+            Printer.perror("Errore: " + e.getMessage());
+        }
+
+        return p;
+
     }
 }
 
