@@ -31,6 +31,8 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
 
     protected PrenotazioneDogsitterController controller;
 
+    static final Scanner scanner = new Scanner(System.in);
+
     private static final String ORARIOFORMAT = "^(?:[01]\\d|2[0-3]):[0-5]\\d$";
 
     @Override
@@ -74,7 +76,6 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
         try {
             PrenotazioneBean request = findDogsitter();
             if (request == null) {
-                Printer.printf("Richiesta di prenotazione annullata!\n");
                 showMenu();
             }
             controller.sendRequest(request);
@@ -82,119 +83,102 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
             showMenu();
         } catch (DAOException e) {
             Printer.perror("Errore durante l'invio della richiesta: " + e.getMessage());
-        }
-    }
-
-    private PrenotazioneBean findDogsitter() {
-        Scanner scanner = new Scanner(System.in);
-        LocalDate today = LocalDate.now();
-        PrenotazioneBean bean = new PrenotazioneBean();
-
-        while (true) {
-            try {
-                Printer.printf("Inserisci la città in cui cerchi il dogsitter:");
-                String citta = scanner.nextLine();
-
-                Printer.printf("Inserisci la data della prenotazione (YYYY-MM-DD):");
-                String dataStr = scanner.nextLine();
-                LocalDate dataLocal = LocalDate.parse(dataStr);
-                if (dataLocal.isBefore(today)) {
-                    throw new InvalidInputException("La data della prenotazione non può essere antecedente a oggi.");
-                }
-                Date data = Date.valueOf(dataLocal);
-
-                Printer.printf("Inserisci orario di inizio (HH:MM):");
-                String orarioIn = scanner.nextLine();
-
-
-                Printer.printf("Inserisci orario di fine (HH:MM):");
-                String orarioFi = scanner.nextLine();
-
-
-                if (orarioIn.isEmpty() || orarioFi.isEmpty() || !orarioIn.matches(ORARIOFORMAT) || !orarioFi.matches(ORARIOFORMAT)) {
-                    throw new InvalidInputException("Specificare orari nel formato corretto: HH:mm.");
-                }
-
-                Time inizio = Time.valueOf(orarioIn + ":00");
-                Time fine = Time.valueOf(orarioFi + ":00");
-
-
-
-
-                bean.setCitta(citta);
-                bean.setData(data);
-                bean.setOrarioInizio(inizio);
-                bean.setOrarioFine(fine);
-                bean.setPrenotante(profilo);
-
-                controller.validateNoOverlap(bean);
-
-                break;
-
-            } catch (DateTimeParseException e) {
-                Printer.perror("Formato data non valido. Usa YYYY-MM-DD.");
-            } catch (IllegalArgumentException | InvalidInputException | DAOException e) {
-                Printer.perror(e.getMessage());
-            }
-        }
-        try {
-            List<ProfiloDogsitterBean> results = controller.cercaDogsitter(bean);
-
-            if (results.isEmpty()) {
-                Printer.printf("Nessun dogsitter disponibile per i criteri specificati.");
-            } else {
-                Printer.printf("Dogsitter trovati:");
-                for (int i = 0; i < results.size(); i++) {
-                    ProfiloDogsitterBean d = results.get(i);
-                    String line = String.format(
-                            "%d) %s, %d anni, %s, Tel: %s, Email: %s",
-                            i + 1,
-                            d.getNome(),
-                            d.getEta(),
-                            d.getGenere(),
-                            d.getTelefono(),
-                            d.getEmail()
-                    );
-                    Printer.printf(line);
-                }
-            }
-
-            int idx = -1;
-            while (idx < 1 || idx > results.size()) {
-                Printer.printf("Seleziona il numero del dogsitter desiderato (0 per annullare):");
-                try {
-                    
-                    idx = Integer.parseInt(scanner.nextLine());
-
-                    if (idx == 0) {
-                        return null;
-                    }
-
-                    if (idx < 1 || idx > results.size()) {
-                        throw new InvalidInputException("Scelta non valida.");
-                    }
-                } catch (NumberFormatException e) {
-                    Printer.perror("Inserisci un numero valido.");
-                }
-            }
-
-
-            bean.setPrenotato(results.get(idx - 1));
-            bean.setPrenotante(profilo);
-            return bean;
-
-
-
-        } catch (DAOException e) {
-            Printer.perror("Errore di accesso ai dati: " + e.getMessage());
         } catch (InvalidInputException e) {
             Printer.perror(e.getMessage());
         }
-
-    return null;
-
     }
 
+    private PrenotazioneBean findDogsitter() throws InvalidInputException {
+        while (true) {
+            PrenotazioneBean bean = new PrenotazioneBean();
+            bean.setPrenotante(profilo);
+
+            if (!collectDetails(bean)) {
+                return null; 
+            }
+
+            List<ProfiloDogsitterBean> candidates = List.of();
+            try {
+                candidates = controller.cercaDogsitter(bean);
+            } catch (DAOException e) {
+                Printer.perror("Errore accesso dati: " + e.getMessage());
+                return null;
+            } catch (InvalidInputException e) {
+                Printer.perror(e.getMessage());
+            }
+
+            if (candidates.isEmpty()) {
+                Printer.printf("Nessun dogsitter disponibile. Torno al menu principale,\n");
+                return null;
+            }
+
+            
+            PrenotazioneBean result = chooseDogsitter(bean, candidates);
+            if (result == null) {
+                return null; 
+            }
+            return result;
+        }
+    }
+
+
+
+private boolean collectDetails(PrenotazioneBean bean) {
+        LocalDate today = LocalDate.now();
+        while (true) {
+            try {
+                Printer.printf("Inserisci la città in cui cerchi il dogsitter:");
+                String city = scanner.nextLine();
+                bean.setCitta(city);
+
+                Printer.printf("Inserisci la data della prenotazione (YYYY-MM-DD):");
+                String dateStr = scanner.nextLine();
+                LocalDate date = LocalDate.parse(dateStr);
+                if (date.isBefore(today)) throw new InvalidInputException("Data antecedente a oggi.");
+                bean.setData(Date.valueOf(date));
+
+                Printer.printf("Inserisci orario di inizio (HH:MM):");
+                String start = scanner.nextLine();
+                Printer.printf("Inserisci orario di fine (HH:MM):");
+                String end = scanner.nextLine();
+                if (!start.matches(ORARIOFORMAT) || !end.matches(ORARIOFORMAT)) {
+                    throw new InvalidInputException("Formato orario HH:mm.");
+                }
+                bean.setOrarioInizio(Time.valueOf(start + ":00"));
+                bean.setOrarioFine(Time.valueOf(end + ":00"));
+
+                controller.validateNoOverlap(bean);
+                return true;
+            } catch (DateTimeParseException e) {
+                Printer.perror("Formato data invalido.");
+            } catch (InvalidInputException | DAOException e) {
+                Printer.perror(e.getMessage());
+            }
+        }
+    }
+
+    private PrenotazioneBean chooseDogsitter(PrenotazioneBean bean, List<ProfiloDogsitterBean> list) {
+        Printer.printf("Dogsitter trovati:");
+        for (int i = 0; i < list.size(); i++) {
+            ProfiloDogsitterBean d = list.get(i);
+            Printer.printf(String.format(
+                    "%d) %s, %d anni, %s, Tel: %s, Email: %s",
+                    i + 1, d.getNome(), d.getEta(), d.getGenere(), d.getTelefono(), d.getEmail()
+            ));
+        }
+        while (true) {
+            Printer.printf("Seleziona il numero del dogsitter desiderato (0 per annullare):");
+            try {
+                int sel = Integer.parseInt(scanner.nextLine());
+                if (sel == 0) return null;
+                if (sel < 1 || sel > list.size()) throw new InvalidInputException("Scelta non valida.");
+                bean.setPrenotato(list.get(sel - 1));
+                return bean;
+            } catch (NumberFormatException | InvalidInputException e) {
+                Printer.perror(e.getMessage());
+            }
+        }
+    }
 
 
 }
