@@ -49,7 +49,7 @@ public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicCo
 
 
     @FXML
-    public void goToProfilo() throws IOException {
+    public void goToProfiloDog() throws IOException {
         SingletonStage.getStage(null)
                 .showDogsitterHomePage(
                         "/it/runyourdog/runyourdogapp/GUI/ProfiloDogsitter.fxml",

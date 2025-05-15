@@ -18,7 +18,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Button layoutX="227.0" layoutY="141.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#goToReservationMenu" prefHeight="54.0" prefWidth="414.0" style="-fx-background-color: E1A15C; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="VISUALIZZA PRENOTAZIONI IN ATTESA">
+            <Button layoutX="227.0" layoutY="141.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="414.0" style="-fx-background-color: E1A15C; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="VISUALIZZA PRENOTAZIONI IN ATTESA">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -74,7 +74,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxHeight="-Infinity" maxWidth="293.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#goToReservationMenu" prefHeight="100.0" prefWidth="211.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="LE MIE PRENOTAZIONI">
+            <Button maxHeight="-Infinity" maxWidth="293.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="211.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="LE MIE PRENOTAZIONI">
                <font>
                   <Font size="18.0" />
                </font>

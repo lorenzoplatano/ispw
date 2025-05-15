@@ -47,10 +47,6 @@ public class PrenotazioneDogsitterGraphicController extends GenericGraphicContro
         this.prenotazioneBean = bean;
     }
 
-    @FXML
-    public void goToProfilo() throws IOException {
-        SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", (ProfiloPadroneBean) loggedUser);
-    }
 
     @FXML
     public void prenota() throws IOException {

@@ -137,4 +137,15 @@ public class SingletonStage {
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
+
+    public void showPadronePrenotazioneVetPage(String fxmlPath, UserBean loggedPad) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        PrenotazioneVeterinarioGraphicController controller = fxmlLoader.getController();
+        controller.setLoggedUser(loggedPad);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
+
+
 }

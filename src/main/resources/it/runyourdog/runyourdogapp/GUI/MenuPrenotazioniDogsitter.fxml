@@ -35,7 +35,7 @@
                   </TextFlow>
                </children>
             </Pane>
-            <Button maxHeight="-Infinity" maxWidth="309.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#goToProfilo" prefHeight="100.0" prefWidth="450.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="PROFILO">
+            <Button maxHeight="-Infinity" maxWidth="309.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#goToProfiloDog" prefHeight="100.0" prefWidth="450.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="PROFILO">
                <font>
                   <Font size="18.0" />
                </font>
