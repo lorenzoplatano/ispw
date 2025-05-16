@@ -42,7 +42,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxHeight="-Infinity" maxWidth="307.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="267.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="PRENOTAZIONE DOGSITTER">
+            <Button maxHeight="-Infinity" maxWidth="307.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#goToPrenotazione" prefHeight="100.0" prefWidth="267.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="PRENOTAZIONE DOGSITTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxHeight="-Infinity" maxWidth="293.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="211.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="LE MIE PRENOTAZIONI">
+            <Button maxHeight="-Infinity" maxWidth="293.0" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#goToReservationMenu" prefHeight="100.0" prefWidth="211.0" style="-fx-background-color: B4B3B3; -fx-border-color: BLACK;" text="LE MIE PRENOTAZIONI">
                <font>
                   <Font size="18.0" />
                </font>
