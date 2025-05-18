@@ -125,7 +125,7 @@ public class MenuPrenotazioneVeterinarioGraphicController extends GenericGraphic
         } catch (InvalidInputException e) {
             showError(e.getMessage());
         } catch (DAOException e) {
-            Printer.perror("Errore: " + e.getMessage());
+                Printer.perror("Errore: " + e.getMessage());
         }
     }
 

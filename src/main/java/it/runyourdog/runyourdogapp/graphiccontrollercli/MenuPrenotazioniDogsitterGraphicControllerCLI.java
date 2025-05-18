@@ -50,100 +50,84 @@ public class MenuPrenotazioniDogsitterGraphicControllerCLI extends ProfiloDogsit
     private void manageReservations() throws DAOException, InvalidInputException {
         Scanner scanner = new Scanner(System.in);
         List<PrenotazioneBean> lista = controller.mostraPrenotazioniDog(profiloDogsitter);
-
         if (lista.isEmpty()) {
-            Printer.printf("Non ci sono prenotazioni da gestire.\n");
+            Printer.printf("Non ci sono prenotazioni da gestire.%n");
             return;
         }
 
         while (true) {
-            Printer.printf("Le tue prenotazioni:");
-            for (int i = 0; i < lista.size(); i++) {
-                PrenotazioneBean p = lista.get(i);
-                String line = String.format(
-                        "%d) Data: %s - Orario Inizio: %s -  Orario fine: %s - Cliente: %s (%s) - Stato: %s",
-                        i + 1,
-                        p.getData(),
-                        p.getOrarioInizio(),
-                        p.getOrarioFine(),
-                        p.getPrenotante().getNomePadrone(),
-                        p.getPrenotante().getNomeCane(),
-                        p.getStato()
-                );
-                Printer.printf(line);
-            }
-            Printer.printf("0) Torna al menu precedente");
-            Printer.printf("Seleziona una prenotazione da gestire:");
-
-            int sel;
-            try {
-                sel = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException _) {
-                Printer.perror("Inserisci un numero valido.");
-                continue;
-            }
-            if (sel == 0) return;
-            if (sel < 1 || sel > lista.size()) {
-                Printer.perror("Scelta non valida.");
-                continue;
+            displayReservations(lista);
+            int sel = promptInt(scanner, "Seleziona una prenotazione da gestire (0 per tornare):", 0, lista.size());
+            if (sel == 0) {
+                return;
             }
 
             PrenotazioneBean selected = lista.get(sel - 1);
-
-
-            List<ReservationState> allowed;
-            switch (selected.getStato()) {
-                case IN_ATTESA -> allowed = List.of(ReservationState.ACCETTATA, ReservationState.RIFIUTATA);
-                case ACCETTATA -> allowed = List.of(ReservationState.CANCELLATA);
-                default -> allowed = List.of();
-            }
-
+            List<ReservationState> allowed = getAllowedStates(selected.getStato());
             if (allowed.isEmpty()) {
-                Printer.printf("Nessuna azione disponibile per la prenotazione selezionata\n");
+                Printer.printf("Nessuna azione disponibile per la prenotazione selezionata%n");
                 continue;
             }
 
-
-            Printer.printf("Seleziona uno dei seguenti stati per la prenotazione scelta:");
-            for (int i = 0; i < allowed.size(); i++) {
-                ReservationState r = allowed.get(i);
-                String s = String.format(
-                        "%d) %s",
-                        i + 1,
-                        r
-                );
-                Printer.printf(s);
-
-            }
-            Printer.printf("0) Torna all'elenco");
-
-            int action;
-            try {
-                action = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException _) {
-                Printer.perror("Inserisci un numero valido.");
+            displayActions(allowed);
+            int action = promptInt(scanner, "Seleziona un nuovo stato (0 per tornare):", 0, allowed.size());
+            if (action == 0) {
                 continue;
             }
-            if (action == 0) continue;
-            if (action < 1 || action > allowed.size()) {
-                Printer.perror("Scelta non valida.");
-                continue;
-            }
-
 
             ReservationState newState = allowed.get(action - 1);
             controller.gestisciPrenotazione(selected, newState);
-
-            String string = String.format(
-                    "La prenotazione ora è %s.%n",
-                    newState
-
-            );
-            Printer.printf(string);
-
+            Printer.printf(String.format("La prenotazione ora è %s.%n", newState));
 
             lista = controller.mostraPrenotazioniDog(profiloDogsitter);
         }
     }
-}
 
+    private void displayReservations(List<PrenotazioneBean> lista) {
+        Printer.printf("Le tue prenotazioni:");
+        for (int i = 0; i < lista.size(); i++) {
+            PrenotazioneBean p = lista.get(i);
+            Printer.printf(String.format(
+                    "%d) Data: %s - Orario Inizio: %s - Orario Fine: %s - Cliente: %s (%s) - Stato: %s",
+                    i + 1,
+                    p.getData(),
+                    p.getOrarioInizio(),
+                    p.getOrarioFine(),
+                    p.getPrenotante().getNomePadrone(),
+                    p.getPrenotante().getNomeCane(),
+                    p.getStato()
+            ));
+        }
+    }
+
+    private void displayActions(List<ReservationState> states) {
+        Printer.printf("Seleziona uno dei seguenti stati per la prenotazione scelta:");
+        for (int i = 0; i < states.size(); i++) {
+            Printer.printf(String.format("%d) %s", i + 1, states.get(i)));
+        }
+    }
+
+    private int promptInt(Scanner scanner, String message, int min, int max) {
+        while (true) {
+            Printer.printf(message);
+            String input = scanner.nextLine();
+            try {
+                int value = Integer.parseInt(input);
+                if (value < min || value > max) {
+                    throw new NumberFormatException();
+                }
+                return value;
+            } catch (NumberFormatException e) {
+                Printer.perror("Inserisci un numero valido tra " + min + " e " + max + ".");
+            }
+        }
+    }
+
+    private List<ReservationState> getAllowedStates(ReservationState stato) {
+        return switch (stato) {
+            case IN_ATTESA -> List.of(ReservationState.ACCETTATA, ReservationState.RIFIUTATA);
+            case ACCETTATA -> List.of(ReservationState.CANCELLATA);
+            default -> List.of();
+        };
+    }
+}

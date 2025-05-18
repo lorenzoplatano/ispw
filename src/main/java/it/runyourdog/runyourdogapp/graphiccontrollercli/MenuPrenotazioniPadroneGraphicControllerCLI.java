@@ -98,7 +98,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
     }
 
     private void displayReservations(List<PrenotazioneBean> list) {
-        Printer.printf("Prenotazioni correnti:");
+        Printer.printf("Le tue prenotazioni:");
         for (int i = 0; i < list.size(); i++) {
             PrenotazioneBean p = list.get(i);
             Printer.printf(String.format(
@@ -109,7 +109,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
     }
 
     private int promptReservationSelection(int max) throws InvalidInputException {
-        Printer.printf("Seleziona il numero della prenotazione da gestire (0 per tornare al menu):");
+        Printer.printf("Seleziona una prenotazione da gestire (0 per tornare)");
         String line = scanner.nextLine();
         try {
             int choice = Integer.parseInt(line);
@@ -138,11 +138,10 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
         for (int i = 0; i < options.size(); i++) {
             Printer.printf(String.format("%d) %s", i + 1, options.get(i)));
         }
-        Printer.printf("0) Torna alla lista prenotazioni");
     }
 
     private int promptStateSelection(int max) throws InvalidInputException{
-        Printer.printf("Seleziona un'azione:");
+        Printer.printf("Seleziona un nuovo stato (0 per tornare):");
         String input = scanner.nextLine();
         try {
             int choice = Integer.parseInt(input);
