@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
@@ -74,11 +75,11 @@ public class PrenotazioneVeterinarioGraphicController extends ProfiloPadroneGrap
             prenotazioneBean.setCitta(city);
 
 
-            //List<ProfiloDogsitterBean> list = controller.cercaVeterinario(prenotazioneBean);
-            //SingletonStage.getStage(null).showPadronePrenotazione2VeterinarioPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneVeterinario2.fxml", list, loggedUser, prenotazioneBean);
+            List<ProfiloVeterinarioBean> list = controller.cercaVeterinario(prenotazioneBean);
+            SingletonStage.getStage(null).showPadronePrenotazione2VeterinarioPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneVeterinario2.fxml", list, loggedUser, prenotazioneBean);
 
-        //}catch (DAOException e) {
-            //Printer.perror(e.getMessage());
+        }catch (DAOException e) {
+            Printer.perror(e.getMessage());
         }catch (InvalidInputException e) {
             showError(e.getMessage());
         }
