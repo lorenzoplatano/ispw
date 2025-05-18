@@ -64,14 +64,17 @@ public class MenuPrenotazioniDogsitterGraphicControllerCLI extends ProfiloDogsit
 
             PrenotazioneBean selected = lista.get(sel - 1);
             List<ReservationState> allowed = getAllowedStates(selected.getStato());
-            if (allowed.isEmpty()) {
-                Printer.printf("Nessuna azione disponibile per la prenotazione selezionata%n");
-                continue;
+            int action = 0;
+            if (!allowed.isEmpty()) {
+                displayActions(allowed);
+                action = promptInt(scanner, "Seleziona un nuovo stato (0 per tornare):", 0, allowed.size());
             }
 
-            displayActions(allowed);
-            int action = promptInt(scanner, "Seleziona un nuovo stato (0 per tornare):", 0, allowed.size());
-            if (action == 0) {
+            if (allowed.isEmpty()) {
+                Printer.printf("Nessuna azione disponibile per la prenotazione selezionata%n");
+            }
+
+            if (allowed.isEmpty() || action == 0) {
                 continue;
             }
 
@@ -117,7 +120,7 @@ public class MenuPrenotazioniDogsitterGraphicControllerCLI extends ProfiloDogsit
                     throw new NumberFormatException();
                 }
                 return value;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException _) {
                 Printer.perror("Inserisci un numero valido tra " + min + " e " + max + ".");
             }
         }
