@@ -147,7 +147,7 @@ public class VeterinarioDao extends LavoratoreDao{
                     String nomePad = rs.getString(5);
                     Padrone pad = new Padrone();
                     pad.setNome(nomePad);
-                    int stateId = rs.getInt(8);
+                    int stateId = rs.getInt(7);
                     ReservationState stato = ReservationState.fromInt(stateId);
                     Time inizio = rs.getTime(6);
                     Prenotazione pre = new Prenotazione(id, date, cane, pad, stato, inizio);
