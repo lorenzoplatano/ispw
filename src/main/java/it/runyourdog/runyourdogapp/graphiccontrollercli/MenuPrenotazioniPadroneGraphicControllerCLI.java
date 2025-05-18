@@ -7,6 +7,7 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
 
 import java.util.List;
@@ -75,17 +76,16 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
                 List<ReservationState> allowed = getAllowedStates(selected);
 
                 if (allowed.isEmpty()) {
-                    Printer.printf("Nessuna azione disponibile per lo stato attuale\n");
+                    Printer.printf("Nessuna azione disponibile per lo stato attuale%n");
                 } else {
-                    displayStateOptions(allowed);
-                    int stateIndex = promptStateSelection(allowed.size());
-                    if (stateIndex > -1) {
-                        ReservationState newState = allowed.get(stateIndex);
-                        controller.gestisciPrenotazione(selected, newState);
-                        Printer.printf(String.format(
-                                "La prenotazione ora è %s.",
-                                 newState
-                        ));
+                    boolean conferma = promptYesNo("Desideri cancellare la prenotazione selezionata? (y/n)");
+                    if (conferma) {
+                        controller.gestisciPrenotazione(selected, ReservationState.CANCELLATA);
+                        Printer.printf(
+                                "La prenotazione ora è "
+                                        + ReservationState.CANCELLATA
+                                        + ".\n"
+                        );
                         prenList = controller.mostraPrenotazioni(profilo);
                     }
                 }
@@ -97,13 +97,36 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
         }
     }
 
+    private boolean promptYesNo(String message) {
+        while (true) {
+            Printer.printf(message);
+            String line = scanner.nextLine().trim().toLowerCase();
+            if (line.equals("y")) {
+                return true;
+            }
+            if (line.equals("n")) {
+                return false;
+            }
+            Printer.perror("Rispondi con 'y' (sì) o 'n' (no).");
+        }
+    }
+
     private void displayReservations(List<PrenotazioneBean> list) {
         Printer.printf("Le tue prenotazioni:");
         for (int i = 0; i < list.size(); i++) {
             PrenotazioneBean p = list.get(i);
+
+            String orarioFine = p.getTipo() == ReservationType.VETERINARIO ? "//" : String.valueOf(p.getOrarioFine());
+
             Printer.printf(String.format(
-                    "%d) %s - %s - Stato: %s",
-                    i + 1, p.getData(), p.getTipo(), p.getStato()
+                    "%d) Data: %s - Orario Inizio: %s - Orario Fine: %s - Tipo: %s - Nome Lavoratore: %s - Stato: %s",
+                    i + 1,
+                    p.getData(),
+                    p.getOrarioInizio(),
+                    orarioFine,
+                    p.getTipo(),
+                    p.getPrenotato().getNome(),
+                    p.getStato()
             ));
         }
     }
@@ -132,24 +155,4 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
         };
     }
 
-    private void displayStateOptions(List<ReservationState> options) {
-        Printer.printf("Seleziona uno dei seguenti stati per la prenotazione scelta:");
-        for (int i = 0; i < options.size(); i++) {
-            Printer.printf(String.format("%d) %s", i + 1, options.get(i)));
-        }
-    }
-
-    private int promptStateSelection(int max) throws InvalidInputException{
-        Printer.printf("Seleziona un nuovo stato (0 per tornare):");
-        String input = scanner.nextLine();
-        try {
-            int choice = Integer.parseInt(input);
-            if (choice == 0) return -1;
-            if (choice < 1 || choice > max) throw new InvalidInputException("Scelta non valida.");
-            return choice - 1;
-        } catch (NumberFormatException _) {
-            Printer.perror("Inserisci un numero valido.");
-            return promptStateSelection(max);
-        }
-    }
 }
