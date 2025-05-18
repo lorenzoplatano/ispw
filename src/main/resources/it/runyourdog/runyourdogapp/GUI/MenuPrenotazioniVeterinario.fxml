@@ -60,9 +60,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TableView fx:id="reservationTable" layoutX="94.0" layoutY="61.0" prefHeight="356.0" prefWidth="734.0">
+            <TableView fx:id="reservationTable" layoutX="121.0" layoutY="60.0" prefHeight="356.0" prefWidth="680.0">
                <columns>
-                  <TableColumn fx:id="colID" prefWidth="53.600006103515625" text="ID" />
                   <TableColumn fx:id="colData" prefWidth="94.4000244140625" text="Data" />
                   <TableColumn fx:id="colOrario" prefWidth="93.60000610351562" text="Orario" />
                   <TableColumn fx:id="colNomeCane" prefWidth="93.60000610351562" text="Nome Cane" />

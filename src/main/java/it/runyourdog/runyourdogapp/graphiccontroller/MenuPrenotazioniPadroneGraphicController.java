@@ -18,7 +18,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
-public class MenuPrenotazioniPadroneGraphicController extends PrenotazioneDogsitterGraphicController {
+public class MenuPrenotazioniPadroneGraphicController extends ProfiloPadroneGraphicController {
 
     @FXML
     private TableView<PrenotazioneBean> reservationTable;
@@ -42,9 +42,6 @@ public class MenuPrenotazioniPadroneGraphicController extends PrenotazioneDogsit
     private TableColumn<PrenotazioneBean, String> colStato;
 
     @FXML
-    private TableColumn<PrenotazioneBean, Integer> colID;
-
-    @FXML
     private Text testoChoice1;
 
     @FXML
@@ -55,10 +52,6 @@ public class MenuPrenotazioniPadroneGraphicController extends PrenotazioneDogsit
 
     @FXML
     public void initialize() {
-
-        colID.setCellValueFactory(cd ->
-                new SimpleObjectProperty<>(cd.getValue().getId())
-        );
 
         colData.setCellValueFactory(cd ->
                 new SimpleObjectProperty<>(cd.getValue().getData())

@@ -1,4 +1,4 @@
-// --- RegistrazioneDogsitterGraphicController.java ---
+
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;

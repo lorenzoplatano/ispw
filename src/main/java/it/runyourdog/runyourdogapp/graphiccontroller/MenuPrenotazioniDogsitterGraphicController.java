@@ -21,11 +21,9 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
-public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicController {
+public class MenuPrenotazioniDogsitterGraphicController extends ProfiloDogsitterGraphicController {
 
     @FXML private TableView<PrenotazioneBean> reservationTable;
-
-    @FXML private TableColumn<PrenotazioneBean, Integer> colID;
 
     @FXML private TableColumn<PrenotazioneBean, Date> colData;
 
@@ -60,9 +58,6 @@ public class MenuPrenotazioniDogsitterGraphicController extends GenericGraphicCo
     @FXML
     public void initialize() {
 
-        colID.setCellValueFactory(cd ->
-                new SimpleObjectProperty<>(cd.getValue().getId())
-        );
         colData.setCellValueFactory(cd ->
                 new SimpleObjectProperty<>(cd.getValue().getData())
         );

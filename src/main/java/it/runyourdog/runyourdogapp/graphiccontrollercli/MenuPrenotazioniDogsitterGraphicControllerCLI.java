@@ -61,9 +61,8 @@ public class MenuPrenotazioniDogsitterGraphicControllerCLI extends ProfiloDogsit
             for (int i = 0; i < lista.size(); i++) {
                 PrenotazioneBean p = lista.get(i);
                 String line = String.format(
-                        "%d) ID %d - Data: %s - Orario Inizio: %s -  Orario fine: %s - Cliente: %s (%s) - Stato: %s",
+                        "%d) Data: %s - Orario Inizio: %s -  Orario fine: %s - Cliente: %s (%s) - Stato: %s",
                         i + 1,
-                        p.getId(),
                         p.getData(),
                         p.getOrarioInizio(),
                         p.getOrarioFine(),
@@ -136,8 +135,8 @@ public class MenuPrenotazioniDogsitterGraphicControllerCLI extends ProfiloDogsit
             controller.gestisciPrenotazione(selected, newState);
 
             String string = String.format(
-                    "Prenotazione ID %d ora è %s.\n",
-                    selected.getId(), newState
+                    "La prenotazione ora è %s.\n",
+                    newState
 
             );
             Printer.printf(string);

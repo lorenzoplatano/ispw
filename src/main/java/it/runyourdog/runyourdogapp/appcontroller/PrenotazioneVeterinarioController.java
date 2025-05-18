@@ -1,4 +1,4 @@
 package it.runyourdog.runyourdogapp.appcontroller;
 
-public class PrenotazioneVeterinarioController {
+public class PrenotazioneVeterinarioController extends PrenotazioneController{
 }

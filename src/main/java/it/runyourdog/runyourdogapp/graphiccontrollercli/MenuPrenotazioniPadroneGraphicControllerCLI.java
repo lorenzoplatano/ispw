@@ -83,8 +83,8 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
                         ReservationState newState = allowed.get(stateIndex);
                         controller.gestisciPrenotazione(selected, newState);
                         Printer.printf(String.format(
-                                "Prenotazione ID %d ora è %s.",
-                                selected.getId(), newState
+                                "La prenotazione ora è %s.",
+                                 newState
                         ));
                         prenList = controller.mostraPrenotazioni(profilo);
                     }
@@ -102,8 +102,8 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
         for (int i = 0; i < list.size(); i++) {
             PrenotazioneBean p = list.get(i);
             Printer.printf(String.format(
-                    "%d) ID %d - %s - %s - Stato: %s",
-                    i + 1, p.getId(), p.getData(), p.getTipo(), p.getStato()
+                    "%d) %s - %s - Stato: %s",
+                    i + 1, p.getData(), p.getTipo(), p.getStato()
             ));
         }
     }

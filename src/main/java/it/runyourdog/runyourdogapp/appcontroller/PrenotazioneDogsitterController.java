@@ -18,7 +18,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrenotazioneDogsitterController {
+public class PrenotazioneDogsitterController extends PrenotazioneController{
 
 
     private final PadroneDao padroneDao;
@@ -80,43 +80,6 @@ public class PrenotazioneDogsitterController {
 
     }
 
-    public List<PrenotazioneBean> mostraPrenotazioni(ProfiloPadroneBean padrone) throws DAOException, InvalidInputException {
-        Padrone pad = new Padrone(padrone.getEmail());
-        List<Prenotazione> list = padroneDao.showReservations(pad);
-
-        List<PrenotazioneBean> listBean = new ArrayList<>();
-        for (Prenotazione d : list) {
-            PrenotazioneBean bean = new PrenotazioneBean();
-            bean.setTipo(d.getTipo());
-            bean.setData(d.getData());
-            bean.setStato(d.getStato());
-            bean.setId(d.getId());
-            bean.setOrarioInizio(d.getOraInizio());
-
-            ProfiloLavoratoreBean profilo;
-            if (d.getTipo() == ReservationType.DOGSITTER) {
-                bean.setOrarioFine(d.getOraFine());
-                ProfiloDogsitterBean dsBean = new ProfiloDogsitterBean();
-                dsBean.setNome(d.getLavoratore().getNome());
-                profilo = dsBean;
-
-            } else if (d.getTipo() == ReservationType.VETERINARIO) {
-                ProfiloVeterinarioBean vBean = new ProfiloVeterinarioBean();
-                vBean.setNome(d.getLavoratore().getNome());
-                profilo = vBean;
-
-            } else {
-                throw new IllegalArgumentException(
-                        "Tipo di prenotazione non supportato: " + d.getTipo()
-                );
-            }
-            bean.setPrenotato(profilo);
-            listBean.add(bean);
-        }
-
-        return listBean;
-    }
-
     public List<PrenotazioneBean> mostraPrenotazioniDog(ProfiloDogsitterBean dogsitter) throws DAOException, InvalidInputException {
         Dogsitter ds = new Dogsitter();
         ds.setEmail(dogsitter.getEmail());
@@ -142,30 +105,6 @@ public class PrenotazioneDogsitterController {
         }
 
         return listBean;
-    }
-
-
-    public void gestisciPrenotazione(PrenotazioneBean selected, ReservationState stato) throws DAOException {
-
-
-        DogsitterDao dao = new DogsitterDao();
-        int id = selected.getId();
-        Prenotazione prenotazione = new Prenotazione(id);
-
-        switch (stato) {
-            case ACCETTATA:
-                dao.acceptReservation(prenotazione);
-                break;
-            case RIFIUTATA:
-                dao.refuseReservation(prenotazione);
-                break;
-            case CANCELLATA:
-                dao.cancelReservation(prenotazione);
-                break;
-            default:
-
-                throw new IllegalArgumentException("Stato non supportato: " + stato);
-        }
     }
 
 

@@ -44,23 +44,6 @@ public abstract class GenericGraphicController {
         SingletonStage.getStage(null).cambiaScena("/it/runyourdog/runyourdogapp/GUI/Registrazione.fxml");
     }
 
-    @FXML
-    private void goToPrenotazione() throws IOException {
-
-        SingletonStage.getStage(null).showPadronePrenotazioneDogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter.fxml",  loggedUser);
-    }
-
-    @FXML
-    private void goToVetPrenotazione() throws IOException {
-
-        SingletonStage.getStage(null).showPadronePrenotazioneVetPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneVeterinario.fxml",  loggedUser);
-    }
-
-    @FXML
-    public void goToProfilo() throws IOException {
-        SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", (ProfiloPadroneBean) loggedUser);
-    }
-
 
 
 
