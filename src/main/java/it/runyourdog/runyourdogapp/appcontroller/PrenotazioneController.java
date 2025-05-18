@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
+import it.runyourdog.runyourdogapp.model.dao.LavoratoreDao;
 import it.runyourdog.runyourdogapp.model.dao.PadroneDao;
 import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
@@ -16,14 +17,11 @@ import java.util.List;
 
 public abstract class PrenotazioneController {
 
-    private final PadroneDao padroneDao;
-    private final DogsitterDao dogsitterDao;
-    private final VeterinarioDao veterinarioDao;
+    protected final PadroneDao padroneDao;
+
 
     protected PrenotazioneController() {
         this.padroneDao = new PadroneDao();
-        this.dogsitterDao = new DogsitterDao();
-        this.veterinarioDao = new VeterinarioDao();
     }
 
     public List<PrenotazioneBean> mostraPrenotazioni(ProfiloPadroneBean padrone) throws DAOException, InvalidInputException {
@@ -65,11 +63,20 @@ public abstract class PrenotazioneController {
 
     public void gestisciPrenotazione(PrenotazioneBean selected, ReservationState stato) throws DAOException {
 
-
-        DogsitterDao dao = new DogsitterDao();
         int id = selected.getId();
         ReservationType tipo = selected.getTipo();
+
         Prenotazione prenotazione = new Prenotazione(id, tipo);
+
+        LavoratoreDao dao;
+        if (tipo == ReservationType.DOGSITTER) {
+            dao = new DogsitterDao();
+        } else if (tipo == ReservationType.VETERINARIO) {
+            dao = new VeterinarioDao();
+        } else {
+            throw new IllegalArgumentException("Tipo di prenotazione non supportato: " + tipo);
+        }
+
 
         switch (stato) {
             case ACCETTATA:
