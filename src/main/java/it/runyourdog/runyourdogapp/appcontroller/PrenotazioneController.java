@@ -68,14 +68,10 @@ public abstract class PrenotazioneController {
 
         Prenotazione prenotazione = new Prenotazione(id, tipo);
 
-        LavoratoreDao dao;
-        if (tipo == ReservationType.DOGSITTER) {
-            dao = new DogsitterDao();
-        } else if (tipo == ReservationType.VETERINARIO) {
-            dao = new VeterinarioDao();
-        } else {
-            throw new IllegalArgumentException("Tipo di prenotazione non supportato: " + tipo);
-        }
+        LavoratoreDao dao = switch (tipo) {
+            case DOGSITTER   -> new DogsitterDao();
+            case VETERINARIO -> new VeterinarioDao();
+        };
 
 
         switch (stato) {

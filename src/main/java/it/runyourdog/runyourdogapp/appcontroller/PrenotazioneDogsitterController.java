@@ -10,6 +10,7 @@ import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
 
 import java.sql.Date;
@@ -92,6 +93,7 @@ public class PrenotazioneDogsitterController extends PrenotazioneController{
             bean.setId(d.getId());
             bean.setOrarioInizio(d.getOraInizio());
             bean.setOrarioFine(d.getOraFine());
+            bean.setTipo(ReservationType.DOGSITTER);
 
             ProfiloPadroneBean padBean = new ProfiloPadroneBean();
             padBean.setNomeCane(d.getCane().getNome());
