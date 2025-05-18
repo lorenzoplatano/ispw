@@ -78,7 +78,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
                 if (allowed.isEmpty()) {
                     Printer.printf("Nessuna azione disponibile per lo stato attuale%n");
                 } else {
-                    boolean conferma = promptYesNo("Desideri cancellare la prenotazione selezionata? (y/n)");
+                    boolean conferma = promptYesNo();
                     if (conferma) {
                         controller.gestisciPrenotazione(selected, ReservationState.CANCELLATA);
                         Printer.printf(
@@ -97,9 +97,9 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
         }
     }
 
-    private boolean promptYesNo(String message) {
+    private boolean promptYesNo() {
         while (true) {
-            Printer.printf(message);
+            Printer.printf("Desideri cancellare la prenotazione selezionata? (y/n)");
             String line = scanner.nextLine().trim().toLowerCase();
             if (line.equals("y")) {
                 return true;
