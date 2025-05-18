@@ -2,8 +2,8 @@ package it.runyourdog.runyourdogapp.model.dao;
 
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 
-import it.runyourdog.runyourdogapp.model.entities.Orario;
-import it.runyourdog.runyourdogapp.model.entities.Veterinario;
+import it.runyourdog.runyourdogapp.model.entities.*;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -121,5 +121,46 @@ public class VeterinarioDao extends LavoratoreDao{
             throw new DAOException("Errore nella registrazione del Veterinario: " + e.getMessage());
 
         }
+    }
+
+    public List<Prenotazione> showReservations(Veterinario v) throws DAOException{
+
+        List<Prenotazione> list = new ArrayList<>();
+        ResultSet rs;
+
+
+        try {
+            this.cs = this.conn.prepareCall("{call getPrenotazioniVeterinario(?)}");
+            this.cs.setString(1, v.getEmail());
+
+
+            boolean hasResult = this.cs.execute();
+
+            if (hasResult) {
+                rs = cs.getResultSet();
+                while (rs.next()) {
+                    int id = rs.getInt(1);
+                    Date date = rs.getDate(2);
+                    String nomeCane = rs.getString(3);
+                    String razzaCane = rs.getString(4);
+                    Dog cane = new Dog(nomeCane, razzaCane);
+                    String nomePad = rs.getString(5);
+                    Padrone pad = new Padrone();
+                    pad.setNome(nomePad);
+                    int stateId = rs.getInt(8);
+                    ReservationState stato = ReservationState.fromInt(stateId);
+                    Time inizio = rs.getTime(6);
+                    Prenotazione pre = new Prenotazione(id, date, cane, pad, stato, inizio);
+                    list.add(pre);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Errore nella acquisizione delle prenotazioni: " + e.getMessage());
+        }
+
+        return list;
+
+
     }
 }

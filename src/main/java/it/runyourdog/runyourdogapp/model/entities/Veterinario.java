@@ -8,6 +8,18 @@ public class Veterinario extends Lavoratore {
         super(email, password);
     }
 
+    public Veterinario(String citta){
+        super(citta);
+    }
+
+    public Veterinario() {   }
+
+    public Veterinario(String email, String nome, int eta, String genere, String telefono, String indirizzo) {
+        super(email, nome, eta, genere, telefono);
+        setIndirizzo(indirizzo);
+
+    }
+
 
     public String getIndirizzo() {
         return indirizzo;

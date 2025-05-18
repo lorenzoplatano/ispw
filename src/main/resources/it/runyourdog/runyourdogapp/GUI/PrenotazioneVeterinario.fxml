@@ -16,7 +16,7 @@
    <children>
       <AnchorPane layoutX="168.0" layoutY="144.6" prefHeight="535.0" prefWidth="850.0" style="-fx-background-color: B4B3B3; -fx-background-radius: 4; -fx-border-color: BLACK; -fx-border-radius: 4;" AnchorPane.bottomAnchor="113.79999999999995" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="182.39999999999998" AnchorPane.topAnchor="144.6">
          <children>
-            <Button layoutX="260.0" layoutY="438.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="PROSEGUI" AnchorPane.bottomAnchor="60.0" AnchorPane.topAnchor="427.0">
+            <Button layoutX="260.0" layoutY="438.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#prenota" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="PROSEGUI" AnchorPane.bottomAnchor="60.0" AnchorPane.topAnchor="427.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

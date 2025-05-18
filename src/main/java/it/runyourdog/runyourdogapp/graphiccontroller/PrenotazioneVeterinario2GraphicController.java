@@ -84,15 +84,15 @@ public class PrenotazioneVeterinario2GraphicController extends PrenotazioneVeter
 
             prenotazioneBean.setPrenotato(vetChoice);
 
-            //controller.sendRequest(prenotazioneBean);
+            controller.sendRequest(prenotazioneBean);
 
-            //SingletonStage.getStage(null).showPadronePrenotazione3VeterinarioPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter3.fxml", loggedUser, prenotazioneBean);
+            SingletonStage.getStage(null).showPadronePrenotazione3VeterinarioPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneVeterinario3.fxml", loggedUser, prenotazioneBean);
 
 
         } catch (InvalidInputException e) {
             showError(e.getMessage());
-        //} catch (DAOException e) {
-            //Printer.perror(e.getMessage());
+        } catch (DAOException e) {
+            Printer.perror(e.getMessage());
         }
 
 

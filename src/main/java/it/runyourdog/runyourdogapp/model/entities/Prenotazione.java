@@ -35,6 +35,13 @@ public class Prenotazione {
         this.padrone = padrone;
     }
 
+    public Prenotazione(Date data, Time oraInizio, Lavoratore lavoratore, Padrone padrone) {
+        this.data = data;
+        this.oraInizio = oraInizio;
+        this.lavoratore = lavoratore;
+        this.padrone = padrone;
+    }
+
     public Prenotazione(Padrone padrone, Date data, Time oraInizio, Time oraFine) {
         this.data = data;
         this.oraInizio = oraInizio;
@@ -42,10 +49,18 @@ public class Prenotazione {
         this.padrone = padrone;
     }
 
+
+
     public Prenotazione(Date data, Time oraInizio, Time oraFine, Lavoratore lavoratore) {
         this.data = data;
         this.oraInizio = oraInizio;
         this.oraFine = oraFine;
+        this.lavoratore = lavoratore;
+    }
+
+    public Prenotazione(Date data, Time oraInizio, Lavoratore lavoratore) {
+        this.data = data;
+        this.oraInizio = oraInizio;
         this.lavoratore = lavoratore;
     }
 
@@ -65,6 +80,16 @@ public class Prenotazione {
         this.cane = dog;
         this.oraInizio = oraInizio;
         this.oraFine = oraFine;
+    }
+
+    public Prenotazione(int id, Date data, Dog dog, Padrone padrone, ReservationState stato, Time oraInizio) {
+        this.id = id;
+        this.data = data;
+        this.padrone = padrone;
+        this.stato = stato;
+        this.cane = dog;
+        this.oraInizio = oraInizio;
+
     }
 
     public Prenotazione(int id, Date data, ReservationType type, Lavoratore lavoratore, ReservationState stato, Time oraInizio, Time orafine) {

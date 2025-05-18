@@ -19,6 +19,14 @@ public class ProfiloVeterinarioBean extends ProfiloLavoratoreBean {
         super(username, email, password, ruolo, nome);
     }
 
+    public ProfiloVeterinarioBean(String email, String telefono, int eta, String genere, String nome, String indirizzo)
+            throws InvalidInputException {
+        super(email, telefono, eta, genere, nome);
+        setIndirizzo(indirizzo);
+
+    }
+
+
     public ProfiloVeterinarioBean() {    }
 
     public String getIndirizzo() {

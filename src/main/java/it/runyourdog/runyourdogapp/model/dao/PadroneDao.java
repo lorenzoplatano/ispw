@@ -239,4 +239,56 @@ public class PadroneDao {
             throw new DAOException("Errore nel controllo di sovrapposizione degli orari: " + e.getMessage());
         }
     }
+
+    public List<Veterinario> findVet(Prenotazione prenotazione) throws DAOException {
+
+        List<Veterinario> list = new ArrayList<>();
+        ResultSet rs;
+        try {
+            this.cs = this.conn.prepareCall("{call getVeterinariDisponibili(?,?,?)}");
+            this.cs.setDate(1, prenotazione.getData());
+            this.cs.setString(2, prenotazione.getLavoratore().getCitta());
+            this.cs.setTime(3, prenotazione.getOraInizio());
+
+
+            boolean hasResult = cs.execute();
+            if (hasResult) {
+                rs = cs.getResultSet();
+                while (rs.next()) {
+                    Veterinario v = new Veterinario(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                    list.add(v);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Errore nel recupero dei veterinari disponibili: " + e.getMessage());
+        }
+
+        return list;
+
+    }
+
+    public void mandaRichiestaVet(Prenotazione sendingReq) throws DAOException{
+        try {
+            Padrone pad = sendingReq.getPadrone();
+            Veterinario veterinario = (Veterinario) sendingReq.getLavoratore();
+            Date data = sendingReq.getData();
+            Time inizio = sendingReq.getOraInizio();
+
+
+
+
+            this.cs = this.conn.prepareCall("{call creaPrenotazioneVeterinario(?,?,?,?)}");
+            this.cs.setString(1, veterinario.getEmail());
+            this.cs.setString(2, pad.getEmail());
+            this.cs.setDate(3, data);
+            this.cs.setTime(4, inizio);
+
+
+            this.cs.execute();
+
+
+        }catch (SQLException e) {
+            throw new DAOException("Errore nella creazione della prenotazione: " + e.getMessage());
+        }
+    }
 }

@@ -115,12 +115,12 @@ public class MenuPrenotazioniVeterinarioGraphicController extends GenericGraphic
             PrenotazioneVeterinarioController con = new PrenotazioneVeterinarioController();
             ProfiloVeterinarioBean vet = new ProfiloVeterinarioBean();
             vet.setEmail(loggedUser.getEmail());
-            //List<PrenotazioneBean> nuove = con.mostraPrenotazioniVet(vet);
-            //setPrenotazioniList(nuove);
+            List<PrenotazioneBean> nuove = con.mostraPrenotazioniVet(vet);
+            setPrenotazioniList(nuove);
         } catch (InvalidInputException e) {
             showError(e.getMessage());
-        //} catch (DAOException e) {
-                //Printer.perror("Errore: " + e.getMessage());
+        } catch (DAOException e) {
+                Printer.perror("Errore: " + e.getMessage());
         }
     }
 

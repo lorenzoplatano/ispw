@@ -148,4 +148,37 @@ public class SingletonStage {
     }
 
 
+    public void showPadronePrenotazione2VeterinarioPage(String fxmlPath, List<ProfiloVeterinarioBean> list, UserBean loggedPad, PrenotazioneBean bean) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        PrenotazioneVeterinario2GraphicController controller = fxmlLoader.getController();
+        controller.setLoggedUser(loggedPad);
+        controller.setPrenotazioneBean(bean);
+        controller.setVetList(list);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
+
+    public void showPadronePrenotazione3VeterinarioPage(String fxmlPath, UserBean loggedPad, PrenotazioneBean bean) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        PrenotazioneVeterinarioGraphicController controller = fxmlLoader.getController();
+        controller.setLoggedUser(loggedPad);
+        controller.setPrenotazioneBean(bean);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+
+    }
+
+    public void showVeterinarioReservationMenu(String fxmlPath, UserBean loggedUser, List<PrenotazioneBean> list) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
+        Parent root = fxmlLoader.load();
+        MenuPrenotazioniVeterinarioGraphicController controller = fxmlLoader.getController();
+        controller.setLoggedUser(loggedUser);
+        controller.setPrenotazioniList(list);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
+
 }
