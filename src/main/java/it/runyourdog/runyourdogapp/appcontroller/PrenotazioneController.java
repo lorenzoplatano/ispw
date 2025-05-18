@@ -20,7 +20,7 @@ public abstract class PrenotazioneController {
     private final DogsitterDao dogsitterDao;
     private final VeterinarioDao veterinarioDao;
 
-    public PrenotazioneController() {
+    protected PrenotazioneController() {
         this.padroneDao = new PadroneDao();
         this.dogsitterDao = new DogsitterDao();
         this.veterinarioDao = new VeterinarioDao();

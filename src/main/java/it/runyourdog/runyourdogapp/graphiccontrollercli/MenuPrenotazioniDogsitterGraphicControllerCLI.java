@@ -78,7 +78,7 @@ public class MenuPrenotazioniDogsitterGraphicControllerCLI extends ProfiloDogsit
             int sel;
             try {
                 sel = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException _) {
                 Printer.perror("Inserisci un numero valido.");
                 continue;
             }
@@ -120,7 +120,7 @@ public class MenuPrenotazioniDogsitterGraphicControllerCLI extends ProfiloDogsit
             int action;
             try {
                 action = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException _) {
                 Printer.perror("Inserisci un numero valido.");
                 continue;
             }
@@ -135,7 +135,7 @@ public class MenuPrenotazioniDogsitterGraphicControllerCLI extends ProfiloDogsit
             controller.gestisciPrenotazione(selected, newState);
 
             String string = String.format(
-                    "La prenotazione ora è %s.\n",
+                    "La prenotazione ora è %s.%n",
                     newState
 
             );

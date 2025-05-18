@@ -18,7 +18,7 @@ import java.util.List;
 public class PrenotazioneVeterinario2GraphicController extends PrenotazioneVeterinarioGraphicController {
 
     @FXML
-    private TableView<ProfiloVeterinarioBean> Table;
+    private TableView<ProfiloVeterinarioBean> table;
 
     @FXML
     private TableColumn<ProfiloVeterinarioBean, String> nome;
@@ -65,12 +65,12 @@ public class PrenotazioneVeterinario2GraphicController extends PrenotazioneVeter
         );
 
 
-        Table.setPlaceholder(new Label("Nessun veterinario disponibile"));
+        table.setPlaceholder(new Label("Nessun veterinario disponibile"));
     }
 
     public void setVetList(List<ProfiloVeterinarioBean> list) {
 
-        Table.getItems().addAll(list);
+        table.getItems().addAll(list);
 
     }
 
@@ -80,7 +80,7 @@ public class PrenotazioneVeterinario2GraphicController extends PrenotazioneVeter
 
 
         try {
-            vetChoice = Table.getSelectionModel().getSelectedItem();
+            vetChoice = table.getSelectionModel().getSelectedItem();
 
             prenotazioneBean.setPrenotato(vetChoice);
 

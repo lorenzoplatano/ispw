@@ -10,8 +10,7 @@ import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
-import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
-import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
+
 
 import java.sql.Date;
 import java.sql.Time;

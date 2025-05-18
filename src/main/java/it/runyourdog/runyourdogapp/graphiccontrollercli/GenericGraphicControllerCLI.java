@@ -23,7 +23,7 @@ public abstract class GenericGraphicControllerCLI {
                 } else {
                     Printer.printf("Scelta non valida. Inserisci un numero tra " + start + " e " + end);
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException _) {
                 Printer.printf("Errore: inserisci solo numeri.");
             }
         }
