@@ -9,13 +9,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DogsitterDao {
-
-    private final Connection conn;
-    private CallableStatement cs;
+public class DogsitterDao extends LavoratoreDao {
 
     public DogsitterDao() {
-        this.conn = ConnectionManager.getInstance().getDBConnection();
+        super();
     }
 
     public Dogsitter dogsInfo(Dogsitter dogs) throws DAOException {
@@ -161,55 +158,6 @@ public class DogsitterDao {
         return list;
     }
 
-    public void acceptReservation(Prenotazione prenotazione) throws DAOException{
 
-
-        try {
-
-            int id = prenotazione.getId();
-            this.cs = this.conn.prepareCall("{call accettaPrenotazioneDogsitter(?)}");
-            this.cs.setInt(1, id);
-
-
-            this.cs.execute();
-
-
-        }catch (SQLException e) {
-            throw new DAOException("Errore nell'accettazione della prenotazione: " + e.getMessage());
-        }
-    }
-
-    public void refuseReservation(Prenotazione prenotazione) throws DAOException {
-
-        try {
-
-            int id = prenotazione.getId();
-            this.cs = this.conn.prepareCall("{call rifiutaPrenotazioneDogsitter(?)}");
-            this.cs.setInt(1, id);
-
-
-            this.cs.execute();
-
-
-        }catch (SQLException e) {
-            throw new DAOException("Errore nel rifiuto della prenotazione: " + e.getMessage());
-        }
-    }
-
-    public void cancelReservation(Prenotazione prenotazione)throws DAOException {
-        try {
-
-            int id = prenotazione.getId();
-            this.cs = this.conn.prepareCall("{call cancellaPrenotazioneDogsitter(?)}");
-            this.cs.setInt(1, id);
-
-
-            this.cs.execute();
-
-
-        }catch (SQLException e) {
-            throw new DAOException("Errore nella cancellazione della prenotazione: " + e.getMessage());
-        }
-    }
 }
 

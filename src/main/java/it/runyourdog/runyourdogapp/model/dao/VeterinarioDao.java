@@ -9,13 +9,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VeterinarioDao {
-
-    private final Connection conn;
-    private CallableStatement cs;
+public class VeterinarioDao extends LavoratoreDao{
 
     public VeterinarioDao() {
-        this.conn = ConnectionManager.getInstance().getDBConnection();
+        super();
     }
 
     public Veterinario vetInfo(Veterinario vet) throws DAOException {

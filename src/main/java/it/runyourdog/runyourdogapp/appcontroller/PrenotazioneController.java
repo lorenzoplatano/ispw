@@ -68,7 +68,8 @@ public abstract class PrenotazioneController {
 
         DogsitterDao dao = new DogsitterDao();
         int id = selected.getId();
-        Prenotazione prenotazione = new Prenotazione(id);
+        ReservationType tipo = selected.getTipo();
+        Prenotazione prenotazione = new Prenotazione(id, tipo);
 
         switch (stato) {
             case ACCETTATA:

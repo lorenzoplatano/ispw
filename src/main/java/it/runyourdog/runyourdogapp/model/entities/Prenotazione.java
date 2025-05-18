@@ -22,6 +22,11 @@ public class Prenotazione {
        this.id = id;
     }
 
+    public Prenotazione(int id,  ReservationType tipo) {
+        this.id = id;
+        this.type = tipo;
+    }
+
     public Prenotazione(Date data, Time oraInizio, Time oraFine, Lavoratore lavoratore, Padrone padrone) {
         this.data = data;
         this.oraInizio = oraInizio;
