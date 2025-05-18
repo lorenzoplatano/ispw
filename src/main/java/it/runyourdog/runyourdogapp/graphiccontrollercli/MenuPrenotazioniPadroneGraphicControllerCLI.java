@@ -127,8 +127,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
 
     private List<ReservationState> getAllowedStates(PrenotazioneBean bean) {
         return switch (bean.getStato()) {
-            case IN_ATTESA -> List.of(ReservationState.ACCETTATA, ReservationState.RIFIUTATA);
-            case ACCETTATA -> List.of(ReservationState.CANCELLATA);
+            case IN_ATTESA, ACCETTATA -> List.of(ReservationState.CANCELLATA);
             default -> List.of();
         };
     }
