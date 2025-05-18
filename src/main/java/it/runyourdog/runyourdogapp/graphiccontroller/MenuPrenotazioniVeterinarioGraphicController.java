@@ -19,7 +19,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
-public class MenuPrenotazioneVeterinarioGraphicController extends GenericGraphicController {
+public class MenuPrenotazioniVeterinarioGraphicController extends GenericGraphicController {
     @FXML
     private TableView<PrenotazioneBean> reservationTable;
 
@@ -29,9 +29,7 @@ public class MenuPrenotazioneVeterinarioGraphicController extends GenericGraphic
 
     @FXML private TableColumn<PrenotazioneBean, String> colRazza;
 
-    @FXML private TableColumn<PrenotazioneBean, Time> colOraInizio;
-
-    @FXML private TableColumn<PrenotazioneBean, Time> colOraFine;
+    @FXML private TableColumn<PrenotazioneBean, Time> colOrario;
 
     @FXML private TableColumn<PrenotazioneBean, String> colNomeLavoratore;
 
@@ -62,11 +60,8 @@ public class MenuPrenotazioneVeterinarioGraphicController extends GenericGraphic
         colNomeCane.setCellValueFactory(cd ->
                 new SimpleStringProperty(cd.getValue().getPrenotante().getNomeCane())
         );
-        colOraInizio.setCellValueFactory(cd ->
+        colOrario.setCellValueFactory(cd ->
                 new SimpleObjectProperty<>(cd.getValue().getOrarioInizio())
-        );
-        colOraFine.setCellValueFactory(cd ->
-                new SimpleObjectProperty<>(cd.getValue().getOrarioFine())
         );
         colRazza.setCellValueFactory(cd ->
                 new SimpleStringProperty(cd.getValue().getPrenotante().getRazzaCane())

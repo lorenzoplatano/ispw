@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class ProfiloPadroneGraphicController extends GenericGraphicController{
+public class ProfiloPadroneGraphicController extends GenericGraphicController {
 
     @FXML
     private TextArea nameArea;
@@ -60,6 +60,7 @@ public class ProfiloPadroneGraphicController extends GenericGraphicController{
         cittaArea.setText(loggedPad.getCittaPadrone());
     }
 
+
     @FXML
     public void goToReservationMenu()throws IOException {
 
@@ -95,5 +96,4 @@ public class ProfiloPadroneGraphicController extends GenericGraphicController{
     public void goToProfilo() throws IOException {
         SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", (ProfiloPadroneBean) loggedUser);
     }
-
 }
