@@ -45,7 +45,7 @@ public class MenuPrenotazioneVeterinarioGraphicController extends GenericGraphic
 
 
     @FXML
-    public void goToProfiloVet() throws IOException {
+    public void goToVetProfilo() throws IOException {
         SingletonStage.getStage(null)
                 .showVeterinarioHomePage(
                         "/it/runyourdog/runyourdogapp/GUI/ProfiloVeterinario.fxml",
@@ -120,12 +120,12 @@ public class MenuPrenotazioneVeterinarioGraphicController extends GenericGraphic
             PrenotazioneVeterinarioController con = new PrenotazioneVeterinarioController();
             ProfiloVeterinarioBean vet = new ProfiloVeterinarioBean();
             vet.setEmail(loggedUser.getEmail());
-            List<PrenotazioneBean> nuove = con.mostraPrenotazioniVet(vet);
-            setPrenotazioniList(nuove);
+            //List<PrenotazioneBean> nuove = con.mostraPrenotazioniVet(vet);
+            //setPrenotazioniList(nuove);
         } catch (InvalidInputException e) {
             showError(e.getMessage());
-        } catch (DAOException e) {
-                Printer.perror("Errore: " + e.getMessage());
+        //} catch (DAOException e) {
+                //Printer.perror("Errore: " + e.getMessage());
         }
     }
 

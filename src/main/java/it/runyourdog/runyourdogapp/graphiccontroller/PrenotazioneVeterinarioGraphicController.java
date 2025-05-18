@@ -74,11 +74,11 @@ public class PrenotazioneVeterinarioGraphicController extends ProfiloPadroneGrap
             prenotazioneBean.setCitta(city);
 
 
-            List<ProfiloDogsitterBean> list = controller.cercaVeterinario(prenotazioneBean);
-            SingletonStage.getStage(null).showPadronePrenotazione2VeterinarioPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneVeterinario2.fxml", list, loggedUser, prenotazioneBean);
+            //List<ProfiloDogsitterBean> list = controller.cercaVeterinario(prenotazioneBean);
+            //SingletonStage.getStage(null).showPadronePrenotazione2VeterinarioPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneVeterinario2.fxml", list, loggedUser, prenotazioneBean);
 
-        }catch (DAOException e) {
-            Printer.perror(e.getMessage());
+        //}catch (DAOException e) {
+            //Printer.perror(e.getMessage());
         }catch (InvalidInputException e) {
             showError(e.getMessage());
         }
