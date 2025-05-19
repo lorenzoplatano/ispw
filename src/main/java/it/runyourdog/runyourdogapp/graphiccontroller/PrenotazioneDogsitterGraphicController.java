@@ -10,7 +10,7 @@ import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import java.io.IOException;
 import java.util.List;
 
-public class PrenotazioneDogsitterGraphicController extends PrenotazioneGenericGraphicController {
+public class PrenotazioneDogsitterGraphicController extends PrenotazioneGenericGraphicController<ProfiloDogsitterBean> {
 
     private final PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
 

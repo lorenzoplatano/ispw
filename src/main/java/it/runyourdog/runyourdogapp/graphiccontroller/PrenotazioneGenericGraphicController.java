@@ -1,6 +1,5 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
@@ -17,7 +16,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
 
-public abstract class PrenotazioneGenericGraphicController extends ProfiloPadroneGraphicController {
+public abstract class PrenotazioneGenericGraphicController <T extends ProfiloLavoratoreBean> extends ProfiloPadroneGraphicController {
 
     @FXML protected DatePicker data;
     @FXML protected TextField citta;
@@ -66,7 +65,7 @@ public abstract class PrenotazioneGenericGraphicController extends ProfiloPadron
             checkSovrapposizioni(prenotazioneBean);
 
 
-            List<? extends ProfiloLavoratoreBean> lista = cercaLav(prenotazioneBean);
+            List<T> lista = cercaLav(prenotazioneBean);
 
 
             goToPage2(lista, prenotazioneBean);
@@ -82,7 +81,9 @@ public abstract class PrenotazioneGenericGraphicController extends ProfiloPadron
 
     protected abstract void checkSovrapposizioni(PrenotazioneBean bean) throws DAOException, InvalidInputException;
 
-    protected abstract List<? extends ProfiloLavoratoreBean> cercaLav(PrenotazioneBean bean) throws DAOException, InvalidInputException;
+    protected abstract List<T> cercaLav(PrenotazioneBean bean) throws DAOException, InvalidInputException;
 
-    protected abstract void goToPage2(List<? extends ProfiloLavoratoreBean> lista, PrenotazioneBean bean) throws IOException;
+
+    protected abstract void goToPage2(List<T> lista, PrenotazioneBean bean) throws IOException;
+
 }
