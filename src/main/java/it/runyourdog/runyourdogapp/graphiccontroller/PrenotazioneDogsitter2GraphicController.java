@@ -23,7 +23,7 @@ import java.util.List;
 
 public class PrenotazioneDogsitter2GraphicController extends PrenotazioneGeneric2GraphicController {
 
-    private final PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
+
 
     @Override
     protected PrenotazioneDogsitterController getController() {
