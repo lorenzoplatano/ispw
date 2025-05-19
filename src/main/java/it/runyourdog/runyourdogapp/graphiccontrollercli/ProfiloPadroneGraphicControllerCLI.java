@@ -44,7 +44,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
                     case 1 -> this.getProfilo(loggedUser);
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 3 -> new PrenotazioneDogsitterGraphicControllerCLI(loggedUser, profilo).start();
-                    case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 4 -> new PrenotazioneVeterinarioGraphicControllerCLI(loggedUser, profilo).start();
                     case 5 -> new MenuPrenotazioniPadroneGraphicControllerCLI(loggedUser, profilo).start();
                     case 6 -> new PreloginGraphicControllerCLI().start();
                     case 7 -> System.exit(0);

@@ -1,6 +1,7 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
 import it.runyourdog.runyourdogapp.appcontroller.LoginController;
+import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -37,7 +38,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
                     case 1 -> this.getProfilo(loggedUser);
                     case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
                     case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 4 -> new MenuPrenotazioniVeterinarioGraphicControllerCLI(loggedUser,this.retrieveProfilo(loggedUser)).start();
                     case 5 -> new PreloginGraphicControllerCLI().start();
                     case 6 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
@@ -65,6 +66,21 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
         Printer.printf("Indirizzo: " + profilo.getIndirizzo());
         showOrario(profilo);
         showMenu();
+    }
+
+    public ProfiloVeterinarioBean retrieveProfilo(UserBean loggedUser) {
+
+        ProfiloVeterinarioBean p = null;
+        try {
+            LoginController controller = new LoginController();
+            p = controller.getVetProfileInfo(loggedUser);
+
+        } catch (ProfileRetrievalException | InvalidInputException e) {
+            Printer.perror("Errore: " + e.getMessage());
+        }
+
+        return p;
+
     }
 
 

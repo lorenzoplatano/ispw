@@ -58,7 +58,7 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends ProfiloPadroneGra
                     case 1 -> startBooking();
                     case 2 -> new ProfiloPadroneGraphicControllerCLI(loggedUser).start();
                     case 3 -> new MenuPrenotazioniPadroneGraphicControllerCLI(loggedUser, profilo).start();
-                    case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 4 -> new PrenotazioneVeterinarioGraphicControllerCLI(loggedUser, profilo).start();
                     case 5 -> new PreloginGraphicControllerCLI().start();
                     case 6 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
