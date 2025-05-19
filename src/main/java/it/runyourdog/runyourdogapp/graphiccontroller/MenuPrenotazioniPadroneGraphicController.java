@@ -2,6 +2,8 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
 
+import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
+import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneVeterinarioController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
@@ -47,6 +49,21 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
     private Button confermaChoice;
 
 
+    PrenotazioneController controller;
+    PrenotazioneBean selected;
+
+    public void setController(){
+        this.controller = switch(this.selected.getTipo()){
+            case DOGSITTER ->  new PrenotazioneDogsitterController();
+            case VETERINARIO -> new PrenotazioneVeterinarioController();
+        };
+    }
+
+    public void setSelected()
+    {
+        this.selected = reservationTable.getSelectionModel().getSelectedItem();
+    }
+
     @Override
     protected void configureAdditionalColumns(){
 
@@ -86,7 +103,7 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
 
     @Override
     public List<PrenotazioneBean> loadPrenotazioni() throws InvalidInputException, DAOException {
-        PrenotazioneController controller = new PrenotazioneController();
+        setController();
         ProfiloPadroneBean bean = new ProfiloPadroneBean();
         bean.setEmail(loggedUser.getEmail());
         return controller.mostraPrenotazioni(bean);
@@ -97,8 +114,11 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
     @FXML
     public void onConfermaChoice() {
         try {
-            PrenotazioneBean selected = reservationTable.getSelectionModel().getSelectedItem();
-            PrenotazioneController controller = new PrenotazioneController();
+
+            setSelected();
+            setController();
+
+
 
 
             controller.gestisciPrenotazione(selected, ReservationState.CANCELLATA);

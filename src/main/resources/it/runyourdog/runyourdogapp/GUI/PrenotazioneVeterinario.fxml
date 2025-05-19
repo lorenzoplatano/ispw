@@ -41,7 +41,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="orario" layoutX="256.0" layoutY="300.0" prefHeight="41.0" prefWidth="326.0" promptText="HH:mm" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="300.0" />
+            <TextField fx:id="orarioinizio" layoutX="256.0" layoutY="300.0" prefHeight="41.0" prefWidth="326.0" promptText="HH:mm" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="300.0" />
             <Text layoutX="260.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orario " AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="270.576171875">
                <font>
                   <Font size="18.0" />

@@ -58,7 +58,8 @@ public class PrenotazioneVeterinarioController extends PrenotazioneController {
 
     }
 
-    public void sendRequest(PrenotazioneBean prenotazioneBean) throws DAOException, InvalidInputException {
+    @Override
+    public void sendRequest(PrenotazioneBean prenotazioneBean) throws DAOException {
         Date data = prenotazioneBean.getData();
         Time oraInizio = prenotazioneBean.getOrarioInizio();
 

@@ -90,13 +90,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TableView fx:id="dogsitterTable" layoutX="151.0" layoutY="96.0" prefHeight="288.0" prefWidth="526.0">
+            <TableView fx:id="table" layoutX="151.0" layoutY="96.0" prefHeight="288.0" prefWidth="526.0">
               <columns>
-                <TableColumn fx:id="dogsitterNome" prefWidth="164.800048828125" text="Nome" />
-                  <TableColumn fx:id="dogsitterEta" prefWidth="46.39996337890625" text="Età" />
-                <TableColumn fx:id="dogsitterGenere" prefWidth="47.20001220703125" text="Genere" />
-                  <TableColumn fx:id="dogsitterTel" prefWidth="99.20001220703125" text="Telefono" />
-                  <TableColumn fx:id="dogsitterEmail" prefWidth="171.9998779296875" text="Email" />
+                <TableColumn fx:id="nome" prefWidth="164.800048828125" text="Nome" />
+                  <TableColumn fx:id="eta" prefWidth="46.39996337890625" text="Età" />
+                <TableColumn fx:id="genere" prefWidth="47.20001220703125" text="Genere" />
+                  <TableColumn fx:id="tel" prefWidth="99.20001220703125" text="Telefono" />
+                  <TableColumn fx:id="email" prefWidth="171.9998779296875" text="Email" />
               </columns>
             </TableView>
          </children>

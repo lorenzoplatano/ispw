@@ -1,6 +1,11 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
+import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
+import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneVeterinarioController;
+import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
+import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
+import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
@@ -16,79 +21,22 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class PrenotazioneDogsitter2GraphicController extends PrenotazioneDogsitterGraphicController {
+public class PrenotazioneDogsitter2GraphicController extends PrenotazioneGeneric2GraphicController {
 
-    @FXML
-    private TableView<ProfiloDogsitterBean> dogsitterTable;
+    private final PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
 
-    @FXML
-    private TableColumn<ProfiloDogsitterBean, String> dogsitterNome;
-
-    @FXML
-    private TableColumn<ProfiloDogsitterBean, Integer> dogsitterEta;
-
-    @FXML
-    private TableColumn<ProfiloDogsitterBean, String> dogsitterGenere;
-
-    @FXML
-    private TableColumn<ProfiloDogsitterBean, String> dogsitterTel;
-
-    @FXML
-    private TableColumn<ProfiloDogsitterBean, String> dogsitterEmail;
-
-
-    private ProfiloDogsitterBean dogsitterChoice;
-
-    @FXML
-    public void initialize() {
-
-        dogsitterNome.setCellValueFactory(cd ->
-                new SimpleStringProperty(cd.getValue().getNome())
-        );
-        dogsitterEta.setCellValueFactory(cd ->
-                new SimpleObjectProperty<>(cd.getValue().getEta())
-        );
-        dogsitterGenere.setCellValueFactory(cd ->
-                new SimpleStringProperty(cd.getValue().getGenere())
-        );
-        dogsitterTel.setCellValueFactory(cd ->
-                new SimpleStringProperty(cd.getValue().getTelefono())
-        );
-        dogsitterEmail.setCellValueFactory(cd ->
-                new SimpleStringProperty(cd.getValue().getEmail())
-        );
-
-
-        dogsitterTable.setPlaceholder(new Label("Nessun dogsitter disponibile"));
+    @Override
+    protected PrenotazioneDogsitterController getController() {
+        return new PrenotazioneDogsitterController();
     }
 
-    public void setDogsitterList(List<ProfiloDogsitterBean> list) {
-
-        dogsitterTable.getItems().addAll(list);
-
+    @Override
+    protected void goToPage3(PrenotazioneBean bean) throws IOException {
+        SingletonStage.getStage(null)
+                .showPadronePrenotazione3DogsitterPage(
+                        "/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter3.fxml",
+                        loggedUser, bean
+                );
     }
 
-    @FXML
-    public void reserve()throws IOException
-    {
-
-
-        try {
-            dogsitterChoice = dogsitterTable.getSelectionModel().getSelectedItem();
-
-            prenotazioneBean.setPrenotato(dogsitterChoice);
-
-            controller.sendRequest(prenotazioneBean);
-
-            SingletonStage.getStage(null).showPadronePrenotazione3DogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter3.fxml", loggedUser, prenotazioneBean);
-
-
-        } catch (InvalidInputException e) {
-            showError(e.getMessage());
-        } catch (DAOException e) {
-            Printer.perror(e.getMessage());
-        }
-
-
-    }
 }

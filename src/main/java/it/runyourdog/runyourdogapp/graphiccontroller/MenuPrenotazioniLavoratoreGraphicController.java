@@ -27,6 +27,8 @@ public abstract class MenuPrenotazioniLavoratoreGraphicController extends MenuPr
 
     @FXML private Button confermaChoice;
 
+    PrenotazioneController controller;
+
     @Override
     protected void configureAdditionalColumns(){
 
@@ -78,8 +80,6 @@ public abstract class MenuPrenotazioniLavoratoreGraphicController extends MenuPr
     protected void onConfermaChoice() {
         try {
             PrenotazioneBean selected = reservationTable.getSelectionModel().getSelectedItem();
-
-            PrenotazioneController controller = new PrenotazioneController();
 
             String choice = comboChoice.getValue();
             if (choice == null) return;

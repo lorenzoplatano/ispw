@@ -27,6 +27,7 @@ public class MenuPrenotazioniDogsitterGraphicController extends MenuPrenotazioni
     @FXML private TableColumn<PrenotazioneBean, Time> colOraFine;
 
 
+
     @FXML
     public void goToProfiloDog() throws IOException {
         SingletonStage.getStage(null)
@@ -45,10 +46,15 @@ public class MenuPrenotazioniDogsitterGraphicController extends MenuPrenotazioni
 
     }
 
+    public void setController()
+    {
+        this.controller = new PrenotazioneDogsitterController();
+    }
 
     @Override
     public List<PrenotazioneBean> loadPrenotazioni() throws InvalidInputException, DAOException {
         PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
+
         ProfiloDogsitterBean bean = new ProfiloDogsitterBean();
         bean.setEmail(loggedUser.getEmail());
         return controller.mostraPrenotazioniDog(bean);

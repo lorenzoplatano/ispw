@@ -15,7 +15,7 @@ import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrenotazioneController {
+public abstract class PrenotazioneController {
 
     protected final PadroneDao padroneDao;
 
@@ -90,4 +90,6 @@ public class PrenotazioneController {
         }
     }
 
+
+    public abstract void sendRequest(PrenotazioneBean bean) throws DAOException;
 }

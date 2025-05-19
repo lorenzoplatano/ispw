@@ -102,8 +102,7 @@ public class SingletonStage {
         Parent root = fxmlLoader.load();
         PrenotazioneDogsitter2GraphicController controller = fxmlLoader.getController();
         controller.setLoggedUser(loggedPad);
-        controller.setPrenotazioneBean(bean);
-        controller.setDogsitterList(list);
+        controller.startSettings(list, bean);
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
@@ -133,6 +132,7 @@ public class SingletonStage {
         Parent root = fxmlLoader.load();
         MenuPrenotazioniDogsitterGraphicController controller = fxmlLoader.getController();
         controller.initializeOrarioFine();
+        controller.setController();
         controller.setLoggedUser(loggedUser);
         controller.setPrenotazioniList(list);
         Scene scene = new Scene(root);
@@ -155,8 +155,7 @@ public class SingletonStage {
         Parent root = fxmlLoader.load();
         PrenotazioneVeterinario2GraphicController controller = fxmlLoader.getController();
         controller.setLoggedUser(loggedPad);
-        controller.setPrenotazioneBean(bean);
-        controller.setVetList(list);
+        controller.startSettings(list, bean);
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
@@ -176,6 +175,7 @@ public class SingletonStage {
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
         Parent root = fxmlLoader.load();
         MenuPrenotazioniVeterinarioGraphicController controller = fxmlLoader.getController();
+        controller.setController();
         controller.setLoggedUser(loggedUser);
         controller.setPrenotazioniList(list);
         Scene scene = new Scene(root);

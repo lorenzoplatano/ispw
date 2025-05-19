@@ -1,5 +1,6 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
+import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneVeterinarioController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
@@ -34,5 +35,9 @@ public class MenuPrenotazioniVeterinarioGraphicController extends MenuPrenotazio
         return controller.mostraPrenotazioniVet(bean);
     }
 
+    public void setController()
+    {
+        this.controller = new PrenotazioneVeterinarioController();
+    }
 
 }
