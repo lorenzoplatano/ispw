@@ -240,6 +240,21 @@ public class PadroneDao {
         }
     }
 
+
+    public int countVetOverlapping(Prenotazione prenotazione) throws DAOException{
+
+        try {
+            this.cs = this.conn.prepareCall("{call check_overlap_vet(?,?,?)}");
+            cs.setString(1, prenotazione.getPadrone().getEmail());
+            cs.setDate(2, prenotazione.getData());
+            cs.registerOutParameter(3, Types.INTEGER);
+            cs.execute();
+            return cs.getInt(3);
+        } catch (SQLException e) {
+            throw new DAOException("Errore nel controllo di sovrapposizione degli orari: " + e.getMessage());
+        }
+    }
+
     public List<Veterinario> findVet(Prenotazione prenotazione) throws DAOException {
 
         List<Veterinario> list = new ArrayList<>();

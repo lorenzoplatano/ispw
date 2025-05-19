@@ -49,6 +49,11 @@ public class Prenotazione {
         this.padrone = padrone;
     }
 
+    public Prenotazione(Padrone padrone, Date data) {
+        this.data = data;
+        this.padrone = padrone;
+    }
+
 
 
     public Prenotazione(Date data, Time oraInizio, Time oraFine, Lavoratore lavoratore) {

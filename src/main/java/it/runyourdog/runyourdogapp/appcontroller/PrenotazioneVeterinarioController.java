@@ -104,5 +104,16 @@ public class PrenotazioneVeterinarioController extends PrenotazioneController {
 
     }
 
+    public void validateNoOverlap(PrenotazioneBean nuova) throws InvalidInputException , DAOException {
+
+        Prenotazione p = new Prenotazione(new Padrone(nuova.getPrenotante().getEmail()), nuova.getData());
+
+        int count = padroneDao.countVetOverlapping(p);
+
+        if (count > 0) {
+            throw new InvalidInputException(
+                    "Hai già una prenotazione che si sovrappone nell'intervallo di orari scelto.");
+        }
+    }
 }
 

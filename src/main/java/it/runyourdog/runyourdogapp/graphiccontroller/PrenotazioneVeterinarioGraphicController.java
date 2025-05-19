@@ -20,8 +20,8 @@ public class PrenotazioneVeterinarioGraphicController extends PrenotazioneGeneri
     }
 
     @Override
-    protected void checkSovrapposizioni(PrenotazioneBean bean) {
-        // validazione extra per veterinario
+    protected void checkSovrapposizioni(PrenotazioneBean bean) throws DAOException, InvalidInputException {
+        controller.validateNoOverlap(bean);
     }
 
     @Override
