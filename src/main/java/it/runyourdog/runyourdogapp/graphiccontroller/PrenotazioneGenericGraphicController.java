@@ -2,6 +2,7 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
+import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -38,7 +39,7 @@ public abstract class PrenotazioneGenericGraphicController extends ProfiloPadron
         LocalDate giorno = data.getValue();
         String inizio = orarioinizio.getText();
         String fine = orariofine != null ? orariofine.getText() : null;
-        String città = citta.getText();
+        String city = citta.getText();
 
         try {
 
@@ -54,7 +55,7 @@ public abstract class PrenotazioneGenericGraphicController extends ProfiloPadron
 
             prenotazioneBean = new PrenotazioneBean();
             prenotazioneBean.setData(Date.valueOf(giorno));
-            prenotazioneBean.setCitta(città);
+            prenotazioneBean.setCitta(city);
             prenotazioneBean.setOrarioInizio(Time.valueOf( inizio + ":00" ));
             prenotazioneBean.setPrenotante((ProfiloPadroneBean) loggedUser);
 
@@ -65,7 +66,7 @@ public abstract class PrenotazioneGenericGraphicController extends ProfiloPadron
             checkSovrapposizioni(prenotazioneBean);
 
 
-            List lista = cercaLav(prenotazioneBean);
+            List<? extends ProfiloLavoratoreBean> lista = cercaLav(prenotazioneBean);
 
 
             goToPage2(lista, prenotazioneBean);
@@ -81,7 +82,7 @@ public abstract class PrenotazioneGenericGraphicController extends ProfiloPadron
 
     protected abstract void checkSovrapposizioni(PrenotazioneBean bean) throws DAOException, InvalidInputException;
 
-    protected abstract List cercaLav(PrenotazioneBean bean) throws DAOException, InvalidInputException;
+    protected abstract List<? extends ProfiloLavoratoreBean> cercaLav(PrenotazioneBean bean) throws DAOException, InvalidInputException;
 
-    protected abstract void goToPage2(List lista, PrenotazioneBean bean) throws IOException;
+    protected abstract void goToPage2(List<? extends ProfiloLavoratoreBean> lista, PrenotazioneBean bean) throws IOException;
 }

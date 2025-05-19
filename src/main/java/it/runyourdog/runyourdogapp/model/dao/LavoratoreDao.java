@@ -12,7 +12,7 @@ public abstract class LavoratoreDao {
     protected final Connection conn;
     protected CallableStatement cs;
 
-    public LavoratoreDao() {
+    protected LavoratoreDao() {
         this.conn = ConnectionManager.getInstance().getDBConnection();
     }
 

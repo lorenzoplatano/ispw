@@ -20,7 +20,7 @@ public abstract class PrenotazioneController {
     protected final PadroneDao padroneDao;
 
 
-    public PrenotazioneController() {
+    protected PrenotazioneController() {
         this.padroneDao = new PadroneDao();
     }
 
