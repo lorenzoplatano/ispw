@@ -58,7 +58,7 @@ public class PrenotazioneDogsitterController extends PrenotazioneController{
 
     }
 
-    @Override
+
     public void sendRequest(PrenotazioneBean request) throws DAOException {
 
         Date data = request.getData();

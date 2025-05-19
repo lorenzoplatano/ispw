@@ -24,6 +24,10 @@ import java.util.List;
 public class PrenotazioneDogsitter2GraphicController extends PrenotazioneGeneric2GraphicController {
 
 
+    @Override
+    protected void mandaRichiesta(PrenotazioneBean prenotazioneBean) throws DAOException {
+        getController().sendRequest(prenotazioneBean);
+    }
 
     @Override
     protected PrenotazioneDogsitterController getController() {

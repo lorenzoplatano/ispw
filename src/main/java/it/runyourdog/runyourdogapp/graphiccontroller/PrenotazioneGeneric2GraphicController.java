@@ -80,7 +80,7 @@ public abstract class PrenotazioneGeneric2GraphicController extends ProfiloPadro
                 throw new InvalidInputException("Selezionare un elemento.");
 
             prenotazioneBean.setPrenotato(scelta);
-            getController().sendRequest(prenotazioneBean);
+            mandaRichiesta(prenotazioneBean);
             goToPage3(prenotazioneBean);
 
         } catch (InvalidInputException e) {
@@ -89,6 +89,8 @@ public abstract class PrenotazioneGeneric2GraphicController extends ProfiloPadro
             Printer.perror(e.getMessage());
         }
     }
+
+    protected abstract void mandaRichiesta(PrenotazioneBean prenotazioneBean) throws DAOException;
 
 
     protected abstract PrenotazioneController getController();

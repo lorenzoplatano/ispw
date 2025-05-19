@@ -1,5 +1,8 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
+import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
+import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
+import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneVeterinarioController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
@@ -11,14 +14,25 @@ import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
 
 import java.util.List;
-import java.util.Scanner;
 
-public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDogsitterGraphicControllerCLI{
 
-    private final Scanner scanner = new Scanner(System.in);
+public class MenuPrenotazioniPadroneGraphicControllerCLI extends MenuPrenotazioniGenericGraphicControllerCLI{
+
+    ProfiloPadroneBean profilo;
+    PrenotazioneBean selected;
 
     public MenuPrenotazioniPadroneGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean padrone) {
-        super(loggedUser, padrone);
+        this.loggedUser = loggedUser;
+        this.profilo = padrone;
+        this.controller = new PrenotazioneController();
+    }
+
+    public void setController()
+    {
+        controller = switch(this.selected.getTipo()){
+            case DOGSITTER ->  new PrenotazioneDogsitterController();
+            case VETERINARIO -> new PrenotazioneVeterinarioController();
+        };
     }
 
     @Override
@@ -44,7 +58,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
                     case 1 -> manageReservations();
                     case 2 -> new ProfiloPadroneGraphicControllerCLI(loggedUser).start();
                     case 3 -> new PrenotazioneDogsitterGraphicControllerCLI(loggedUser, profilo).start();
-                    case 4 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 4 -> new PrenotazioneVeterinarioGraphicControllerCLI(loggedUser, profilo).start();
                     case 5 -> new PreloginGraphicControllerCLI().start();
                     case 6 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
@@ -72,7 +86,9 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
                 int index = promptReservationSelection(prenList.size());
                 if (index == -1) return;
 
-                PrenotazioneBean selected = prenList.get(index);
+                selected = prenList.get(index);
+                setController();
+
                 List<ReservationState> allowed = getAllowedStates(selected);
 
                 if (allowed.isEmpty()) {
@@ -111,7 +127,8 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
         }
     }
 
-    private void displayReservations(List<PrenotazioneBean> list) {
+    @Override
+    protected void displayReservations(List<PrenotazioneBean> list) {
         Printer.printf("Le tue prenotazioni:");
         for (int i = 0; i < list.size(); i++) {
             PrenotazioneBean p = list.get(i);
@@ -131,24 +148,9 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends PrenotazioneDog
         }
     }
 
-    private int promptReservationSelection(int max) throws InvalidInputException {
-        Printer.printf("Seleziona una prenotazione da gestire (0 per tornare)");
-        String line = scanner.nextLine();
-        try {
-            int choice = Integer.parseInt(line);
-            if (choice == 0) {
-                showMenu();
-                return -1;
-            }
-            if (choice < 1 || choice > max) throw new InvalidInputException("Scelta non valida.");
-            return choice - 1;
-        } catch (NumberFormatException _) {
-            Printer.perror("Inserisci un numero valido.");
-            return promptReservationSelection(max);
-        }
-    }
 
-    private List<ReservationState> getAllowedStates(PrenotazioneBean bean) {
+    @Override
+    protected List<ReservationState> getAllowedStates(PrenotazioneBean bean) {
         return switch (bean.getStato()) {
             case IN_ATTESA, ACCETTATA -> List.of(ReservationState.CANCELLATA);
             default -> List.of();
