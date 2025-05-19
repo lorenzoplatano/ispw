@@ -1,10 +1,10 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneVeterinarioController;
+
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
+
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -14,23 +14,22 @@ import java.util.List;
 public class MenuPrenotazioniDogsitterGraphicControllerCLI extends MenuPrenotazioniLavoratoreGraphicControllerCLI {
 
     private final ProfiloDogsitterBean profiloDogsitter;
-    private final PrenotazioneDogsitterController controller;
-    private final UserBean loggedUser;
+    private final PrenotazioneDogsitterController con;
 
     public MenuPrenotazioniDogsitterGraphicControllerCLI(UserBean loggedUser, ProfiloDogsitterBean profiloDogsitter) {
         this.loggedUser = loggedUser;
         this.profiloDogsitter = profiloDogsitter;
-        this.controller = new PrenotazioneDogsitterController();
+        this.con = new PrenotazioneDogsitterController();
     }
 
     @Override
     protected PrenotazioneDogsitterController getController() {
-        return controller;
+        return con;
     }
 
     @Override
     protected List<PrenotazioneBean> caricaPrenotazioni() throws DAOException, InvalidInputException {
-        return controller.mostraPrenotazioniDog(profiloDogsitter);
+        return con.mostraPrenotazioniDog(profiloDogsitter);
     }
 
 

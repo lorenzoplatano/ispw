@@ -12,23 +12,23 @@ import java.util.List;
 public class MenuPrenotazioniVeterinarioGraphicControllerCLI extends MenuPrenotazioniLavoratoreGraphicControllerCLI {
 
     private final ProfiloVeterinarioBean profiloVeterinario;
-    private final PrenotazioneVeterinarioController controller;
-    private final UserBean loggedUser;
+    private final PrenotazioneVeterinarioController con;
+
 
     public MenuPrenotazioniVeterinarioGraphicControllerCLI(UserBean loggedUser, ProfiloVeterinarioBean profiloVeterinario) {
         this.loggedUser = loggedUser;
         this.profiloVeterinario = profiloVeterinario;
-        this.controller = new PrenotazioneVeterinarioController();
+        this.con = new PrenotazioneVeterinarioController();
     }
 
     @Override
     protected PrenotazioneVeterinarioController getController() {
-        return controller;
+        return con;
     }
 
     @Override
     protected List<PrenotazioneBean> caricaPrenotazioni() throws DAOException, InvalidInputException {
-        return controller.mostraPrenotazioniVet(profiloVeterinario);
+        return con.mostraPrenotazioniVet(profiloVeterinario);
     }
 
 
