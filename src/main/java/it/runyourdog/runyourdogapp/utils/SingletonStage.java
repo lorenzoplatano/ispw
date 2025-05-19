@@ -132,6 +132,7 @@ public class SingletonStage {
         FXMLLoader fxmlLoader = new FXMLLoader(SingletonStage.class.getResource(fxmlPath));
         Parent root = fxmlLoader.load();
         MenuPrenotazioniDogsitterGraphicController controller = fxmlLoader.getController();
+        controller.initializeOrarioFine();
         controller.setLoggedUser(loggedUser);
         controller.setPrenotazioniList(list);
         Scene scene = new Scene(root);

@@ -1,12 +1,15 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
+import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
+
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
+
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
+import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,17 +17,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
-import java.sql.Date;
+
+import java.io.IOException;
 import java.sql.Time;
 import java.util.List;
 
-public class MenuPrenotazioniPadroneGraphicController extends ProfiloPadroneGraphicController {
+public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGenericGraphicController {
 
-    @FXML
-    private TableView<PrenotazioneBean> reservationTable;
 
-    @FXML
-    private TableColumn<PrenotazioneBean, Date> colData;
 
     @FXML
     private TableColumn<PrenotazioneBean, String> colTipo;
@@ -32,37 +32,26 @@ public class MenuPrenotazioniPadroneGraphicController extends ProfiloPadroneGrap
     @FXML
     private TableColumn<PrenotazioneBean, String> colNomeLavoratore;
 
-    @FXML
-    private TableColumn<PrenotazioneBean, Time> colOraInizio;
+
 
     @FXML
     private TableColumn<PrenotazioneBean, Time> colOraFine;
 
-    @FXML
-    private TableColumn<PrenotazioneBean, String> colStato;
+
 
     @FXML
     private Text testoChoice1;
 
-    @FXML
-    private Text testoChoice;
 
     @FXML
     private Button confermaChoice;
 
-    @FXML
-    public void initialize() {
 
-        colData.setCellValueFactory(cd ->
-                new SimpleObjectProperty<>(cd.getValue().getData())
-        );
-
-        colOraInizio.setCellValueFactory(cd ->
-                new SimpleObjectProperty<>(cd.getValue().getOrarioInizio())
-        );
+    @Override
+    protected void configureAdditionalColumns(){
 
         colOraFine.setCellValueFactory(cd ->
-                        new SimpleObjectProperty<>(cd.getValue().getOrarioFine())
+                new SimpleObjectProperty<>(cd.getValue().getOrarioFine())
         );
 
         colTipo.setCellValueFactory(cd ->
@@ -73,12 +62,12 @@ public class MenuPrenotazioniPadroneGraphicController extends ProfiloPadroneGrap
                 new SimpleStringProperty(cd.getValue().getPrenotato().getNome())
         );
 
-        colStato.setCellValueFactory(cd ->
-                new SimpleStringProperty(cd.getValue().getStato().name())
-        );
+    }
 
-        reservationTable.setPlaceholder(new Label("Nessuna prenotazione disponibile"));
 
+
+    @Override
+    protected  void choiceInitialize(){
         reservationTable.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((obs, oldSel, newSel) -> {
@@ -95,22 +84,12 @@ public class MenuPrenotazioniPadroneGraphicController extends ProfiloPadroneGrap
     }
 
 
-    public void setPrenotazioniList(List<PrenotazioneBean> list) {
-        reservationTable.getItems().setAll(list);
-    }
-
-    private void reloadPrenotazioni() {
-        try {
-            PrenotazioneDogsitterController con = new PrenotazioneDogsitterController();
-            ProfiloPadroneBean pad = new ProfiloPadroneBean();
-            pad.setEmail(loggedUser.getEmail());
-            List<PrenotazioneBean> nuove = con.mostraPrenotazioni(pad);
-            setPrenotazioniList(nuove);
-        } catch (InvalidInputException e) {
-            showError(e.getMessage());
-        } catch (DAOException e) {
-            Printer.perror("Errore: " + e.getMessage());
-        }
+    @Override
+    public List<PrenotazioneBean> loadPrenotazioni() throws InvalidInputException, DAOException {
+        PrenotazioneController controller = new PrenotazioneController();
+        ProfiloPadroneBean bean = new ProfiloPadroneBean();
+        bean.setEmail(loggedUser.getEmail());
+        return controller.mostraPrenotazioni(bean);
     }
 
 
@@ -119,7 +98,7 @@ public class MenuPrenotazioniPadroneGraphicController extends ProfiloPadroneGrap
     public void onConfermaChoice() {
         try {
             PrenotazioneBean selected = reservationTable.getSelectionModel().getSelectedItem();
-            PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
+            PrenotazioneController controller = new PrenotazioneController();
 
 
             controller.gestisciPrenotazione(selected, ReservationState.CANCELLATA);
@@ -137,4 +116,22 @@ public class MenuPrenotazioniPadroneGraphicController extends ProfiloPadroneGrap
         }
 
     }
+
+    @FXML
+    private void goToPrenotazione() throws IOException {
+
+        SingletonStage.getStage(null).showPadronePrenotazioneDogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter.fxml",  loggedUser);
+    }
+
+    @FXML
+    private void goToVetPrenotazione() throws IOException {
+
+        SingletonStage.getStage(null).showPadronePrenotazioneVetPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneVeterinario.fxml",  loggedUser);
+    }
+
+    @FXML
+    public void goToProfilo() throws IOException {
+        SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", (ProfiloPadroneBean) loggedUser);
+    }
+
 }

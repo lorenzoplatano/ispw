@@ -15,12 +15,12 @@ import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class PrenotazioneController {
+public class PrenotazioneController {
 
     protected final PadroneDao padroneDao;
 
 
-    protected PrenotazioneController() {
+    public PrenotazioneController() {
         this.padroneDao = new PadroneDao();
     }
 

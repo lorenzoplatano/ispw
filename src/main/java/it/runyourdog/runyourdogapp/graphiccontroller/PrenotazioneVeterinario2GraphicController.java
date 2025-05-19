@@ -61,7 +61,7 @@ public class PrenotazioneVeterinario2GraphicController extends PrenotazioneVeter
                 new SimpleStringProperty(cd.getValue().getEmail())
         );
         indirizzo.setCellValueFactory(cd ->
-                new SimpleStringProperty(cd.getValue().getEmail())
+                new SimpleStringProperty(cd.getValue().getIndirizzo())
         );
 
 
