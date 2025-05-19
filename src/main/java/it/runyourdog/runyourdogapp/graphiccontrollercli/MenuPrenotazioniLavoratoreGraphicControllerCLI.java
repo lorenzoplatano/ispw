@@ -53,25 +53,24 @@ public abstract class MenuPrenotazioniLavoratoreGraphicControllerCLI extends Men
         while (true) {
             displayReservations(lista);
             int sel = promptReservationSelection(lista.size());
-            if (sel == -1) return;
+            if (sel == -1) {
+                return;
+            }
 
             PrenotazioneBean selected = lista.get(sel);
             List<ReservationState> allowed = getAllowedStates(selected);
-
-            if (allowed.isEmpty()) {
+            if (!allowed.isEmpty()) {
+                displayActions(allowed);
+                int action = promptReservationSelection(allowed.size());
+                if (action != -1) {
+                    ReservationState newState = allowed.get(action);
+                    getController().gestisciPrenotazione(selected, newState);
+                    Printer.printf(String.format("La prenotazione ora è %s.%n", newState));
+                    lista = caricaPrenotazioni();
+                }
+            } else {
                 Printer.printf("Nessuna azione disponibile per la prenotazione selezionata%n");
-                continue;
             }
-
-            displayActions(allowed);
-            int action = promptReservationSelection(allowed.size());
-            if (action == -1) continue;
-
-            ReservationState newState = allowed.get(action);
-            getController().gestisciPrenotazione(selected, newState);
-            Printer.printf(String.format("La prenotazione ora è %s.%n", newState));
-
-            lista = caricaPrenotazioni();
         }
     }
 
