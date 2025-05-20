@@ -8,15 +8,8 @@ import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
-
-
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
 import java.util.List;
-import java.util.Scanner;
+
 
 public class PrenotazioneDogsitterGraphicControllerCLI extends GenericPrenotazioneGraphicControllerCLI<ProfiloDogsitterBean> {
 
