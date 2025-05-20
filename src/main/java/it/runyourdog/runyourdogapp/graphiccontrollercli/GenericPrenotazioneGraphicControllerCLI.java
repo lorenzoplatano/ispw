@@ -15,7 +15,8 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class GenericPrenotazioneGraphicControllerCLI <P extends ProfiloLavoratoreBean> extends ProfiloPadroneGraphicControllerCLI{
+public abstract class GenericPrenotazioneGraphicControllerCLI<P extends ProfiloLavoratoreBean, C extends ProfiloLavoratoreBean> extends ProfiloPadroneGraphicControllerCLI {
+
 
     protected final PrenotazioneController controller;
 
@@ -42,7 +43,7 @@ public abstract class GenericPrenotazioneGraphicControllerCLI <P extends Profilo
 
     protected abstract void inviaRichiesta(PrenotazioneBean bean) throws DAOException;
 
-    protected abstract GenericPrenotazioneGraphicControllerCLI<? extends ProfiloLavoratoreBean> crossBooking();
+    protected abstract GenericPrenotazioneGraphicControllerCLI<C,P> crossBooking();
 
     @Override
     public void showMenu() {

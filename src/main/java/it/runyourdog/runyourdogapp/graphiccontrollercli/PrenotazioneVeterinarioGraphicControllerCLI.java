@@ -7,7 +7,7 @@ import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import java.util.List;
 
 
-public class PrenotazioneVeterinarioGraphicControllerCLI extends GenericPrenotazioneGraphicControllerCLI<ProfiloVeterinarioBean> {
+public class PrenotazioneVeterinarioGraphicControllerCLI extends GenericPrenotazioneGraphicControllerCLI<ProfiloVeterinarioBean, ProfiloDogsitterBean> {
 
     public PrenotazioneVeterinarioGraphicControllerCLI(UserBean u, ProfiloPadroneBean p) {
         super(u, p, new PrenotazioneVeterinarioController());
@@ -29,8 +29,7 @@ public class PrenotazioneVeterinarioGraphicControllerCLI extends GenericPrenotaz
                 v.getNome(), v.getEta(), v.getGenere(), v.getTelefono(), v.getEmail(), v.getIndirizzo());
     }
 
-    @Override
-    protected GenericPrenotazioneGraphicControllerCLI crossBooking() {
+    protected GenericPrenotazioneGraphicControllerCLI<ProfiloDogsitterBean, ProfiloVeterinarioBean> crossBooking() {
         return new PrenotazioneDogsitterGraphicControllerCLI(loggedUser, profilo);
     }
 

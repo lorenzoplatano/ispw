@@ -1,17 +1,14 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
-import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
-import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
-import it.runyourdog.runyourdogapp.beans.UserBean;
+import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import java.util.List;
 
 
-public class PrenotazioneDogsitterGraphicControllerCLI extends GenericPrenotazioneGraphicControllerCLI<ProfiloDogsitterBean> {
+public class PrenotazioneDogsitterGraphicControllerCLI extends GenericPrenotazioneGraphicControllerCLI<ProfiloDogsitterBean, ProfiloVeterinarioBean> {
 
     public PrenotazioneDogsitterGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean padrone) {
         super(loggedUser, padrone, new PrenotazioneDogsitterController());
@@ -42,7 +39,7 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends GenericPrenotazio
     }
 
     @Override
-    protected GenericPrenotazioneGraphicControllerCLI crossBooking() {
+    protected GenericPrenotazioneGraphicControllerCLI<ProfiloVeterinarioBean, ProfiloDogsitterBean> crossBooking() {
         return new PrenotazioneVeterinarioGraphicControllerCLI(loggedUser, profilo);
     }
 
