@@ -23,10 +23,12 @@ public abstract class GenericPrenotazioneGraphicControllerCLI <P extends Profilo
 
     protected static final String ORARIOFORMAT = "^(?:[01]\\d|2[0-3]):[0-5]\\d$";
 
+    protected static final String VET_KEYWORD = "VETERINARIO";
+
+    protected static final String DOG_KEYWORD = "Dogsitter";
 
 
-
-    public GenericPrenotazioneGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean padrone,
+    protected GenericPrenotazioneGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean padrone,
                                                    PrenotazioneController controller) {
         super(loggedUser);
         this.profilo = padrone;
@@ -40,7 +42,7 @@ public abstract class GenericPrenotazioneGraphicControllerCLI <P extends Profilo
 
     protected abstract void inviaRichiesta(PrenotazioneBean bean) throws DAOException;
 
-    protected abstract GenericPrenotazioneGraphicControllerCLI crossBooking();
+    protected abstract GenericPrenotazioneGraphicControllerCLI<? extends ProfiloLavoratoreBean> crossBooking();
 
     @Override
     public void showMenu() {
@@ -50,7 +52,7 @@ public abstract class GenericPrenotazioneGraphicControllerCLI <P extends Profilo
             Printer.printf("1) Inizia prenotazione");
             Printer.printf("2) Torna al profilo");
             Printer.printf("3) Gestisci prenotazioni");
-            Printer.printf(String.format("4) Prenota %s", getSectionTitle().contains("VETERINARIO") ? "Dogsitter" : "Veterinario"));
+            Printer.printf(String.format("4) Prenota %s", getSectionTitle().contains(VET_KEYWORD) ? DOG_KEYWORD : "Veterinario"));
             Printer.printf("5) Logout");
             Printer.printf("6) Esci");
 
@@ -116,7 +118,7 @@ public abstract class GenericPrenotazioneGraphicControllerCLI <P extends Profilo
         LocalDate today = LocalDate.now();
         while (true) {
             try {
-                Printer.printf(String.format("Inserisci la città in cui cerchi il %s:", getSectionTitle().contains("VETERINARIO") ? "Dogsitter" : "Veterinario"));
+                Printer.printf(String.format("Inserisci la città in cui cerchi il %s:", getSectionTitle().contains(VET_KEYWORD) ? DOG_KEYWORD : "Veterinario"));
                 bean.setCitta(scanner.nextLine());
                 Printer.printf("Inserisci la data della prenotazione (YYYY-MM-DD):");
                 LocalDate date = LocalDate.parse(scanner.nextLine());
@@ -142,7 +144,7 @@ public abstract class GenericPrenotazioneGraphicControllerCLI <P extends Profilo
 
     private PrenotazioneBean chooseProfessionista(PrenotazioneBean bean,
                                                   List<P> list) {
-        Printer.printf(String.format("%s trovati:", getSectionTitle().contains("VETERINARIO") ? "Dogsitter" : "Veterinari"));
+        Printer.printf(String.format("%s trovati:", getSectionTitle().contains(VET_KEYWORD) ? DOG_KEYWORD : "Veterinari"));
         for (int i = 0; i < list.size(); i++) {
             Printer.printf(String.format("%d) %s", i+1, formatProfilo(list.get(i))));
         }
