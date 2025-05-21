@@ -1,5 +1,6 @@
 package it.runyourdog.runyourdogapp.model.dao;
 
+import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 
 import it.runyourdog.runyourdogapp.model.entities.*;
@@ -305,5 +306,45 @@ public class PadroneDao {
         }catch (SQLException e) {
             throw new DAOException("Errore nella creazione della prenotazione: " + e.getMessage());
         }
+    }
+
+    public void updatePadrone(ProfiloPadroneBean bean) throws DAOException {
+
+        try {
+
+            this.cs = this.conn.prepareCall("{call updatePadrone(?,?,?,?,?,?,?,?,?,?,?)}");
+
+            List<String> vaccinazioni = bean.getVaccinazioniCane();
+
+            cs.setString(1, bean.getEmail());
+
+            cs.setString(2, bean.getNomeCane());
+
+            cs.setString(3, bean.getSessoCane());
+
+            cs.setDate(4, bean.getDataNascitaCane());
+
+            cs.setString(5, bean.getRazzaCane());
+
+            String vaccinazioniStr = String.join(",", vaccinazioni);
+
+            cs.setString(6, vaccinazioniStr);
+
+            cs.setString(7, bean.getMicrochip());
+
+            cs.setString(8, bean.getNomePadrone());
+
+            cs.setString(9, bean.getTelefonoPadrone());
+
+            cs.setString(10, bean.getIndirizzoPadrone());
+
+            cs.setString(11, bean.getCittaPadrone());
+
+            cs.execute();
+
+        } catch (SQLException e) {
+            throw new DAOException("Errore durante l'aggiornamento del padrone"+ e.getMessage());
+        }
+
     }
 }

@@ -223,7 +223,7 @@
                   </AnchorPane>
                </children>
             </GridPane>
-            <Button layoutX="263.0" layoutY="478.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="MODIFICA">
+            <Button fx:id="ModificaButton" layoutX="263.0" layoutY="478.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onModificaClicked" prefHeight="54.0" prefWidth="326.0" style="-fx-background-color: E1A15C; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: CC6C25;" text="MODIFICA">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
