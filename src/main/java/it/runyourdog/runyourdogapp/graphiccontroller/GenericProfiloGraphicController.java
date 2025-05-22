@@ -1,19 +1,12 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
-import it.runyourdog.runyourdogapp.appcontroller.ProfiloPadroneController;
-import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
-import it.runyourdog.runyourdogapp.beans.UserBean;
-import it.runyourdog.runyourdogapp.exceptions.DAOException;
-import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
-import it.runyourdog.runyourdogapp.utils.Printer;
-import it.runyourdog.runyourdogapp.utils.Validator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
-import java.sql.Date;
 
 public abstract class GenericProfiloGraphicController extends GenericGraphicController{
     @FXML
@@ -29,16 +22,16 @@ public abstract class GenericProfiloGraphicController extends GenericGraphicCont
     protected TextArea cittaProfilo;
 
     @FXML
-    protected AnchorPane namePane;
+    private AnchorPane namePane;
     @FXML
-    protected AnchorPane sessoPane;
+    private AnchorPane sessoPane;
     @FXML
-    protected AnchorPane telPane;
+    private AnchorPane telPane;
     @FXML
-    protected AnchorPane cittaPane;
+    private AnchorPane cittaPane;
 
     @FXML
-    private Button ModificaButton;
+    private Button modificaButton;
 
     @FXML
     private Label infoLabel;
@@ -56,12 +49,12 @@ public abstract class GenericProfiloGraphicController extends GenericGraphicCont
         editAdditiveInfo();
 
         if (editing) {
-            ModificaButton.setText("SALVA");
+            modificaButton.setText("SALVA");
             changeColor();
             infoLabel.setText("Modificare uno o più campi e cliccare su SALVA");
         } else {
             doUpdate();
-            ModificaButton.setText("MODIFICA");
+            modificaButton.setText("MODIFICA");
             changeColor();
             infoLabel.setText("");
         }

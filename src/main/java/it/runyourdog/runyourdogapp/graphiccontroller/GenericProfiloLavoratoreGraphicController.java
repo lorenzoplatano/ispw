@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +48,26 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericG
 
     @FXML
     protected TextArea dom;
+
+    @FXML
+    private AnchorPane etaPane;
+    @FXML
+    private AnchorPane emailPane;
+    @FXML
+    private AnchorPane luPane;
+    @FXML
+    private AnchorPane maPane;
+    @FXML
+    private AnchorPane mePane;
+    @FXML
+    private AnchorPane gioPane;
+    @FXML
+    private AnchorPane vePane;
+    @FXML
+    private AnchorPane saPane;
+    @FXML
+    private AnchorPane doPane;
+
 
     public void populate(ProfiloLavoratoreBean loggedLav) {
         name.setText(loggedLav.getNome());

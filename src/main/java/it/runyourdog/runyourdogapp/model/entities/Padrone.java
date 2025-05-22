@@ -27,6 +27,14 @@ public class Padrone extends User {
 
     public Padrone() {}
 
+    public Padrone(String email, String[] dati) {
+        super(email);
+        this.nome = dati[0];
+        this.telefono = dati[1];
+        this.indirizzo = dati[2];
+        this.citta = dati[3];
+    }
+
 
     public String getNome() {
         return nome;

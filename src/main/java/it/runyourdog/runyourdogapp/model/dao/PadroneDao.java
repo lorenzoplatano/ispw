@@ -96,8 +96,6 @@ public class PadroneDao {
 
     public void registerProcedure(Padrone pad, Dog dog) throws DAOException {
 
-
-
         try {
 
             List<String> vaccinazioni = dog.getVaccinazioni();
@@ -308,37 +306,37 @@ public class PadroneDao {
         }
     }
 
-    public void updatePadrone(ProfiloPadroneBean bean) throws DAOException {
+    public void updatePadrone(Padrone pad, Dog dog) throws DAOException {
 
         try {
 
             this.cs = this.conn.prepareCall("{call updateProfiloPadrone(?,?,?,?,?,?,?,?,?,?,?)}");
 
-            List<String> vaccinazioni = bean.getVaccinazioniCane();
+            List<String> vaccinazioni = dog.getVaccinazioni();
 
-            cs.setString(1, bean.getEmail());
+            cs.setString(1, pad.getEmail());
 
-            cs.setString(2, bean.getNomeCane());
+            cs.setString(2, dog.getNome());
 
-            cs.setString(3, bean.getSessoCane());
+            cs.setString(3, dog.getSesso());
 
-            cs.setDate(4, bean.getDataNascitaCane());
+            cs.setDate(4, dog.getDataNascita());
 
-            cs.setString(5, bean.getRazzaCane());
+            cs.setString(5, dog.getRazza());
 
             String vaccinazioniStr = String.join(",", vaccinazioni);
 
             cs.setString(6, vaccinazioniStr);
 
-            cs.setString(7, bean.getMicrochip());
+            cs.setString(7, dog.getMicrochip());
 
-            cs.setString(8, bean.getNomePadrone());
+            cs.setString(8, pad.getNome());
 
-            cs.setString(9, bean.getTelefonoPadrone());
+            cs.setString(9, pad.getTelefono());
 
-            cs.setString(10, bean.getIndirizzoPadrone());
+            cs.setString(10, pad.getIndirizzo());
 
-            cs.setString(11, bean.getCittaPadrone());
+            cs.setString(11, pad.getCitta());
 
             cs.execute();
 

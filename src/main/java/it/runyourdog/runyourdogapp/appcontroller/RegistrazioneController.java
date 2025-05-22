@@ -2,6 +2,7 @@ package it.runyourdog.runyourdogapp.appcontroller;
 
 import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
 import it.runyourdog.runyourdogapp.model.dao.PadroneDao;
 import it.runyourdog.runyourdogapp.model.dao.UserDao;
@@ -36,14 +37,7 @@ public class RegistrazioneController {
 
         Padrone pad = new Padrone(username, email, password, ruolo, dati);
 
-        String nomec = bean.getNomeCane();
-        String microchip = bean.getMicrochip();
-        String razza = bean.getRazzaCane();
-        String sesso = bean.getSessoCane();
-        List<String> vaccinazioni = bean.getVaccinazioniCane();
-        Date datadinascita = bean.getDataNascitaCane();
-
-        Dog dog = new Dog(nomec, sesso, razza, microchip, datadinascita, vaccinazioni);
+        Dog dog = createDog(bean);
 
         dao.registerProcedure(pad, dog);
 
@@ -106,6 +100,39 @@ public class RegistrazioneController {
         List<Orario> orari = bean.getOrari();
 
         dao.registerProcedure(vet, orari);
+    }
+
+    public void aggiornaProfilo(ProfiloPadroneBean bean) throws InvalidInputException, DAOException {
+
+        PadroneDao dao = new PadroneDao();
+
+        String email = bean.getEmail();
+
+        String[] dati = {
+                bean.getNomePadrone(),
+                bean.getTelefonoPadrone(),
+                bean.getIndirizzoPadrone(),
+                bean.getCittaPadrone()
+        };
+
+        Padrone pad = new Padrone(email, dati);
+
+
+        Dog dog = createDog(bean);
+
+        dao.updatePadrone(pad, dog);
+
+    }
+
+    private Dog createDog(ProfiloPadroneBean bean) {
+        String nomec = bean.getNomeCane();
+        String microchip = bean.getMicrochip();
+        String razza = bean.getRazzaCane();
+        String sesso = bean.getSessoCane();
+        List<String> vaccinazioni = bean.getVaccinazioniCane();
+        Date datadinascita = bean.getDataNascitaCane();
+
+        return new Dog(nomec, sesso, razza, microchip, datadinascita, vaccinazioni);
     }
 }
 

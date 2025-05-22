@@ -1,10 +1,11 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
-import it.runyourdog.runyourdogapp.appcontroller.ProfiloPadroneController;
+
+import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
-import it.runyourdog.runyourdogapp.beans.UserBean;
+
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
@@ -42,6 +43,7 @@ public class ProfiloPadroneGraphicController extends GenericProfiloGraphicContro
 
     @FXML
     private TextArea indArea;
+
 
 
     @FXML
@@ -136,7 +138,7 @@ public class ProfiloPadroneGraphicController extends GenericProfiloGraphicContro
             updated.setMicrochip(microchipArea.getText());
             updated.setNomePadrone(padNameArea.getText());
             updated.setIndirizzoPadrone(indArea.getText());
-            ProfiloPadroneController con = new ProfiloPadroneController();
+            RegistrazioneController con = new RegistrazioneController();
             con.aggiornaProfilo(updated);
             loggedUser = updated;
         } catch (DAOException e) {
