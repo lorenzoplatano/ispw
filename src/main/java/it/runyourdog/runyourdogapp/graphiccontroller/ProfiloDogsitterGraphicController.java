@@ -2,9 +2,11 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 
 
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
+import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 
+import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
@@ -33,5 +35,15 @@ public class ProfiloDogsitterGraphicController extends GenericProfiloLavoratoreG
         } catch (InvalidInputException e) {
             showError(e.getMessage());
         }
+    }
+
+    @Override
+    protected void aggiorna(ProfiloLavoratoreBean updated) throws DAOException{
+        new RegistrazioneController().updateProfiloDogsitter((ProfiloDogsitterBean) updated);
+    }
+
+    @Override
+    protected ProfiloLavoratoreBean creaProfiloSpecifico() {
+        return new ProfiloDogsitterBean();
     }
 }

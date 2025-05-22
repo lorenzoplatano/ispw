@@ -4,6 +4,7 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
+import it.runyourdog.runyourdogapp.utils.OrariParser;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -11,6 +12,7 @@ import javafx.scene.control.TextField;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public abstract class RegistrazioneLavoratoreGraphicController extends RegistrazioneGraphicController {
     @FXML protected TextField eta;
@@ -58,34 +60,16 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
     }
 
     protected List<Orario> creaListaOrari() throws InvalidInputException {
-        List<Orario> orari = new ArrayList<>();
-        aggiungiOrari(orari, lun.getText(), "Lunedì");
-        aggiungiOrari(orari, mar.getText(), "Martedì");
-        aggiungiOrari(orari, mer.getText(), "Mercoledì");
-        aggiungiOrari(orari, giov.getText(), "Giovedì");
-        aggiungiOrari(orari, ven.getText(), "Venerdì");
-        aggiungiOrari(orari, sab.getText(), "Sabato");
-        aggiungiOrari(orari, dome.getText(), "Domenica");
-        return orari;
+        Map<String,String> mappa = Map.of(
+                "Lunedì",   lun.getText(),
+                "Martedì",  mar.getText(),
+                "Mercoledì",mer.getText(),
+                "Giovedì",  giov.getText(),
+                "Venerdì",  ven.getText(),
+                "Sabato",   sab.getText(),
+                "Domenica", dome.getText()
+        );
+        return OrariParser.parseOrari(mappa);
     }
 
-    protected void aggiungiOrari(List<Orario> orari, String orariInput, String giorno) throws InvalidInputException {
-        if (orariInput != null && !orariInput.trim().isEmpty()) {
-            String[] orariSplit = orariInput.split("\\s*,\\s*");
-            for (String orario : orariSplit) {
-                String[] intervallo = orario.trim().split("\\s*-\\s*");
-                if (intervallo.length != 2 ||
-                        !intervallo[0].matches(ORARIOFORMAT) ||
-                        !intervallo[1].matches(ORARIOFORMAT)) {
-                    throw new InvalidInputException("Formato errato per " + giorno +
-                            ". Usa il formato hh:mm - hh:mm con valori tra 00:00 e 23:59.");
-                }
-
-                Time inizio = Time.valueOf(intervallo[0] + ":00");
-                Time fine = Time.valueOf(intervallo[1] + ":00");
-
-                orari.add(new Orario(giorno, inizio, fine));
-            }
-        }
-    }
 }

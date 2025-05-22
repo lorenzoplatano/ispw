@@ -134,5 +134,11 @@ public class RegistrazioneController {
 
         return new Dog(nomec, sesso, razza, microchip, datadinascita, vaccinazioni);
     }
+
+    public void updateProfiloDogsitter(ProfiloDogsitterBean updated) throws DAOException{
+    }
+
+    public void UpdateProfiloVet(ProfiloVeterinarioBean updated) throws DAOException{
+    }
 }
 

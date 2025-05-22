@@ -1,12 +1,17 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
+import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
+import it.runyourdog.runyourdogapp.utils.OrariParser;
+import it.runyourdog.runyourdogapp.utils.Printer;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class GenericProfiloLavoratoreGraphicController extends GenericProfiloGraphicController {
@@ -116,5 +121,51 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericP
         vePane.setStyle(editing ? modificaStyle : defaultStyle);
         saPane.setStyle(editing ? modificaStyle : defaultStyle);
         doPane.setStyle(editing ? modificaStyle : defaultStyle);
+    }
+
+    protected void doUpdate()
+    {
+
+        try {
+            ProfiloLavoratoreBean updated = creaProfilo();
+            aggiorna(updated);
+            loggedUser = updated;
+        } catch (DAOException e) {
+            Printer.perror(e.getMessage());
+        } catch (InvalidInputException e) {
+            showError(e.getMessage());
+        } catch (IllegalArgumentException _) {
+            showError("Utilizza un'età valida");
+        }
+    }
+
+    protected List<Orario> creaListaOrari() throws InvalidInputException {
+        Map<String,String> mappa = Map.of(
+                "Lunedì",   lu.getText(),
+                "Martedì",  ma.getText(),
+                "Mercoledì",me.getText(),
+                "Giovedì",  gio.getText(),
+                "Venerdì",  ve.getText(),
+                "Sabato",   sa.getText(),
+                "Domenica", dom.getText()
+        );
+        return OrariParser.parseOrari(mappa);
+    }
+
+    protected abstract void aggiorna(ProfiloLavoratoreBean updated) throws DAOException, InvalidInputException;
+
+    protected abstract ProfiloLavoratoreBean creaProfiloSpecifico();
+
+    protected ProfiloLavoratoreBean creaProfilo() throws InvalidInputException {
+        ProfiloLavoratoreBean bean = creaProfiloSpecifico();
+        bean.setEmail(loggedUser.getEmail());
+        bean.setNome(name.getText());
+        bean.setGenere(sesso.getText());
+        bean.setTelefono(tel.getText());
+        bean.setCitta(cittaProfilo.getText());
+        int e = Integer.parseInt(eta.getText().trim());
+        bean.setEta(e);
+        bean.setOrari(creaListaOrari());
+        return bean;
     }
 }
