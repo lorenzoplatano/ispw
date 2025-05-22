@@ -316,19 +316,19 @@ public class PadroneDao {
 
             cs.setString(1, pad.getEmail());
 
-            cs.setString(2, dog.getNome());
+            cs.setString(2, dog.getMicrochip());
 
-            cs.setString(3, dog.getSesso());
+            cs.setString(3, dog.getNome());
 
-            cs.setDate(4, dog.getDataNascita());
+            cs.setString(4, dog.getSesso());
 
-            cs.setString(5, dog.getRazza());
+            cs.setDate(5, dog.getDataNascita());
+
+            cs.setString(6, dog.getRazza());
 
             String vaccinazioniStr = String.join(",", vaccinazioni);
 
-            cs.setString(6, vaccinazioniStr);
-
-            cs.setString(7, dog.getMicrochip());
+            cs.setString(7, vaccinazioniStr);
 
             cs.setString(8, pad.getNome());
 
