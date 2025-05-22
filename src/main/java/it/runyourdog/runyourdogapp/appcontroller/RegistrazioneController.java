@@ -69,13 +69,9 @@ public class RegistrazioneController {
         Dogsitter dogsitter = new Dogsitter(email, password);
         dogsitter.setUsername(username);
         dogsitter.setRole(ruolo);
-        dogsitter.setNome(bean.getNome());
-        dogsitter.setEta(bean.getEta());
-        dogsitter.setGenere(bean.getGenere());
-        dogsitter.setCitta(bean.getCitta());
-        dogsitter.setTelefono(bean.getTelefono());
-
+        dogsitterFromBean(bean, dogsitter);
         List<Orario> orari = bean.getOrari();
+
         dao.registerProcedure(dogsitter, orari);
     }
 
@@ -135,10 +131,43 @@ public class RegistrazioneController {
         return new Dog(nomec, sesso, razza, microchip, datadinascita, vaccinazioni);
     }
 
-    public void updateProfiloDogsitter(ProfiloDogsitterBean updated) throws DAOException{
+    public void updateProfiloDogsitter(ProfiloDogsitterBean bean) throws DAOException{
+        DogsitterDao dao = new DogsitterDao();
+
+        Dogsitter dogsitter = new Dogsitter();
+        dogsitter.setEmail(bean.getEmail());
+        dogsitterFromBean(bean, dogsitter);
+        List<Orario> orari = bean.getOrari();
+
+        dao.updateDogsitter(dogsitter, orari);
     }
 
-    public void UpdateProfiloVet(ProfiloVeterinarioBean updated) throws DAOException{
+    private void dogsitterFromBean(ProfiloDogsitterBean bean, Dogsitter dogsitter) {
+        dogsitter.setNome(bean.getNome());
+        dogsitter.setEta(bean.getEta());
+        dogsitter.setGenere(bean.getGenere());
+        dogsitter.setCitta(bean.getCitta());
+        dogsitter.setTelefono(bean.getTelefono());
+    }
+
+    public void UpdateProfiloVet(ProfiloVeterinarioBean bean) throws DAOException{
+        VeterinarioDao dao = new VeterinarioDao();
+
+        Veterinario veterinario = new Veterinario();
+        veterinario.setEmail(bean.getEmail());
+        vetFromBean(bean, veterinario);
+        List<Orario> orari = bean.getOrari();
+
+        dao.updateVet(veterinario, orari);
+    }
+
+    private void vetFromBean(ProfiloVeterinarioBean bean, Veterinario veterinario) {
+        veterinario.setNome(bean.getNome());
+        veterinario.setEta(bean.getEta());
+        veterinario.setGenere(bean.getGenere());
+        veterinario.setCitta(bean.getCitta());
+        veterinario.setTelefono(bean.getTelefono());
+        veterinario.setIndirizzo(bean.getIndirizzo());
     }
 }
 

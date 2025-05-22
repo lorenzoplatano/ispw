@@ -111,7 +111,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <AnchorPane fx:id="cittaPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
                         <TextArea fx:id="cittaProfilo" blendMode="DARKEN" editable="false" layoutX="24.0" layoutY="-71.0" prefHeight="44.0" prefWidth="281.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
@@ -178,7 +178,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="lePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1">
+                  <AnchorPane fx:id="luPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1">
                      <children>
                         <TextArea fx:id="lu" blendMode="DARKEN" editable="false" layoutX="24.0" layoutY="-71.0" prefHeight="38.0" prefWidth="281.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
@@ -256,6 +256,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label fx:id="infoLabel" layoutX="269.0" layoutY="408.0" prefHeight="27.0" prefWidth="384.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
       <HBox prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: B4B3B3;">
          <children>

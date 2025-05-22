@@ -86,16 +86,7 @@ public class DogsitterDao extends LavoratoreDao {
 
     public void registerProcedure(Dogsitter dogsitter, List<Orario> orari) throws DAOException {
 
-        StringBuilder sb = new StringBuilder();
-        for (Orario o : orari) {
-            sb.append(o.getGiorno())
-                    .append(",")
-                    .append(o.getOrainizio().toString())
-                    .append(",")
-                    .append(o.getOrafine().toString())
-                    .append(";");
-        }
-        String orariParam = sb.toString();
+        String orariParam = creaOrari(orari);
 
         try {
 
@@ -159,5 +150,29 @@ public class DogsitterDao extends LavoratoreDao {
     }
 
 
+    public void updateDogsitter(Dogsitter dogsitter, List<Orario> orari) throws DAOException {
+
+
+        try {
+            String orariParam = creaOrari(orari);
+
+            this.cs = this.conn.prepareCall("{call updateProfiloDogsitter(?,?,?,?,?,?,?)}");
+            cs.setString(1, dogsitter.getEmail());
+            cs.setString(2, dogsitter.getNome());
+            cs.setInt(3, dogsitter.getEta());
+            cs.setString(4, dogsitter.getGenere());
+            cs.setString(5, dogsitter.getCitta());
+            cs.setString(6, dogsitter.getTelefono());
+            cs.setString(7, orariParam);
+            cs.execute();
+        } catch (SQLException e) {
+            throw new DAOException("Errore nell'aggiornamento del Dogsitter: " + e.getMessage());
+
+        }
+    }
+
+
 }
+
+
 

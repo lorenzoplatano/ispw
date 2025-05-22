@@ -1,11 +1,13 @@
 package it.runyourdog.runyourdogapp.model.dao;
 
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public abstract class LavoratoreDao {
 
@@ -71,5 +73,19 @@ public abstract class LavoratoreDao {
         }catch (SQLException e) {
             throw new DAOException("Errore nella cancellazione della prenotazione: " + e.getMessage());
         }
+    }
+
+    protected String creaOrari(List<Orario> orari){
+        StringBuilder sb = new StringBuilder();
+        for (Orario o : orari) {
+            sb.append(o.getGiorno())
+                    .append(",")
+                    .append(o.getOrainizio().toString())
+                    .append(",")
+                    .append(o.getOrafine().toString())
+                    .append(";");
+        }
+        String orariParam = sb.toString();
+        return orariParam;
     }
 }

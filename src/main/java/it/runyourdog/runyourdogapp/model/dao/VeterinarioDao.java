@@ -163,4 +163,28 @@ public class VeterinarioDao extends LavoratoreDao{
 
 
     }
+
+    public void updateVet(Veterinario veterinario, List<Orario> orari) throws DAOException {
+
+        String orariParam = creaOrari(orari);
+
+        try {
+
+
+            this.cs = this.conn.prepareCall("{call updateProfiloVeterinario(?,?,?,?,?,?,?,?)}");
+            cs.setString(1, veterinario.getEmail());
+            cs.setString(2, veterinario.getNome());
+
+            cs.setInt(4, veterinario.getEta());
+            cs.setString(6, veterinario.getIndirizzo());
+            cs.setString(3, veterinario.getGenere());
+            cs.setString(5, veterinario.getCitta());
+            cs.setString(7, veterinario.getTelefono());
+            cs.setString(8, orariParam);
+            cs.execute();
+        } catch (SQLException e) {
+            throw new DAOException("Errore nell'aggiornamento del Veterinario: " + e.getMessage());
+
+        }
+    }
 }

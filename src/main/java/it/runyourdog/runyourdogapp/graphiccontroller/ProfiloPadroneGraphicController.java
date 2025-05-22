@@ -140,7 +140,9 @@ public class ProfiloPadroneGraphicController extends GenericProfiloGraphicContro
             updated.setIndirizzoPadrone(indArea.getText());
             RegistrazioneController con = new RegistrazioneController();
             con.aggiornaProfilo(updated);
+            updated.setEmail(loggedUser.getEmail());
             loggedUser = updated;
+            populate(updated);
         } catch (DAOException e) {
             Printer.perror(e.getMessage());
         } catch (InvalidInputException e) {

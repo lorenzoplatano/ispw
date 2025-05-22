@@ -61,6 +61,7 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericP
     @FXML
     private AnchorPane doPane;
 
+    private static final String ORARI_PLACEHOLDER = "Non sono disponibili orari per il giorno in questione";
 
     public void populate(ProfiloLavoratoreBean loggedLav) {
         name.setText(loggedLav.getNome());
@@ -76,7 +77,8 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericP
             String giorno = orario.getGiorno(
 
             );
-            String orarioStr = orario.getOrainizio() + " - " + orario.getOrafine();
+            String orarioStr = OrariParser.fmt(orario.getOrainizio()) + " - " + OrariParser.fmt(orario.getOrafine());
+
 
             orariPerGiorno
                     .computeIfAbsent(giorno, k -> new StringBuilder())
@@ -102,6 +104,15 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericP
     }
 
     protected void editAdditiveInfo(){
+
+        if (editing) {
+            for (TextArea dayField : List.of(lu, ma, me, gio, ve, sa, dom)) {
+                if (ORARI_PLACEHOLDER.equals(dayField.getText())) {
+                    dayField.setText("");
+                }
+            }
+        }
+
         eta.setEditable(editing);
         lu.setEditable(editing);
         ma.setEditable(editing);
@@ -129,7 +140,9 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericP
         try {
             ProfiloLavoratoreBean updated = creaProfilo();
             aggiorna(updated);
+            updated.setEmail(loggedUser.getEmail());
             loggedUser = updated;
+            populate(updated);
         } catch (DAOException e) {
             Printer.perror(e.getMessage());
         } catch (InvalidInputException e) {

@@ -9,8 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +25,6 @@ public abstract class RegistrazioneLavoratoreGraphicController extends Registraz
     @FXML protected TextField sab;
     @FXML protected TextField dome;
 
-    private static final String ORARIOFORMAT = "^(?:[01]\\d|2[0-3]):[0-5]\\d$";
 
     protected ProfiloLavoratoreBean profiloLavoratoreBean;
 

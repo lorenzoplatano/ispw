@@ -22,11 +22,7 @@ import java.util.List;
 
 public class MenuPrenotazioniDogsitterGraphicController extends MenuPrenotazioniLavoratoreGraphicController {
 
-
-
     @FXML private TableColumn<PrenotazioneBean, Time> colOraFine;
-
-
 
     @FXML
     public void goToProfiloDog() throws IOException {
@@ -36,7 +32,6 @@ public class MenuPrenotazioniDogsitterGraphicController extends MenuPrenotazioni
                         (ProfiloDogsitterBean) loggedUser
                 );
     }
-
 
     public void initializeOrarioFine() {
 
