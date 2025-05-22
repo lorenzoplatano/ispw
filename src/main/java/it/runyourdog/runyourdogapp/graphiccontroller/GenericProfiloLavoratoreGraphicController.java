@@ -9,24 +9,14 @@ import javafx.scene.layout.AnchorPane;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class GenericProfiloLavoratoreGraphicController extends GenericGraphicController {
-    @FXML
-    protected TextArea name;
+public abstract class GenericProfiloLavoratoreGraphicController extends GenericProfiloGraphicController {
 
-    @FXML
-    protected TextArea sesso;
 
     @FXML
     protected TextArea eta;
 
     @FXML
-    protected TextArea citta;
-
-    @FXML
     protected TextArea email;
-
-    @FXML
-    protected TextArea tel;
 
     @FXML
     protected TextArea lu;
@@ -52,8 +42,6 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericG
     @FXML
     private AnchorPane etaPane;
     @FXML
-    private AnchorPane emailPane;
-    @FXML
     private AnchorPane luPane;
     @FXML
     private AnchorPane maPane;
@@ -73,7 +61,7 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericG
         name.setText(loggedLav.getNome());
         sesso.setText(loggedLav.getGenere());
         eta.setText(String.valueOf(loggedLav.getEta()));
-        citta.setText(loggedLav.getCitta());
+        cittaProfilo.setText(loggedLav.getCitta());
         tel.setText(loggedLav.getTelefono());
         email.setText(loggedLav.getEmail());
 
@@ -106,5 +94,27 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericG
         } else {
             textArea.setText("Non sono disponibili orari per il giorno in questione");
         }
+    }
+
+    protected void editAdditiveInfo(){
+        eta.setEditable(editing);
+        lu.setEditable(editing);
+        ma.setEditable(editing);
+        me.setEditable(editing);
+        gio.setEditable(editing);
+        ve.setEditable(editing);
+        sa.setEditable(editing);
+        dom.setEditable(editing);
+    }
+
+    protected  void changeOthersColor(){
+        etaPane.setStyle(editing ? modificaStyle : defaultStyle);
+        luPane.setStyle(editing ? modificaStyle : defaultStyle);
+        maPane.setStyle(editing ? modificaStyle : defaultStyle);
+        mePane.setStyle(editing ? modificaStyle : defaultStyle);
+        gioPane.setStyle(editing ? modificaStyle : defaultStyle);
+        vePane.setStyle(editing ? modificaStyle : defaultStyle);
+        saPane.setStyle(editing ? modificaStyle : defaultStyle);
+        doPane.setStyle(editing ? modificaStyle : defaultStyle);
     }
 }

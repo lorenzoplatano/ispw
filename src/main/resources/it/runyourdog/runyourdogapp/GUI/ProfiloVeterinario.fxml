@@ -257,7 +257,7 @@
                   </AnchorPane>
                   <AnchorPane fx:id="cittaPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <TextArea fx:id="citta" blendMode="MULTIPLY" editable="false" prefHeight="40.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="cittaProfilo" blendMode="MULTIPLY" editable="false" prefHeight="40.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="indPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -288,7 +288,7 @@
                         <TextArea fx:id="tel" blendMode="MULTIPLY" editable="false" prefHeight="40.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="emailPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
                         <TextArea fx:id="email" blendMode="MULTIPLY" editable="false" prefHeight="40.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>

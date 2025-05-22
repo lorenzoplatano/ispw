@@ -145,14 +145,13 @@ public class ProfiloPadroneGraphicController extends GenericProfiloGraphicContro
             Printer.perror(e.getMessage());
         } catch (InvalidInputException e) {
             showError(e.getMessage());
+        } catch (IllegalArgumentException _) {
+            showError("Formato data errato. Utilizza yyyy-mm-dd.");
         }
     }
 
     @Override
     public void changeOthersColor() {
-        String modificaStyle = "-fx-background-color: #f1f1f1;";
-        String defaultStyle = "";
-
         birthPane.setStyle(editing ? modificaStyle : defaultStyle);
         razzaPane.setStyle(editing ? modificaStyle : defaultStyle);
         vaccPane.setStyle(editing ? modificaStyle : defaultStyle);

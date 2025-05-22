@@ -38,6 +38,9 @@ public abstract class GenericProfiloGraphicController extends GenericGraphicCont
 
     protected boolean editing = false;
 
+    String modificaStyle = "-fx-background-color: #f1f1f1;";
+    String defaultStyle = "-fx-background-color: #f4e1d3;";
+
     @FXML
     private void onModificaClicked() {
         editing = !editing;
@@ -66,9 +69,6 @@ public abstract class GenericProfiloGraphicController extends GenericGraphicCont
     protected abstract void doUpdate();
 
     private void changeColor() {
-        String modificaStyle = "-fx-background-color: #f1f1f1;";
-        String defaultStyle = "";
-
         namePane.setStyle(editing ? modificaStyle : defaultStyle);
         sessoPane.setStyle(editing ? modificaStyle : defaultStyle);
         telPane.setStyle(editing ? modificaStyle : defaultStyle);
