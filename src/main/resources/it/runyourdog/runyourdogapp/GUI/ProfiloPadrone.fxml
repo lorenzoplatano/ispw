@@ -72,7 +72,7 @@
       </HBox>
       <AnchorPane layoutX="179.0" layoutY="163.0" prefHeight="566.0" prefWidth="849.0" style="-fx-background-color: B4B3B3; -fx-background-radius: 4; -fx-border-color: BLACK; -fx-border-radius: 4;" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="163.0">
          <children>
-            <GridPane gridLinesVisible="true" layoutX="145.0" layoutY="60.0" prefHeight="370.0" prefWidth="600.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="113.0">
+            <GridPane gridLinesVisible="true" layoutX="145.0" layoutY="40.0" prefHeight="370.0" prefWidth="600.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="113.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.66668701171875" minWidth="10.0" prefWidth="204.66668701171875" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="398.33331298828125" minWidth="10.0" prefWidth="398.33331298828125" />
@@ -162,47 +162,47 @@
                            </font></Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1">
+                  <AnchorPane fx:id="namePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1">
                      <children>
-                        <TextArea fx:id="nameArea" blendMode="DARKEN" editable="false" layoutX="20.0" layoutY="-56.0" prefHeight="37.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="name" blendMode="DARKEN" editable="false" layoutX="20.0" layoutY="-56.0" prefHeight="37.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <AnchorPane fx:id="sessoPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <TextArea fx:id="sessoArea" blendMode="DARKEN" editable="false" layoutX="30.0" layoutY="-46.0" prefHeight="35.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="sesso" blendMode="DARKEN" editable="false" layoutX="30.0" layoutY="-46.0" prefHeight="35.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <AnchorPane fx:id="birthPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <TextArea fx:id="birthArea" blendMode="DARKEN" editable="false" layoutX="40.0" layoutY="-36.0" prefHeight="35.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <AnchorPane fx:id="razzaPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
                         <TextArea fx:id="razzaArea" blendMode="DARKEN" editable="false" layoutX="40.0" layoutY="-36.0" prefHeight="35.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <AnchorPane fx:id="vaccPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
                         <TextArea fx:id="vaccArea" blendMode="DARKEN" editable="false" layoutX="40.0" layoutY="-36.0" prefHeight="35.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <AnchorPane fx:id="chipPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
                         <TextArea fx:id="microchipArea" blendMode="DARKEN" editable="false" layoutX="40.0" layoutY="-36.0" prefHeight="35.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <AnchorPane fx:id="padNamePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
                         <TextArea fx:id="padNameArea" blendMode="DARKEN" editable="false" layoutX="40.0" layoutY="-36.0" prefHeight="35.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <AnchorPane fx:id="telPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
-                        <TextArea fx:id="telArea" blendMode="DARKEN" editable="false" layoutX="40.0" layoutY="-36.0" prefHeight="35.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="tel" blendMode="DARKEN" editable="false" layoutX="40.0" layoutY="-36.0" prefHeight="35.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <AnchorPane fx:id="indPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <children>
                         <TextArea fx:id="indArea" blendMode="DARKEN" editable="false" layoutX="40.0" layoutY="-36.0" prefHeight="35.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
@@ -216,9 +216,9 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                  <AnchorPane fx:id="cittaPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f4e1d3;" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <children>
-                        <TextArea fx:id="cittaArea" blendMode="DARKEN" editable="false" prefHeight="39.2" prefWidth="392.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="cittaProfilo" blendMode="DARKEN" editable="false" prefHeight="39.2" prefWidth="392.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>
@@ -238,6 +238,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label fx:id="infoLabel" layoutX="236.8" layoutY="440.0" prefHeight="27.0" prefWidth="384.0" AnchorPane.leftAnchor="236.8" AnchorPane.rightAnchor="229.5999999999999">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
       <Label fx:id="errorLabel" alignment="CENTER" layoutX="236.0" layoutY="734.0" prefHeight="56.0" prefWidth="734.0" textAlignment="CENTER">
          <font>

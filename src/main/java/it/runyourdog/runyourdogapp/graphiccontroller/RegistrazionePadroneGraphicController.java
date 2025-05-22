@@ -7,6 +7,7 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
+import it.runyourdog.runyourdogapp.utils.Validator;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -14,7 +15,6 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.Arrays;
 import java.util.List;
 
 public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicController {
@@ -65,7 +65,7 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
             String vaccinazione = vaccinazioni.getText().trim();
             String cittaInput = citta.getText().trim();
 
-            List<String> vaccinazioniList = Arrays.asList(vaccinazione.split("\\s*,\\s*"));
+            List<String> vaccinazioniList = Validator.pulisciVaccinazioni(vaccinazione);
             Date dataNascita = Date.valueOf(datadinascitaInput);
 
             profiloPadroneBean.setTelefonoPadrone(telefonoInput);

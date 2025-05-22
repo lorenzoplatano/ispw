@@ -2,6 +2,9 @@ package it.runyourdog.runyourdogapp.utils;
 
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Validator {
 
     private Validator() {}
@@ -24,5 +27,13 @@ public class Validator {
         }
 
         return cityFormatted.toString().trim();
+    }
+
+    public static List<String> pulisciVaccinazioni(String testoVaccinazioni) {
+        return Arrays.stream(testoVaccinazioni.split("\\s*,\\s*"))
+                .map(String::trim)
+                .map(s -> s.replaceAll("\\s+", " "))
+                .filter(s -> !s.isEmpty())
+                .toList();
     }
 }

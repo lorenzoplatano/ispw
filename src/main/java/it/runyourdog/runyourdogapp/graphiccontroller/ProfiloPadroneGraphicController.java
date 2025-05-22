@@ -1,35 +1,29 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
-import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
 import it.runyourdog.runyourdogapp.appcontroller.ProfiloPadroneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
+import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
+import it.runyourdog.runyourdogapp.utils.Validator;
 import javafx.fxml.FXML;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-import java.util.Arrays;
+import java.sql.Date;
+
 import java.util.List;
 
 
-public class ProfiloPadroneGraphicController extends GenericGraphicController {
+public class ProfiloPadroneGraphicController extends GenericProfiloGraphicController {
 
-    @FXML
-    private Button ModificaButton;
-
-    @FXML
-    private TextArea nameArea;
-
-    @FXML
-    private TextArea sessoArea;
 
     @FXML
     private TextArea birthArea;
@@ -47,27 +41,33 @@ public class ProfiloPadroneGraphicController extends GenericGraphicController {
     private TextArea padNameArea;
 
     @FXML
-    private TextArea telArea;
-
-    @FXML
     private TextArea indArea;
 
-    @FXML
-    private TextArea cittaArea;
 
-    private boolean editing = false;
+    @FXML
+    private AnchorPane birthPane;
+    @FXML
+    private AnchorPane razzaPane;
+    @FXML
+    private AnchorPane vaccPane;
+    @FXML
+    private AnchorPane chipPane;
+    @FXML
+    private AnchorPane padNamePane;
+    @FXML
+    private AnchorPane indPane;
 
     public void populate(ProfiloPadroneBean loggedPad) {
-        nameArea.setText(loggedPad.getNomeCane());
-        sessoArea.setText(loggedPad.getSessoCane());
+        name.setText(loggedPad.getNomeCane());
+        sesso.setText(loggedPad.getSessoCane());
         birthArea.setText(loggedPad.getDataNascitaCane().toString());
         razzaArea.setText(loggedPad.getRazzaCane());
         vaccArea.setText(String.join(", ", loggedPad.getVaccinazioniCane()));
         microchipArea.setText(loggedPad.getMicrochip());
         padNameArea.setText(loggedPad.getNomePadrone());
-        telArea.setText(loggedPad.getTelefonoPadrone());
+        tel.setText(loggedPad.getTelefonoPadrone());
         indArea.setText(loggedPad.getIndirizzoPadrone());
-        cittaArea.setText(loggedPad.getCittaPadrone());
+        cittaProfilo.setText(loggedPad.getCittaPadrone());
     }
 
 
@@ -107,52 +107,55 @@ public class ProfiloPadroneGraphicController extends GenericGraphicController {
         SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", (ProfiloPadroneBean) loggedUser);
     }
 
-    @FXML
-    private void onModificaClicked() {
-        editing = !editing;
 
-        nameArea.setEditable(editing);
-        sessoArea.setEditable(editing);
+    @Override
+    public void editAdditiveInfo() {
         birthArea.setEditable(editing);
         razzaArea.setEditable(editing);
         vaccArea.setEditable(editing);
         microchipArea.setEditable(editing);
         padNameArea.setEditable(editing);
-        telArea.setEditable(editing);
         indArea.setEditable(editing);
-        cittaArea.setEditable(editing);
+    }
 
-        if (editing) {
 
-            ModificaButton.setText("SALVA");
-        } else {
 
-            salvaModifiche();
-            ModificaButton.setText("MODIFICA");
+    @Override
+    protected void doUpdate() {
+        ProfiloPadroneBean updated = new ProfiloPadroneBean();
+
+        try {
+            updated.setEmail(loggedUser.getEmail());
+            updated.setNomeCane(name.getText());
+            updated.setSessoCane(sesso.getText());
+            updated.setTelefonoPadrone(tel.getText());
+            updated.setCittaPadrone(cittaProfilo.getText());
+            updated.setDataNascitaCane(Date.valueOf(birthArea.getText()));
+            updated.setRazzaCane(razzaArea.getText());
+            updated.setVaccinazioniCane(Validator.pulisciVaccinazioni(vaccArea.getText()));
+            updated.setMicrochip(microchipArea.getText());
+            updated.setNomePadrone(padNameArea.getText());
+            updated.setIndirizzoPadrone(indArea.getText());
+            ProfiloPadroneController con = new ProfiloPadroneController();
+            con.aggiornaProfilo(updated);
+            loggedUser = updated;
+        } catch (DAOException e) {
+            Printer.perror(e.getMessage());
+        } catch (InvalidInputException e) {
+            showError(e.getMessage());
         }
     }
 
-    private void salvaModifiche() {
-        try {
-            ProfiloPadroneBean updated = new ProfiloPadroneBean();
-            updated.setEmail(loggedUser.getEmail());
-            updated.setNomeCane(nameArea.getText());
-            updated.setSessoCane(sessoArea.getText());
-            java.sql.Date data = java.sql.Date.valueOf(birthArea.getText());
-            updated.setDataNascitaCane(data);
-            updated.setRazzaCane(razzaArea.getText());
-            updated.setVaccinazioniCane(Arrays.asList(vaccArea.getText().split("\\s*,\\s*")));
-            updated.setMicrochip(microchipArea.getText());
-            updated.setNomePadrone(padNameArea.getText());
-            updated.setTelefonoPadrone(telArea.getText());
-            updated.setIndirizzoPadrone(indArea.getText());
-            updated.setCittaPadrone(cittaArea.getText());
+    @Override
+    public void changeOthersColor() {
+        String modificaStyle = "-fx-background-color: #f1f1f1;";
+        String defaultStyle = "";
 
-            ProfiloPadroneController con = new ProfiloPadroneController();
-            con.aggiornaProfilo(updated);
-
-        } catch (Exception e) {
-            Printer.perror("Errore nel salvataggio: " + e.getMessage());
-        }
+        birthPane.setStyle(editing ? modificaStyle : defaultStyle);
+        razzaPane.setStyle(editing ? modificaStyle : defaultStyle);
+        vaccPane.setStyle(editing ? modificaStyle : defaultStyle);
+        chipPane.setStyle(editing ? modificaStyle : defaultStyle);
+        padNamePane.setStyle(editing ? modificaStyle : defaultStyle);
+        indPane.setStyle(editing ? modificaStyle : defaultStyle);
     }
 }

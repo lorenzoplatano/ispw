@@ -312,7 +312,7 @@ public class PadroneDao {
 
         try {
 
-            this.cs = this.conn.prepareCall("{call updatePadrone(?,?,?,?,?,?,?,?,?,?,?)}");
+            this.cs = this.conn.prepareCall("{call updateProfiloPadrone(?,?,?,?,?,?,?,?,?,?,?)}");
 
             List<String> vaccinazioni = bean.getVaccinazioniCane();
 
