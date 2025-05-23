@@ -90,16 +90,21 @@ public abstract class GenericLavoratoreProfiloGraphicControllerCLI extends Gener
             while (true) {
                 Printer.printf("Giorno [Invio per fine]: ");
                 giorno = scanner.nextLine().trim();
-                if (giorno.isEmpty()) break;
+
                 String lower = giorno.toLowerCase();
-                if (giorniValidi.contains(lower)) {
-                    giorno = Character.toUpperCase(lower.charAt(0)) + lower.substring(1);
+                if (giorno.isEmpty() || giorniValidi.contains(lower)) {
+                    if (!giorno.isEmpty()) {
+
+                        giorno = Character.toUpperCase(lower.charAt(0)) + lower.substring(1);
+                    }
                     break;
-                } else {
-                    Printer.perror("Giorno non valido. Scegli tra: " +
-                            String.join(", ", giorniValidi) + ".");
                 }
+
+
+                Printer.perror("Giorno non valido. Scegli tra: " +
+                        String.join(", ", giorniValidi) + ".");
             }
+
             if (giorno.isEmpty()) break;
 
             Time inizio = readTime(scanner, "Ora inizio (HH:mm): ");
