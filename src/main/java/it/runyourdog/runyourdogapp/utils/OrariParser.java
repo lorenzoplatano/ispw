@@ -14,7 +14,6 @@ import java.util.Map;
 public class OrariParser {
 
     private OrariParser() {
-
     }
     private static final String ORARIOFORMAT = "^(?:[01]\\d|2[0-3]):[0-5]\\d$";
     private static final String PLACEHOLDER = "Non sono disponibili orari per il giorno in questione";
