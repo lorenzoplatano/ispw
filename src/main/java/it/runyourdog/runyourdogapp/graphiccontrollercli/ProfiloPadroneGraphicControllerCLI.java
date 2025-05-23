@@ -7,7 +7,6 @@ import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
-import it.runyourdog.runyourdogapp.graphiccontroller.RegistrazioneGraphicController;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
 import java.sql.Date;
