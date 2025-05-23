@@ -85,7 +85,7 @@ public abstract class LavoratoreDao {
                     .append(o.getOrafine().toString())
                     .append(";");
         }
-        String orariParam = sb.toString();
-        return orariParam;
+
+        return sb.toString();
     }
 }
