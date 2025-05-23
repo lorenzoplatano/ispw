@@ -166,7 +166,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
 
             } catch (InvalidInputException e) {
                 Printer.perror("Errore: " + e.getMessage());
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException error) {
                 Printer.perror("Formato data non valido. Usa yyyy-MM-dd (es. 2020-05-17).");
             }
 

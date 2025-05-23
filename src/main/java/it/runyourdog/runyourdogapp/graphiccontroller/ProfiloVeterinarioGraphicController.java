@@ -50,7 +50,7 @@ public class ProfiloVeterinarioGraphicController extends GenericProfiloLavorator
     }
 
     @Override
-    protected void aggiorna(ProfiloLavoratoreBean updated) throws DAOException, InvalidInputException {
+    protected void aggiorna(ProfiloLavoratoreBean updated) throws DAOException, InvalidInputException{
         ProfiloVeterinarioBean vet = (ProfiloVeterinarioBean) updated;
         String indirizzo = ind.getText();
         vet.setIndirizzo(indirizzo);
