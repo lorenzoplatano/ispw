@@ -149,7 +149,7 @@ public class RegistrazioneController {
         dogsitter.setTelefono(bean.getTelefono());
     }
 
-    public void UpdateProfiloVet(ProfiloVeterinarioBean bean) throws DAOException{
+    public void updateProfiloVet(ProfiloVeterinarioBean bean) throws DAOException{
         VeterinarioDao dao = new VeterinarioDao();
 
         Veterinario veterinario = new Veterinario();

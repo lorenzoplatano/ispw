@@ -122,7 +122,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
 
         try {
             RegistrazioneController ctrl = new RegistrazioneController();
-            ctrl.UpdateProfiloVet(nuovo);
+            ctrl.updateProfiloVet(nuovo);
             this.profilo = nuovo;
             Printer.printf("\nProfilo e orari aggiornati con successo!\n");
         } catch (DAOException e) {

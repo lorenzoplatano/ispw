@@ -54,7 +54,7 @@ public class ProfiloVeterinarioGraphicController extends GenericProfiloLavorator
         ProfiloVeterinarioBean vet = (ProfiloVeterinarioBean) updated;
         String indirizzo = ind.getText();
         vet.setIndirizzo(indirizzo);
-        new RegistrazioneController().UpdateProfiloVet(vet);
+        new RegistrazioneController().updateProfiloVet(vet);
     }
 
     @Override
