@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import static it.runyourdog.runyourdogapp.graphiccontrollercli.GenericPrenotazioneGraphicControllerCLI.scanner;
 
 public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicControllerCLI {
 
@@ -45,7 +44,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
             Printer.printf("7) Esci");
 
 
-            choice = getChoice(1,6);
+            choice = getChoice(1,7);
 
             try {
                 switch (choice) {
