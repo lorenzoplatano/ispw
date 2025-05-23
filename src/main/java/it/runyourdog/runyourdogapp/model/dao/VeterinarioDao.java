@@ -21,7 +21,7 @@ public class VeterinarioDao extends LavoratoreDao{
         String citta = null;
         int eta = 0;
         String indirizzo = null;
-        int telefono = 0;
+        Long telefono = null;
 
         try{
 
@@ -39,7 +39,7 @@ public class VeterinarioDao extends LavoratoreDao{
                     citta = rs.getString(5);
                     eta = rs.getInt(4);
                     indirizzo = rs.getString(6);
-                    telefono = rs.getInt(7);
+                    telefono = rs.getLong(7);
                 }
             }
         } catch(SQLException e) {

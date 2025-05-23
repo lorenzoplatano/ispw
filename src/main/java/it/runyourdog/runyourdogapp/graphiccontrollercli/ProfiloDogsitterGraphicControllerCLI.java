@@ -9,11 +9,16 @@ import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.utils.Printer;
-
 import java.util.List;
 import java.util.Scanner;
 
 public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfiloGraphicControllerCLI {
+
+    protected ProfiloDogsitterBean profilo;
+
+    public void setProfiloDogsitter(ProfiloDogsitterBean profilo) {
+        this.profilo = profilo;
+    }
 
     public ProfiloDogsitterGraphicControllerCLI(UserBean user) {
         this.loggedUser = user;
@@ -85,19 +90,29 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
     }
 
     private void modificaProfiloCompleto() {
-
-        ProfiloDogsitterBean profilo = retrieveProfilo(loggedUser);
+        ProfiloDogsitterBean old = retrieveProfilo(loggedUser);
         Scanner scanner = new Scanner(System.in);
 
         Printer.printf("\n*---- MODIFICA PROFILO DOGSITTER ----*\n");
-        promptCampiComuni(profilo, scanner);
 
-        List<Orario> newOrari = promptOrari(profilo, scanner);
-        applyOrari(profilo, newOrari);
+        ProfiloDogsitterBean nuovo = new ProfiloDogsitterBean();
+        try {
+            nuovo.setUsername(loggedUser.getUsername());
+            nuovo.setEmail(loggedUser.getEmail());
+            nuovo.setRole(loggedUser.getRole());
+        } catch (InvalidInputException e) {
+            Printer.perror(e.getMessage());
+        }
+        promptCampiComuni(old, nuovo, scanner);
+
+        List<Orario> newOrari = promptOrari(old, scanner);
+        applyOrari(nuovo, newOrari);
+
 
         try {
             RegistrazioneController ctrl = new RegistrazioneController();
-            ctrl.updateProfiloDogsitter(profilo);
+            ctrl.updateProfiloDogsitter(nuovo);
+            this.profilo = nuovo;
             Printer.printf("\nProfilo e orari aggiornati con successo!\n");
         } catch (DAOException e) {
             Printer.perror("Errore durante il salvataggio: " + e.getMessage());

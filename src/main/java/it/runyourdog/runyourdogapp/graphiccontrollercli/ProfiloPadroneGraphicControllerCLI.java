@@ -8,11 +8,9 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.Printer;
-
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
-
 import static it.runyourdog.runyourdogapp.graphiccontrollercli.GenericPrenotazioneGraphicControllerCLI.scanner;
 
 public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicControllerCLI {

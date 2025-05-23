@@ -76,7 +76,7 @@ public class LoginController {
             return new ProfiloVeterinarioBean(dati, vet.getEta(), orario, vet.getIndirizzo());
 
         } catch (DAOException e) {
-            throw new ProfileRetrievalException("Errore nel recupero del profilo del veterinario", e);
+            throw new ProfileRetrievalException("Errore nel recupero del profilo del veterinario"+ e.getMessage());
         }
     }
 

@@ -1,6 +1,5 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
-
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
@@ -9,6 +8,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public abstract class GenericLavoratoreProfiloGraphicControllerCLI extends GenericProfiloGraphicControllerCLI{
 
@@ -34,48 +34,72 @@ public abstract class GenericLavoratoreProfiloGraphicControllerCLI extends Gener
         Printer.printf("\n");
     }
 
-    protected <T extends ProfiloLavoratoreBean> void promptCampiComuni(T profilo, Scanner scanner) {
-        try {
-            Printer.printf(String.format("Nome [%s] (Invio per non modificare): ", profilo.getNome()));
-            String s = scanner.nextLine().trim();
-            profilo.setNome(s.isEmpty() ? profilo.getNome() : s);
+    protected <T extends ProfiloLavoratoreBean> void promptCampiComuni(
+            T oldProfilo,
+            T newProfilo,
+            Scanner scanner
+    ) {
+        while (true) {
+            try {
+                Printer.printf(String.format("Nome [%s] (Invio per non modificare): ", oldProfilo.getNome()));
+                String s = scanner.nextLine().trim();
+                newProfilo.setNome(s.isEmpty() ? oldProfilo.getNome() : s);
 
-            Printer.printf(String.format("Genere [%s] (Invio per non modificare): ", profilo.getGenere()));
-            s = scanner.nextLine().trim();
-            profilo.setGenere(s.isEmpty() ? profilo.getGenere() : s);
+                Printer.printf(String.format("Genere [%s] (Invio per non modificare): ", oldProfilo.getGenere()));
+                s = scanner.nextLine().trim();
+                newProfilo.setGenere(s.isEmpty() ? oldProfilo.getGenere() : s);
 
-            Printer.printf(String.format("Telefono [%s] (Invio per non modificare): ", profilo.getTelefono()));
-            s = scanner.nextLine().trim();
-            profilo.setTelefono(s.isEmpty() ? profilo.getTelefono() : s);
+                Printer.printf(String.format("Telefono [%s] (Invio per non modificare): ", oldProfilo.getTelefono()));
+                s = scanner.nextLine().trim();
+                newProfilo.setTelefono(s.isEmpty() ? oldProfilo.getTelefono() : s);
 
-            Printer.printf(String.format("Email [%s] (Invio per non modificare): ", profilo.getEmail()));
-            s = scanner.nextLine().trim();
-            profilo.setEmail(s.isEmpty() ? profilo.getEmail() : s);
+                Printer.printf(String.format("Età [%d] (Invio per non modificare): ", oldProfilo.getEta()));
+                s = scanner.nextLine().trim();
+                if (s.isEmpty()) {
+                    newProfilo.setEta(oldProfilo.getEta());
+                } else {
+                    newProfilo.setEta(Integer.parseInt(s));
+                }
 
-            Printer.printf(String.format("Età [%d] (Invio per non modificare): ", profilo.getEta()));
-            s = scanner.nextLine().trim();
-            if (!s.isEmpty()) {
-                profilo.setEta(Integer.parseInt(s));
+                Printer.printf(String.format("Città [%s] (Invio per non modificare): ", oldProfilo.getCitta()));
+                s = scanner.nextLine().trim();
+                newProfilo.setCitta(s.isEmpty() ? oldProfilo.getCitta() : s);
+
+
+                break;
+
+            } catch (InvalidInputException | NumberFormatException e) {
+                Printer.perror("Errore nei dati comuni: " + e.getMessage());
+                Printer.printf("Riproviamo l'inserimento di tutti i campi.\n\n");
             }
-
-            Printer.printf(String.format("Città [%s] (Invio per non modificare): ", profilo.getCitta()));
-            s = scanner.nextLine().trim();
-            profilo.setCitta(s.isEmpty() ? profilo.getCitta() : s);
-
-        } catch (InvalidInputException | NumberFormatException e) {
-            Printer.perror("Errore nei dati comuni: " + e.getMessage());
         }
     }
-
 
     protected List<Orario> promptOrari(ProfiloLavoratoreBean profilo, Scanner scanner) {
         Printer.printf("\n*---- NUOVI ORARI DI DISPONIBILITÀ ----*\n");
         Printer.printf("Premi Invio sul giorno per terminare.\n");
 
+        Set<String> giorniValidi = Set.of(
+                "lunedì", "martedì", "mercoledì",
+                "giovedì", "venerdì", "sabato", "domenica"
+        );
+
         List<Orario> list = new ArrayList<>();
         while (true) {
-            Printer.printf("Giorno [Invio per fine]: ");
-            String giorno = scanner.nextLine().trim();
+            String giorno;
+            while (true) {
+                Printer.printf("Giorno [Invio per fine]: ");
+                giorno = scanner.nextLine().trim();
+                if (giorno.isEmpty()) break;
+                String lower = giorno.toLowerCase();
+                if (giorniValidi.contains(lower)) {
+                    giorno = Character.toUpperCase(lower.charAt(0)) + lower.substring(1);
+                    break;
+                } else {
+                    Printer.perror("Giorno non valido. Scegli tra: " +
+                            String.join(", ", giorniValidi) + ".");
+                }
+            }
             if (giorno.isEmpty()) break;
 
             Time inizio = readTime(scanner, "Ora inizio (HH:mm): ");
