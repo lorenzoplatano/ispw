@@ -62,17 +62,17 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
 
     @Override
     public void getProfilo(UserBean loggedUser) {
-        ProfiloVeterinarioBean profilo = null;
+        ProfiloVeterinarioBean profile = null;
         try {
             LoginController controller = new LoginController();
-            profilo = controller.getVetProfileInfo(loggedUser);
+            profile = controller.getVetProfileInfo(loggedUser);
         } catch (ProfileRetrievalException | InvalidInputException e) {
             Printer.perror("Errore: " + e.getMessage());
 
         }
-        showProfilo(profilo);
-        Printer.printf("Indirizzo: " + profilo.getIndirizzo());
-        showOrario(profilo);
+        showProfilo(profile);
+        Printer.printf("Indirizzo: " + profile.getIndirizzo());
+        showOrario(profile);
         showMenu();
     }
 
