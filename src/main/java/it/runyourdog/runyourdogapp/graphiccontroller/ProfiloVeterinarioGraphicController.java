@@ -75,4 +75,3 @@ public class ProfiloVeterinarioGraphicController extends GenericProfiloLavorator
         indPane.setStyle(style);
     }
 }
-

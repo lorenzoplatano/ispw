@@ -1,11 +1,20 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
 import it.runyourdog.runyourdogapp.appcontroller.LoginController;
+import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
+import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
+import it.runyourdog.runyourdogapp.graphiccontroller.RegistrazioneGraphicController;
 import it.runyourdog.runyourdogapp.utils.Printer;
+
+import java.sql.Date;
+import java.util.Arrays;
+import java.util.List;
+
+import static it.runyourdog.runyourdogapp.graphiccontrollercli.GenericPrenotazioneGraphicControllerCLI.scanner;
 
 public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicControllerCLI {
 
@@ -42,7 +51,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
             try {
                 switch (choice) {
                     case 1 -> this.getProfilo(loggedUser);
-                    case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
+                    case 2 -> modificaProfilo();
                     case 3 -> new PrenotazioneDogsitterGraphicControllerCLI(loggedUser, profilo).start();
                     case 4 -> new PrenotazioneVeterinarioGraphicControllerCLI(loggedUser, profilo).start();
                     case 5 -> new MenuPrenotazioniPadroneGraphicControllerCLI(loggedUser, profilo).start();
@@ -96,6 +105,86 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
         Printer.printf("Città del padrone: " + profilo.getCittaPadrone());
         Printer.printf("\n");
     }
+
+    public void modificaProfilo() {
+        Printer.printf("\n*---- MODIFICA PROFILO PADRONE ----*\n");
+        ProfiloPadroneBean newProfilo = new ProfiloPadroneBean();
+        RegistrazioneController con = new RegistrazioneController();
+
+        while (true) {
+            try {
+                Printer.printf(String.format("Nome del padrone [%s] (Invio per non modificare): ", profilo.getNomePadrone()));
+                String nomePadrone = scanner.nextLine().trim();
+                newProfilo.setNomePadrone(nomePadrone.isEmpty() ? profilo.getNomePadrone() : nomePadrone);
+
+                Printer.printf(String.format("Telefono del padrone [%s] (Invio per non modificare): ", profilo.getTelefonoPadrone()));
+                String telefono = scanner.nextLine().trim();
+                newProfilo.setTelefonoPadrone(telefono.isEmpty() ? profilo.getTelefonoPadrone() : telefono);
+
+                Printer.printf(String.format("Indirizzo del padrone [%s] (Invio per non modificare): ", profilo.getIndirizzoPadrone()));
+                String indirizzo = scanner.nextLine().trim();
+                newProfilo.setIndirizzoPadrone(indirizzo.isEmpty() ? profilo.getIndirizzoPadrone() : indirizzo);
+
+                Printer.printf(String.format("Nome del cane [%s] (Invio per non modificare): ", profilo.getNomeCane()));
+                String nomeCane = scanner.nextLine().trim();
+                newProfilo.setNomeCane(nomeCane.isEmpty() ? profilo.getNomeCane() : nomeCane);
+
+                Printer.printf(String.format("Razza del cane [%s] (Invio per non modificare): ", profilo.getRazzaCane()));
+                String razza = scanner.nextLine().trim();
+                newProfilo.setRazzaCane(razza.isEmpty() ? profilo.getRazzaCane() : razza);
+
+                Printer.printf(String.format("Sesso del cane (M/F) [%s] (Invio per non modificare): ", profilo.getSessoCane()));
+                String sesso = scanner.nextLine().trim();
+                newProfilo.setSessoCane(sesso.isEmpty() ? profilo.getSessoCane() : sesso.toUpperCase());
+
+                Printer.printf(String.format("Microchip del cane [%s] (Invio per non modificare): ", profilo.getMicrochip()));
+                String microchip = scanner.nextLine().trim();
+                newProfilo.setMicrochip(microchip.isEmpty() ? profilo.getMicrochip() : microchip);
+
+                Printer.printf(String.format("Vaccinazioni (separate da virgola) [%s] (Invio per non modificare): ",
+                        String.join(", ", profilo.getVaccinazioniCane())));
+                String vaccinazioniStr = scanner.nextLine().trim();
+                List<String> vaccinazioni = vaccinazioniStr.isEmpty()
+                        ? profilo.getVaccinazioniCane()
+                        : Arrays.stream(vaccinazioniStr.split("\\s*,\\s*"))
+                        .filter(s -> !s.isEmpty())
+                        .toList();
+                newProfilo.setVaccinazioniCane(vaccinazioni);
+
+                Printer.printf(String.format("Data di nascita del cane (yyyy-MM-dd) [%s] (Invio per non modificare): ",
+                        profilo.getDataNascitaCane()));
+                String dataStr = scanner.nextLine().trim();
+                Date dataNascita = dataStr.isEmpty() ? profilo.getDataNascitaCane() : Date.valueOf(dataStr);
+                newProfilo.setDataNascitaCane(dataNascita);
+
+                Printer.printf(String.format("Città del padrone [%s] (Invio per non modificare): ", profilo.getCittaPadrone()));
+                String citta = scanner.nextLine().trim();
+                newProfilo.setCittaPadrone(citta.isEmpty() ? profilo.getCittaPadrone() : citta);
+
+
+                newProfilo.setUsername(loggedUser.getUsername());
+                newProfilo.setEmail(loggedUser.getEmail());
+
+                break;
+
+            } catch (InvalidInputException e) {
+                Printer.perror("Errore: " + e.getMessage());
+            } catch (IllegalArgumentException e) {
+                Printer.perror("Formato data non valido. Usa yyyy-MM-dd (es. 2020-05-17).");
+            }
+
+            Printer.perror("\nRiprova l'inserimento di tutti i dati.\n");
+        }
+
+        try {
+            this.profilo = newProfilo;
+            con.aggiornaProfilo(profilo);
+        } catch (InvalidInputException | DAOException e) {
+            Printer.perror(e.getMessage());
+        }
+        getProfilo(loggedUser);
+    }
+
 
 
 
