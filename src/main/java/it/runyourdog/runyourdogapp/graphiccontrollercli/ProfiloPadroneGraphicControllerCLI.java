@@ -11,6 +11,8 @@ import it.runyourdog.runyourdogapp.utils.Printer;
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
+
 import static it.runyourdog.runyourdogapp.graphiccontrollercli.GenericPrenotazioneGraphicControllerCLI.scanner;
 
 public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicControllerCLI {
@@ -107,57 +109,41 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
         Printer.printf("\n*---- MODIFICA PROFILO PADRONE ----*\n");
         ProfiloPadroneBean newProfilo = new ProfiloPadroneBean();
         RegistrazioneController con = new RegistrazioneController();
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             try {
-                Printer.printf(String.format("Nome del padrone [%s] (Invio per non modificare): ", profilo.getNomePadrone()));
-                String nomePadrone = scanner.nextLine().trim();
-                newProfilo.setNomePadrone(nomePadrone.isEmpty() ? profilo.getNomePadrone() : nomePadrone);
 
-                Printer.printf(String.format("Telefono del padrone [%s] (Invio per non modificare): ", profilo.getTelefonoPadrone()));
-                String telefono = scanner.nextLine().trim();
-                newProfilo.setTelefonoPadrone(telefono.isEmpty() ? profilo.getTelefonoPadrone() : telefono);
+                String nomePadrone = promptString("Nome del padrone", profilo.getNomePadrone(), scanner);
+                newProfilo.setNomePadrone(nomePadrone);
 
-                Printer.printf(String.format("Indirizzo del padrone [%s] (Invio per non modificare): ", profilo.getIndirizzoPadrone()));
-                String indirizzo = scanner.nextLine().trim();
-                newProfilo.setIndirizzoPadrone(indirizzo.isEmpty() ? profilo.getIndirizzoPadrone() : indirizzo);
+                String telefono    = promptString("Telefono del padrone", profilo.getTelefonoPadrone(), scanner);
+                newProfilo.setTelefonoPadrone(telefono);
 
-                Printer.printf(String.format("Nome del cane [%s] (Invio per non modificare): ", profilo.getNomeCane()));
-                String nomeCane = scanner.nextLine().trim();
-                newProfilo.setNomeCane(nomeCane.isEmpty() ? profilo.getNomeCane() : nomeCane);
+                String indirizzo   = promptString("Indirizzo del padrone", profilo.getIndirizzoPadrone(), scanner);
+                newProfilo.setIndirizzoPadrone(indirizzo);
 
-                Printer.printf(String.format("Razza del cane [%s] (Invio per non modificare): ", profilo.getRazzaCane()));
-                String razza = scanner.nextLine().trim();
-                newProfilo.setRazzaCane(razza.isEmpty() ? profilo.getRazzaCane() : razza);
+                String nomeCane    = promptString("Nome del cane", profilo.getNomeCane(), scanner);
+                newProfilo.setNomeCane(nomeCane);
 
-                Printer.printf(String.format("Sesso del cane (M/F) [%s] (Invio per non modificare): ", profilo.getSessoCane()));
-                String sesso = scanner.nextLine().trim();
-                newProfilo.setSessoCane(sesso.isEmpty() ? profilo.getSessoCane() : sesso.toUpperCase());
+                String razza       = promptString("Razza del cane", profilo.getRazzaCane(), scanner);
+                newProfilo.setRazzaCane(razza);
 
-                Printer.printf(String.format("Microchip del cane [%s] (Invio per non modificare): ", profilo.getMicrochip()));
-                String microchip = scanner.nextLine().trim();
-                newProfilo.setMicrochip(microchip.isEmpty() ? profilo.getMicrochip() : microchip);
+                String sesso       = promptString("Sesso del cane (M/F)", profilo.getSessoCane(), scanner).toUpperCase();
+                newProfilo.setSessoCane(sesso);
 
-                Printer.printf(String.format("Vaccinazioni (separate da virgola) [%s] (Invio per non modificare): ",
-                        String.join(", ", profilo.getVaccinazioniCane())));
-                String vaccinazioniStr = scanner.nextLine().trim();
-                List<String> vaccinazioni = vaccinazioniStr.isEmpty()
-                        ? profilo.getVaccinazioniCane()
-                        : Arrays.stream(vaccinazioniStr.split("\\s*,\\s*"))
-                        .filter(s -> !s.isEmpty())
-                        .toList();
+                String microchip   = promptString("Microchip del cane", profilo.getMicrochip(), scanner);
+                newProfilo.setMicrochip(microchip);
+
+                List<String> vaccinazioni = promptVaccinazioni(profilo.getVaccinazioniCane(), scanner);
                 newProfilo.setVaccinazioniCane(vaccinazioni);
 
-                Printer.printf(String.format("Data di nascita del cane (yyyy-MM-dd) [%s] (Invio per non modificare): ",
-                        profilo.getDataNascitaCane()));
-                String dataStr = scanner.nextLine().trim();
-                Date dataNascita = dataStr.isEmpty() ? profilo.getDataNascitaCane() : Date.valueOf(dataStr);
+                Date dataNascita   = promptData("Data di nascita del cane (yyyy-MM-dd)",
+                        profilo.getDataNascitaCane(), scanner);
                 newProfilo.setDataNascitaCane(dataNascita);
 
-                Printer.printf(String.format("Città del padrone [%s] (Invio per non modificare): ", profilo.getCittaPadrone()));
-                String citta = scanner.nextLine().trim();
-                newProfilo.setCittaPadrone(citta.isEmpty() ? profilo.getCittaPadrone() : citta);
-
+                String citta       = promptString("Città del padrone", profilo.getCittaPadrone(), scanner);
+                newProfilo.setCittaPadrone(citta);
 
                 newProfilo.setUsername(loggedUser.getUsername());
                 newProfilo.setEmail(loggedUser.getEmail());
@@ -166,21 +152,47 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
 
             } catch (InvalidInputException e) {
                 Printer.perror("Errore: " + e.getMessage());
+                Printer.printf("Riproviamo l'inserimento di tutti i campi.\n\n");
             } catch (IllegalArgumentException error) {
                 Printer.perror("Formato data non valido. Usa yyyy-MM-dd (es. 2020-05-17).");
+                Printer.printf("Riproviamo l'inserimento di tutti i campi.\n\n");
             }
-
-            Printer.perror("\nRiprova l'inserimento di tutti i dati.\n");
         }
 
         try {
             this.profilo = newProfilo;
             con.aggiornaProfilo(profilo);
-        } catch (InvalidInputException | DAOException e) {
+            Printer.printf("\nProfilo aggiornato con successo!\n");
+        } catch (DAOException e) {
             Printer.perror(e.getMessage());
         }
+
         getProfilo(loggedUser);
     }
+
+
+    private String promptString(String label, String oldVal, Scanner scanner) {
+        Printer.printf(String.format("%s [%s] (Invio per non modificare): ", label, oldVal));
+        String input = scanner.nextLine().trim();
+        return input.isEmpty() ? oldVal : input;
+    }
+
+    private List<String> promptVaccinazioni(List<String> oldList, Scanner scanner) {
+        String joined = String.join(", ", oldList);
+        Printer.printf(String.format("Vaccinazioni (separate da virgola) [%s] (Invio per non modificare): ", joined));
+        String input = scanner.nextLine().trim();
+        if (input.isEmpty()) return oldList;
+        return Arrays.stream(input.split("\\s*,\\s*"))
+                .filter(s -> !s.isEmpty())
+                .toList();
+    }
+
+    private Date promptData(String label, Date oldDate, Scanner scanner) {
+        Printer.printf(String.format("%s [%s] (Invio per non modificare): ", label, oldDate));
+        String input = scanner.nextLine().trim();
+        return input.isEmpty() ? oldDate : Date.valueOf(input);
+    }
+
 
 
 
