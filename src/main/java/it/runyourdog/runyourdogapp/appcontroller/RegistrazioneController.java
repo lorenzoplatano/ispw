@@ -98,7 +98,7 @@ public class RegistrazioneController {
         dao.registerProcedure(vet, orari);
     }
 
-    public void aggiornaProfilo(ProfiloPadroneBean bean) throws InvalidInputException, DAOException {
+    public void aggiornaProfilo(ProfiloPadroneBean bean) throws DAOException {
 
         PadroneDao dao = new PadroneDao();
 
