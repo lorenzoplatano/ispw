@@ -106,7 +106,7 @@ public abstract class GenericLavoratoreProfiloGraphicControllerCLI extends Gener
             Time fine   = readTime(scanner, "Ora fine (HH:mm): ");
 
             list.add(new Orario(giorno, inizio, fine));
-            Printer.printf(String.format("→ Aggiunto %s %s-%s\n", giorno, inizio, fine));
+            Printer.printf(String.format("→ Aggiunto %s %s-%s", giorno, inizio, fine));
         }
         return list.isEmpty() ? profilo.getOrari() : list;
     }

@@ -62,16 +62,16 @@ public class ProfiloDogsitterGraphicControllerCLI extends GenericLavoratoreProfi
 
     @Override
     public void getProfilo(UserBean loggedUser) {
-        ProfiloDogsitterBean profilo = null;
+        ProfiloDogsitterBean profile = null;
         try {
             LoginController controller = new LoginController();
-            profilo = controller.getDogProfileInfo(loggedUser);
+            profile = controller.getDogProfileInfo(loggedUser);
 
         } catch (ProfileRetrievalException | InvalidInputException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
-        showProfilo(profilo);
-        showOrario(profilo);
+        showProfilo(profile);
+        showOrario(profile);
         showMenu();
     }
 
