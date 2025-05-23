@@ -2,11 +2,17 @@ package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
 import it.runyourdog.runyourdogapp.appcontroller.LoginController;
 
+import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
+import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
+import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.utils.Printer;
+
+import java.util.List;
+import java.util.Scanner;
 
 public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratoreProfiloGraphicControllerCLI{
 
@@ -24,23 +30,21 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
 
         while(true) {
             Printer.printf("1) Mostra profilo");
-            Printer.printf("2) Modifica informazioni personali");
-            Printer.printf("3) Modifica orari di lavoro");
-            Printer.printf("4) Gestisci prenotazioni");
-            Printer.printf("5) Logout");
-            Printer.printf("6) Esci");
+            Printer.printf("2) Modifica informazioni personali e orari");
+            Printer.printf("3) Gestisci prenotazioni");
+            Printer.printf("4) Logout");
+            Printer.printf("5) Esci");
 
 
-            scelta = getChoice(1,6);
+            scelta = getChoice(1,5);
 
             try {
                 switch (scelta) {
                     case 1 -> this.getProfilo(loggedUser);
-                    case 2 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 3 -> Printer.printf("*---- NOT IMPLEMENTED ----*\n");
-                    case 4 -> new MenuPrenotazioniVeterinarioGraphicControllerCLI(loggedUser,this.retrieveProfilo(loggedUser)).start();
-                    case 5 -> new PreloginGraphicControllerCLI().start();
-                    case 6 -> System.exit(0);
+                    case 2 -> modificaProfiloCompleto();
+                    case 3 -> new MenuPrenotazioniVeterinarioGraphicControllerCLI(loggedUser,this.retrieveProfilo(loggedUser)).start();
+                    case 4 -> new PreloginGraphicControllerCLI().start();
+                    case 5 -> System.exit(0);
                     default -> throw new InvalidInputException("Invalid choice");
                 }
 
@@ -81,6 +85,36 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
 
         return p;
 
+    }
+
+    private void modificaProfiloCompleto() {
+
+        ProfiloVeterinarioBean profilo = retrieveProfilo(loggedUser);
+        Scanner scanner = new Scanner(System.in);
+
+        Printer.printf("\n*---- MODIFICA PROFILO VETERINARIO ----*\n");
+        promptCampiComuni(profilo, scanner);
+
+        Printer.printf(String.format("Indirizzo [%s] (Invio per non modificare): ", profilo.getIndirizzo()));
+        String indirizzo = scanner.nextLine().trim();
+        try {
+            profilo.setIndirizzo(indirizzo.isEmpty() ? profilo.getIndirizzo() : indirizzo);
+        } catch (InvalidInputException e) {
+            Printer.perror("Errore indirizzo: " + e.getMessage());
+        }
+
+        List<Orario> newOrari = promptOrari(profilo, scanner);
+        applyOrari(profilo, newOrari);
+
+        try {
+            RegistrazioneController ctrl = new RegistrazioneController();
+            ctrl.UpdateProfiloVet(profilo);
+            Printer.printf("\nProfilo e orari aggiornati con successo!\n");
+        } catch (DAOException e) {
+            Printer.perror("Errore durante il salvataggio: " + e.getMessage());
+        }
+
+        getProfilo(loggedUser);
     }
 
 
