@@ -152,7 +152,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
             } catch (InvalidInputException e) {
                 Printer.perror("Errore: " + e.getMessage());
                 Printer.printf("Riproviamo l'inserimento di tutti i campi.\n\n");
-            } catch (IllegalArgumentException error) {
+            } catch (IllegalArgumentException _) {
                 Printer.perror("Formato data non valido. Usa yyyy-MM-dd (es. 2020-05-17).");
                 Printer.printf("Riproviamo l'inserimento di tutti i campi.\n\n");
             }

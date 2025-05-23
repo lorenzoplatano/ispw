@@ -127,7 +127,7 @@ public abstract class GenericLavoratoreProfiloGraphicControllerCLI extends Gener
             String s = scanner.nextLine().trim();
             try {
                 return Time.valueOf(s + ":00");
-            } catch (IllegalArgumentException error) {
+            } catch (IllegalArgumentException _) {
                 Printer.perror("Formato orario non valido. Usa HH:mm (es. 09:30).");
             }
         }
