@@ -15,12 +15,12 @@ public class UnloggedUserDaoCSV implements UnloggedUserDao {
 
         try (InputStream is = getClass()
                 .getClassLoader()
-                .getResourceAsStream("User.csv");
+                .getResourceAsStream("UnloggedUser.csv");
              BufferedReader reader = new BufferedReader(
                      new InputStreamReader(is))
         ) {
             if (is == null) {
-                throw new DAOException("Resource User.csv non trovata");
+                throw new DAOException("Resource UnloggedUser.csv non trovata");
             }
 
             String line;
@@ -50,32 +50,40 @@ public class UnloggedUserDaoCSV implements UnloggedUserDao {
     }
 
 
-    public boolean emailCheck(User user) throws DAOException{
-
+    @Override
+    public boolean emailCheck(User user) throws DAOException {
         String email = user.getEmail();
-
 
         try (InputStream is = getClass()
                 .getClassLoader()
-                .getResourceAsStream("User.csv");
-             BufferedReader reader = new BufferedReader(
-                     new InputStreamReader(is))
+                .getResourceAsStream("UnloggedUser.csv");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(is))
         ) {
             if (is == null) {
-                throw new DAOException("Resource User.csv non trovata");
+                throw new DAOException("Resource UnloggedUser.csv non trovata");
             }
-            String tuple;
-            while((tuple = reader.readLine()) != null){
-                String[] attribute = tuple.split(",");
 
-                if(attribute[1].equals(email)) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) {
+                    continue;
+                }
+
+                String[] attribute = line.split(",", -1);
+                if (attribute.length < 2) {
+                    continue;
+                }
+
+                if (attribute[1].equals(user.getEmail())) {
                     return false;
                 }
             }
 
-        }catch(IOException e){
-            throw new DAOException(e.getMessage());
+        } catch (IOException e) {
+            throw new DAOException("Errore in emailCheck: " + e.getMessage(), e);
         }
+
 
         return true;
     }

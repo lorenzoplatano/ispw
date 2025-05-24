@@ -63,7 +63,7 @@ public class PrenotazioneController {
         return listBean;
     }
 
-    public void gestisciPrenotazione(PrenotazioneBean selected, ReservationState stato, Role ruolo) throws DAOException, PersistenceConfigurationException {
+    public void gestisciPrenotazione(PrenotazioneBean selected, ReservationState stato, int identity) throws DAOException, PersistenceConfigurationException {
 
         int id = selected.getId();
         ReservationType tipo = selected.getTipo();
@@ -76,7 +76,7 @@ public class PrenotazioneController {
 
         Prenotazione prenotazione = new Prenotazione(id, tipo);
 
-        LoggedUserDao dao = FactoryDao.getLoggedUserDAO(ruolo);
+        LoggedUserDao dao = FactoryDao.getLoggedUserDAO(identity, tipo);
 
         switch (stato) {
             case ACCETTATA:

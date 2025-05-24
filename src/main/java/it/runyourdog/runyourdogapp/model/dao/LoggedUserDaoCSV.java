@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LoggedUserDaoCSV implements LoggedUserDao {
 
-    private static final File CSV = new File("resources/Lavoratore.csv");
+    private static final File CSV = new File("resources/LoggedUser.csv");
 
     @Override
     public void acceptReservation(Prenotazione prenotazione) throws DAOException {

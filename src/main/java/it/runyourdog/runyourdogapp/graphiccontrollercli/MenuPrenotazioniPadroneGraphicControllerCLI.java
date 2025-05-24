@@ -97,7 +97,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends MenuPrenotazion
                 } else {
                     boolean conferma = promptYesNo();
                     if (conferma) {
-                        controller.gestisciPrenotazione(selected, ReservationState.CANCELLATA,loggedUser.getRole());
+                        controller.gestisciPrenotazione(selected, ReservationState.CANCELLATA,1);
                         Printer.printf(
                                 "La prenotazione ora è "
                                         + ReservationState.CANCELLATA

@@ -95,7 +95,7 @@
                   <TableColumn fx:id="nome" prefWidth="164.800048828125" text="Nome" />
                   <TableColumn fx:id="eta" prefWidth="46.39996337890625" text="Età" />
                   <TableColumn fx:id="genere" prefWidth="47.20001220703125" text="Genere" />
-                  <TableColumn fx:id="tel" prefWidth="99.20001220703125" text="Telefono" />
+                  <TableColumn fx:id="telPren" prefWidth="99.20001220703125" text="Telefono" />
                   <TableColumn fx:id="email" prefWidth="171.9998779296875" text="Email" />
                   <TableColumn fx:id="indirizzo" prefWidth="212.0" text="Indirizzo" />
                </columns>

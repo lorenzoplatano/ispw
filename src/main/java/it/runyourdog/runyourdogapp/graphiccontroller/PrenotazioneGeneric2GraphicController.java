@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,7 +25,7 @@ public abstract class PrenotazioneGeneric2GraphicController extends ProfiloPadro
     @FXML protected TableColumn<ProfiloLavoratoreBean, String> nome;
     @FXML protected TableColumn<ProfiloLavoratoreBean, Integer> eta;
     @FXML protected TableColumn<ProfiloLavoratoreBean, String> genere;
-    @FXML protected TableColumn<ProfiloLavoratoreBean, String> tel;
+    @FXML protected TableColumn<ProfiloLavoratoreBean, String> telPren;
     @FXML protected TableColumn<ProfiloLavoratoreBean, String> email;
 
 
@@ -52,7 +51,7 @@ public abstract class PrenotazioneGeneric2GraphicController extends ProfiloPadro
         genere.setCellValueFactory(cd ->
                 new SimpleStringProperty(cd.getValue().getGenere())
         );
-        tel.setCellValueFactory(cd ->
+        telPren.setCellValueFactory(cd ->
                 new SimpleStringProperty(cd.getValue().getTelefono())
         );
         email.setCellValueFactory(cd ->
