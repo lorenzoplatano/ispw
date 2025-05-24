@@ -4,10 +4,7 @@ import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
-import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
-import it.runyourdog.runyourdogapp.model.dao.UserDao;
-import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
-import it.runyourdog.runyourdogapp.model.dao.PadroneDao;
+import it.runyourdog.runyourdogapp.model.dao.*;
 import it.runyourdog.runyourdogapp.model.entities.*;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import javax.security.auth.login.CredentialException;
@@ -15,13 +12,13 @@ import java.util.List;
 
 public class LoginController {
 
-    private final UserDao userDao;
+    private final UserDaoCSV userDao;
     private final PadroneDao padroneDao;
     private final VeterinarioDao veterinarioDao;
     private final DogsitterDao dogsitterDao;
 
     public LoginController() {
-        this.userDao = new UserDao();
+        this.userDao = new UserDaoCSV();
         this.padroneDao = new PadroneDao();
         this.veterinarioDao = new VeterinarioDao();
         this.dogsitterDao = new DogsitterDao();
