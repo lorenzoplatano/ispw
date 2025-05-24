@@ -7,13 +7,20 @@ import java.io.*;
 
 public class UserDaoCSV  {
 
-    private static final String CSV_PATH = "main/resources/User.csv";
+
+
     public User loginProcedure(User user) throws DAOException {
 
         String email = user.getEmail();
         String password = user.getPassword();
 
-        try( BufferedReader reader = new BufferedReader(new FileReader(CSV_PATH))) {
+        InputStream is = getClass()
+                .getClassLoader()
+                .getResourceAsStream("User.csv");
+        if (is == null) {
+            throw new DAOException("Resource User.csv non trovata sul classpath");
+        }
+        try ( BufferedReader reader = new BufferedReader(new InputStreamReader(is)) ) {
 
             String tuple;
             while((tuple = reader.readLine()) != null) {
@@ -43,7 +50,13 @@ public class UserDaoCSV  {
         String email = user.getEmail();
 
 
-        try(BufferedReader reader = new BufferedReader(new FileReader(CSV_PATH))){
+        InputStream is = getClass()
+                .getClassLoader()
+                .getResourceAsStream("User.csv");
+        if (is == null) {
+            throw new DAOException("Resource User.csv non trovata sul classpath");
+        }
+        try ( BufferedReader reader = new BufferedReader(new InputStreamReader(is)) ) {
             String tuple;
             while((tuple = reader.readLine()) != null){
                 String[] attribute = tuple.split(",");
