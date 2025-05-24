@@ -7,6 +7,7 @@ import java.io.*;
 
 public class UserDaoCSV  {
 
+    private final InputStream is = getClass().getClassLoader().getResourceAsStream("User.csv");
 
 
     public User loginProcedure(User user) throws DAOException {
@@ -14,12 +15,7 @@ public class UserDaoCSV  {
         String email = user.getEmail();
         String password = user.getPassword();
 
-        InputStream is = getClass()
-                .getClassLoader()
-                .getResourceAsStream("User.csv");
-        if (is == null) {
-            throw new DAOException("Resource User.csv non trovata sul classpath");
-        }
+
         try ( BufferedReader reader = new BufferedReader(new InputStreamReader(is)) ) {
 
             String tuple;
@@ -45,17 +41,11 @@ public class UserDaoCSV  {
 
 
 
-    public boolean isEmailUnique(User user) throws DAOException{
+    public boolean emailCheck(User user) throws DAOException{
 
         String email = user.getEmail();
 
 
-        InputStream is = getClass()
-                .getClassLoader()
-                .getResourceAsStream("User.csv");
-        if (is == null) {
-            throw new DAOException("Resource User.csv non trovata sul classpath");
-        }
         try ( BufferedReader reader = new BufferedReader(new InputStreamReader(is)) ) {
             String tuple;
             while((tuple = reader.readLine()) != null){
