@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LavoratoreDaoCSV implements LavoratoreDao {
 
-    private final InputStream is = getClass().getClassLoader().getResourceAsStream("Lavoratore.csv");
+    private static final File CSV = new File("resources/Lavoratore.csv");
 
     @Override
     public void acceptReservation(Prenotazione prenotazione) throws DAOException {
@@ -23,7 +23,7 @@ public class LavoratoreDaoCSV implements LavoratoreDao {
 
         try {
             // 1) Lettura completa
-            BufferedReader reader = new BufferedReader(new FileReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(CSV));
             try {
                 // primo rigo = header
                 String header = reader.readLine();
@@ -57,7 +57,7 @@ public class LavoratoreDaoCSV implements LavoratoreDao {
             }
 
             // 3) Riscrittura completa
-            BufferedWriter writer = new BufferedWriter(new FileWriter(is));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(CSV));
             try {
                 for (String l : lines) {
                     writer.write(l);
