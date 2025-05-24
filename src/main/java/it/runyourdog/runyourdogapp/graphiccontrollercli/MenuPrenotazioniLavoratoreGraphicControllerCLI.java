@@ -66,7 +66,7 @@ public abstract class MenuPrenotazioniLavoratoreGraphicControllerCLI extends Men
                 int action = promptReservationSelection(allowed.size());
                 if (action != -1) {
                     ReservationState newState = allowed.get(action);
-                    getController().gestisciPrenotazione(selected, newState);
+                    getController().gestisciPrenotazione(selected, newState,loggedUser.getRole());
                     Printer.printf(String.format("La prenotazione ora è %s.%n", newState));
                     lista = caricaPrenotazioni();
                 }

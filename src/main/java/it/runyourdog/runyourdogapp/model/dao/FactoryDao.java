@@ -4,6 +4,7 @@ package it.runyourdog.runyourdogapp.model.dao;
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
+import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,26 +17,36 @@ public class FactoryDao {
 
     private FactoryDao() {}
 
-    public static UserDao getUserDAO() throws PersistenceConfigurationException {
+    public static UnloggedUserDao getUserDAO() throws PersistenceConfigurationException {
         daoType = getDaoType();
         if ("MYSQL".equalsIgnoreCase(daoType)) {
-            return new UserDaoMySQL();
+            return new UnloggedUserDaoMySQL();
         } else if ("CSV".equalsIgnoreCase(daoType)) {
-            return new UserDaoCSV();
+            return new UnloggedUserDaoCSV();
         } else {
             throw new PersistenceConfigurationException();
         }
     }
 
-    public static LavoratoreDao getLavoratoreDAO(ReservationType tipo) throws PersistenceConfigurationException {
+    public static LoggedUserDao getLoggedUserDAO(Role role) throws PersistenceConfigurationException {
         daoType = getDaoType();
         if ("MYSQL".equalsIgnoreCase(daoType)) {
-            return switch (tipo) {
-                case DOGSITTER   -> new DogsitterDao();
-                case VETERINARIO -> new VeterinarioDao();
+            return switch (role) {
+                case DOGSITTER   -> {
+                    Printer.perror("sono un dogsitter");
+                    yield new DogsitterDao();
+                }
+                case VETERINARIO -> {
+                    Printer.perror("sono un veterinario");
+                    yield new VeterinarioDao();
+                }
+                case PADRONE -> {
+                    Printer.perror("sono un padrone");
+                   yield new PadroneDao();
+                }
             };
         } else if ("CSV".equalsIgnoreCase(daoType)) {
-            return new LavoratoreDaoCSV();
+            return new LoggedUserDaoCSV();
         } else {
             throw new PersistenceConfigurationException();
         }

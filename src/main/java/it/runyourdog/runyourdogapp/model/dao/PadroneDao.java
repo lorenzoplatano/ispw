@@ -10,7 +10,7 @@ import java.util.List;
 
 
 
-public class PadroneDao {
+public class PadroneDao extends LoggedUserDaoMySQL {
 
     private final Connection conn;
     private CallableStatement cs;

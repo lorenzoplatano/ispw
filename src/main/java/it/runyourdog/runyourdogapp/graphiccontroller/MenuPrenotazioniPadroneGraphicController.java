@@ -122,7 +122,7 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
 
 
 
-            controller.gestisciPrenotazione(selected, ReservationState.CANCELLATA);
+            controller.gestisciPrenotazione(selected, ReservationState.CANCELLATA,loggedUser.getRole());
             reloadPrenotazioni();
 
             testoChoice.setVisible(false);

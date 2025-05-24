@@ -9,12 +9,12 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.entities.User;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
-public class UserDaoMySQL implements UserDao {
+public class UnloggedUserDaoMySQL implements UnloggedUserDao {
 
     private final Connection conn;
     private CallableStatement cs;
 
-    public UserDaoMySQL() {
+    public UnloggedUserDaoMySQL() {
         this.conn = ConnectionManager.getInstance().getDBConnection();
     }
 

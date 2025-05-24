@@ -4,7 +4,7 @@ import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
 import it.runyourdog.runyourdogapp.model.dao.PadroneDao;
-import it.runyourdog.runyourdogapp.model.dao.UserDaoMySQL;
+import it.runyourdog.runyourdogapp.model.dao.UnloggedUserDaoMySQL;
 import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
 import it.runyourdog.runyourdogapp.model.entities.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
@@ -46,7 +46,7 @@ public class RegistrazioneController {
     public boolean emailUnica(UserBean emailUser) throws CredentialException {
         String email = emailUser.getEmail();
         User newUser = new User(email);
-        UserDaoMySQL dao = new UserDaoMySQL();
+        UnloggedUserDaoMySQL dao = new UnloggedUserDaoMySQL();
         boolean res;
 
         try {

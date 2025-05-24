@@ -3,16 +3,19 @@ package it.runyourdog.runyourdogapp.model.dao;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LavoratoreDaoCSV implements LavoratoreDao {
+public class LoggedUserDaoCSV implements LoggedUserDao {
 
     private static final File CSV = new File("resources/Lavoratore.csv");
 
     @Override
     public void acceptReservation(Prenotazione prenotazione) throws DAOException {
+
+
         String data      = prenotazione.getData().toString();
         String oraInizio = prenotazione.getOraInizio().toString();
         String emailPad  = prenotazione.getPadrone().getEmail();

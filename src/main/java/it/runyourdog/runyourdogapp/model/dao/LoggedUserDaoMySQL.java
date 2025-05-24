@@ -9,12 +9,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public abstract class LavoratoreDaoMySQL implements LavoratoreDao {
+public abstract class LoggedUserDaoMySQL implements LoggedUserDao {
 
     protected final Connection conn;
     protected CallableStatement cs;
 
-    protected LavoratoreDaoMySQL() {
+    protected LoggedUserDaoMySQL() {
         this.conn = ConnectionManager.getInstance().getDBConnection();
     }
 

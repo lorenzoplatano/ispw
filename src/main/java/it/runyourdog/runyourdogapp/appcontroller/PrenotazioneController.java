@@ -5,11 +5,15 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.model.dao.*;
+import it.runyourdog.runyourdogapp.model.entities.Lavoratore;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
+import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,14 +63,20 @@ public class PrenotazioneController {
         return listBean;
     }
 
-    public void gestisciPrenotazione(PrenotazioneBean selected, ReservationState stato) throws DAOException, PersistenceConfigurationException {
+    public void gestisciPrenotazione(PrenotazioneBean selected, ReservationState stato, Role ruolo) throws DAOException, PersistenceConfigurationException {
 
         int id = selected.getId();
         ReservationType tipo = selected.getTipo();
+       // String emailPad = selected.getPrenotante().getEmail();
+        //Padrone pad = new Padrone(emailPad);
+        //String emailLav= selected.getPrenotato().getEmail();
+        //Lavoratore lav = new Lavoratore(emailLav);
+       // Date data = selected.getData();
+       // Time oraInizio = selected.getOrarioInizio();
 
         Prenotazione prenotazione = new Prenotazione(id, tipo);
 
-        LavoratoreDao dao = FactoryDao.getLavoratoreDAO(tipo);
+        LoggedUserDao dao = FactoryDao.getLoggedUserDAO(ruolo);
 
         switch (stato) {
             case ACCETTATA:
