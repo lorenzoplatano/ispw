@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.appcontroller;
 import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.model.dao.*;
 import it.runyourdog.runyourdogapp.model.entities.*;
@@ -12,24 +13,24 @@ import java.util.List;
 
 public class LoginController {
 
-    private final UserDaoCSV userDao;
     private final PadroneDao padroneDao;
     private final VeterinarioDao veterinarioDao;
     private final DogsitterDao dogsitterDao;
 
     public LoginController() {
-        this.userDao = new UserDaoCSV();
         this.padroneDao = new PadroneDao();
         this.veterinarioDao = new VeterinarioDao();
         this.dogsitterDao = new DogsitterDao();
     }
 
-    public UserBean authenticate(LoginBean credentials) throws CredentialException, DAOException, InvalidInputException {
+    public UserBean authenticate(LoginBean credentials) throws CredentialException, DAOException, InvalidInputException, PersistenceConfigurationException {
         String email = credentials.getEmail();
         String password = credentials.getPassword();
         User user = new User(email, password);
 
-        user = userDao.loginProcedure(user);
+        UserDao dao = FactoryDao.getUserDAO();
+
+        user = dao.loginProcedure(user);
         if (user.getRole() == null) {
             throw new CredentialException("Credenziali invalide");
         }

@@ -5,7 +5,7 @@ import it.runyourdog.runyourdogapp.model.entities.User;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import java.io.*;
 
-public class UserDaoCSV  {
+public class UserDaoCSV implements UserDao  {
 
     private final InputStream is = getClass().getClassLoader().getResourceAsStream("User.csv");
 

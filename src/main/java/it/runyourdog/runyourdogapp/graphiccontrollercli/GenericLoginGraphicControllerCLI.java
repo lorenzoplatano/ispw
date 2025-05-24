@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.LoginBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import javax.security.auth.login.CredentialException;
@@ -76,7 +77,7 @@ public abstract class GenericLoginGraphicControllerCLI extends GenericGraphicCon
                 break;
 
 
-            } catch (IOException | DAOException | CredentialException | InvalidInputException e) {
+            } catch (IOException | DAOException | CredentialException | InvalidInputException | PersistenceConfigurationException e) {
                 Printer.perror(e.getMessage());
             }
         }
