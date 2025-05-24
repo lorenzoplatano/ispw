@@ -8,6 +8,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
@@ -66,13 +67,13 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends MenuPrenotazion
 
                 break;
 
-            } catch (InvalidInputException e) {
+            } catch (InvalidInputException | PersistenceConfigurationException e) {
                 Printer.perror(e.getMessage());
             }
         }
     }
 
-    public void manageReservations() {
+    public void manageReservations() throws PersistenceConfigurationException {
         try {
             List<PrenotazioneBean> prenList = controller.mostraPrenotazioni(profilo);
             if (prenList.isEmpty()) {

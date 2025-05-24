@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
 
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 
@@ -110,7 +111,7 @@ public abstract class MenuPrenotazioniLavoratoreGraphicController extends MenuPr
 
 
 
-        } catch (DAOException e) {
+        } catch (DAOException | PersistenceConfigurationException e) {
             Printer.perror("Errore: " + e.getMessage());
         }catch (IllegalArgumentException e){
             showError(e.getMessage());

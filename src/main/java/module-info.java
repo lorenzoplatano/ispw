@@ -11,6 +11,7 @@ module it.runyourdog.runyourdogapp {
     requires eu.hansolo.tilesfx;
     requires java.management;
     requires java.sql;
+    requires jdk.jfr;
 
     opens it.runyourdog.runyourdogapp to javafx.fxml;
     exports it.runyourdog.runyourdogapp;

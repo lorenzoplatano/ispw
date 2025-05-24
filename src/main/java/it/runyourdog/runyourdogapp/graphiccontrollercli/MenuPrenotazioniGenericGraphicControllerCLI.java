@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 
@@ -40,7 +41,7 @@ public abstract class MenuPrenotazioniGenericGraphicControllerCLI extends Generi
         }
     }
 
-    protected abstract void manageReservations() throws DAOException, InvalidInputException;
+    protected abstract void manageReservations() throws DAOException, InvalidInputException, PersistenceConfigurationException;
 
     protected abstract void displayReservations(List<PrenotazioneBean> list);
 

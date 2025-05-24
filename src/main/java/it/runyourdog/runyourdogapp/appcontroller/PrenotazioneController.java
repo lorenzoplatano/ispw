@@ -3,10 +3,8 @@ package it.runyourdog.runyourdogapp.appcontroller;
 import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
-import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
-import it.runyourdog.runyourdogapp.model.dao.LavoratoreDao;
-import it.runyourdog.runyourdogapp.model.dao.PadroneDao;
-import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
+import it.runyourdog.runyourdogapp.model.dao.*;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
@@ -61,18 +59,14 @@ public class PrenotazioneController {
         return listBean;
     }
 
-    public void gestisciPrenotazione(PrenotazioneBean selected, ReservationState stato) throws DAOException {
+    public void gestisciPrenotazione(PrenotazioneBean selected, ReservationState stato) throws DAOException, PersistenceConfigurationException {
 
         int id = selected.getId();
         ReservationType tipo = selected.getTipo();
 
         Prenotazione prenotazione = new Prenotazione(id, tipo);
 
-        LavoratoreDao dao = switch (tipo) {
-            case DOGSITTER   -> new DogsitterDao();
-            case VETERINARIO -> new VeterinarioDao();
-        };
-
+        LavoratoreDao dao = FactoryDao.getLavoratoreDAO(tipo);
 
         switch (stato) {
             case ACCETTATA:

@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VeterinarioDao extends LavoratoreDao{
+public class VeterinarioDao extends LavoratoreDaoMySQL {
 
     public VeterinarioDao() {
         super();

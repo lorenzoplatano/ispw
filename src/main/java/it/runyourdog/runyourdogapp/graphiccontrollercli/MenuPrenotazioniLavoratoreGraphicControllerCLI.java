@@ -4,8 +4,10 @@ import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
+import jdk.jfr.Percentage;
 
 import java.util.List;
 
@@ -36,14 +38,14 @@ public abstract class MenuPrenotazioniLavoratoreGraphicControllerCLI extends Men
                     case 4 -> System.exit(0);
                     default -> throw new InvalidInputException("Scelta non valida");
                 }
-            } catch (InvalidInputException | DAOException e) {
+            } catch (InvalidInputException | DAOException | PersistenceConfigurationException e) {
                 Printer.perror(e.getMessage());
             }
         }
     }
 
     @Override
-    protected void manageReservations() throws DAOException, InvalidInputException {
+    protected void manageReservations() throws DAOException, InvalidInputException, PersistenceConfigurationException {
         List<PrenotazioneBean> lista = caricaPrenotazioni();
         if (lista.isEmpty()) {
             Printer.printf("Non ci sono prenotazioni da gestire.%n");
