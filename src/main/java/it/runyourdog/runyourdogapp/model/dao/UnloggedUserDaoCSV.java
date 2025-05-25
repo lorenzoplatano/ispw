@@ -2,29 +2,25 @@ package it.runyourdog.runyourdogapp.model.dao;
 
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.entities.User;
-
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import java.io.*;
 
 public class UnloggedUserDaoCSV implements UnloggedUserDao {
 
+    private static final String CSV = "/it/runyourdog/runyourdogapp/CSV/UnloggedUser.csv";
 
     public User loginProcedure(User user) throws DAOException {
-        String email    = user.getEmail();
+        String email = user.getEmail();
         String password = user.getPassword();
 
-        try (InputStream is = getClass()
-                .getClassLoader()
-                .getResourceAsStream("UnloggedUser.csv");
-             BufferedReader reader = new BufferedReader(
-                     new InputStreamReader(is))
-        ) {
-            if (is == null) {
-                throw new DAOException("Resource UnloggedUser.csv non trovata");
-            }
+        InputStream is = getClass().getResourceAsStream(CSV);
+        if (is == null) {
+            throw new DAOException("File CSV non trovato nel classpath: " + CSV);
+        }
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
 
             String line;
-
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
                 if (line.isEmpty()) {
@@ -49,19 +45,14 @@ public class UnloggedUserDaoCSV implements UnloggedUserDao {
         return new User();
     }
 
-
     @Override
     public boolean emailCheck(User user) throws DAOException {
-        String email = user.getEmail();
+        InputStream is = getClass().getResourceAsStream(CSV);
+        if (is == null) {
+            throw new DAOException("File CSV non trovato nel classpath: " + CSV);
+        }
 
-        try (InputStream is = getClass()
-                .getClassLoader()
-                .getResourceAsStream("UnloggedUser.csv");
-             BufferedReader reader = new BufferedReader(new InputStreamReader(is))
-        ) {
-            if (is == null) {
-                throw new DAOException("Resource UnloggedUser.csv non trovata");
-            }
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -83,7 +74,6 @@ public class UnloggedUserDaoCSV implements UnloggedUserDao {
         } catch (IOException e) {
             throw new DAOException("Errore in emailCheck: " + e.getMessage(), e);
         }
-
 
         return true;
     }

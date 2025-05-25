@@ -67,12 +67,7 @@ public class PrenotazioneController {
 
         int id = selected.getId();
         ReservationType tipo = selected.getTipo();
-       // String emailPad = selected.getPrenotante().getEmail();
-        //Padrone pad = new Padrone(emailPad);
-        //String emailLav= selected.getPrenotato().getEmail();
-        //Lavoratore lav = new Lavoratore(emailLav);
-       // Date data = selected.getData();
-       // Time oraInizio = selected.getOrarioInizio();
+
 
         Prenotazione prenotazione = new Prenotazione(id, tipo);
 
