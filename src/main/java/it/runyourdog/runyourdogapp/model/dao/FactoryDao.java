@@ -60,7 +60,7 @@ public class FactoryDao {
             } else {
                 properties.load(input);
             }
-        } catch (IOException ex) {
+        } catch (IOException _) {
             Printer.perror("Impossibile aprire il file di configurazione.");
             throw new PersistenceConfigurationException();
         }

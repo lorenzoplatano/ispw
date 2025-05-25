@@ -99,7 +99,7 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericP
         if (orari != null && orari.length() > 0) {
             textArea.setText(orari.toString());
         } else {
-            textArea.setText("Non sono disponibili orari per il giorno in questione");
+            textArea.setText(ORARI_PLACEHOLDER);
         }
     }
 

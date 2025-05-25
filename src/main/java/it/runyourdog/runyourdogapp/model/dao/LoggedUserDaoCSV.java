@@ -25,9 +25,6 @@ public class LoggedUserDaoCSV implements LoggedUserDao {
         updateReservationStatus(prenotazione, "Cancellata");
     }
 
-    /**
-     * Metodo privato che aggiorna lo stato di una prenotazione nel CSV.
-     */
     private void updateReservationStatus(Prenotazione prenotazione, String nuovoStato) throws DAOException {
         String id = String.valueOf(prenotazione.getId());
         String tipo = String.valueOf(prenotazione.getTipo());
