@@ -12,8 +12,6 @@ import java.util.List;
 
 public class PadroneDao extends LoggedUserDaoMySQL {
 
-    private final Connection conn;
-    private CallableStatement cs;
 
     public PadroneDao() {
         this.conn = ConnectionManager.getInstance().getDBConnection();

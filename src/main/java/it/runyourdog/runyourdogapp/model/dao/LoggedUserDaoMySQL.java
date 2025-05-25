@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class LoggedUserDaoMySQL implements LoggedUserDao {
 
-    protected final Connection conn;
+    protected Connection conn;
     protected CallableStatement cs;
 
     protected LoggedUserDaoMySQL() {
