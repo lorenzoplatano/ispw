@@ -1,4 +1,4 @@
-package it.runyourdog.runyourdogapp.Pattern.AbstractFactory;
+package it.runyourdog.runyourdogapp.pattern.abstractfactory;
 
 import it.runyourdog.runyourdogapp.model.dao.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;

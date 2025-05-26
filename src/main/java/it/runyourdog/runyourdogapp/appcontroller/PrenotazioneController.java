@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp.appcontroller;
 
-import it.runyourdog.runyourdogapp.Pattern.AbstractFactory.DaoFactory;
+import it.runyourdog.runyourdogapp.pattern.abstractfactory.DaoFactory;
 import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;

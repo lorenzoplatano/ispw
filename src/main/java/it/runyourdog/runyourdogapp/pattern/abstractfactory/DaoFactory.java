@@ -1,4 +1,4 @@
-package it.runyourdog.runyourdogapp.Pattern.AbstractFactory;
+package it.runyourdog.runyourdogapp.pattern.abstractfactory;
 
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
