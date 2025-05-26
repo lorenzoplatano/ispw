@@ -103,9 +103,10 @@ public abstract class MenuPrenotazioniLavoratoreGraphicController extends MenuPr
                     break;
             }
 
-            selected.setStato(newState);
+
 
             controller.gestisciPrenotazione(selected, newState, 2);
+            selected.setStato(newState);
 
 
             testoChoice.setVisible(false);

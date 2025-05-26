@@ -46,13 +46,6 @@ public class MenuPrenotazioniDogsitterGraphicController extends MenuPrenotazioni
         this.controller = new PrenotazioneDogsitterController();
     }
 
-    @Override
-    public List<PrenotazioneBean> loadPrenotazioni() throws InvalidInputException, DAOException {
-        PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
 
-        ProfiloDogsitterBean bean = new ProfiloDogsitterBean();
-        bean.setEmail(loggedUser.getEmail());
-        return controller.mostraPrenotazioniDog(bean);
-    }
 
 }

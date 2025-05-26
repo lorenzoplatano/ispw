@@ -102,13 +102,7 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
     }
 
 
-    @Override
-    public List<PrenotazioneBean> loadPrenotazioni() throws InvalidInputException, DAOException {
-        setController();
-        ProfiloPadroneBean bean = new ProfiloPadroneBean();
-        bean.setEmail(loggedUser.getEmail());
-        return controller.mostraPrenotazioni(bean);
-    }
+
 
 
 
@@ -121,8 +115,9 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
 
 
 
-            selected.setStato(ReservationState.CANCELLATA);
+
             controller.gestisciPrenotazione(selected, ReservationState.CANCELLATA,1);
+            selected.setStato(ReservationState.CANCELLATA);
 
 
             testoChoice.setVisible(false);
