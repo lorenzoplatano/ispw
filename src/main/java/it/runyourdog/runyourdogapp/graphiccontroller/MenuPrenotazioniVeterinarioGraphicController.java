@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
+
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneVeterinarioController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;

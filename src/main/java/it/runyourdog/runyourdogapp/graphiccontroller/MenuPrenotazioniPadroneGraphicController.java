@@ -121,9 +121,9 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
 
 
 
-
+            selected.setStato(ReservationState.CANCELLATA);
             controller.gestisciPrenotazione(selected, ReservationState.CANCELLATA,1);
-            reloadPrenotazioni();
+
 
             testoChoice.setVisible(false);
             testoChoice1.setVisible(false);
@@ -132,7 +132,7 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
 
         } catch (DAOException | PersistenceConfigurationException e) {
             Printer.perror("Errore: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | InvalidInputException e) {
             showError(e.getMessage());
         }
 

@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
 
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
@@ -102,8 +103,10 @@ public abstract class MenuPrenotazioniLavoratoreGraphicController extends MenuPr
                     break;
             }
 
+            selected.setStato(newState);
+
             controller.gestisciPrenotazione(selected, newState, 2);
-            reloadPrenotazioni();
+
 
             testoChoice.setVisible(false);
             comboChoice.setVisible(false);
@@ -113,7 +116,7 @@ public abstract class MenuPrenotazioniLavoratoreGraphicController extends MenuPr
 
         } catch (DAOException | PersistenceConfigurationException e) {
             Printer.perror("Errore: " + e.getMessage());
-        }catch (IllegalArgumentException e){
+        }catch (IllegalArgumentException | InvalidInputException e){
             showError(e.getMessage());
         }
 

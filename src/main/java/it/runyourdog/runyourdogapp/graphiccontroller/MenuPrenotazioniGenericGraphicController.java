@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.pattern.observer.TableRefreshObserver;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -65,13 +66,23 @@ public abstract class MenuPrenotazioniGenericGraphicController extends GenericGr
     protected void reloadPrenotazioni() {
         try {
             List<PrenotazioneBean> list = loadPrenotazioni();
+            TableRefreshObserver refresher = new TableRefreshObserver(reservationTable);
+
+
+            for (PrenotazioneBean bean : list) {
+                bean.removeObserver(refresher);
+                bean.addObserver(refresher);
+            }
+
             reservationTable.getItems().setAll(list);
+
         } catch (InvalidInputException e) {
             showError(e.getMessage());
         } catch (DAOException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
     }
+
 
     protected abstract List<PrenotazioneBean> loadPrenotazioni()
             throws InvalidInputException, DAOException;
