@@ -23,12 +23,9 @@ public class UnloggedUserDaoCSV implements UnloggedUserDao {
             String line;
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) {
-                    continue;
-                }
-
                 String[] attribute = line.split(",", -1);
-                if (attribute.length < 4) {
+
+                if (line.isEmpty() || attribute.length < 4) {
                     continue;
                 }
 
@@ -57,12 +54,9 @@ public class UnloggedUserDaoCSV implements UnloggedUserDao {
             String line;
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) {
-                    continue;
-                }
-
                 String[] attribute = line.split(",", -1);
-                if (attribute.length < 2) {
+
+                if (line.isEmpty() || attribute.length < 2) {
                     continue;
                 }
 
