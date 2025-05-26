@@ -6,5 +6,5 @@ import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 
 public interface ReservationStateObserver {
 
-    void onStateChanged(PrenotazioneBean pren, ReservationState oldState, ReservationState newState);
+    void onStateChanged();
 }

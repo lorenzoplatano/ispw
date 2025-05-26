@@ -37,9 +37,9 @@ public class PrenotazioneBean {
         observers.remove(o);
     }
 
-    private void notifyObservers(ReservationState oldState, ReservationState newState) {
+    private void notifyObservers() {
         for (ReservationStateObserver o : observers) {
-            o.onStateChanged(this, oldState, newState);
+            o.onStateChanged();
         }
     }
 
@@ -104,9 +104,8 @@ public class PrenotazioneBean {
         if (newState == null) {
             throw new InvalidInputException("Stato della prenotazione non valido.");
         }
-        ReservationState oldState = this.stato;
         this.stato = newState;
-        notifyObservers(oldState, newState);
+        notifyObservers();
     }
 
     public void setTipo(ReservationType tipo) throws InvalidInputException {

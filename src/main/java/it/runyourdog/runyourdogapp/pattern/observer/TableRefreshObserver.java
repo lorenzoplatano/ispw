@@ -1,6 +1,7 @@
 package it.runyourdog.runyourdogapp.pattern.observer;
 
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
+import it.runyourdog.runyourdogapp.graphiccontroller.MenuPrenotazioniGenericGraphicController;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import javafx.application.Platform;
 import javafx.scene.control.TableView;
@@ -8,14 +9,15 @@ import javafx.scene.control.TableView;
 
 public class TableRefreshObserver implements ReservationStateObserver {
     private final TableView<PrenotazioneBean> table;
+    private final MenuPrenotazioniGenericGraphicController controller;
 
-    public TableRefreshObserver(TableView<PrenotazioneBean> table) {
+    public TableRefreshObserver(TableView<PrenotazioneBean> table, MenuPrenotazioniGenericGraphicController controller) {
         this.table = table;
+        this.controller = controller;
     }
 
     @Override
-    public void onStateChanged(PrenotazioneBean pren, ReservationState oldState, ReservationState newState) {
-
-        Platform.runLater(table::refresh);
+    public void onStateChanged() {
+        Platform.runLater(controller::reloadPrenotazioni);
     }
 }
