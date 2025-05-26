@@ -1,5 +1,6 @@
 package it.runyourdog.runyourdogapp.appcontroller;
 
+import it.runyourdog.runyourdogapp.Pattern.AbstractFactory.DaoFactory;
 import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
@@ -47,7 +48,7 @@ public class RegistrazioneController {
         boolean res;
 
         try {
-            UnloggedUserDao dao = FactoryDao.getUnloggedUserDao();
+            UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();
             res = dao.emailCheck(newUser);
         } catch (DAOException | PersistenceConfigurationException e) {
             throw new CredentialException("Errore: " + e.getMessage());

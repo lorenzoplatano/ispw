@@ -1,5 +1,6 @@
 package it.runyourdog.runyourdogapp.appcontroller;
 
+import it.runyourdog.runyourdogapp.Pattern.AbstractFactory.DaoFactory;
 import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -28,7 +29,7 @@ public class LoginController {
         String password = credentials.getPassword();
         User user = new User(email, password);
 
-        UnloggedUserDao dao = FactoryDao.getUnloggedUserDao();
+        UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();
 
         user = dao.loginProcedure(user);
         if (user.getRole() == null) {

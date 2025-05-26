@@ -1,5 +1,6 @@
 package it.runyourdog.runyourdogapp.appcontroller;
 
+import it.runyourdog.runyourdogapp.Pattern.AbstractFactory.DaoFactory;
 import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -66,7 +67,7 @@ public class PrenotazioneController {
 
         Prenotazione prenotazione = new Prenotazione(id, tipo);
 
-        LoggedUserDao dao = FactoryDao.getLoggedUserDAO(identity, tipo);
+        LoggedUserDao dao = DaoFactory.getFactory().getLoggedUserDao(identity, tipo);
 
         switch (stato) {
             case ACCETTATA:
