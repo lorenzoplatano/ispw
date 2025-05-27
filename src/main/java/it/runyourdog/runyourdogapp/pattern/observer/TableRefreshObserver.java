@@ -2,7 +2,6 @@ package it.runyourdog.runyourdogapp.pattern.observer;
 
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.graphiccontroller.MenuPrenotazioniGenericGraphicController;
-import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import javafx.application.Platform;
 import javafx.scene.control.TableView;
 

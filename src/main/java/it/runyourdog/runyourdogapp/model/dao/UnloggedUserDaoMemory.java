@@ -1,0 +1,46 @@
+package it.runyourdog.runyourdogapp.model.dao;
+
+import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.model.entities.User;
+import it.runyourdog.runyourdogapp.utils.enumeration.Role;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class UnloggedUserDaoMemory implements UnloggedUserDao {
+    private final List<User> users = new ArrayList<>();
+
+    public UnloggedUserDaoMemory() {
+
+        users.add(new User("Mario", "mario@example.com", "pass123", Role.PADRONE));
+        users.add(new User("Luigi", "luigi@example.com", "luigiPwd", Role.DOGSITTER));
+        users.add(new User("Paolo", "paolo@example.com", "vetPass", Role.VETERINARIO));
+    }
+
+    @Override
+    public User loginProcedure(User user) throws DAOException {
+        String email = user.getEmail();
+        String passwd = user.getPassword();
+        Optional<User> opt = users.stream()
+                .filter(u -> u.getEmail().equalsIgnoreCase(email)
+                        && u.getPassword().equals(passwd))
+                .findFirst();
+        if (opt.isEmpty()) {
+            throw new DAOException("Credenziali non valide per l'email: " + email);
+        }
+        User found = opt.get();
+
+        user.setUsername(found.getUsername());
+        user.setRole(found.getRole());
+        return user;
+    }
+
+    @Override
+    public boolean emailCheck(User newUser) throws DAOException {
+        String email = newUser.getEmail();
+        boolean available = users.stream()
+                .noneMatch(u -> u.getEmail().equalsIgnoreCase(email));
+        return available;
+    }
+}

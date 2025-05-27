@@ -29,7 +29,8 @@ public class LoginController {
         String password = credentials.getPassword();
         User user = new User(email, password);
 
-        UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();
+        //UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();
+        UnloggedUserDaoMemory dao = new UnloggedUserDaoMemory();
 
         user = dao.loginProcedure(user);
         if (user.getRole() == null) {
