@@ -11,13 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+//da aggiungere gli orari all'entità veterinario(o direttamente al lavoratore)
 public class VeterinarioDaoMemory extends LoggedUserDaoMemory {
     private final List<Veterinario> veterinari = new ArrayList<>();
 
     public VeterinarioDaoMemory() {
         super();
 
-        Veterinario v = new Veterinario("vet1@example.com", "Luca", 40, "M", "Roma", "Via Milano 5");
+        Veterinario v = new Veterinario("veterinario1@example.com", "Luca", 40, "M", "Roma", "Via Milano 5");
         v.setUsername("Dr. Luca"); v.setRole(Role.VETERINARIO);
         veterinari.add(v);
     }

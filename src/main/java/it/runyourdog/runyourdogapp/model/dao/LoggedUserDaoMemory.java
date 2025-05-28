@@ -2,8 +2,7 @@ package it.runyourdog.runyourdogapp.model.dao;
 
 
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
-import it.runyourdog.runyourdogapp.model.entities.Orario;
-import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
+import it.runyourdog.runyourdogapp.model.entities.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
@@ -23,6 +22,9 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         p1.setData(Date.valueOf("2025-06-15"));
         p1.setOraInizio(Time.valueOf("09:00:00"));
         p1.setOraFine(Time.valueOf("11:00:00"));
+        p1.setPadrone(new Padrone("mario@example.com"));
+        Dogsitter ds = new Dogsitter("dogsitter1@example.com", "Anna", 30, "F", "Roma");
+        p1.setLavoratore(ds);
         prenotazioni.add(p1);
 
         Prenotazione p2 = new Prenotazione(2, ReservationType.VETERINARIO);
@@ -30,6 +32,9 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         p2.setData(Date.valueOf("2025-05-29"));
         p2.setOraInizio(Time.valueOf("14:00:00"));
         p2.setOraFine(Time.valueOf("16:00:00"));
+        p2.setPadrone(new Padrone("mario@example.com"));
+        Veterinario v = new Veterinario("vet1@example.com", "Luca", 40, "M", "Roma", "Via Milano 5");
+        p2.setLavoratore(v);
         prenotazioni.add(p2);
     }
 
@@ -48,7 +53,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         updateStatus(prenotazione.getId(), prenotazione.getTipo(), ReservationState.CANCELLATA);
     }
 
-
+    //funziona ma non si aggiorna la tabella
     private void updateStatus(int id,
                               ReservationType expectedType,
                               ReservationState newState) throws DAOException {
@@ -63,10 +68,6 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         opt.get().setStato(newState);
     }
 
-
-    public List<Prenotazione> getAllReservations() {
-        return new ArrayList<>(prenotazioni);
-    }
 
 
     public String creaOrari(List<Orario> orari) {

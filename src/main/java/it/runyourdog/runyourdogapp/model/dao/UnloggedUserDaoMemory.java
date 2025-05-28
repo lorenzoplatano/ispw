@@ -14,8 +14,8 @@ public class UnloggedUserDaoMemory implements UnloggedUserDao {
     public UnloggedUserDaoMemory() {
 
         users.add(new User("Mario", "mario@example.com", "pass123", Role.PADRONE));
-        users.add(new User("Luigi", "luigi@example.com", "luigiPwd", Role.DOGSITTER));
-        users.add(new User("Paolo", "paolo@example.com", "vetPass", Role.VETERINARIO));
+        users.add(new User("Luigi", "dogsitter1@example.com", "pass123", Role.DOGSITTER));
+        users.add(new User("Paolo", "veterinario1@example.com", "pass123", Role.VETERINARIO));
     }
 
     @Override

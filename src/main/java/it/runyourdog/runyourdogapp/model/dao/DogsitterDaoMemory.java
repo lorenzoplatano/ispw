@@ -39,6 +39,7 @@ public class DogsitterDaoMemory extends LoggedUserDaoMemory {
         return orari;
     }
 
+    //da aggiungere attributo orari all'entità dogsitter
     public void registerProcedure(Dogsitter dogsitter, List<Orario> orari) throws DAOException {
         dogsitters.add(dogsitter);
     }
@@ -51,6 +52,7 @@ public class DogsitterDaoMemory extends LoggedUserDaoMemory {
                 .collect(Collectors.toList());
     }
 
+    //da verificare
     public void updateDogsitter(Dogsitter dogsitter, List<Orario> orari) throws DAOException {
         Dogsitter existing = dogsInfo(dogsitter);
         existing.setNome(dogsitter.getNome());

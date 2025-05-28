@@ -8,6 +8,7 @@ public class Padrone extends User {
     private String telefono;
     private String indirizzo;
     private String citta;
+    private Dog cane;
 
     public Padrone(String email, String password) {
         super(email, password);
@@ -35,6 +36,7 @@ public class Padrone extends User {
         this.citta = dati[3];
     }
 
+    public Dog getCane() {return cane;}
 
     public String getNome() {
         return nome;
@@ -63,4 +65,8 @@ public class Padrone extends User {
     public String getCitta() {return citta;}
 
     public void setCitta(String citta) {this.citta = citta;}
+
+    public void setCane(Dog cane) {this.cane = cane;}
+
+
 }

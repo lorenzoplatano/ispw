@@ -15,11 +15,11 @@ import java.util.List;
 
 public class PrenotazioneController {
 
-    protected final PadroneDao padroneDao;
-
+    //protected final PadroneDao padroneDao;
+    protected final PadroneDaoMemory padroneDao;
 
     public PrenotazioneController() {
-        this.padroneDao = new PadroneDao();
+        this.padroneDao = new PadroneDaoMemory();
     }
 
     public List<PrenotazioneBean> mostraPrenotazioni(ProfiloPadroneBean padrone) throws DAOException, InvalidInputException {
@@ -67,7 +67,8 @@ public class PrenotazioneController {
 
         Prenotazione prenotazione = new Prenotazione(id, tipo);
 
-        LoggedUserDao dao = DaoFactory.getFactory().getLoggedUserDao(identity, tipo);
+        //LoggedUserDao dao = DaoFactory.getFactory().getLoggedUserDao(identity, tipo);
+        LoggedUserDaoMemory dao = new LoggedUserDaoMemory();
 
         switch (stato) {
             case ACCETTATA:

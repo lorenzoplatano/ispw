@@ -8,6 +8,7 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 
 import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
+import it.runyourdog.runyourdogapp.model.dao.VeterinarioDaoMemory;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 import it.runyourdog.runyourdogapp.model.entities.Veterinario;
@@ -21,11 +22,12 @@ import java.util.List;
 
 public class PrenotazioneVeterinarioController extends PrenotazioneController {
 
-    private final VeterinarioDao veterinarioDao;
+    //private final VeterinarioDao veterinarioDao;
+    private final VeterinarioDaoMemory veterinarioDao;
 
     public PrenotazioneVeterinarioController() {
         super();
-        this.veterinarioDao = new VeterinarioDao();
+        this.veterinarioDao = new VeterinarioDaoMemory();
     }
 
     public List<ProfiloVeterinarioBean> cercaVeterinario(PrenotazioneBean bean) throws DAOException, InvalidInputException {

@@ -17,8 +17,9 @@ public class RegistrazioneController {
 
     public void padRegister(ProfiloPadroneBean bean) throws DAOException {
 
-        PadroneDao dao = new PadroneDao();
+        //PadroneDao dao = new PadroneDao();
 
+        PadroneDaoMemory dao = new PadroneDaoMemory();
 
         String username = bean.getUsername();
         String email = bean.getEmail();
@@ -48,16 +49,18 @@ public class RegistrazioneController {
         boolean res;
 
         try {
-            UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();
+            //UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();
+            UnloggedUserDaoMemory dao = new UnloggedUserDaoMemory();
             res = dao.emailCheck(newUser);
-        } catch (DAOException | PersistenceConfigurationException e) {
+        } catch (DAOException e) {
             throw new CredentialException("Errore: " + e.getMessage());
         }
         return res;
     }
 
     public void dogRegister(ProfiloDogsitterBean bean) throws DAOException {
-        DogsitterDao dao = new DogsitterDao();
+        //DogsitterDao dao = new DogsitterDao();
+        DogsitterDaoMemory dao = new DogsitterDaoMemory();
 
         String username = bean.getUsername();
         String email = bean.getEmail();
@@ -75,7 +78,8 @@ public class RegistrazioneController {
 
 
     public void vetRegister(ProfiloVeterinarioBean bean) throws DAOException {
-        VeterinarioDao dao = new VeterinarioDao();
+        //VeterinarioDao dao = new VeterinarioDao();
+        VeterinarioDaoMemory dao = new VeterinarioDaoMemory();
 
         String username = bean.getUsername();
         String email = bean.getEmail();
@@ -98,8 +102,8 @@ public class RegistrazioneController {
 
     public void aggiornaProfilo(ProfiloPadroneBean bean) throws DAOException {
 
-        PadroneDao dao = new PadroneDao();
-
+        //PadroneDao dao = new PadroneDao();
+        PadroneDaoMemory dao = new PadroneDaoMemory();
         String email = bean.getEmail();
 
         String[] dati = {
@@ -130,7 +134,8 @@ public class RegistrazioneController {
     }
 
     public void updateProfiloDogsitter(ProfiloDogsitterBean bean) throws DAOException{
-        DogsitterDao dao = new DogsitterDao();
+        //DogsitterDao dao = new DogsitterDao();
+        DogsitterDaoMemory dao = new DogsitterDaoMemory();
 
         Dogsitter dogsitter = new Dogsitter();
         dogsitter.setEmail(bean.getEmail());
@@ -149,7 +154,8 @@ public class RegistrazioneController {
     }
 
     public void updateProfiloVet(ProfiloVeterinarioBean bean) throws DAOException{
-        VeterinarioDao dao = new VeterinarioDao();
+        //VeterinarioDao dao = new VeterinarioDao();
+        VeterinarioDaoMemory dao = new VeterinarioDaoMemory();
 
         Veterinario veterinario = new Veterinario();
         veterinario.setEmail(bean.getEmail());

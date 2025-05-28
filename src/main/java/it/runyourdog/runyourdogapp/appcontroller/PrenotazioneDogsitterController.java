@@ -6,6 +6,7 @@ import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
 
 
+import it.runyourdog.runyourdogapp.model.dao.DogsitterDaoMemory;
 import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
@@ -21,11 +22,12 @@ import java.util.List;
 public class PrenotazioneDogsitterController extends PrenotazioneController{
 
 
-    private final DogsitterDao dogsitterDao;
+    //private final DogsitterDao dogsitterDao;
+    private final DogsitterDaoMemory dogsitterDao;
 
     public PrenotazioneDogsitterController() {
         super();
-        this.dogsitterDao = new DogsitterDao();
+        this.dogsitterDao = new DogsitterDaoMemory();
     }
 
     public List<ProfiloDogsitterBean> cercaDogsitter(PrenotazioneBean bean) throws DAOException, InvalidInputException {
