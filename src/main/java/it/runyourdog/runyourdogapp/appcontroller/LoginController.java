@@ -14,18 +14,17 @@ import java.util.List;
 
 public class LoginController {
 
-    //private final PadroneDao padroneDao;
-    //private final VeterinarioDao veterinarioDao;
-    //private final DogsitterDao dogsitterDao;
+    private final PadroneDao padroneDao;
+    private final VeterinarioDao veterinarioDao;
+    private final DogsitterDao dogsitterDao;
 
-    private final PadroneDaoMemory padroneDao;
-    private final VeterinarioDaoMemory veterinarioDao;
-    private final DogsitterDaoMemory dogsitterDao;
 
-    public LoginController() {
-        this.padroneDao = new PadroneDaoMemory();
-        this.veterinarioDao = new VeterinarioDaoMemory();
-        this.dogsitterDao = new DogsitterDaoMemory();
+    public LoginController() throws PersistenceConfigurationException {
+
+        this.padroneDao = DaoFactory.getFactory().getPadroneDao();
+        this.veterinarioDao = DaoFactory.getFactory().getVeterinarioDao();
+        this.dogsitterDao = DaoFactory.getFactory().getDogsitterDao();
+
     }
 
     public UserBean authenticate(LoginBean credentials) throws CredentialException, DAOException, InvalidInputException, PersistenceConfigurationException {
@@ -33,8 +32,8 @@ public class LoginController {
         String password = credentials.getPassword();
         User user = new User(email, password);
 
-        //UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();
-        UnloggedUserDaoMemory dao = new UnloggedUserDaoMemory();
+        UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();
+
 
         user = dao.loginProcedure(user);
         if (user.getRole() == null) {

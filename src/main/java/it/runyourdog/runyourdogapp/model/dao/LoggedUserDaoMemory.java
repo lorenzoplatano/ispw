@@ -15,6 +15,15 @@ import java.util.Optional;
 public class LoggedUserDaoMemory implements LoggedUserDao {
     protected final List<Prenotazione> prenotazioni = new ArrayList<>();
 
+    private static LoggedUserDaoMemory instance;
+
+    public static LoggedUserDaoMemory getInstance() {
+        if (instance == null) {
+            instance = new LoggedUserDaoMemory();
+        }
+        return instance;
+    }
+
     public LoggedUserDaoMemory() {
 
         Prenotazione p1 = new Prenotazione(1, ReservationType.DOGSITTER);

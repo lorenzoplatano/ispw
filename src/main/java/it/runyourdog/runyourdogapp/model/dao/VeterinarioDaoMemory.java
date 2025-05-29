@@ -16,6 +16,15 @@ import java.util.stream.Collectors;
 public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements VeterinarioDao{
     private final List<Veterinario> veterinari = new ArrayList<>();
 
+    private static VeterinarioDaoMemory instance;
+
+    public static VeterinarioDaoMemory getInstance() {
+        if (instance == null) {
+            instance = new VeterinarioDaoMemory();
+        }
+        return instance;
+    }
+
     public VeterinarioDaoMemory() {
         super();
 

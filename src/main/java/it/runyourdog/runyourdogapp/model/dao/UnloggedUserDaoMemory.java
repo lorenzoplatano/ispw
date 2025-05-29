@@ -10,12 +10,21 @@ import java.util.Optional;
 
 public class UnloggedUserDaoMemory implements UnloggedUserDao {
     private final List<User> users = new ArrayList<>();
+    private static UnloggedUserDaoMemory instance;
 
     public UnloggedUserDaoMemory() {
 
         users.add(new User("Mario", "mario@example.com", "pass123", Role.PADRONE));
         users.add(new User("Luigi", "dogsitter1@example.com", "pass123", Role.DOGSITTER));
         users.add(new User("Paolo", "veterinario1@example.com", "pass123", Role.VETERINARIO));
+    }
+
+
+    public static UnloggedUserDaoMemory getInstance() {
+        if (instance == null) {
+            instance = new UnloggedUserDaoMemory();
+        }
+        return instance;
     }
 
     @Override

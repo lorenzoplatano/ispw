@@ -1,5 +1,6 @@
 package it.runyourdog.runyourdogapp.pattern.abstractfactory;
 
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.model.dao.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
@@ -16,17 +17,17 @@ public class DaoFactoryCSV extends DaoFactory {
     }
 
     @Override
-    public PadroneDao getPadroneDao() {
-        throw new UnsupportedOperationException("Metodo non supportato per CSV");
+    public PadroneDao getPadroneDao() throws PersistenceConfigurationException {
+        throw new PersistenceConfigurationException("Metodo non supportato per CSV");
     }
 
     @Override
-    public DogsitterDao getDogsitterDao() {
-        throw new UnsupportedOperationException("Metodo non supportato per CSV");
+    public DogsitterDao getDogsitterDao() throws PersistenceConfigurationException {
+        throw new PersistenceConfigurationException("Metodo non supportato per CSV");
     }
 
     @Override
-    public VeterinarioDao getVeterinarioDao() {
-        throw new UnsupportedOperationException("Metodo non supportato per CSV");
+    public VeterinarioDao getVeterinarioDao() throws PersistenceConfigurationException {
+        throw new PersistenceConfigurationException("Metodo non supportato per CSV");
     }
 }

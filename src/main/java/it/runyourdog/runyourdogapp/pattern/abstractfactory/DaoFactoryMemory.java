@@ -6,23 +6,23 @@ import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 public class DaoFactoryMemory extends DaoFactory {
     @Override
     public UnloggedUserDao getUnloggedUserDao() {
-        return null;
+        return UnloggedUserDaoMemory.getInstance();
     }
 
     @Override
     public LoggedUserDao getLoggedUserDao(int identity, ReservationType tipo) {
-        return null;
+        return LoggedUserDaoMemory.getInstance();
     }
 
     public PadroneDao getPadroneDao() {
-        return null;
+        return PadroneDaoMemory.getInstance();
     }
 
     public DogsitterDao getDogsitterDao() {
-        return null;
+        return DogsitterDaoMemory.getInstance();
     }
 
     public VeterinarioDao getVeterinarioDao() {
-        return null;
+        return VeterinarioDaoMemory.getInstance();
     }
 }

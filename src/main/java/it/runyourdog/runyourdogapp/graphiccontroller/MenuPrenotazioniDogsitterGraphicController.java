@@ -8,6 +8,8 @@ import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
+import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 
 import javafx.beans.property.SimpleObjectProperty;
@@ -43,12 +45,21 @@ public class MenuPrenotazioniDogsitterGraphicController extends MenuPrenotazioni
 
     public void setController()
     {
-        this.controller = new PrenotazioneDogsitterController();
+        try {
+            this.controller = new PrenotazioneDogsitterController();
+        } catch (PersistenceConfigurationException e) {
+            Printer.perror(e.getMessage());
+        }
     }
 
     @Override
     public List<PrenotazioneBean> loadPrenotazioni() throws InvalidInputException, DAOException {
-        PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
+        PrenotazioneDogsitterController controller = null;
+        try {
+            controller = new PrenotazioneDogsitterController();
+        } catch (PersistenceConfigurationException e) {
+            Printer.perror(e.getMessage());
+        }
 
         ProfiloDogsitterBean bean = new ProfiloDogsitterBean();
         bean.setEmail(loggedUser.getEmail());

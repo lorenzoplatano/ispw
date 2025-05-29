@@ -7,10 +7,13 @@ import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
+import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
 import it.runyourdog.runyourdogapp.model.dao.VeterinarioDaoMemory;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 import it.runyourdog.runyourdogapp.model.entities.Veterinario;
+import it.runyourdog.runyourdogapp.pattern.abstractfactory.DaoFactory;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
 import java.sql.Date;
@@ -21,12 +24,12 @@ import java.util.List;
 
 public class PrenotazioneVeterinarioController extends PrenotazioneController {
 
-    //private final VeterinarioDao veterinarioDao;
-    private final VeterinarioDaoMemory veterinarioDao;
+    private final VeterinarioDao veterinarioDao;
 
-    public PrenotazioneVeterinarioController() {
+
+    public PrenotazioneVeterinarioController() throws PersistenceConfigurationException {
         super();
-        this.veterinarioDao = new VeterinarioDaoMemory();
+        this.veterinarioDao = DaoFactory.getFactory().getVeterinarioDao();
     }
 
     public List<ProfiloVeterinarioBean> cercaVeterinario(PrenotazioneBean bean) throws DAOException, InvalidInputException {

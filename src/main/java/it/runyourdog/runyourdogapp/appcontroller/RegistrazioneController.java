@@ -15,11 +15,11 @@ import java.util.List;
 public class RegistrazioneController {
 
 
-    public void padRegister(ProfiloPadroneBean bean) throws DAOException {
+    public void padRegister(ProfiloPadroneBean bean) throws DAOException, PersistenceConfigurationException {
 
-        //PadroneDao dao = new PadroneDao();
+        PadroneDao dao = DaoFactory.getFactory().getPadroneDao();
 
-        PadroneDaoMemory dao = new PadroneDaoMemory();
+
 
         String username = bean.getUsername();
         String email = bean.getEmail();
@@ -43,14 +43,13 @@ public class RegistrazioneController {
 
     }
 
-    public boolean emailUnica(UserBean emailUser) throws CredentialException {
+    public boolean emailUnica(UserBean emailUser) throws CredentialException, PersistenceConfigurationException {
         String email = emailUser.getEmail();
         User newUser = new User(email);
         boolean res;
 
         try {
-            //UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();
-            UnloggedUserDaoMemory dao = new UnloggedUserDaoMemory();
+            UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();
             res = dao.emailCheck(newUser);
         } catch (DAOException e) {
             throw new CredentialException("Errore: " + e.getMessage());
@@ -58,9 +57,9 @@ public class RegistrazioneController {
         return res;
     }
 
-    public void dogRegister(ProfiloDogsitterBean bean) throws DAOException {
-        //DogsitterDao dao = new DogsitterDao();
-        DogsitterDaoMemory dao = new DogsitterDaoMemory();
+    public void dogRegister(ProfiloDogsitterBean bean) throws DAOException, PersistenceConfigurationException {
+        DogsitterDao dao = DaoFactory.getFactory().getDogsitterDao();
+
 
         String username = bean.getUsername();
         String email = bean.getEmail();
@@ -77,9 +76,8 @@ public class RegistrazioneController {
     }
 
 
-    public void vetRegister(ProfiloVeterinarioBean bean) throws DAOException {
-        //VeterinarioDao dao = new VeterinarioDao();
-        VeterinarioDaoMemory dao = new VeterinarioDaoMemory();
+    public void vetRegister(ProfiloVeterinarioBean bean) throws DAOException, PersistenceConfigurationException {
+        VeterinarioDao dao = DaoFactory.getFactory().getVeterinarioDao();
 
         String username = bean.getUsername();
         String email = bean.getEmail();
@@ -100,10 +98,9 @@ public class RegistrazioneController {
         dao.registerProcedure(vet, orari);
     }
 
-    public void aggiornaProfilo(ProfiloPadroneBean bean) throws DAOException {
+    public void aggiornaProfilo(ProfiloPadroneBean bean) throws DAOException, PersistenceConfigurationException {
 
-        //PadroneDao dao = new PadroneDao();
-        PadroneDaoMemory dao = new PadroneDaoMemory();
+        PadroneDao dao = DaoFactory.getFactory().getPadroneDao();
         String email = bean.getEmail();
 
         String[] dati = {
@@ -133,9 +130,8 @@ public class RegistrazioneController {
         return new Dog(nomec, sesso, razza, microchip, datadinascita, vaccinazioni);
     }
 
-    public void updateProfiloDogsitter(ProfiloDogsitterBean bean) throws DAOException{
-        //DogsitterDao dao = new DogsitterDao();
-        DogsitterDaoMemory dao = new DogsitterDaoMemory();
+    public void updateProfiloDogsitter(ProfiloDogsitterBean bean) throws DAOException, PersistenceConfigurationException {
+        DogsitterDao dao = DaoFactory.getFactory().getDogsitterDao();
 
         Dogsitter dogsitter = new Dogsitter();
         dogsitter.setEmail(bean.getEmail());
@@ -153,9 +149,8 @@ public class RegistrazioneController {
         dogsitter.setTelefono(bean.getTelefono());
     }
 
-    public void updateProfiloVet(ProfiloVeterinarioBean bean) throws DAOException{
-        //VeterinarioDao dao = new VeterinarioDao();
-        VeterinarioDaoMemory dao = new VeterinarioDaoMemory();
+    public void updateProfiloVet(ProfiloVeterinarioBean bean) throws DAOException, PersistenceConfigurationException {
+        VeterinarioDao dao = DaoFactory.getFactory().getVeterinarioDao();
 
         Veterinario veterinario = new Veterinario();
         veterinario.setEmail(bean.getEmail());

@@ -31,11 +31,11 @@ public abstract class DaoFactory {
 
     public abstract LoggedUserDao getLoggedUserDao(int identity, ReservationType tipo);
 
-    public abstract PadroneDao getPadroneDao();
+    public abstract PadroneDao getPadroneDao() throws PersistenceConfigurationException;
 
-    public abstract DogsitterDao getDogsitterDao();
+    public abstract DogsitterDao getDogsitterDao() throws PersistenceConfigurationException;
 
-    public abstract VeterinarioDao getVeterinarioDao();
+    public abstract VeterinarioDao getVeterinarioDao() throws PersistenceConfigurationException;
 
     private static String getDaoType() throws PersistenceConfigurationException {
         try (InputStream input = DaoFactory.class.getClassLoader().getResourceAsStream(CONFIG_FILE)) {

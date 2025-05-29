@@ -5,11 +5,14 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 
 
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
+import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDaoMemory;
 import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
+import it.runyourdog.runyourdogapp.pattern.abstractfactory.DaoFactory;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
 
@@ -21,12 +24,12 @@ import java.util.List;
 public class PrenotazioneDogsitterController extends PrenotazioneController{
 
 
-    //private final DogsitterDao dogsitterDao;
-    private final DogsitterDaoMemory dogsitterDao;
+    private final DogsitterDao dogsitterDao;
 
-    public PrenotazioneDogsitterController() {
+
+    public PrenotazioneDogsitterController() throws PersistenceConfigurationException {
         super();
-        this.dogsitterDao = new DogsitterDaoMemory();
+        this.dogsitterDao = DaoFactory.getFactory().getDogsitterDao();
     }
 
     public List<ProfiloDogsitterBean> cercaDogsitter(PrenotazioneBean bean) throws DAOException, InvalidInputException {
