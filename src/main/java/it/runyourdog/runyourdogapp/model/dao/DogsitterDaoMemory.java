@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 
 public class DogsitterDaoMemory extends LoggedUserDaoMemory implements DogsitterDao {
-    private final List<Dogsitter> dogsitters = new ArrayList<>();
 
     private static DogsitterDaoMemory instance;
 
@@ -25,7 +24,6 @@ public class DogsitterDaoMemory extends LoggedUserDaoMemory implements Dogsitter
     }
 
     public DogsitterDaoMemory() {
-        super();
 
 
         Dogsitter ds = new Dogsitter("dogsitter1@example.com", "pass123");

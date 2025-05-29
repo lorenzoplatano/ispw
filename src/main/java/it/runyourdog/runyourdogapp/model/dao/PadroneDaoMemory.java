@@ -12,11 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
-    private final List<Padrone> padroni = new ArrayList<>();
-    private final List<Dog> dogs = new ArrayList<>();
-    private final List<Dogsitter> dogsitters = new ArrayList<>();
-    private final List<Veterinario> veterinari = new ArrayList<>();
-    private int nextPrenotazioneId = 1;
 
     private static PadroneDaoMemory instance;
 
