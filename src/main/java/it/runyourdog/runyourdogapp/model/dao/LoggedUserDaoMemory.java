@@ -24,27 +24,8 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
     protected static int nextPrenotazioneVetId = 1;
 
     private static LoggedUserDaoMemory instance;
-    private static boolean memoryInitialized = false;
 
-    public static LoggedUserDaoMemory getInstance() {
-        if (instance == null) {
-            instance = new LoggedUserDaoMemory();
-        }
-        return instance;
-    }
-
-
-    public LoggedUserDaoMemory() {
-        setMemory();
-    }
-
-    private void setMemory() {
-        if (memoryInitialized) {
-            return;
-        }
-        memoryInitialized = true;
-
-
+    static {
         Padrone p = new Padrone("mario@example.com", "pass123");
         p.setUsername("Mario");
         p.setRole(Role.PADRONE);
@@ -110,6 +91,17 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         p2.setLavoratore(v);
         prenotazioni.add(p2);
     }
+
+    public static LoggedUserDaoMemory getInstance() {
+        if (instance == null) {
+            instance = new LoggedUserDaoMemory();
+        }
+        return instance;
+    }
+
+
+    protected LoggedUserDaoMemory() {}
+
 
 
     @Override
