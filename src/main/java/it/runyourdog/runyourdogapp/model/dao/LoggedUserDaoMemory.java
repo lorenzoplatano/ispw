@@ -14,12 +14,12 @@ import java.util.Optional;
 
 public class LoggedUserDaoMemory implements LoggedUserDao {
     protected final List<Prenotazione> prenotazioni = new ArrayList<>();
-    private final List<Padrone> padroni = new ArrayList<>();
-    private final List<Dog> dogs = new ArrayList<>();
-    private final List<Dogsitter> dogsitters = new ArrayList<>();
-    private final List<Veterinario> veterinari = new ArrayList<>();
-    private int nextPrenotazioneDogId = 1;
-    private int nextPrenotazioneVetId = 1;
+    protected final List<Padrone> padroni = new ArrayList<>();
+    protected final List<Dog> dogs = new ArrayList<>();
+    protected final List<Dogsitter> dogsitters = new ArrayList<>();
+    protected final List<Veterinario> veterinari = new ArrayList<>();
+    protected int nextPrenotazioneDogId = 1;
+    protected int nextPrenotazioneVetId = 1;
     private static LoggedUserDaoMemory instance;
 
     public static LoggedUserDaoMemory getInstance() {

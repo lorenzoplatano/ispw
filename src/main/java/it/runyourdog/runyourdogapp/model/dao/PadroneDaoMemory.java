@@ -31,7 +31,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         p.setTelefono("1234567890");
         p.setIndirizzo("Via Roma 1");
         p.setCitta("Roma");
-        padroni.add(p);
+        LoggedUserDaoMemory.getInstance().padroni.add(p);
 
         Dog d = new Dog("Fido", "M", "Labrador", "000111222", Date.valueOf("2020-01-01"), List.of("Vacc1", "Vacc2"));
         dogs.add(d);
