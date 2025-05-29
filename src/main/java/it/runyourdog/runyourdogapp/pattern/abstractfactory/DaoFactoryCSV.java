@@ -1,6 +1,5 @@
 package it.runyourdog.runyourdogapp.pattern.abstractfactory;
 
-import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.model.dao.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
@@ -17,17 +16,26 @@ public class DaoFactoryCSV extends DaoFactory {
     }
 
     @Override
-    public PadroneDao getPadroneDao() throws PersistenceConfigurationException {
-        throw new PersistenceConfigurationException("Metodo non supportato per CSV");
+    public PadroneDao getPadroneDao() {
+        //se DAO_TYPE = CSV
+        //allora utilizzo le DAO MySQL di Padrone, Veterinario e Dogsitter
+        //e utilizzo  le DAO CSV per le UnloggedUser e LoggedUser
+        return new PadroneDaoMySQL();
     }
 
     @Override
-    public DogsitterDao getDogsitterDao() throws PersistenceConfigurationException {
-        throw new PersistenceConfigurationException("Metodo non supportato per CSV");
+    public DogsitterDao getDogsitterDao() {
+        //se DAO_TYPE = CSV
+        //allora utilizzo le DAO MySQL di Padrone, Veterinario e Dogsitter
+        //e utilizzo  le DAO CSV per le UnloggedUser e LoggedUser
+        return new DogsitterDaoMySQL();
     }
 
     @Override
-    public VeterinarioDao getVeterinarioDao() throws PersistenceConfigurationException {
-        throw new PersistenceConfigurationException("Metodo non supportato per CSV");
+    public VeterinarioDao getVeterinarioDao() {
+        //se DAO_TYPE = CSV
+        //allora utilizzo le DAO MySQL di Padrone, Veterinario e Dogsitter
+        //e utilizzo  le DAO CSV per le UnloggedUser e LoggedUser
+        return new VeterinarioDaoMySQL();
     }
 }

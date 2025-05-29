@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.model.entities.Orario;
 
 
 import java.sql.Time;
+import java.time.DayOfWeek;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -50,6 +51,18 @@ public class OrariParser {
 
     public static String fmt(Time t) {
         return t.toLocalTime().format(TIME_FMT);
+    }
+
+    public static String fromEngToIt(DayOfWeek dayOfWeek) {
+        return switch (dayOfWeek) {
+            case MONDAY -> "Lunedì";
+            case TUESDAY -> "Martedì";
+            case WEDNESDAY -> "Mercoledì";
+            case THURSDAY -> "Giovedì";
+            case FRIDAY -> "Venerdì";
+            case SATURDAY -> "Sabato";
+            case SUNDAY -> "Domenica";
+        };
     }
 
 }

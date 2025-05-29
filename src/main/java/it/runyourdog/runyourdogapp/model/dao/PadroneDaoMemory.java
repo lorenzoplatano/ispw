@@ -2,9 +2,11 @@ package it.runyourdog.runyourdogapp.model.dao;
 
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.entities.*;
+import it.runyourdog.runyourdogapp.utils.OrariParser;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,11 +42,22 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         dogs.add(d);
         p.setCane(d);
 
-        Dogsitter ds = new Dogsitter("dogsitter1@example.com", "Anna", 30, "F", "Roma");
+        Orario o = new Orario("Giovedì", Time.valueOf("16:00:00"), Time.valueOf("18:00:00"));
+        List<Orario> orari = new ArrayList<>();
+        orari.add(o);
+
+        Dogsitter ds = new Dogsitter("Roma");
+        ds.setEmail("dogsitter@example.com");
+        ds.setEta(30);
+        ds.setGenere("F");
+        ds.setNome("Anna");
+        ds.setTelefono("1234567890");
         ds.setRole(Role.DOGSITTER);
+        ds.setOrari(orari);
         dogsitters.add(ds);
         Veterinario v = new Veterinario("veterinario1@example.com", "Luca", 40, "M", "Roma", "Via Milano 5");
         v.setRole(Role.VETERINARIO);
+        v.setOrari(orari);
         veterinari.add(v);
     }
 
@@ -76,36 +89,61 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     @Override
     public List<Dogsitter> findDogsitter(Prenotazione pren) {
         List<Dogsitter> disponibili = new ArrayList<>();
-        String cittaRichiesta = pren.getPadrone().getCitta();
+        String cittaRichiesta = pren.getLavoratore().getCitta();
         Date dataRichiesta = pren.getData();
-        java.sql.Time oraInizioRichiesta = pren.getOraInizio();
-        java.sql.Time oraFineRichiesta = pren.getOraFine();
+        Time oraInizioRichiesta = pren.getOraInizio();
+        Time oraFineRichiesta = pren.getOraFine();
+
+        System.out.println("[DEBUG] Ricerca dogsitter per città: " + cittaRichiesta +
+                ", data: " + dataRichiesta +
+                ", ora inizio: " + oraInizioRichiesta +
+                ", ora fine: " + oraFineRichiesta);
 
         for (Dogsitter ds : dogsitters) {
+            System.out.println("[DEBUG] Analizzo dogsitter: " + ds.getEmail() + " (" + ds.getCitta() + ")");
 
             if (ds.getCitta() == null || !ds.getCitta().equalsIgnoreCase(cittaRichiesta)) {
+                System.out.println("[DEBUG] Escluso per città: " + ds.getCitta());
                 continue;
             }
 
             List<Orario> orari = ds.getOrari();
             boolean disponibile = false;
-            String giornoRichiesto = dataRichiesta.toLocalDate().getDayOfWeek().name();
+            String giornoRichiesto = OrariParser.fromEngToIt(dataRichiesta.toLocalDate().getDayOfWeek());
+            System.out.println("[DEBUG] Giorno richiesto: " + giornoRichiesto);
+
             for (Orario o : orari) {
+                System.out.println("[DEBUG] Controllo orario: " + o.getGiorno() + " " +
+                        o.getOrainizio() + "-" + o.getOrafine());
 
-                if (!o.getGiorno().equalsIgnoreCase(giornoRichiesto)) continue;
+                if (!o.getGiorno().equalsIgnoreCase(giornoRichiesto)) {
+                    System.out.println("[DEBUG] Giorno non corrisponde: " + o.getGiorno());
+                    continue;
+                }
 
-                if ((o.getOrainizio().equals(oraInizioRichiesta) || o.getOrainizio().before(oraInizioRichiesta))
-                        && (o.getOrafine().equals(oraFineRichiesta) || o.getOrafine().after(oraFineRichiesta))) {
+                boolean inizioOK = o.getOrainizio().equals(oraInizioRichiesta) || o.getOrainizio().before(oraInizioRichiesta);
+                boolean fineOK = o.getOrafine().equals(oraFineRichiesta) || o.getOrafine().after(oraFineRichiesta);
+
+                System.out.println("[DEBUG] Inizio OK: " + inizioOK + ", Fine OK: " + fineOK);
+
+                if (inizioOK && fineOK) {
                     disponibile = true;
+                    System.out.println("[DEBUG] Dogsitter disponibile per questo orario.");
                     break;
                 }
             }
             if (disponibile) {
+                System.out.println("[DEBUG] Dogsitter aggiunto: " + ds.getEmail());
                 disponibili.add(ds);
+            } else {
+                System.out.println("[DEBUG] Dogsitter NON disponibile: " + ds.getEmail());
             }
         }
+        System.out.println("[DEBUG] Numero dogsitter trovati: " + disponibili.size());
         return disponibili;
     }
+
+
 
     public void mandaRichiesta(Prenotazione req) {
         req.setId(nextPrenotazioneId++);
