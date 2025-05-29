@@ -22,39 +22,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         return instance;
     }
 
-    public PadroneDaoMemory() {
 
-        Padrone p = new Padrone("mario@example.com", "pass123");
-        p.setUsername("Mario");
-        p.setRole(Role.PADRONE);
-        p.setNome("Mario Rossi");
-        p.setTelefono("1234567890");
-        p.setIndirizzo("Via Roma 1");
-        p.setCitta("Roma");
-        padroni.add(p);
-
-        Dog d = new Dog("Fido", "M", "Labrador", "000111222", Date.valueOf("2020-01-01"), List.of("Vacc1", "Vacc2"));
-        dogs.add(d);
-        p.setCane(d);
-
-        Orario o = new Orario("Giovedì", Time.valueOf("16:00:00"), Time.valueOf("18:00:00"));
-        List<Orario> orari = new ArrayList<>();
-        orari.add(o);
-
-        Dogsitter ds = new Dogsitter("Roma");
-        ds.setEmail("dogsitter@example.com");
-        ds.setEta(30);
-        ds.setGenere("F");
-        ds.setNome("Anna");
-        ds.setTelefono("1234567890");
-        ds.setRole(Role.DOGSITTER);
-        ds.setOrari(orari);
-        dogsitters.add(ds);
-        Veterinario v = new Veterinario("veterinario1@example.com", "Luca", 40, "M", "Roma", "Via Milano 5");
-        v.setRole(Role.VETERINARIO);
-        v.setOrari(orari);
-        veterinari.add(v);
-    }
 
     @Override
     public Padrone padInfo(Padrone pad) throws DAOException {
@@ -145,7 +113,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     @Override
     //da fare
     public void mandaRichiesta(Prenotazione req) {
-        req.setId(LoggedUserDaoMemory.getInstance().nextPrenotazioneDogId++);
+        req.setId(nextPrenotazioneDogId++);
         req.setStato(ReservationState.IN_ATTESA);
 
         prenotazioni.add(req);
@@ -179,7 +147,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     @Override
     //da fare
     public void mandaRichiestaVet(Prenotazione req)  {
-        req.setId(LoggedUserDaoMemory.getInstance().nextPrenotazioneVetId++);
+        req.setId(nextPrenotazioneVetId++);
         req.setStato(ReservationState.IN_ATTESA);
         super.prenotazioni.add(req);
     }

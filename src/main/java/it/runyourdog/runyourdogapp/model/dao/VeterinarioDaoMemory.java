@@ -25,36 +25,6 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
     }
 
 
-    public VeterinarioDaoMemory() {
-
-
-        Veterinario v = new Veterinario("veterinario1@example.com", "pass123");
-
-
-        v.setUsername("Dr. Luca");
-        v.setRole(Role.VETERINARIO);
-
-
-        v.setNome("Luca Bianchi");
-        v.setEta(40);
-        v.setGenere("M");
-        v.setCitta("Roma");
-        v.setTelefono("3397654321");
-        v.setIndirizzo("Via Milano 5, 00100 Roma");
-
-
-        List<Orario> defaultOrari = List.of(
-                new Orario("Lunedì",      Time.valueOf("09:00:00"), Time.valueOf("13:00:00")),
-                new Orario("Martedì",     Time.valueOf("15:00:00"), Time.valueOf("19:00:00")),
-                new Orario("Giovedì",     Time.valueOf("08:30:00"), Time.valueOf("12:30:00")),
-                new Orario("Sabato",      Time.valueOf("10:00:00"), Time.valueOf("14:00:00"))
-        );
-        v.setOrari(defaultOrari);
-
-
-        veterinari.add(v);
-    }
-
     @Override
     public Veterinario vetInfo(Veterinario vet) throws DAOException {
         return veterinari.stream()
@@ -80,13 +50,12 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
         veterinarian.setOrari(orari);
         veterinari.add(veterinarian);
         UnloggedUserDaoMemory.getInstance().addUser(veterinarian);
-
     }
 
     @Override
     public List<Prenotazione> showReservations(Veterinario vet) throws DAOException {
 
-        return LoggedUserDaoMemory.getInstance().prenotazioni.stream()
+        return prenotazioni.stream()
                 .filter(pr -> pr.getLavoratore().getEmail().equalsIgnoreCase(vet.getEmail()))
                 .collect(Collectors.toList());
     }

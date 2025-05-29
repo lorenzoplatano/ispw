@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public class UnloggedUserDaoMemory implements UnloggedUserDao {
     private final List<User> users = new ArrayList<>();
+
     private static UnloggedUserDaoMemory instance;
 
     public UnloggedUserDaoMemory() {
