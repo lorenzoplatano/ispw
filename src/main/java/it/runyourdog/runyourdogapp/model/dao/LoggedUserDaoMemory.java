@@ -134,18 +134,4 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         opt.get().setStato(newState);
     }
 
-
-
-    public String creaOrari(List<Orario> orari) {
-        StringBuilder sb = new StringBuilder();
-        for (Orario o : orari) {
-            sb.append(o.getGiorno())
-                    .append(",")
-                    .append(o.getOrainizio().toString())
-                    .append(",")
-                    .append(o.getOrafine().toString())
-                    .append(";");
-        }
-        return sb.toString();
-    }
 }

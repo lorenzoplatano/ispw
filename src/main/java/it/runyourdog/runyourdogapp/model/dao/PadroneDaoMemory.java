@@ -9,7 +9,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
 
@@ -90,7 +90,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     public List<Prenotazione> showReservations(Padrone pad) throws DAOException {
         return prenotazioni.stream()
                 .filter(pr -> pr.getPadrone().getEmail().equalsIgnoreCase(pad.getEmail()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

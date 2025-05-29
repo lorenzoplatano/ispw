@@ -46,7 +46,7 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
 
         return prenotazioni.stream()
                 .filter(pr -> pr.getLavoratore().getEmail().equalsIgnoreCase(vet.getEmail()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

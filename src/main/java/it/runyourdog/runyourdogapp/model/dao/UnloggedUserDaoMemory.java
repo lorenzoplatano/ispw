@@ -14,9 +14,9 @@ public class UnloggedUserDaoMemory implements UnloggedUserDao {
 
     public UnloggedUserDaoMemory() {
 
-        users.add(new User("Mario", "mario@example.com", "pass123", Role.PADRONE));
-        users.add(new User("Luigi", "dogsitter1@example.com", "pass123", Role.DOGSITTER));
-        users.add(new User("Paolo", "veterinario1@example.com", "pass123", Role.VETERINARIO));
+        users.add(new User("Mario", "mario@example.com", "pass1", Role.PADRONE));
+        users.add(new User("Luigi", "dogsitter1@example.com", "pass2", Role.DOGSITTER));
+        users.add(new User("Paolo", "veterinario1@example.com", "pass3", Role.VETERINARIO));
     }
 
 
@@ -50,9 +50,8 @@ public class UnloggedUserDaoMemory implements UnloggedUserDao {
     @Override
     public boolean emailCheck(User newUser)  {
         String email = newUser.getEmail();
-        boolean available = users.stream()
+        return users.stream()
                 .noneMatch(u -> u.getEmail().equalsIgnoreCase(email));
-        return available;
     }
 
     public void addUser(User user) {users.add(user);}
