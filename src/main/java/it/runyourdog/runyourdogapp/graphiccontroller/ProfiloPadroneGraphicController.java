@@ -8,6 +8,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import it.runyourdog.runyourdogapp.utils.Validator;
@@ -85,7 +86,7 @@ public class ProfiloPadroneGraphicController extends GenericProfiloGraphicContro
 
             SingletonStage.getStage(null).showPadroneReservationMenu("/it/runyourdog/runyourdogapp/GUI/MenuPrenotazioniPadrone.fxml", loggedUser, list);
 
-        } catch (DAOException e) {
+        } catch (DAOException | PersistenceConfigurationException e) {
             Printer.perror(e.getMessage());
         } catch (InvalidInputException e) {
             showError(e.getMessage());
@@ -143,7 +144,7 @@ public class ProfiloPadroneGraphicController extends GenericProfiloGraphicContro
             updated.setEmail(loggedUser.getEmail());
             loggedUser = updated;
             populate(updated);
-        } catch (DAOException e) {
+        } catch (DAOException | PersistenceConfigurationException e) {
             Printer.perror(e.getMessage());
         } catch (InvalidInputException e) {
             showError(e.getMessage());

@@ -23,9 +23,9 @@ public abstract class GenericLoginGraphicController<P> extends GenericGraphicCon
     @FXML
     protected TextField password;
 
-    protected LoginController controller = this.setController();
+    protected LoginController controller = this.getController();
 
-    private LoginController setController() {
+    private LoginController getController() {
         try {
             return new LoginController();
         } catch (PersistenceConfigurationException e) {

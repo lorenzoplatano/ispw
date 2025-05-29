@@ -53,12 +53,16 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
     PrenotazioneController controller;
     PrenotazioneBean selected;
 
-    public void setController(){
-        this.controller = switch(this.selected.getTipo()){
-            case DOGSITTER ->  new PrenotazioneDogsitterController();
-            case VETERINARIO -> new PrenotazioneVeterinarioController();
-        };
+    public void setController() {
+    try {
+        switch (this.selected.getTipo()) {
+            case DOGSITTER -> this.controller = new PrenotazioneDogsitterController();
+            case VETERINARIO -> this.controller = new PrenotazioneVeterinarioController();
+        }
+    } catch (PersistenceConfigurationException e) {
+        Printer.perror(e.getMessage());
     }
+}
 
     public void setSelected()
     {

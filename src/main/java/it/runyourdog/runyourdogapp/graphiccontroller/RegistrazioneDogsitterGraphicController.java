@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.fxml.FXML;
@@ -29,7 +30,7 @@ public class RegistrazioneDogsitterGraphicController extends RegistrazioneLavora
                     );
         } catch (InvalidInputException e) {
             showError(e.getMessage());
-        } catch (IOException | DAOException e) {
+        } catch (IOException | DAOException | PersistenceConfigurationException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
     }

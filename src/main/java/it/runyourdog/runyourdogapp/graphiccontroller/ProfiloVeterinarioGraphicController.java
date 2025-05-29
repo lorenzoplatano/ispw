@@ -7,6 +7,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.fxml.FXML;
@@ -42,7 +43,7 @@ public class ProfiloVeterinarioGraphicController extends GenericProfiloLavorator
 
             SingletonStage.getStage(null).showVeterinarioReservationMenu("/it/runyourdog/runyourdogapp/GUI/MenuPrenotazioniVeterinario.fxml", loggedUser, list);
 
-        } catch (DAOException e) {
+        } catch (DAOException | PersistenceConfigurationException e) {
             Printer.perror(e.getMessage());
         } catch (InvalidInputException e) {
             showError(e.getMessage());
@@ -54,7 +55,11 @@ public class ProfiloVeterinarioGraphicController extends GenericProfiloLavorator
         ProfiloVeterinarioBean vet = (ProfiloVeterinarioBean) updated;
         String indirizzo = ind.getText();
         vet.setIndirizzo(indirizzo);
-        new RegistrazioneController().updateProfiloVet(vet);
+        try {
+            new RegistrazioneController().updateProfiloVet(vet);
+        } catch (PersistenceConfigurationException e) {
+            Printer.perror(e.getMessage());
+        }
     }
 
     @Override

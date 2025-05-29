@@ -9,6 +9,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import javafx.fxml.FXML;
@@ -30,7 +31,7 @@ public class ProfiloDogsitterGraphicController extends GenericProfiloLavoratoreG
 
             SingletonStage.getStage(null).showDogsitterReservationMenu("/it/runyourdog/runyourdogapp/GUI/MenuPrenotazioniDogsitter.fxml", loggedUser, list);
 
-        } catch (DAOException e) {
+        } catch (DAOException | PersistenceConfigurationException e) {
             Printer.perror(e.getMessage());
         } catch (InvalidInputException e) {
             showError(e.getMessage());
@@ -39,7 +40,11 @@ public class ProfiloDogsitterGraphicController extends GenericProfiloLavoratoreG
 
     @Override
     protected void aggiorna(ProfiloLavoratoreBean updated) throws DAOException{
-        new RegistrazioneController().updateProfiloDogsitter((ProfiloDogsitterBean) updated);
+        try {
+            new RegistrazioneController().updateProfiloDogsitter((ProfiloDogsitterBean) updated);
+        } catch (PersistenceConfigurationException e) {
+            Printer.perror(e.getMessage());
+        }
     }
 
     @Override

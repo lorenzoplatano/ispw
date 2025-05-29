@@ -4,6 +4,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
@@ -115,7 +116,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                     profiloPadroneBean.getPassword(),
                     Role.PADRONE
             );
-        } catch (InvalidInputException | DAOException e) {
+        } catch (InvalidInputException | DAOException | PersistenceConfigurationException e) {
             Printer.perror(e.getMessage());
             return null;
         }

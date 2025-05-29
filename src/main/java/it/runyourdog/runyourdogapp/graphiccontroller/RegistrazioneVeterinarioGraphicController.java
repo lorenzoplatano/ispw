@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.graphiccontroller;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.graphiccontroller.RegistrazioneLavoratoreGraphicController;
 import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
 import it.runyourdog.runyourdogapp.utils.Printer;
@@ -33,7 +34,7 @@ public class RegistrazioneVeterinarioGraphicController extends RegistrazioneLavo
                     );
         } catch (InvalidInputException e) {
             showError(e.getMessage());
-        } catch (DAOException | IOException e) {
+        } catch (DAOException | IOException | PersistenceConfigurationException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
     }

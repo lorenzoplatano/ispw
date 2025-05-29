@@ -26,7 +26,6 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     }
 
     public PadroneDaoMemory() {
-        super();
 
         Padrone p = new Padrone("mario@example.com", "pass123");
         p.setUsername("Mario");
@@ -86,7 +85,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
 
 
     public List<Prenotazione> showReservations(Padrone pad) throws DAOException {
-        return super.prenotazioni.stream()
+        return LoggedUserDaoMemory.getInstance().prenotazioni.stream()
                 .filter(pr -> pr.getPadrone().getEmail().equalsIgnoreCase(pad.getEmail()))
                 .collect(Collectors.toList());
     }

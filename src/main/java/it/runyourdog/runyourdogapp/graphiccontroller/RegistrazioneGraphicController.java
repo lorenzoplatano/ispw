@@ -6,6 +6,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.exceptions.RoleException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
@@ -95,7 +96,7 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
             }
         } catch (InvalidInputException | CredentialException | RoleException e) {
             showError(e.getMessage());
-        } catch (IOException e) {
+        } catch (IOException | PersistenceConfigurationException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
     }

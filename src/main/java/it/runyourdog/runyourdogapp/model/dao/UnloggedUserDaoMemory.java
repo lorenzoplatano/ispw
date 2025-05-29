@@ -28,7 +28,7 @@ public class UnloggedUserDaoMemory implements UnloggedUserDao {
     }
 
     @Override
-    public User loginProcedure(User user) throws DAOException {
+    public User loginProcedure(User user) {
         String email = user.getEmail();
         String passwd = user.getPassword();
         Optional<User> opt = users.stream()
@@ -36,7 +36,9 @@ public class UnloggedUserDaoMemory implements UnloggedUserDao {
                         && u.getPassword().equals(passwd))
                 .findFirst();
         if (opt.isEmpty()) {
-            throw new DAOException("Credenziali non valide per l'email: " + email);
+            User us = new User();
+            us.setRole(null);
+            return us;
         }
         User found = opt.get();
 

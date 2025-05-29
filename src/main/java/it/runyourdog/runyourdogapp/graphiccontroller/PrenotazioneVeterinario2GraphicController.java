@@ -1,11 +1,14 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
+import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneVeterinarioController;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
+import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 
 import java.io.IOException;
@@ -15,7 +18,12 @@ public class PrenotazioneVeterinario2GraphicController extends PrenotazioneGener
 
     @Override
     protected PrenotazioneVeterinarioController getController() {
-        return new PrenotazioneVeterinarioController();
+        try {
+            return new PrenotazioneVeterinarioController();
+        } catch (PersistenceConfigurationException e) {
+            Printer.perror(e.getMessage());
+        }
+        return null;
     }
 
     @Override

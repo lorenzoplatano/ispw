@@ -5,6 +5,8 @@ import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
+import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 
 import java.io.IOException;
@@ -12,7 +14,16 @@ import java.util.List;
 
 public class PrenotazioneDogsitterGraphicController extends PrenotazioneGenericGraphicController<ProfiloDogsitterBean> {
 
-    private final PrenotazioneDogsitterController controller = new PrenotazioneDogsitterController();
+    private final PrenotazioneDogsitterController controller = getController();
+
+    private PrenotazioneDogsitterController getController() {
+        try {
+            return new PrenotazioneDogsitterController();
+        } catch (PersistenceConfigurationException e) {
+            Printer.perror(e.getMessage());
+        }
+        return null;
+    }
 
     @Override
     protected boolean usaOrarioFine() {

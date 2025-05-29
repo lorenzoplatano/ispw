@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
@@ -32,7 +33,7 @@ public class RegistrazioneVeterinarioGraphicControllerCLI extends RegistrazioneL
                     Role.VETERINARIO
             );
 
-        } catch (DAOException | InvalidInputException | ProfileRetrievalException e) {
+        } catch (DAOException | InvalidInputException | ProfileRetrievalException | PersistenceConfigurationException e) {
             Printer.perror(e.getMessage());
             return null;
         }
