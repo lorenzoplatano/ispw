@@ -7,7 +7,6 @@ import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 
-import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
 import it.runyourdog.runyourdogapp.model.dao.VeterinarioDaoMemory;
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;

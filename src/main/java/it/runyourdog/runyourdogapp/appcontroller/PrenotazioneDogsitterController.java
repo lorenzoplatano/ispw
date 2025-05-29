@@ -3,7 +3,6 @@ package it.runyourdog.runyourdogapp.appcontroller;
 import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
-import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
 
 
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDaoMemory;

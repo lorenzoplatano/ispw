@@ -1,9 +1,8 @@
 package it.runyourdog.runyourdogapp.pattern.abstractfactory;
 
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
+import it.runyourdog.runyourdogapp.model.dao.*;
 import it.runyourdog.runyourdogapp.utils.Printer;
-import it.runyourdog.runyourdogapp.model.dao.UnloggedUserDao;
-import it.runyourdog.runyourdogapp.model.dao.LoggedUserDao;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
 import java.io.IOException;
@@ -21,6 +20,8 @@ public abstract class DaoFactory {
             return new DaoFactoryMySQL();
         } else if ("CSV".equalsIgnoreCase(daoType)) {
             return new DaoFactoryCSV();
+        } else if ("DEMO".equalsIgnoreCase(daoType)) {
+            return new DaoFactoryMemory();
         } else {
             throw new PersistenceConfigurationException("Tipo di persistenza non supportato: " + daoType);
         }
@@ -29,6 +30,12 @@ public abstract class DaoFactory {
     public abstract UnloggedUserDao getUnloggedUserDao();
 
     public abstract LoggedUserDao getLoggedUserDao(int identity, ReservationType tipo);
+
+    public abstract PadroneDao getPadroneDao();
+
+    public abstract DogsitterDao getDogsitterDao();
+
+    public abstract VeterinarioDao getVeterinarioDao();
 
     private static String getDaoType() throws PersistenceConfigurationException {
         try (InputStream input = DaoFactory.class.getClassLoader().getResourceAsStream(CONFIG_FILE)) {

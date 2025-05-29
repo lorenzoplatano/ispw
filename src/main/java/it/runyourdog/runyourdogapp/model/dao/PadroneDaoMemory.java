@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PadroneDaoMemory extends LoggedUserDaoMemory {
+public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     private final List<Padrone> padroni = new ArrayList<>();
     private final List<Dog> dogs = new ArrayList<>();
     private final List<Dogsitter> dogsitters = new ArrayList<>();

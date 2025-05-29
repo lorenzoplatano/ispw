@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 
 
-public class VeterinarioDaoMemory extends LoggedUserDaoMemory {
+public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements VeterinarioDao{
     private final List<Veterinario> veterinari = new ArrayList<>();
 
     public VeterinarioDaoMemory() {

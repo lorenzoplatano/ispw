@@ -13,12 +13,27 @@ public class DaoFactoryMySQL extends DaoFactory {
     @Override
     public LoggedUserDao getLoggedUserDao(int identity, ReservationType tipo) {
         return switch (identity) {
-            case 1 -> new PadroneDao();
+            case 1 -> new PadroneDaoMySQL();
             case 2 -> switch (tipo) {
-                case DOGSITTER -> new DogsitterDao();
-                case VETERINARIO -> new VeterinarioDao();
+                case DOGSITTER -> new DogsitterDaoMySQL();
+                case VETERINARIO -> new VeterinarioDaoMySQL();
             };
             default -> throw new IllegalArgumentException("Identity non riconosciuta per MYSQL DAO: " + identity);
         };
+    }
+
+    @Override
+    public PadroneDao getPadroneDao() {
+        return new PadroneDaoMySQL();
+    }
+
+    @Override
+    public DogsitterDao getDogsitterDao() {
+        return new DogsitterDaoMySQL();
+    }
+
+    @Override
+    public VeterinarioDao getVeterinarioDao() {
+        return new VeterinarioDaoMySQL();
     }
 }

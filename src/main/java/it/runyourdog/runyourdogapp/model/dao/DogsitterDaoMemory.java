@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class DogsitterDaoMemory extends LoggedUserDaoMemory {
+public class DogsitterDaoMemory extends LoggedUserDaoMemory implements DogsitterDao {
     private final List<Dogsitter> dogsitters = new ArrayList<>();
 
     public DogsitterDaoMemory() {

@@ -3,30 +3,26 @@ package it.runyourdog.runyourdogapp.pattern.abstractfactory;
 import it.runyourdog.runyourdogapp.model.dao.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
-public class DaoFactoryCSV extends DaoFactory {
-
+public class DaoFactoryMemory extends DaoFactory {
     @Override
     public UnloggedUserDao getUnloggedUserDao() {
-        return new UnloggedUserDaoCSV();
+        return null;
     }
 
     @Override
     public LoggedUserDao getLoggedUserDao(int identity, ReservationType tipo) {
-        return new LoggedUserDaoCSV();
+        return null;
     }
 
-    @Override
     public PadroneDao getPadroneDao() {
-        throw new UnsupportedOperationException("Metodo non supportato per CSV");
+        return null;
     }
 
-    @Override
     public DogsitterDao getDogsitterDao() {
-        throw new UnsupportedOperationException("Metodo non supportato per CSV");
+        return null;
     }
 
-    @Override
     public VeterinarioDao getVeterinarioDao() {
-        throw new UnsupportedOperationException("Metodo non supportato per CSV");
+        return null;
     }
 }
