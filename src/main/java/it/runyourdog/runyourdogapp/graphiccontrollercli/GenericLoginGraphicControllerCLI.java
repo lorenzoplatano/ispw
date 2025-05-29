@@ -19,7 +19,7 @@ public abstract class GenericLoginGraphicControllerCLI extends GenericGraphicCon
     private final Role expectedRole;
     private final String userLabel;
 
-    protected GenericLoginGraphicControllerCLI(Role expectedRole, String userLabel) {
+    protected GenericLoginGraphicControllerCLI(Role expectedRole, String userLabel) throws PersistenceConfigurationException {
         this.controller = new LoginController();
         this.expectedRole = expectedRole;
         this.userLabel = userLabel;

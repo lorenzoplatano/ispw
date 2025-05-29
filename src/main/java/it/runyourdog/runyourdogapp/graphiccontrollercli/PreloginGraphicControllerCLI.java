@@ -1,6 +1,7 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
 
@@ -50,7 +51,7 @@ public class PreloginGraphicControllerCLI extends GenericGraphicControllerCLI {
                 }
                 break;
 
-            } catch (InvalidInputException e) {
+            } catch (InvalidInputException | PersistenceConfigurationException e) {
                 Printer.perror(e.getMessage());
             }
         }

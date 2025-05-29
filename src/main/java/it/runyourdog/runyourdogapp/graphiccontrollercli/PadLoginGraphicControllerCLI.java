@@ -4,6 +4,7 @@ package it.runyourdog.runyourdogapp.graphiccontrollercli;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
@@ -11,7 +12,7 @@ import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
 public class PadLoginGraphicControllerCLI extends GenericLoginGraphicControllerCLI {
 
-    public PadLoginGraphicControllerCLI() {
+    public PadLoginGraphicControllerCLI() throws PersistenceConfigurationException {
         super(Role.PADRONE, "Padrone");
     }
 

@@ -7,6 +7,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import java.sql.Date;
 import java.sql.Time;
@@ -43,7 +44,7 @@ public abstract class GenericPrenotazioneGraphicControllerCLI<P extends ProfiloL
 
     protected abstract void inviaRichiesta(PrenotazioneBean bean) throws DAOException;
 
-    protected abstract GenericPrenotazioneGraphicControllerCLI<C,P> crossBooking();
+    protected abstract GenericPrenotazioneGraphicControllerCLI<C,P> crossBooking() throws PersistenceConfigurationException;
 
     @Override
     public void showMenu() {
@@ -69,7 +70,7 @@ public abstract class GenericPrenotazioneGraphicControllerCLI<P extends ProfiloL
                     default -> throw new InvalidInputException("Invalid choice");
                 }
                 break;
-            } catch (InvalidInputException e) {
+            } catch (InvalidInputException | PersistenceConfigurationException e) {
                 Printer.perror(e.getMessage());
             }
         }

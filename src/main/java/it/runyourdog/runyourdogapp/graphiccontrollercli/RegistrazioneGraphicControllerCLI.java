@@ -6,6 +6,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.exceptions.RoleException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
@@ -126,7 +127,7 @@ public class RegistrazioneGraphicControllerCLI extends GenericGraphicControllerC
                 default -> throw new RoleException("Errore: ruolo non riconosciuto (" + ruolo + "). Registrazione interrotta.");
             }
 
-        } catch (RoleException | CredentialException e) {
+        } catch (RoleException | CredentialException | PersistenceConfigurationException e) {
             Printer.perror(e.getMessage());
         }
 

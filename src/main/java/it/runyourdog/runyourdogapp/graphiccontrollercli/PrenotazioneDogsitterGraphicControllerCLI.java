@@ -4,13 +4,14 @@ import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController
 import it.runyourdog.runyourdogapp.beans.*;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import java.util.List;
 
 
 public class PrenotazioneDogsitterGraphicControllerCLI extends GenericPrenotazioneGraphicControllerCLI<ProfiloDogsitterBean, ProfiloVeterinarioBean> {
 
-    public PrenotazioneDogsitterGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean padrone) {
+    public PrenotazioneDogsitterGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean padrone) throws PersistenceConfigurationException {
         super(loggedUser, padrone, new PrenotazioneDogsitterController());
     }
 
@@ -39,7 +40,7 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends GenericPrenotazio
     }
 
     @Override
-    protected GenericPrenotazioneGraphicControllerCLI<ProfiloVeterinarioBean, ProfiloDogsitterBean> crossBooking() {
+    protected GenericPrenotazioneGraphicControllerCLI<ProfiloVeterinarioBean, ProfiloDogsitterBean> crossBooking() throws PersistenceConfigurationException {
         return new PrenotazioneVeterinarioGraphicControllerCLI(loggedUser, profilo);
     }
 

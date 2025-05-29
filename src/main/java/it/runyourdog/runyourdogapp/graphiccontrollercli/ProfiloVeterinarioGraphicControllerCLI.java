@@ -6,6 +6,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.utils.Printer;
@@ -54,7 +55,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
 
                 break;
 
-            } catch (InvalidInputException e) {
+            } catch (InvalidInputException | PersistenceConfigurationException e) {
                 Printer.perror(e.getMessage());
             }
         }
@@ -66,7 +67,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
         try {
             LoginController controller = new LoginController();
             profile = controller.getVetProfileInfo(loggedUser);
-        } catch (ProfileRetrievalException | InvalidInputException e) {
+        } catch (ProfileRetrievalException | InvalidInputException | PersistenceConfigurationException e) {
             Printer.perror("Errore: " + e.getMessage());
 
         }
@@ -83,7 +84,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
             LoginController controller = new LoginController();
             p = controller.getVetProfileInfo(loggedUser);
 
-        } catch (ProfileRetrievalException | InvalidInputException e) {
+        } catch (ProfileRetrievalException | InvalidInputException | PersistenceConfigurationException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
 
@@ -125,7 +126,7 @@ public class ProfiloVeterinarioGraphicControllerCLI extends GenericLavoratorePro
             ctrl.updateProfiloVet(nuovo);
             this.profilo = nuovo;
             Printer.printf("\nProfilo e orari aggiornati con successo!\n");
-        } catch (DAOException e) {
+        } catch (DAOException | PersistenceConfigurationException e) {
             Printer.perror("Errore durante il salvataggio: " + e.getMessage());
         }
 

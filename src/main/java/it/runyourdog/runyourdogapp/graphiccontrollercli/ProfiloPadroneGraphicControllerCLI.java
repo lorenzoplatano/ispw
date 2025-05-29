@@ -6,6 +6,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import java.sql.Date;
@@ -60,7 +61,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
 
                 break;
 
-            } catch (InvalidInputException e) {
+            } catch (InvalidInputException | PersistenceConfigurationException e) {
                 Printer.perror(e.getMessage());
             }
         }
@@ -72,7 +73,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
         try {
             LoginController controller = new LoginController();
             profile = controller.getPadProfileInfo(loggedUser);
-        } catch (ProfileRetrievalException | InvalidInputException e) {
+        } catch (ProfileRetrievalException | InvalidInputException | PersistenceConfigurationException e) {
             Printer.perror("Errore: " + e.getMessage());
 
         }
@@ -162,7 +163,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
             this.profilo = newProfilo;
             con.aggiornaProfilo(profilo);
             Printer.printf("\nProfilo aggiornato con successo!\n");
-        } catch (DAOException e) {
+        } catch (DAOException | PersistenceConfigurationException e) {
             Printer.perror(e.getMessage());
         }
 

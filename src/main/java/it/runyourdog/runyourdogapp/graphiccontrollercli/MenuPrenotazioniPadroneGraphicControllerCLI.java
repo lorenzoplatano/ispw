@@ -22,14 +22,13 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends MenuPrenotazion
     ProfiloPadroneBean profilo;
     PrenotazioneBean selected;
 
-    public MenuPrenotazioniPadroneGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean padrone) {
+    public MenuPrenotazioniPadroneGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean padrone) throws PersistenceConfigurationException {
         this.loggedUser = loggedUser;
         this.profilo = padrone;
         this.controller = new PrenotazioneController();
     }
 
-    public void setController()
-    {
+    public void setController() throws PersistenceConfigurationException {
         controller = switch(this.selected.getTipo()){
             case DOGSITTER ->  new PrenotazioneDogsitterController();
             case VETERINARIO -> new PrenotazioneVeterinarioController();

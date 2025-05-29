@@ -6,6 +6,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
+import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class MenuPrenotazioniVeterinarioGraphicControllerCLI extends MenuPrenota
     private final PrenotazioneVeterinarioController con;
 
 
-    public MenuPrenotazioniVeterinarioGraphicControllerCLI(UserBean loggedUser, ProfiloVeterinarioBean profiloVeterinario) {
+    public MenuPrenotazioniVeterinarioGraphicControllerCLI(UserBean loggedUser, ProfiloVeterinarioBean profiloVeterinario) throws PersistenceConfigurationException {
         this.loggedUser = loggedUser;
         this.profiloVeterinario = profiloVeterinario;
         this.con = new PrenotazioneVeterinarioController();
