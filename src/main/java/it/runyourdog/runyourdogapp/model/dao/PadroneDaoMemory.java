@@ -81,7 +81,6 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
 
     @Override
     public void mandaRichiesta(Prenotazione req) {
-        req.setId(nextPrenotazioneDogId++);
         req.setStato(ReservationState.IN_ATTESA);
         req.setTipo(ReservationType.DOGSITTER);
         req.getLavoratore().setNome(trovaNomeLavoratoreByEmail(req.getLavoratore().getEmail()));
@@ -156,7 +155,6 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
 
     @Override
     public void mandaRichiestaVet(Prenotazione req)  {
-        req.setId(nextPrenotazioneVetId++);
         req.setStato(ReservationState.IN_ATTESA);
         req.setTipo(ReservationType.VETERINARIO);
         req.getLavoratore().setNome(trovaNomeLavoratoreByEmail(req.getLavoratore().getEmail()));

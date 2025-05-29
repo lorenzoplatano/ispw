@@ -22,8 +22,6 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
     protected static final List<Dogsitter> dogsitters = new ArrayList<>();
     protected static final List<Veterinario> veterinari = new ArrayList<>();
 
-    protected static int nextPrenotazioneDogId = 1;
-    protected static int nextPrenotazioneVetId = 1;
 
     private static LoggedUserDaoMemory instance;
 
