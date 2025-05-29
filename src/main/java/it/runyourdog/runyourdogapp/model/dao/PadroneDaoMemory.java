@@ -16,6 +16,15 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     private final List<Veterinario> veterinari = new ArrayList<>();
     private int nextPrenotazioneId = 1;
 
+    private static PadroneDaoMemory instance;
+
+    public static PadroneDaoMemory getInstance() {
+        if (instance == null) {
+            instance = new PadroneDaoMemory ();
+        }
+        return instance;
+    }
+
     public PadroneDaoMemory() {
         super();
 
