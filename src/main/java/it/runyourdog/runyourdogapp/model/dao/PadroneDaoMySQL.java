@@ -283,8 +283,6 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
             Time inizio = sendingReq.getOraInizio();
 
 
-
-
             this.cs = this.conn.prepareCall("{call creaPrenotazioneVeterinario(?,?,?,?)}");
             this.cs.setString(1, veterinario.getEmail());
             this.cs.setString(2, pad.getEmail());

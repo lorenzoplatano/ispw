@@ -4,7 +4,6 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.entities.*;
 import it.runyourdog.runyourdogapp.utils.OrariParser;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
-
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -107,17 +106,44 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     }
 
     @Override
-    //da fare
+
     public List<Veterinario> findVet(Prenotazione pren)  {
-        return new ArrayList<>(veterinari);
+        List<Veterinario> disponibili = new ArrayList<>();
+        String citta = pren.getLavoratore().getCitta();
+        Date data = pren.getData();
+        Time ora = pren.getOraInizio();
+
+        String giornoRichiesto = OrariParser.fromEngToIt(data.toLocalDate().getDayOfWeek());
+
+        for (Veterinario v : veterinari) {
+            if (v.getCitta() != null
+                    && v.getCitta().equalsIgnoreCase(citta)) {
+
+                boolean disponibile = false;
+
+                for (Orario o : v.getOrari()) {
+                    boolean giornoOK  = o.getGiorno().equalsIgnoreCase(giornoRichiesto);
+                    boolean inizioOK  = !o.getOrainizio().after(ora);
+
+                    if (giornoOK && inizioOK) {
+                        disponibile = true;
+                        break;
+                    }
+                }
+
+                if (disponibile) {
+                    disponibili.add(v);
+                }
+            }
+        }
+        return disponibili;
     }
 
     @Override
-    //da fare
     public void mandaRichiestaVet(Prenotazione req)  {
         req.setId(nextPrenotazioneVetId++);
         req.setStato(ReservationState.IN_ATTESA);
-        super.prenotazioni.add(req);
+        prenotazioni.add(req);
     }
 
     @Override
