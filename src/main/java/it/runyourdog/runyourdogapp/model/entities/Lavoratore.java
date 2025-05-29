@@ -1,5 +1,7 @@
 package it.runyourdog.runyourdogapp.model.entities;
 
+import java.util.List;
+
 public class Lavoratore extends User {
 
     private String nome;
@@ -7,6 +9,7 @@ public class Lavoratore extends User {
     private String genere;
     private String citta;
     private String telefono;
+    private List<Orario> orari;
 
     public Lavoratore () {}
 
@@ -71,4 +74,8 @@ public class Lavoratore extends User {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public List<Orario> getOrari() {return orari;}
+
+    public void setOrari(List<Orario> orari) {this.orari = orari;}
 }

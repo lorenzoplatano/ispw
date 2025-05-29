@@ -12,15 +12,38 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-//da aggiungere gli orari all'entità veterinario(o direttamente al lavoratore)
+
 public class VeterinarioDaoMemory extends LoggedUserDaoMemory {
     private final List<Veterinario> veterinari = new ArrayList<>();
 
     public VeterinarioDaoMemory() {
         super();
 
-        Veterinario v = new Veterinario("veterinario1@example.com", "Luca", 40, "M", "Roma", "Via Milano 5");
-        v.setUsername("Dr. Luca"); v.setRole(Role.VETERINARIO);
+
+        Veterinario v = new Veterinario("veterinario1@example.com", "pass123");
+
+
+        v.setUsername("Dr. Luca");
+        v.setRole(Role.VETERINARIO);
+
+
+        v.setNome("Luca Bianchi");
+        v.setEta(40);
+        v.setGenere("M");
+        v.setCitta("Roma");
+        v.setTelefono("3397654321");
+        v.setIndirizzo("Via Milano 5, 00100 Roma");
+
+
+        List<Orario> defaultOrari = List.of(
+                new Orario("Lunedì",      Time.valueOf("09:00:00"), Time.valueOf("13:00:00")),
+                new Orario("Martedì",     Time.valueOf("15:00:00"), Time.valueOf("19:00:00")),
+                new Orario("Giovedì",     Time.valueOf("08:30:00"), Time.valueOf("12:30:00")),
+                new Orario("Sabato",      Time.valueOf("10:00:00"), Time.valueOf("14:00:00"))
+        );
+        v.setOrari(defaultOrari);
+
+
         veterinari.add(v);
     }
 
@@ -34,9 +57,11 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory {
 
     public List<Orario> vetOrari(Veterinario vet) throws DAOException {
 
-        List<Orario> orari = new ArrayList<>();
-        orari.add(new Orario("Martedì", Time.valueOf("10:00:00"), Time.valueOf("14:00:00")));
-        orari.add(new Orario("Giovedì", Time.valueOf("15:00:00"), Time.valueOf("18:30:00")));
+        Veterinario v = vetInfo(vet);
+        List<Orario> orari = v.getOrari();
+        if (orari == null) {
+            throw new DAOException("Orari non trovati per: " + v.getEmail());
+        }
         return orari;
     }
 
