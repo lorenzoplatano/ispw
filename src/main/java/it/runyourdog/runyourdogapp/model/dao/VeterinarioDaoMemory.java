@@ -81,9 +81,8 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
 
     public List<Prenotazione> showReservations(Veterinario vet) throws DAOException {
 
-        return super.prenotazioni.stream()
-                .filter(pr -> pr.getLavoratore() instanceof Veterinario
-                        && ((Veterinario)pr.getLavoratore()).getEmail().equalsIgnoreCase(vet.getEmail()))
+        return LoggedUserDaoMemory.getInstance().prenotazioni.stream()
+                .filter(pr -> pr.getLavoratore().getEmail().equalsIgnoreCase(vet.getEmail()))
                 .collect(Collectors.toList());
     }
 

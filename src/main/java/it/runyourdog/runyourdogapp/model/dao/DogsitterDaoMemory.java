@@ -75,20 +75,19 @@ public class DogsitterDaoMemory extends LoggedUserDaoMemory implements Dogsitter
         return orari;
     }
 
-    //da aggiungere attributo orari all'entità dogsitter
+
     public void registerProcedure(Dogsitter dogsitter, List<Orario> orari) throws DAOException {
         dogsitters.add(dogsitter);
     }
 
     public List<Prenotazione> showReservations(Dogsitter ds) throws DAOException {
 
-        return super.prenotazioni.stream()
-                .filter(pr -> pr.getLavoratore() instanceof Dogsitter
-                        && ((Dogsitter)pr.getLavoratore()).getEmail().equalsIgnoreCase(ds.getEmail()))
+        return LoggedUserDaoMemory.getInstance().prenotazioni.stream()
+                .filter(pr -> pr.getLavoratore().getEmail().equalsIgnoreCase(ds.getEmail()))
                 .collect(Collectors.toList());
     }
 
-    //da verificare
+
     public void updateDogsitter(Dogsitter updated, List<Orario> orari) throws DAOException {
         Dogsitter existing = dogsitters.stream()
                 .filter(d -> d.getEmail().equalsIgnoreCase(updated.getEmail()))

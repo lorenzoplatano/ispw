@@ -86,7 +86,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         updateStatus(prenotazione.getId(), prenotazione.getTipo(), ReservationState.CANCELLATA);
     }
 
-    //funziona ma non si aggiorna la tabella
+
     private void updateStatus(int id,
                               ReservationType expectedType,
                               ReservationState newState) throws DAOException {

@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
-    private static final List<Padrone> padroni = new ArrayList<>();
-    private static final List<Dog> dogs = new ArrayList<>();
-    private static final List<Dogsitter> dogsitters = new ArrayList<>();
-    private static final List<Veterinario> veterinari = new ArrayList<>();
-    private static int nextPrenotazioneId = 1;
+    private final List<Padrone> padroni = new ArrayList<>();
+    private final List<Dog> dogs = new ArrayList<>();
+    private final List<Dogsitter> dogsitters = new ArrayList<>();
+    private final List<Veterinario> veterinari = new ArrayList<>();
+    private int nextPrenotazioneId = 1;
 
     private static PadroneDaoMemory instance;
 
@@ -72,11 +72,11 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     }
 
     //da fare
-    public List<Dogsitter> findDogsitter(Prenotazione pren) throws DAOException {
+    public List<Dogsitter> findDogsitter(Prenotazione pren)  {
         return new ArrayList<>(dogsitters);
     }
 
-    public void mandaRichiesta(Prenotazione req) throws DAOException {
+    public void mandaRichiesta(Prenotazione req) {
         req.setId(nextPrenotazioneId++);
         req.setStato(ReservationState.IN_ATTESA);
 
@@ -91,22 +91,22 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     }
 
     //da fare
-    public int countOverlapping(Prenotazione pren) throws DAOException {
+    public int countOverlapping(Prenotazione pren)  {
         return 0;
     }
 
     //da fare
-    public int countVetOverlapping(Prenotazione pren) throws DAOException {
+    public int countVetOverlapping(Prenotazione pren)  {
         return 0;
     }
 
     //da fare
-    public List<Veterinario> findVet(Prenotazione pren) throws DAOException {
+    public List<Veterinario> findVet(Prenotazione pren)  {
         return new ArrayList<>(veterinari);
     }
 
     //da verificare
-    public void mandaRichiestaVet(Prenotazione req) throws DAOException {
+    public void mandaRichiestaVet(Prenotazione req)  {
         req.setId(nextPrenotazioneId++);
         req.setStato(ReservationState.IN_ATTESA);
         super.prenotazioni.add(req);

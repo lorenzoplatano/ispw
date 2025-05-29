@@ -1,6 +1,5 @@
 package it.runyourdog.runyourdogapp.model.dao;
 
-import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.entities.User;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
@@ -48,7 +47,7 @@ public class UnloggedUserDaoMemory implements UnloggedUserDao {
     }
 
     @Override
-    public boolean emailCheck(User newUser) throws DAOException {
+    public boolean emailCheck(User newUser)  {
         String email = newUser.getEmail();
         boolean available = users.stream()
                 .noneMatch(u -> u.getEmail().equalsIgnoreCase(email));
