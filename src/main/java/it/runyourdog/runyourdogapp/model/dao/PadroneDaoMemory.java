@@ -13,16 +13,6 @@ import java.util.stream.Collectors;
 
 public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
 
-    private static PadroneDaoMemory instance;
-
-    public static PadroneDaoMemory getInstance() {
-        if (instance == null) {
-            instance = new PadroneDaoMemory ();
-        }
-        return instance;
-    }
-
-
 
     @Override
     public Padrone padInfo(Padrone pad) throws DAOException {

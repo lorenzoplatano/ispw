@@ -15,14 +15,14 @@ public class DaoFactoryMemory extends DaoFactory {
     }
 
     public PadroneDao getPadroneDao() {
-        return PadroneDaoMemory.getInstance();
+        return new PadroneDaoMemory();
     }
 
     public DogsitterDao getDogsitterDao() {
-        return DogsitterDaoMemory.getInstance();
+        return new DogsitterDaoMemory();
     }
 
     public VeterinarioDao getVeterinarioDao() {
-        return VeterinarioDaoMemory.getInstance();
+        return new VeterinarioDaoMemory();
     }
 }

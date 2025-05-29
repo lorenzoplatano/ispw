@@ -12,17 +12,6 @@ import java.util.stream.Collectors;
 
 public class DogsitterDaoMemory extends LoggedUserDaoMemory implements DogsitterDao {
 
-    private static DogsitterDaoMemory instance;
-
-    public static DogsitterDaoMemory getInstance() {
-        if (instance == null) {
-            instance = new DogsitterDaoMemory();
-        }
-        return instance;
-    }
-
-
-
     @Override
     public Dogsitter dogsInfo(Dogsitter dogs) throws DAOException {
 

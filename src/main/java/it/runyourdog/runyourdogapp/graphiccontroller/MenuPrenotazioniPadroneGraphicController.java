@@ -14,6 +14,7 @@ import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
@@ -54,15 +55,19 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
     PrenotazioneBean selected;
 
     public void setController() {
-    try {
-        switch (this.selected.getTipo()) {
-            case DOGSITTER -> this.controller = new PrenotazioneDogsitterController();
-            case VETERINARIO -> this.controller = new PrenotazioneVeterinarioController();
+        try {
+            ReservationType tipo = this.selected.getTipo();
+            if (tipo == ReservationType.DOGSITTER) {
+                this.controller = new PrenotazioneDogsitterController();
+            } else if (tipo == ReservationType.VETERINARIO) {
+                this.controller = new PrenotazioneVeterinarioController();
+            } else {
+                throw new IllegalArgumentException("Tipo di prenotazione non supportato: " + tipo);
+            }
+        } catch (PersistenceConfigurationException e) {
+            Printer.perror(e.getMessage());
         }
-    } catch (PersistenceConfigurationException e) {
-        Printer.perror(e.getMessage());
     }
-}
 
     public void setSelected()
     {
