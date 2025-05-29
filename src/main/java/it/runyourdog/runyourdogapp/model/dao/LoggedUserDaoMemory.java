@@ -48,8 +48,8 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
 
         List<Orario> defaultOrari = List.of(
                 new Orario("Lunedì",      Time.valueOf("08:00:00"), Time.valueOf("12:00:00")),
-                new Orario("Martedì",     Time.valueOf("10:00:00"), Time.valueOf("14:00:00")),
-                new Orario("Mercoledì",   Time.valueOf("14:00:00"), Time.valueOf("18:00:00")),
+                new Orario("Martedì",     Time.valueOf("10:00:00"), Time.valueOf("15:00:00")),
+                new Orario("Mercoledì",   Time.valueOf("12:30:00"), Time.valueOf("18:00:00")),
                 new Orario("Venerdì",     Time.valueOf("09:00:00"), Time.valueOf("13:00:00"))
         );
         ds.setOrari(defaultOrari);
@@ -65,8 +65,8 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
 
         List<Orario> defaultOrariV = List.of(
                 new Orario("Lunedì",      Time.valueOf("09:00:00"), Time.valueOf("13:00:00")),
-                new Orario("Martedì",     Time.valueOf("15:00:00"), Time.valueOf("19:00:00")),
-                new Orario("Giovedì",     Time.valueOf("08:30:00"), Time.valueOf("12:30:00")),
+                new Orario("Martedì",     Time.valueOf("15:30:00"), Time.valueOf("19:00:00")),
+                new Orario("Giovedì",     Time.valueOf("08:30:00"), Time.valueOf("13:30:00")),
                 new Orario("Sabato",      Time.valueOf("10:00:00"), Time.valueOf("14:00:00"))
         );
         v.setOrari(defaultOrariV);
