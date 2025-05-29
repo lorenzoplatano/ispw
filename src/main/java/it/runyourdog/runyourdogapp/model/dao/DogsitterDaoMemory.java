@@ -77,7 +77,9 @@ public class DogsitterDaoMemory extends LoggedUserDaoMemory implements Dogsitter
 
 
     public void registerProcedure(Dogsitter dogsitter, List<Orario> orari) throws DAOException {
+        dogsitter.setOrari(orari);
         dogsitters.add(dogsitter);
+        UnloggedUserDaoMemory.getInstance().addUser(dogsitter);
     }
 
     public List<Prenotazione> showReservations(Dogsitter ds) throws DAOException {

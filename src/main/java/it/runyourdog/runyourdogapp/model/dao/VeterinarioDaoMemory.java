@@ -75,7 +75,9 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
     }
 
     public void registerProcedure(Veterinario veterinarian, List<Orario> orari) throws DAOException {
+        veterinarian.setOrari(orari);
         veterinari.add(veterinarian);
+        UnloggedUserDaoMemory.getInstance().addUser(veterinarian);
 
     }
 
@@ -86,14 +88,25 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
                 .collect(Collectors.toList());
     }
 
-    public void updateVet(Veterinario veterinarian, List<Orario> orari) throws DAOException {
-        Veterinario existing = vetInfo(veterinarian);
-        existing.setNome(veterinarian.getNome());
-        existing.setEta(veterinarian.getEta());
-        existing.setGenere(veterinarian.getGenere());
-        existing.setCitta(veterinarian.getCitta());
-        existing.setIndirizzo(veterinarian.getIndirizzo());
-        existing.setTelefono(veterinarian.getTelefono());
+    @Override
+    public void updateVet(Veterinario updated, List<Orario> orari) throws DAOException {
 
+        Veterinario existing = veterinari.stream()
+                .filter(v -> v.getEmail().equalsIgnoreCase(updated.getEmail()))
+                .findFirst()
+                .orElseThrow(() ->
+                        new DAOException("Veterinario non trovato: " + updated.getEmail())
+                );
+
+
+        existing.setUsername(updated.getUsername());
+        existing.setNome(updated.getNome());
+        existing.setEta(updated.getEta());
+        existing.setGenere(updated.getGenere());
+        existing.setCitta(updated.getCitta());
+        existing.setIndirizzo(updated.getIndirizzo());
+        existing.setTelefono(updated.getTelefono());
+
+        existing.setOrari(new ArrayList<>(orari));
     }
 }

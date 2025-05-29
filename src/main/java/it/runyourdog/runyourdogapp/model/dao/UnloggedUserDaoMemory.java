@@ -53,4 +53,6 @@ public class UnloggedUserDaoMemory implements UnloggedUserDao {
                 .noneMatch(u -> u.getEmail().equalsIgnoreCase(email));
         return available;
     }
+
+    public void addUser(User user) {users.add(user);}
 }
