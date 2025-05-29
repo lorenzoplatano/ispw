@@ -76,7 +76,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
 
         Prenotazione p1 = new Prenotazione(1, ReservationType.DOGSITTER);
         p1.setStato(ReservationState.ACCETTATA);
-        p1.setData(Date.valueOf("2025-05-25"));
+        p1.setData(Date.valueOf("2025-06-15"));
         p1.setOraInizio(Time.valueOf("09:00:00"));
         p1.setOraFine(Time.valueOf("11:00:00"));
         p1.setPadrone(p);
@@ -86,7 +86,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
 
         Prenotazione p2 = new Prenotazione(2, ReservationType.VETERINARIO);
         p2.setStato(ReservationState.IN_ATTESA);
-        p2.setData(Date.valueOf("2025-05-29"));
+        p2.setData(Date.valueOf("2025-06-05"));
         p2.setOraInizio(Time.valueOf("14:00:00"));
         p2.setPadrone(p);
         p2.setCane(p.getCane());
@@ -152,6 +152,20 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
                 }
             }
         }
+    }
+
+    public String trovaNomeLavoratoreByEmail(String email) {
+        for (Dogsitter ds : dogsitters) {
+            if (ds != null && email.equalsIgnoreCase(ds.getEmail())) {
+                return ds.getNome();
+            }
+        }
+        for (Veterinario vet : veterinari) {
+            if (vet != null && email.equalsIgnoreCase(vet.getEmail())) {
+                return vet.getNome();
+            }
+        }
+        return null;
     }
 
 }
