@@ -71,9 +71,38 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         dogs.add(dog);
     }
 
-    //da fare
-    public List<Dogsitter> findDogsitter(Prenotazione pren)  {
-        return new ArrayList<>(dogsitters);
+    @Override
+    public List<Dogsitter> findDogsitter(Prenotazione pren) {
+        List<Dogsitter> disponibili = new ArrayList<>();
+        String cittaRichiesta = pren.getPadrone().getCitta();
+        Date dataRichiesta = pren.getData();
+        java.sql.Time oraInizioRichiesta = pren.getOraInizio();
+        java.sql.Time oraFineRichiesta = pren.getOraFine();
+
+        for (Dogsitter ds : dogsitters) {
+
+            if (ds.getCitta() == null || !ds.getCitta().equalsIgnoreCase(cittaRichiesta)) {
+                continue;
+            }
+
+            List<Orario> orari = ds.getOrari();
+            boolean disponibile = false;
+            String giornoRichiesto = dataRichiesta.toLocalDate().getDayOfWeek().name();
+            for (Orario o : orari) {
+
+                if (!o.getGiorno().equalsIgnoreCase(giornoRichiesto)) continue;
+
+                if ((o.getOrainizio().equals(oraInizioRichiesta) || o.getOrainizio().before(oraInizioRichiesta))
+                        && (o.getOrafine().equals(oraFineRichiesta) || o.getOrafine().after(oraFineRichiesta))) {
+                    disponibile = true;
+                    break;
+                }
+            }
+            if (disponibile) {
+                disponibili.add(ds);
+            }
+        }
+        return disponibili;
     }
 
     public void mandaRichiesta(Prenotazione req) {
