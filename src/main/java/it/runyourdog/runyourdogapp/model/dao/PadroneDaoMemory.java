@@ -80,7 +80,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         req.setId(nextPrenotazioneId++);
         req.setStato(ReservationState.IN_ATTESA);
 
-        super.prenotazioni.add(req);
+        LoggedUserDaoMemory.getInstance().prenotazioni.add(req);
     }
 
 
@@ -114,12 +114,15 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
 
     //non si aggiorna
     public void updatePadrone(Padrone pad, Dog dog) throws DAOException {
-        Padrone existing = padInfo(pad);
+        Padrone existing= padroni.stream()
+                .filter(p -> p.getEmail().equalsIgnoreCase(pad.getEmail()))
+                .findFirst()
+                .orElseThrow(() -> new DAOException("Padrone non trovato: " + pad.getEmail()));
         existing.setNome(pad.getNome());
         existing.setTelefono(pad.getTelefono());
         existing.setIndirizzo(pad.getIndirizzo());
         existing.setCitta(pad.getCitta());
-        Dog existingDog = dogInfo(pad);
+        Dog existingDog = existing.getCane();
         existingDog.setNome(dog.getNome());
         existingDog.setSesso(dog.getSesso());
         existingDog.setRazza(dog.getRazza());
