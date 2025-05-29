@@ -40,13 +40,13 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
         UnloggedUserDaoMemory.getInstance().addUser(veterinarian);
     }
 
-    //aggiungi gestione CONCLUSA
     @Override
     public List<Prenotazione> showReservations(Veterinario vet) throws DAOException {
-
-        return prenotazioni.stream()
+        List<Prenotazione> list = prenotazioni.stream()
                 .filter(pr -> pr.getLavoratore().getEmail().equalsIgnoreCase(vet.getEmail()))
                 .toList();
+        gestisciConclusa(list);
+        return list;
     }
 
     @Override

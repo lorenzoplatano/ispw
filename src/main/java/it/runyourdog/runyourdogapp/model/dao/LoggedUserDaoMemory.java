@@ -9,6 +9,8 @@ import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -73,8 +75,8 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         veterinari.add(v);
 
         Prenotazione p1 = new Prenotazione(1, ReservationType.DOGSITTER);
-        p1.setStato(ReservationState.IN_ATTESA);
-        p1.setData(Date.valueOf("2025-06-15"));
+        p1.setStato(ReservationState.ACCETTATA);
+        p1.setData(Date.valueOf("2025-05-25"));
         p1.setOraInizio(Time.valueOf("09:00:00"));
         p1.setOraFine(Time.valueOf("11:00:00"));
         p1.setPadrone(p);
@@ -132,6 +134,24 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
                     "Prenotazione con id %d e tipo %s non trovata", id, expectedType));
         }
         opt.get().setStato(newState);
+    }
+
+    public void gestisciConclusa(List<Prenotazione> prenotazioniDaGestire) {
+        LocalDate oggi = LocalDate.now();
+        LocalTime oraAttuale = LocalTime.now();
+
+        for (Prenotazione p : prenotazioniDaGestire) {
+            if (p.getStato() == ReservationState.ACCETTATA) {
+                LocalDate dataPrenotazione = p.getData().toLocalDate();
+                LocalTime oraInizio = p.getOraInizio().toLocalTime();
+
+                boolean prenotazionePassata = oggi.isAfter(dataPrenotazione) || (oggi.isEqual(dataPrenotazione) && oraAttuale.isAfter(oraInizio));
+
+                if (prenotazionePassata) {
+                    p.setStato(ReservationState.CONCLUSA);
+                }
+            }
+        }
     }
 
 }

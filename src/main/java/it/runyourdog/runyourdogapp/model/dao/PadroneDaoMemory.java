@@ -85,12 +85,13 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         prenotazioni.add(req);
     }
 
-    //aggiungi gestione CONCLUSA
     @Override
     public List<Prenotazione> showReservations(Padrone pad) throws DAOException {
-        return prenotazioni.stream()
-                .filter(pr -> pr.getPadrone().getEmail().equalsIgnoreCase(pad.getEmail()))
+        List<Prenotazione> list = prenotazioni.stream()
+                .filter(pr -> pr.getLavoratore().getEmail().equalsIgnoreCase(pad.getEmail()))
                 .toList();
+        gestisciConclusa(list);
+        return list;
     }
 
     @Override
