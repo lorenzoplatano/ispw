@@ -49,35 +49,28 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         Date dataRichiesta = pren.getData();
         Time oraInizioRichiesta = pren.getOraInizio();
         Time oraFineRichiesta = pren.getOraFine();
+        String giornoRichiesto = OrariParser.fromEngToIt(dataRichiesta.toLocalDate().getDayOfWeek());
 
         for (Dogsitter ds : dogsitters) {
+            if (ds.getCitta() != null
+                    && ds.getCitta().equalsIgnoreCase(cittaRichiesta)) {
 
-            if (ds.getCitta() == null || !ds.getCitta().equalsIgnoreCase(cittaRichiesta)) {
-                continue;
-            }
+                boolean disponibile = false;
 
-            List<Orario> orari = ds.getOrari();
-            boolean disponibile = false;
-            String giornoRichiesto = OrariParser.fromEngToIt(dataRichiesta.toLocalDate().getDayOfWeek());
+                for (Orario o : ds.getOrari()) {
+                    boolean giornoOK  = o.getGiorno().equalsIgnoreCase(giornoRichiesto);
+                    boolean inizioOK  = !o.getOrainizio().after(oraInizioRichiesta);
+                    boolean fineOK    = !o.getOrafine().before(oraFineRichiesta);
 
-            for (Orario o : orari) {
-
-                if (!o.getGiorno().equalsIgnoreCase(giornoRichiesto)) {
-                    continue;
+                    if (giornoOK && inizioOK && fineOK) {
+                        disponibile = true;
+                        break;
+                    }
                 }
 
-                boolean inizioOK = o.getOrainizio().equals(oraInizioRichiesta) || o.getOrainizio().before(oraInizioRichiesta);
-                boolean fineOK = o.getOrafine().equals(oraFineRichiesta) || o.getOrafine().after(oraFineRichiesta);
-
-
-
-                if (inizioOK && fineOK) {
-                    disponibile = true;
-                    break;
+                if (disponibile) {
+                    disponibili.add(ds);
                 }
-            }
-            if (disponibile) {
-                disponibili.add(ds);
             }
         }
         return disponibili;
