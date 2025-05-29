@@ -24,6 +24,7 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
         return instance;
     }
 
+
     public VeterinarioDaoMemory() {
 
 
@@ -54,6 +55,7 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
         veterinari.add(v);
     }
 
+    @Override
     public Veterinario vetInfo(Veterinario vet) throws DAOException {
         return veterinari.stream()
                 .filter(v -> v.getEmail().equalsIgnoreCase(vet.getEmail())
@@ -62,6 +64,7 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
                 .orElseThrow(() -> new DAOException("Veterinario non trovato: " + vet.getEmail()));
     }
 
+    @Override
     public List<Orario> vetOrari(Veterinario vet) throws DAOException {
 
         Veterinario v = vetInfo(vet);
@@ -72,6 +75,7 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
         return orari;
     }
 
+    @Override
     public void registerProcedure(Veterinario veterinarian, List<Orario> orari) throws DAOException {
         veterinarian.setOrari(orari);
         veterinari.add(veterinarian);
@@ -79,6 +83,7 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
 
     }
 
+    @Override
     public List<Prenotazione> showReservations(Veterinario vet) throws DAOException {
 
         return LoggedUserDaoMemory.getInstance().prenotazioni.stream()

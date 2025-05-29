@@ -52,6 +52,7 @@ public class DogsitterDaoMemory extends LoggedUserDaoMemory implements Dogsitter
     }
 
 
+    @Override
     public Dogsitter dogsInfo(Dogsitter dogs) throws DAOException {
 
         Dogsitter existing = dogsitters.stream()
@@ -64,6 +65,7 @@ public class DogsitterDaoMemory extends LoggedUserDaoMemory implements Dogsitter
     }
 
 
+    @Override
     public List<Orario> dogsOrari(Dogsitter dogs) throws DAOException {
         Dogsitter d = dogsInfo(dogs);
         List<Orario> orari = d.getOrari();
@@ -74,12 +76,14 @@ public class DogsitterDaoMemory extends LoggedUserDaoMemory implements Dogsitter
     }
 
 
+    @Override
     public void registerProcedure(Dogsitter dogsitter, List<Orario> orari) throws DAOException {
         dogsitter.setOrari(orari);
         dogsitters.add(dogsitter);
         UnloggedUserDaoMemory.getInstance().addUser(dogsitter);
     }
 
+    @Override
     public List<Prenotazione> showReservations(Dogsitter ds) throws DAOException {
 
         return LoggedUserDaoMemory.getInstance().prenotazioni.stream()
@@ -88,6 +92,7 @@ public class DogsitterDaoMemory extends LoggedUserDaoMemory implements Dogsitter
     }
 
 
+    @Override
     public void updateDogsitter(Dogsitter updated, List<Orario> orari) throws DAOException {
         Dogsitter existing = dogsitters.stream()
                 .filter(d -> d.getEmail().equalsIgnoreCase(updated.getEmail()))

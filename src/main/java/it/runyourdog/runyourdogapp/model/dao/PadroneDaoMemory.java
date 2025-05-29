@@ -31,7 +31,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         p.setTelefono("1234567890");
         p.setIndirizzo("Via Roma 1");
         p.setCitta("Roma");
-        LoggedUserDaoMemory.getInstance().padroni.add(p);
+        padroni.add(p);
 
         Dog d = new Dog("Fido", "M", "Labrador", "000111222", Date.valueOf("2020-01-01"), List.of("Vacc1", "Vacc2"));
         dogs.add(d);
@@ -56,6 +56,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         veterinari.add(v);
     }
 
+    @Override
     public Padrone padInfo(Padrone pad) throws DAOException {
         return padroni.stream()
                 .filter(p -> p.getEmail().equalsIgnoreCase(pad.getEmail())
@@ -64,6 +65,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
                 .orElseThrow(() -> new DAOException("Padrone non trovato: " + pad.getEmail()));
     }
 
+    @Override
     public Dog dogInfo(Padrone pad) throws DAOException {
         Padrone existing = padInfo(pad);
         Dog cane = existing.getCane();
@@ -74,6 +76,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     }
 
 
+    @Override
     public void registerProcedure(Padrone pad, Dog dog) throws DAOException {
         pad.setCane(dog);
         padroni.add(pad);
@@ -139,44 +142,49 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     }
 
 
-
+    @Override
+    //da fare
     public void mandaRichiesta(Prenotazione req) {
-        req.setId(nextPrenotazioneId++);
+        req.setId(LoggedUserDaoMemory.getInstance().nextPrenotazioneDogId++);
         req.setStato(ReservationState.IN_ATTESA);
 
-        LoggedUserDaoMemory.getInstance().prenotazioni.add(req);
+        prenotazioni.add(req);
     }
 
-
+    @Override
     public List<Prenotazione> showReservations(Padrone pad) throws DAOException {
-        return LoggedUserDaoMemory.getInstance().prenotazioni.stream()
+        return prenotazioni.stream()
                 .filter(pr -> pr.getPadrone().getEmail().equalsIgnoreCase(pad.getEmail()))
                 .collect(Collectors.toList());
     }
 
+    @Override
     //da fare
     public int countOverlapping(Prenotazione pren)  {
         return 0;
     }
 
+    @Override
     //da fare
     public int countVetOverlapping(Prenotazione pren)  {
         return 0;
     }
 
+    @Override
     //da fare
     public List<Veterinario> findVet(Prenotazione pren)  {
         return new ArrayList<>(veterinari);
     }
 
-    //da verificare
+    @Override
+    //da fare
     public void mandaRichiestaVet(Prenotazione req)  {
-        req.setId(nextPrenotazioneId++);
+        req.setId(LoggedUserDaoMemory.getInstance().nextPrenotazioneVetId++);
         req.setStato(ReservationState.IN_ATTESA);
         super.prenotazioni.add(req);
     }
 
-    //non si aggiorna
+    @Override
     public void updatePadrone(Padrone pad, Dog dog) throws DAOException {
         Padrone existing= padroni.stream()
                 .filter(p -> p.getEmail().equalsIgnoreCase(pad.getEmail()))
