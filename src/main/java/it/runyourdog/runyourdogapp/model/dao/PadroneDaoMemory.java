@@ -4,7 +4,7 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.entities.*;
 import it.runyourdog.runyourdogapp.utils.OrariParser;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
-import it.runyourdog.runyourdogapp.utils.enumeration.Role;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -60,52 +60,36 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         Time oraInizioRichiesta = pren.getOraInizio();
         Time oraFineRichiesta = pren.getOraFine();
 
-        System.out.println("[DEBUG] Ricerca dogsitter per città: " + cittaRichiesta +
-                ", data: " + dataRichiesta +
-                ", ora inizio: " + oraInizioRichiesta +
-                ", ora fine: " + oraFineRichiesta);
-
         for (Dogsitter ds : dogsitters) {
-            System.out.println("[DEBUG] Analizzo dogsitter: " + ds.getEmail() + " (" + ds.getCitta() + ")");
 
             if (ds.getCitta() == null || !ds.getCitta().equalsIgnoreCase(cittaRichiesta)) {
-                System.out.println("[DEBUG] Escluso per città: " + ds.getCitta());
                 continue;
             }
 
             List<Orario> orari = ds.getOrari();
             boolean disponibile = false;
             String giornoRichiesto = OrariParser.fromEngToIt(dataRichiesta.toLocalDate().getDayOfWeek());
-            System.out.println("[DEBUG] Giorno richiesto: " + giornoRichiesto);
 
             for (Orario o : orari) {
-                System.out.println("[DEBUG] Controllo orario: " + o.getGiorno() + " " +
-                        o.getOrainizio() + "-" + o.getOrafine());
 
                 if (!o.getGiorno().equalsIgnoreCase(giornoRichiesto)) {
-                    System.out.println("[DEBUG] Giorno non corrisponde: " + o.getGiorno());
                     continue;
                 }
 
                 boolean inizioOK = o.getOrainizio().equals(oraInizioRichiesta) || o.getOrainizio().before(oraInizioRichiesta);
                 boolean fineOK = o.getOrafine().equals(oraFineRichiesta) || o.getOrafine().after(oraFineRichiesta);
 
-                System.out.println("[DEBUG] Inizio OK: " + inizioOK + ", Fine OK: " + fineOK);
+
 
                 if (inizioOK && fineOK) {
                     disponibile = true;
-                    System.out.println("[DEBUG] Dogsitter disponibile per questo orario.");
                     break;
                 }
             }
             if (disponibile) {
-                System.out.println("[DEBUG] Dogsitter aggiunto: " + ds.getEmail());
                 disponibili.add(ds);
-            } else {
-                System.out.println("[DEBUG] Dogsitter NON disponibile: " + ds.getEmail());
             }
         }
-        System.out.println("[DEBUG] Numero dogsitter trovati: " + disponibili.size());
         return disponibili;
     }
 
@@ -171,8 +155,4 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         existingDog.setVaccinazioni(dog.getVaccinazioni());
     }
 
-    @Override
-    public String creaOrari(List<Orario> orari) {
-        return super.creaOrari(orari);
-    }
 }

@@ -7,7 +7,7 @@ import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
-import it.runyourdog.runyourdogapp.model.dao.DogsitterDaoMemory;
+
 import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 
 import it.runyourdog.runyourdogapp.model.entities.Padrone;

@@ -4,9 +4,7 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
-import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

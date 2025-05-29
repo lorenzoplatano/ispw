@@ -9,7 +9,7 @@ import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.model.dao.VeterinarioDao;
-import it.runyourdog.runyourdogapp.model.dao.VeterinarioDaoMemory;
+
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 import it.runyourdog.runyourdogapp.model.entities.Veterinario;
