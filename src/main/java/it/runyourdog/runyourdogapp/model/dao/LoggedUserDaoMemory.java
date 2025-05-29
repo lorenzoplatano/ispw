@@ -64,7 +64,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         v.setIndirizzo("Via Milano 5");
 
         List<Orario> defaultOrariV = List.of(
-                new Orario("Lunedì",      Time.valueOf("09:00:00"), Time.valueOf("13:00:00")),
+                new Orario("Lunedì",      Time.valueOf("08:25:00"), Time.valueOf("13:00:00")),
                 new Orario("Martedì",     Time.valueOf("15:30:00"), Time.valueOf("19:00:00")),
                 new Orario("Giovedì",     Time.valueOf("08:30:00"), Time.valueOf("13:30:00")),
                 new Orario("Sabato",      Time.valueOf("10:00:00"), Time.valueOf("14:00:00"))
