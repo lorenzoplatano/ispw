@@ -57,13 +57,10 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
     public void setController() {
         try {
             ReservationType tipo = this.selected.getTipo();
-            if (tipo == ReservationType.DOGSITTER) {
-                this.controller = new PrenotazioneDogsitterController();
-            } else if (tipo == ReservationType.VETERINARIO) {
-                this.controller = new PrenotazioneVeterinarioController();
-            } else {
-                throw new IllegalArgumentException("Tipo di prenotazione non supportato: " + tipo);
-            }
+            this.controller = switch (tipo) {
+                case DOGSITTER -> new PrenotazioneDogsitterController();
+                case VETERINARIO -> new PrenotazioneVeterinarioController();
+            };
         } catch (PersistenceConfigurationException e) {
             Printer.perror(e.getMessage());
         }

@@ -46,7 +46,7 @@ public class DogsitterDaoMemory extends LoggedUserDaoMemory implements Dogsitter
 
         return prenotazioni.stream()
                 .filter(pr -> pr.getLavoratore().getEmail().equalsIgnoreCase(ds.getEmail()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
 
