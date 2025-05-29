@@ -26,7 +26,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
     private static LoggedUserDaoMemory instance;
 
     static {
-        Padrone p = new Padrone("mario@example.com", "pass123");
+        Padrone p = new Padrone("mario@example.com", "pass1");
         p.setUsername("Mario");
         p.setRole(Role.PADRONE);
         p.setNome("Mario Rossi");
@@ -39,7 +39,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         dogs.add(d);
         p.setCane(d);
 
-        Dogsitter ds = new Dogsitter("dogsitter1@example.com", "pass123");
+        Dogsitter ds = new Dogsitter("dogsitter1@example.com", "pass2");
         ds.setNome("Luigi");
         ds.setEta(30);
         ds.setGenere("F");
@@ -55,7 +55,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         ds.setOrari(defaultOrari);
         dogsitters.add(ds);
 
-        Veterinario v = new Veterinario("veterinario1@example.com", "passVet123");
+        Veterinario v = new Veterinario("veterinario1@example.com", "pass3");
         v.setNome("Paolo");
         v.setEta(40);
         v.setGenere("M");

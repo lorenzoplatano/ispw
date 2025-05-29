@@ -41,6 +41,7 @@ public class DogsitterDaoMemory extends LoggedUserDaoMemory implements Dogsitter
         UnloggedUserDaoMemory.getInstance().addUser(dogsitter);
     }
 
+    //aggiungi gestione CONCLUSA
     @Override
     public List<Prenotazione> showReservations(Dogsitter ds) throws DAOException {
 

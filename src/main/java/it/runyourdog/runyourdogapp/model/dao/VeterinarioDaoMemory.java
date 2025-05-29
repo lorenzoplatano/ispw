@@ -40,6 +40,7 @@ public class VeterinarioDaoMemory extends LoggedUserDaoMemory implements Veterin
         UnloggedUserDaoMemory.getInstance().addUser(veterinarian);
     }
 
+    //aggiungi gestione CONCLUSA
     @Override
     public List<Prenotazione> showReservations(Veterinario vet) throws DAOException {
 
