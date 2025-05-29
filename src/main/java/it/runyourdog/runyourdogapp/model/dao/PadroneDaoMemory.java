@@ -138,7 +138,7 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
 
     @Override
     public void updatePadrone(Padrone pad, Dog dog) throws DAOException {
-        Padrone existing= padroni.stream()
+        Padrone existing = padroni.stream()
                 .filter(p -> p.getEmail().equalsIgnoreCase(pad.getEmail()))
                 .findFirst()
                 .orElseThrow(() -> new DAOException("Padrone non trovato: " + pad.getEmail()));
