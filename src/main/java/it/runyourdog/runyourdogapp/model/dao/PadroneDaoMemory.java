@@ -67,8 +67,10 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
 
 
     public void registerProcedure(Padrone pad, Dog dog) throws DAOException {
+        pad.setCane(dog);
         padroni.add(pad);
         dogs.add(dog);
+        UnloggedUserDaoMemory.getInstance().addUser(pad);
     }
 
     @Override
