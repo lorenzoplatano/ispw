@@ -63,7 +63,7 @@ public class PrenotazioneDogsitterController extends PrenotazioneController{
     }
 
 
-    public void sendRequest(PrenotazioneBean request) throws DAOException {
+    public void sendRequest(PrenotazioneBean request) throws DAOException, NullPointerException {
 
         Date data = request.getData();
         Time oraInizio = request.getOrarioInizio();
@@ -80,6 +80,7 @@ public class PrenotazioneDogsitterController extends PrenotazioneController{
 
 
         padroneDao.mandaRichiesta(sendingReq);
+
 
     }
 

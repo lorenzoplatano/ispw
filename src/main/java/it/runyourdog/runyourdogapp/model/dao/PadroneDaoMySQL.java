@@ -118,7 +118,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
 
     }
 
-    public List<Dogsitter> findDogsitter(Prenotazione prenotazione) throws DAOException {
+    public List<Dogsitter> findDogsitter(Prenotazione prenotazione) throws DAOException,NullPointerException {
         List<Dogsitter> list = new ArrayList<>();
         ResultSet rs;
 
@@ -140,6 +140,8 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
             }
         } catch (SQLException e) {
             throw new DAOException("Errore nel recupero dei dogsitter disponibili: " + e.getMessage());
+        }catch(NullPointerException e){
+            throw new DAOException(e.getMessage());
         }
 
         return list;
@@ -248,7 +250,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
         }
     }
 
-    public List<Veterinario> findVet(Prenotazione prenotazione) throws DAOException {
+    public List<Veterinario> findVet(Prenotazione prenotazione) throws DAOException, NullPointerException {
 
         List<Veterinario> list = new ArrayList<>();
         ResultSet rs;
@@ -269,6 +271,8 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
             }
         } catch (SQLException e) {
             throw new DAOException("Errore nel recupero dei veterinari disponibili: " + e.getMessage());
+        } catch (NullPointerException e) {
+            throw new DAOException(e.getMessage());
         }
 
         return list;
