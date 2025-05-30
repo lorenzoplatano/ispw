@@ -4,6 +4,8 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.model.entities.*;
 import it.runyourdog.runyourdogapp.utils.OrariParser;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
+import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -76,34 +78,45 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
     }
 
 
-    @Override
-    //da fare
-    public void mandaRichiesta(Prenotazione req) {
-        req.setId(nextPrenotazioneDogId++);
-        req.setStato(ReservationState.IN_ATTESA);
 
+    @Override
+    public void mandaRichiesta(Prenotazione req) {
+        req.setStato(ReservationState.IN_ATTESA);
+        req.setTipo(ReservationType.DOGSITTER);
+        req.getLavoratore().setNome(trovaNomeLavoratoreByEmail(req.getLavoratore().getEmail()));
         prenotazioni.add(req);
     }
 
     @Override
     public List<Prenotazione> showReservations(Padrone pad) throws DAOException {
         List<Prenotazione> list = prenotazioni.stream()
-                .filter(pr -> pr.getLavoratore().getEmail().equalsIgnoreCase(pad.getEmail()))
+                .filter(pr -> pr.getPadrone().getEmail().equalsIgnoreCase(pad.getEmail()))
                 .toList();
         gestisciConclusa(list);
         return list;
     }
 
     @Override
-    //da fare
-    public int countOverlapping(Prenotazione pren)  {
-        return 0;
+    public int countOverlapping(Prenotazione pren) {
+        return (int) prenotazioni.stream()
+                .filter(p -> p.getPadrone() != null
+                        && p.getPadrone().getEmail().equalsIgnoreCase(pren.getPadrone().getEmail())
+                        && p.getData().equals(pren.getData())
+                        && p.getOraInizio().equals(pren.getOraInizio())
+                        && (p.getStato() == ReservationState.IN_ATTESA || p.getStato() == ReservationState.ACCETTATA)
+                )
+                .count();
     }
 
     @Override
-    //da fare
-    public int countVetOverlapping(Prenotazione pren)  {
-        return 0;
+    public int countVetOverlapping(Prenotazione pren) {
+        return (int) prenotazioni.stream()
+                .filter(p -> p.getPadrone() != null
+                        && p.getPadrone().getEmail().equalsIgnoreCase(pren.getPadrone().getEmail())
+                        && p.getData().equals(pren.getData())
+                        && (p.getStato() == ReservationState.IN_ATTESA || p.getStato() == ReservationState.ACCETTATA)
+                )
+                .count();
     }
 
     @Override
@@ -142,8 +155,9 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
 
     @Override
     public void mandaRichiestaVet(Prenotazione req)  {
-        req.setId(nextPrenotazioneVetId++);
         req.setStato(ReservationState.IN_ATTESA);
+        req.setTipo(ReservationType.VETERINARIO);
+        req.getLavoratore().setNome(trovaNomeLavoratoreByEmail(req.getLavoratore().getEmail()));
         prenotazioni.add(req);
     }
 
