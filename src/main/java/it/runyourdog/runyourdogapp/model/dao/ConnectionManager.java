@@ -20,7 +20,7 @@ public class ConnectionManager {
 
     private ConnectionManager() {}
 
-    /** Singleton */
+
     public static ConnectionManager getInstance() {
         if (instance == null) {
             instance = new ConnectionManager();

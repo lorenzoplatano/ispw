@@ -13,8 +13,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-public class RegistrazioneControllerUpdateProfileTest {
+//DANIELE
+public class TestUpdateProfiloDogsitter {
 
     private RegistrazioneController controller;
     private DogsitterDao dogsitterDao;

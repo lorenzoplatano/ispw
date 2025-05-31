@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.security.auth.login.CredentialException;
 
+//DANIELE
 public class TestLoginController {
 
     @Test
@@ -19,7 +20,6 @@ public class TestLoginController {
         } catch (CredentialException e) {
             //Do nothing
         }
-
         LoginBean finalBean = bean;
         Assertions.assertThrows(
                 CredentialException.class,
