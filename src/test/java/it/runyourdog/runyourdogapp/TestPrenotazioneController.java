@@ -31,10 +31,10 @@ public class TestPrenotazioneController {
     void testCreaPrenotazioneConDatiValidi() throws InvalidInputException {
         PrenotazioneBean bean = new PrenotazioneBean();
         ProfiloPadroneBean pad = new ProfiloPadroneBean();
-        pad.setEmail("pad@gmail.com");
+        pad.setEmail("new.padrone@gmail.com");
         bean.setPrenotante(pad);
         ProfiloDogsitterBean dogsitter = new ProfiloDogsitterBean();
-        dogsitter.setEmail("dogsitter@gmail.com");
+        dogsitter.setEmail("dogsitter1@email.com");
         bean.setPrenotato(dogsitter);
         bean.setData(Date.valueOf("2024-07-01"));
         bean.setOrarioInizio(Time.valueOf("10:00:00"));
