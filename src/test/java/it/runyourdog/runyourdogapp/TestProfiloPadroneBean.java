@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 
 //DANIELE
-public class TestProfiloPadroneBean {
+class TestProfiloPadroneBean {
 
 
     @Test

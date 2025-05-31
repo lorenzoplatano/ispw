@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Time;
 
 //LORENZO
-public class TestChecksPrenotazioneBean {
+class TestChecksPrenotazioneBean {
 
     @Test
     void testPrenotazioneBeanOrarioFineNotValid() throws InvalidInputException {

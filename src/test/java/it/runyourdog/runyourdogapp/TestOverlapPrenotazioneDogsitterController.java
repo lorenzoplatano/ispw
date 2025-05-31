@@ -16,7 +16,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 //LORENZO
-public class TestOverlapPrenotazioneDogsitterController {
+class TestOverlapPrenotazioneDogsitterController {
 
     private PrenotazioneDogsitterController controller;
 

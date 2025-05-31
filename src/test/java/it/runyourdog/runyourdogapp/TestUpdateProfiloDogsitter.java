@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 //DANIELE
-public class TestUpdateProfiloDogsitter {
+class TestUpdateProfiloDogsitter {
 
     private RegistrazioneController controller;
     private DogsitterDao dogsitterDao;

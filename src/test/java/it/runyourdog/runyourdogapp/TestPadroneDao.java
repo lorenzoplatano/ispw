@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 //DANIELE
-public class TestPadroneDao {
+class TestPadroneDao {
 
     @Test
     public void findVetTest_withNullPrenotazione() {
