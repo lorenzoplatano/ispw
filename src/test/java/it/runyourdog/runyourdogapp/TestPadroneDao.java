@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class TestPadroneDao {
 
     @Test
-    public void findVetTest_withNullPrenotazione() {
+    void findVetTest_withNullPrenotazione() {
         PadroneDaoMySQL padroneDao = new PadroneDaoMySQL();
         Assertions.assertThrows(
                 DAOException.class,
@@ -20,7 +20,7 @@ class TestPadroneDao {
     }
 
     @Test
-    public void findVetTest_withIncompletePrenotazione() {
+    void findVetTest_withIncompletePrenotazione() {
         PadroneDaoMySQL padroneDao = new PadroneDaoMySQL();
         Prenotazione pren = new Prenotazione(1);
 
@@ -32,7 +32,7 @@ class TestPadroneDao {
     }
 
     @Test
-    public void findDogsitterTest_withNullPrenotazione() {
+    void findDogsitterTest_withNullPrenotazione() {
         PadroneDaoMySQL padroneDao = new PadroneDaoMySQL();
         Assertions.assertThrows(
                 DAOException.class,
@@ -42,7 +42,7 @@ class TestPadroneDao {
     }
 
     @Test
-    public void findDogsitterTest_withIncompletePrenotazione() {
+    void findDogsitterTest_withIncompletePrenotazione() {
         PadroneDaoMySQL padroneDao = new PadroneDaoMySQL();
         Prenotazione pren = new Prenotazione(1);
 

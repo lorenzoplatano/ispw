@@ -11,7 +11,7 @@ class TestProfiloPadroneBean {
 
 
     @Test
-    public void testSetGenere() throws InvalidInputException {
+    void testSetGenere() throws InvalidInputException {
         ProfiloPadroneBean bean = new ProfiloPadroneBean();
         String genere = "M";
         bean.setSessoCane(genere);
@@ -19,7 +19,7 @@ class TestProfiloPadroneBean {
     }
 
     @Test
-    public void testSetTelefono() throws InvalidInputException {
+    void testSetTelefono() throws InvalidInputException {
         ProfiloPadroneBean bean = new ProfiloPadroneBean();
         String telefono = "3331234567";
         bean.setTelefonoPadrone(telefono);
@@ -27,7 +27,7 @@ class TestProfiloPadroneBean {
     }
 
     @Test
-    public void testSetTelefonoPadrone_TroppoLungo() {
+    void testSetTelefonoPadrone_TroppoLungo() {
         ProfiloPadroneBean bean = new ProfiloPadroneBean();
         String telefonoLungo = "12345678901";
         Assertions.assertThrows(InvalidInputException.class, () -> {
@@ -36,7 +36,7 @@ class TestProfiloPadroneBean {
     }
 
     @Test
-    public void testSetSessoCane_NonValido() {
+    void testSetSessoCane_NonValido() {
         ProfiloPadroneBean bean = new ProfiloPadroneBean();
         String sessoNonValido = "X";
         Assertions.assertThrows(InvalidInputException.class, () -> {
