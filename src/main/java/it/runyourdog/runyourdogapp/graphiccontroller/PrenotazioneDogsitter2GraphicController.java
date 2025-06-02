@@ -26,6 +26,11 @@ public class PrenotazioneDogsitter2GraphicController extends PrenotazioneGeneric
 
 
     @Override
+    public void setPlaceholder() {
+        this.placeholder = "dogsitter";
+    }
+
+    @Override
     protected void mandaRichiesta(PrenotazioneBean prenotazioneBean) throws DAOException {
         getController().sendRequest(prenotazioneBean);
     }

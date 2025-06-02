@@ -32,12 +32,16 @@ public abstract class PrenotazioneGeneric2GraphicController extends ProfiloPadro
     @FXML protected TableColumn<ProfiloLavoratoreBean, String> indirizzo;
 
     protected PrenotazioneBean prenotazioneBean;
+    protected String placeholder;
 
 
     public void startSettings(List<? extends ProfiloLavoratoreBean> list, PrenotazioneBean bean) {
         this.prenotazioneBean = bean;
         table.getItems().setAll(list);
+        table.setPlaceholder(new Label("Nessun " + this.placeholder + " disponibile"));
     }
+
+    protected abstract void setPlaceholder();
 
     @FXML
     public void initialize() {
@@ -67,7 +71,6 @@ public abstract class PrenotazioneGeneric2GraphicController extends ProfiloPadro
             );
         }
 
-        table.setPlaceholder(new Label("Nessun elemento disponibile"));
     }
 
 
