@@ -31,8 +31,7 @@ public class DaoFactoryCSV extends DaoFactory {
         //allora utilizzo le DAO MySQL di Padrone, Veterinario e Dogsitter
         //e utilizzo  le DAO CSV per le UnloggedUser e LoggedUser
         return new DogsitterDaoMySQL();
-        //decommentare la riga successiva e commentare la precedente se si vuole usare la DAO Memory
-        //return new DogsitterDaoMemory();
+        //se si vuole usare la DAO Memory in concomitanza con le due DAO CSV basta sostituire la precedente riga con return new DogsitterDaoMemory();
     }
 
     @Override
