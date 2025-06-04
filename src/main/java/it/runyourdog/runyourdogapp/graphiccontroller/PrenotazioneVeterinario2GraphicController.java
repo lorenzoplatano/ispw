@@ -17,6 +17,11 @@ import java.util.List;
 public class PrenotazioneVeterinario2GraphicController extends PrenotazioneGeneric2GraphicController {
 
     @Override
+    public void setPlaceholder() {
+        this.placeholder = "veterinario";
+    }
+
+    @Override
     protected PrenotazioneVeterinarioController getController() {
         try {
             return new PrenotazioneVeterinarioController();

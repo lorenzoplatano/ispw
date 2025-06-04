@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import javax.security.auth.login.CredentialException;
 
 //DANIELE
-public class TestLoginController {
+class TestLoginController {
 
     @Test
     void testAuthenticateByWrongCredentials() throws PersistenceConfigurationException {
@@ -17,7 +17,7 @@ public class TestLoginController {
         LoginBean bean = null;
         try {
             bean = new LoginBean("wrongEmail@gmail.com", "wrongPassword");
-        } catch (CredentialException e) {
+        } catch (CredentialException _) {
             //Do nothing
         }
         LoginBean finalBean = bean;
