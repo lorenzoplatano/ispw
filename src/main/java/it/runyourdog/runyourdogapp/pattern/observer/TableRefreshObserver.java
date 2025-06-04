@@ -6,7 +6,7 @@ import javafx.application.Platform;
 import javafx.scene.control.TableView;
 
 
-public class TableRefreshObserver implements ReservationStateObserver {
+public class TableRefreshObserver implements Observer {
     private final TableView<PrenotazioneBean> table;
     private final MenuPrenotazioniGenericGraphicController controller;
 
@@ -16,7 +16,7 @@ public class TableRefreshObserver implements ReservationStateObserver {
     }
 
     @Override
-    public void onStateChanged() {
+    public void update() {
         Platform.runLater(controller::reloadPrenotazioni);
     }
 }

@@ -2,16 +2,13 @@ package it.runyourdog.runyourdogapp.beans;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
-
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
-import it.runyourdog.runyourdogapp.pattern.observer.ReservationStateObserver;
+import it.runyourdog.runyourdogapp.pattern.observer.Subject;
 import it.runyourdog.runyourdogapp.utils.Validator;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 
-public class PrenotazioneBean {
+public class PrenotazioneBean extends Subject {
 
     private Date data;
     private String citta;
@@ -23,25 +20,6 @@ public class PrenotazioneBean {
     private ReservationType type;
     private int id;
 
-
-    private final List<ReservationStateObserver> observers = new ArrayList<>();
-
-
-    public void addObserver(ReservationStateObserver o) {
-        if (o != null && !observers.contains(o)) {
-            observers.add(o);
-        }
-    }
-
-    public void removeObserver(ReservationStateObserver o) {
-        observers.remove(o);
-    }
-
-    private void notifyObservers() {
-        for (ReservationStateObserver o : observers) {
-            o.onStateChanged();
-        }
-    }
 
     public void setData(Date inputDate) throws InvalidInputException {
         if (inputDate == null) {
@@ -105,7 +83,7 @@ public class PrenotazioneBean {
             throw new InvalidInputException("Stato della prenotazione non valido.");
         }
         this.stato = newState;
-        notifyObservers();
+        notifyObserver();
     }
 
     public void setTipo(ReservationType tipo) throws InvalidInputException {
