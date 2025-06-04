@@ -17,6 +17,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
         this.conn = ConnectionManager.getInstance().getDBConnection();
     }
 
+    @Override
     public Padrone padInfo(Padrone pad) throws DAOException {
         String nome = null;
         Long telefono = null;
@@ -52,6 +53,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
         return pad;
     }
 
+    @Override
     public Dog dogInfo(Padrone pad) throws DAOException {
         String nome = null;
         String sesso = null;
@@ -88,6 +90,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
         return new Dog(nome, sesso, razza, microchip, dataNascita, vaccinazioni);
     }
 
+    @Override
     public void registerProcedure(Padrone pad, Dog dog) throws DAOException {
 
         try {
@@ -118,6 +121,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
 
     }
 
+    @Override
     public List<Dogsitter> findDogsitter(Prenotazione prenotazione) throws DAOException,NullPointerException {
         List<Dogsitter> list = new ArrayList<>();
         ResultSet rs;
@@ -147,6 +151,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
         return list;
     }
 
+    @Override
     public void mandaRichiesta(Prenotazione sendingReq) throws DAOException{
         try {
             Padrone pad = sendingReq.getPadrone();
@@ -172,6 +177,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
         }
     }
 
+    @Override
     public List<Prenotazione> showReservations(Padrone pad) throws DAOException {
 
         List<Prenotazione> list = new ArrayList<>();
@@ -219,6 +225,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
         return list;
     }
 
+    @Override
     public int countOverlapping(Prenotazione prenotazione) throws DAOException{
 
         try {
@@ -236,6 +243,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
     }
 
 
+    @Override
     public int countVetOverlapping(Prenotazione prenotazione) throws DAOException{
 
         try {
@@ -250,6 +258,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
         }
     }
 
+    @Override
     public List<Veterinario> findVet(Prenotazione prenotazione) throws DAOException, NullPointerException {
 
         List<Veterinario> list = new ArrayList<>();
@@ -279,6 +288,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
 
     }
 
+    @Override
     public void mandaRichiestaVet(Prenotazione sendingReq) throws DAOException{
         try {
             Padrone pad = sendingReq.getPadrone();
@@ -302,6 +312,7 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
         }
     }
 
+    @Override
     public void updatePadrone(Padrone pad, Dog dog) throws DAOException {
 
         try {

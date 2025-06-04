@@ -18,6 +18,7 @@ public class UnloggedUserDaoMySQL implements UnloggedUserDao {
         this.conn = ConnectionManager.getInstance().getDBConnection();
     }
 
+    @Override
     public User loginProcedure(User user) throws DAOException {
         int role;
         String username;
@@ -40,6 +41,7 @@ public class UnloggedUserDaoMySQL implements UnloggedUserDao {
         return user;
     }
 
+    @Override
     public boolean emailCheck(User newUser) throws DAOException {
         String email = newUser.getEmail();
         int result;

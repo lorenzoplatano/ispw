@@ -15,6 +15,7 @@ public class DogsitterDaoMySQL extends LoggedUserDaoMySQL implements DogsitterDa
         super();
     }
 
+    @Override
     public Dogsitter dogsInfo(Dogsitter dogs) throws DAOException {
         String nome = null;
         String genere = null;
@@ -52,6 +53,7 @@ public class DogsitterDaoMySQL extends LoggedUserDaoMySQL implements DogsitterDa
         return dogs;
     }
 
+    @Override
     public List<Orario> dogsOrari(Dogsitter dogs) throws DAOException {
         String giorno;
         Time inizio;
@@ -84,6 +86,7 @@ public class DogsitterDaoMySQL extends LoggedUserDaoMySQL implements DogsitterDa
         return orari;
     }
 
+    @Override
     public void registerProcedure(Dogsitter dogsitter, List<Orario> orari) throws DAOException {
 
         String orariParam = creaOrari(orari);
@@ -109,6 +112,7 @@ public class DogsitterDaoMySQL extends LoggedUserDaoMySQL implements DogsitterDa
     }
 
 
+    @Override
     public List<Prenotazione> showReservations(Dogsitter ds) throws DAOException {
 
         List<Prenotazione> list = new ArrayList<>();
@@ -150,6 +154,7 @@ public class DogsitterDaoMySQL extends LoggedUserDaoMySQL implements DogsitterDa
     }
 
 
+    @Override
     public void updateDogsitter(Dogsitter dogsitter, List<Orario> orari) throws DAOException {
 
 

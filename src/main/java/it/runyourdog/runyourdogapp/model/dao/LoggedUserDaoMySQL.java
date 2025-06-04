@@ -18,6 +18,7 @@ public abstract class LoggedUserDaoMySQL implements LoggedUserDao {
         this.conn = ConnectionManager.getInstance().getDBConnection();
     }
 
+    @Override
     public void acceptReservation(Prenotazione prenotazione) throws DAOException {
 
 
@@ -38,6 +39,7 @@ public abstract class LoggedUserDaoMySQL implements LoggedUserDao {
         }
     }
 
+    @Override
     public void refuseReservation(Prenotazione prenotazione) throws DAOException {
 
         try {
@@ -57,6 +59,7 @@ public abstract class LoggedUserDaoMySQL implements LoggedUserDao {
         }
     }
 
+    @Override
     public void cancelReservation(Prenotazione prenotazione)throws DAOException {
         try {
 
