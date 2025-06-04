@@ -71,8 +71,8 @@ public abstract class MenuPrenotazioniGenericGraphicController extends GenericGr
             TableRefreshObserver refresher = new TableRefreshObserver(reservationTable, this);
 
             for (PrenotazioneBean bean : list) {
-                bean.removeObserver(refresher);
-                bean.addObserver(refresher);
+                bean.detach(refresher);
+                bean.attach(refresher);
             }
 
             reservationTable.getItems().setAll(list);
@@ -93,8 +93,8 @@ public abstract class MenuPrenotazioniGenericGraphicController extends GenericGr
         TableRefreshObserver refresher = new TableRefreshObserver(reservationTable, this);
 
         for (PrenotazioneBean bean : list) {
-            bean.removeObserver(refresher);
-            bean.addObserver(refresher);
+            bean.detach(refresher);
+            bean.attach(refresher);
         }
         reservationTable.getItems().setAll(list);
     }
