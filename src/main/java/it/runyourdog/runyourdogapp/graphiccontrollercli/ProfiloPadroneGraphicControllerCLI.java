@@ -12,7 +12,6 @@ import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.Validator;
 
 import java.sql.Date;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 

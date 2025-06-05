@@ -6,6 +6,8 @@ import it.runyourdog.runyourdogapp.model.dao.*;
 import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 import it.runyourdog.runyourdogapp.model.entities.Orario;
 import org.junit.jupiter.api.*;
+
+import java.sql.Time;
 import java.util.ArrayList;
 
 
@@ -38,7 +40,7 @@ class TestUpdateProfiloDogsitter {
         bean.setCitta("Milano");
         bean.setTelefono("3339876543");
         List<Orario> orari = new ArrayList<>();
-        Orario orario = new Orario("Lunedì", java.sql.Time.valueOf("09:00:00"), java.sql.Time.valueOf("12:00:00"));
+        Orario orario = new Orario("Lunedì", Time.valueOf("09:00:00"), Time.valueOf("12:00:00"));
         orari.add(orario);
         bean.setOrari(orari);
 

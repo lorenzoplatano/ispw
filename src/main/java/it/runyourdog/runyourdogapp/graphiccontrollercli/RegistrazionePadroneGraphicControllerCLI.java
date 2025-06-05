@@ -10,7 +10,6 @@ import it.runyourdog.runyourdogapp.utils.Validator;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
 import java.sql.Date;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
