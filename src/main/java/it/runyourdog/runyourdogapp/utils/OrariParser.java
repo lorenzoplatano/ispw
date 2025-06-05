@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class OrariParser {
 
@@ -19,6 +20,8 @@ public class OrariParser {
     private static final String ORARIOFORMAT = "^(?:[01]\\d|2[0-3]):[0-5]\\d$";
     private static final String PLACEHOLDER = "Non sono disponibili orari per il giorno in questione";
     private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern("HH:mm");
+    private static final Pattern VIRGOLA = Pattern.compile("\\s*,\\s*");
+    private static final Pattern TRATTINO = Pattern.compile("\\s*-\\s*");
 
 
     public static List<Orario> parseOrari(Map<String, String> inputs) throws InvalidInputException {
@@ -29,14 +32,14 @@ public class OrariParser {
         return orari;
     }
 
-    public static void aggiungiOrari(List<Orario> orari, String orariInput, String giorno) throws InvalidInputException {
+    private static void aggiungiOrari(List<Orario> orari, String orariInput, String giorno) throws InvalidInputException {
         if (orariInput == null || orariInput.trim().isEmpty() || PLACEHOLDER.equals(orariInput.trim())) {
             return;
         }
 
-        String[] orariSplit = orariInput.split("\\s*,\\s*");
+        String[] orariSplit = VIRGOLA.split(orariInput);
         for (String orario : orariSplit) {
-            String[] intervallo = orario.trim().split("\\s*-\\s*");
+            String[] intervallo = TRATTINO.split(orario.trim());
             if (intervallo.length != 2 ||
                     !intervallo[0].matches(ORARIOFORMAT) ||
                     !intervallo[1].matches(ORARIOFORMAT)) {
