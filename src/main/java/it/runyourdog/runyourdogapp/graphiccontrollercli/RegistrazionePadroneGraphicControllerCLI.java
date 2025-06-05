@@ -6,6 +6,7 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
+import it.runyourdog.runyourdogapp.utils.Validator;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
 import java.sql.Date;
@@ -85,10 +86,9 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 profiloPadroneBean.setMicrochip(scanner.nextLine().trim());
 
                 Printer.printf("Inserisci vaccinazioni separate da virgola (es. Rabbia, Cimurro):");
-                List<String> vaccinazioni = Arrays.stream(
-                                scanner.nextLine().trim().split("\\s*,\\s*"))
-                        .filter(s -> !s.isEmpty())
-                        .toList();
+                List<String> vaccinazioni;
+                String input = scanner.nextLine().trim();
+                vaccinazioni = Validator.pulisciVaccinazioni(input);
                 profiloPadroneBean.setVaccinazioniCane(vaccinazioni);
 
                 Printer.printf("Inserisci data di nascita del cane (yyyy-MM-dd):");

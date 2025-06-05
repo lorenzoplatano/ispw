@@ -9,6 +9,8 @@ import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.exceptions.ProfileRetrievalException;
 import it.runyourdog.runyourdogapp.utils.Printer;
+import it.runyourdog.runyourdogapp.utils.Validator;
+
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
@@ -181,10 +183,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
         String joined = String.join(", ", oldList);
         Printer.printf(String.format("Vaccinazioni (separate da virgola) [%s] (Invio per non modificare): ", joined));
         String input = scanner.nextLine().trim();
-        if (input.isEmpty()) return oldList;
-        return Arrays.stream(input.split("\\s*,\\s*"))
-                .filter(s -> !s.isEmpty())
-                .toList();
+        return Validator.pulisciVaccinazioni(input);
     }
 
     private Date promptData(String label, Date oldDate, Scanner scanner) {
