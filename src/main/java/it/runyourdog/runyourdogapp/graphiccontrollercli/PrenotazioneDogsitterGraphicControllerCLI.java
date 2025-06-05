@@ -6,6 +6,8 @@ import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.utils.Printer;
+
+import java.sql.Time;
 import java.util.List;
 
 
@@ -51,7 +53,7 @@ public class PrenotazioneDogsitterGraphicControllerCLI extends GenericPrenotazio
         if (!end.matches(ORARIOFORMAT)) {
             throw new InvalidInputException("Formato orario HH:mm.");
         }
-        bean.setOrarioFine(java.sql.Time.valueOf(end + ":00"));
+        bean.setOrarioFine(Time.valueOf(end + ":00"));
         ((PrenotazioneDogsitterController) controller).validateNoOverlap(bean);
     }
 }

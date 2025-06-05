@@ -56,8 +56,8 @@ import java.util.List;
 
     @Test
     void testPulisciVaccinazioni_SpacedInput() {
-        String input = "Rabbia, Parvovirosi,     Cimurro ";
-        List<String> expected = List.of("Rabbia", "Parvovirosi", "Cimurro");
+        String input = "Rabbia, Anti       Rabica   ,     Cimurro ";
+        List<String> expected = List.of("Rabbia", "Anti Rabica", "Cimurro");
         List<String> result = Validator.pulisciVaccinazioni(input);
         Assertions.assertEquals(expected, result);
     }

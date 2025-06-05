@@ -38,7 +38,11 @@ public class Validator {
     }
 
     public static List<String> pulisciVaccinazioni(String testoVaccinazioni) {
-        return Arrays.stream(testoVaccinazioni.split("\\s*,\\s*"))
+        if (testoVaccinazioni == null || testoVaccinazioni.isBlank()) {
+            return List.of();
+        }
+
+        return Arrays.stream(testoVaccinazioni.split(","))
                 .map(String::trim)
                 .map(s -> s.replaceAll("\\s+", " "))
                 .filter(s -> !s.isEmpty())
