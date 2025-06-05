@@ -117,9 +117,6 @@ public class ProfiloPadroneBean extends UserBean {
         if (cittaPadrone == null || cittaPadrone.trim().isEmpty())
             throw new InvalidInputException("La città del padrone è obbligatoria.");
 
-        if (cittaPadrone.matches(".*\\d.*")) {
-            throw new InvalidInputException("La città non può contenere numeri.");
-        }
         this.cittaPadrone = Validator.formatCity(cittaPadrone);
     }
 }

@@ -1,4 +1,5 @@
 package it.runyourdog.runyourdogapp;
+import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Validator;
 import org.junit.jupiter.api.Assertions;
@@ -7,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 
-//LORENZO
-class TestValidator {
+// PLATANO LORENZO 0309697
+    class TestValidator {
 
     @Test
     void testFormatCity_Basic() throws InvalidInputException {
@@ -41,6 +42,15 @@ class TestValidator {
                 InvalidInputException.class,
                 () -> Validator.formatCity(null),
                 "Doveva essere lanciata InvalidInputException per input null"
+        );
+    }
+
+    @Test
+    void testFormatCity_WithNumbers() {
+        Assertions.assertThrows(
+                InvalidInputException.class,
+                () -> Validator.formatCity("Roma123"),
+                "Doveva essere lanciata InvalidInputException per città contenente numeri"
         );
     }
 

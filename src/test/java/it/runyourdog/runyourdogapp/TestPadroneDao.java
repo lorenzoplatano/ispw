@@ -6,7 +6,7 @@ import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-//DANIELE
+// ONORATO DANIELE 0310075
 class TestPadroneDao {
 
     @Test

@@ -7,6 +7,8 @@ import it.runyourdog.runyourdogapp.utils.Validator;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class ProfiloLavoratoreBean extends UserBean {
     private String nome;
@@ -78,9 +80,6 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
     public void setCitta(String citta) throws InvalidInputException {
         if (citta == null || citta.trim().isEmpty())
             throw new InvalidInputException("Città non valida.");
-        if (citta.matches(".*\\d.*")) {
-            throw new InvalidInputException("La città non può contenere numeri.");
-        }
         this.citta = Validator.formatCity(citta);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//DANIELE
+// ONORATO DANIELE 0310075
 class TestUpdateProfiloDogsitter {
 
     private RegistrazioneController controller;

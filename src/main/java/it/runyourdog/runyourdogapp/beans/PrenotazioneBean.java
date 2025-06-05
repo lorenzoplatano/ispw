@@ -2,6 +2,9 @@ package it.runyourdog.runyourdogapp.beans;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.pattern.observer.Subject;
 import it.runyourdog.runyourdogapp.utils.Validator;
@@ -32,11 +35,6 @@ public class PrenotazioneBean extends Subject {
         if (city == null || city.trim().isEmpty()) {
             throw new InvalidInputException("Città non valida.");
         }
-
-        if (city.matches(".*\\d.*")) {
-            throw new InvalidInputException("La città non può contenere numeri.");
-        }
-
         this.citta = Validator.formatCity(city);
     }
 

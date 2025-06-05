@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Time;
 
-//LORENZO
+// PLATANO LORENZO 0309697
 class TestChecksPrenotazioneBean {
 
     @Test
@@ -16,18 +16,11 @@ class TestChecksPrenotazioneBean {
         bean.setOrarioInizio(Time.valueOf("14:00:00"));
         Assertions.assertThrows(
                 InvalidInputException.class,
-                () -> bean.setOrarioFine(Time.valueOf("12:00:00"))
+                () -> bean.setOrarioFine(Time.valueOf("12:00:00")),
+                "Doveva essere lanciata InvalidInputException per orario fine antecedente ad orario inizio"
         );
     }
 
-    @Test
-    void testPrenotazioneBeanCittaConNumeri() {
-        PrenotazioneBean bean = new PrenotazioneBean();
-        Assertions.assertThrows(
-                InvalidInputException.class,
-                () -> bean.setCitta("Roma123"),
-                "Doveva essere lanciata InvalidInputException per città contenente numeri"
-        );
-    }
+
 
 }
