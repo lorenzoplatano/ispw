@@ -1,5 +1,4 @@
 package it.runyourdog.runyourdogapp;
-import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.utils.Validator;
 import org.junit.jupiter.api.Assertions;

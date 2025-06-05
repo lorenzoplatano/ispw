@@ -2,8 +2,7 @@ package it.runyourdog.runyourdogapp.beans;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.pattern.observer.Subject;

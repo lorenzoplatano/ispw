@@ -7,8 +7,7 @@ import it.runyourdog.runyourdogapp.utils.Validator;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public abstract class ProfiloLavoratoreBean extends UserBean {
     private String nome;
