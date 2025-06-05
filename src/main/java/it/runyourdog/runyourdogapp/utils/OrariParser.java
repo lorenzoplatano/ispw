@@ -20,8 +20,8 @@ public class OrariParser {
     private static final String ORARIOFORMAT = "^(?:[01]\\d|2[0-3]):[0-5]\\d$";
     private static final String PLACEHOLDER = "Non sono disponibili orari per il giorno in questione";
     private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern("HH:mm");
-    private static final Pattern VIRGOLA = Pattern.compile("\\s*,\\s*");
-    private static final Pattern TRATTINO = Pattern.compile("\\s*-\\s*");
+    private static final Pattern VIRGOLA = Pattern.compile("\\s?,\\s?");
+    private static final Pattern TRATTINO = Pattern.compile("\\s?-\\s?");
 
 
     public static List<Orario> parseOrari(Map<String, String> inputs) throws InvalidInputException {
@@ -36,6 +36,8 @@ public class OrariParser {
         if (orariInput == null || orariInput.trim().isEmpty() || PLACEHOLDER.equals(orariInput.trim())) {
             return;
         }
+
+        orariInput = orariInput.replaceAll("\\s+", " ");
 
         String[] orariSplit = VIRGOLA.split(orariInput);
         for (String orario : orariSplit) {
