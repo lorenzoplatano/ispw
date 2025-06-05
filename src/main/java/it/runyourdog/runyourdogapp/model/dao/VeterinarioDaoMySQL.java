@@ -15,6 +15,7 @@ public class VeterinarioDaoMySQL extends LoggedUserDaoMySQL implements Veterinar
         super();
     }
 
+    @Override
     public Veterinario vetInfo(Veterinario vet) throws DAOException {
         String nome = null;
         String genere = null;
@@ -55,6 +56,7 @@ public class VeterinarioDaoMySQL extends LoggedUserDaoMySQL implements Veterinar
         return vet;
     }
 
+    @Override
     public List<Orario> vetOrari(Veterinario vet) throws DAOException {
         String giorno;
         Time inizio;
@@ -87,6 +89,7 @@ public class VeterinarioDaoMySQL extends LoggedUserDaoMySQL implements Veterinar
         return orari;
     }
 
+    @Override
     public void registerProcedure(Veterinario veterinario, List<Orario> orari) throws DAOException {
 
 
@@ -123,6 +126,7 @@ public class VeterinarioDaoMySQL extends LoggedUserDaoMySQL implements Veterinar
         }
     }
 
+    @Override
     public List<Prenotazione> showReservations(Veterinario v) throws DAOException{
 
         List<Prenotazione> list = new ArrayList<>();
@@ -164,6 +168,7 @@ public class VeterinarioDaoMySQL extends LoggedUserDaoMySQL implements Veterinar
 
     }
 
+    @Override
     public void updateVet(Veterinario veterinario, List<Orario> orari) throws DAOException {
 
         String orariParam = creaOrari(orari);

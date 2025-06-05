@@ -9,6 +9,7 @@ public class UnloggedUserDaoCSV implements UnloggedUserDao {
 
     private static final String CSV = "/it/runyourdog/runyourdogapp/CSV/UnloggedUser.csv";
 
+    @Override
     public User loginProcedure(User user) throws DAOException {
         String email = user.getEmail();
         String password = user.getPassword();

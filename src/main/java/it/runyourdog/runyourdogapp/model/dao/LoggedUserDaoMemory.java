@@ -133,7 +133,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         opt.get().setStato(newState);
     }
 
-    public void gestisciConclusa(List<Prenotazione> prenotazioniDaGestire) {
+    protected void gestisciConclusa(List<Prenotazione> prenotazioniDaGestire) {
         LocalDate oggi = LocalDate.now();
         LocalTime oraAttuale = LocalTime.now();
 
@@ -151,7 +151,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         }
     }
 
-    public String trovaNomeLavoratoreByEmail(String email) {
+    protected String trovaNomeLavoratoreByEmail(String email) {
         for (Dogsitter ds : dogsitters) {
             if (ds != null && email.equalsIgnoreCase(ds.getEmail())) {
                 return ds.getNome();
