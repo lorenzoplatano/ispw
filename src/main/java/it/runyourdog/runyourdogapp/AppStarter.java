@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public class AppStarter extends Application {
 
+
     @Override
     public void start(Stage stage)  {
         try {
