@@ -116,7 +116,6 @@ public class ProfiloPadroneGraphicController extends GenericProfiloGraphicContro
         birthArea.setEditable(editing);
         razzaArea.setEditable(editing);
         vaccArea.setEditable(editing);
-        microchipArea.setEditable(editing);
         padNameArea.setEditable(editing);
         indArea.setEditable(editing);
     }
@@ -158,7 +157,6 @@ public class ProfiloPadroneGraphicController extends GenericProfiloGraphicContro
         birthPane.setStyle(editing ? modificaStyle : defaultStyle);
         razzaPane.setStyle(editing ? modificaStyle : defaultStyle);
         vaccPane.setStyle(editing ? modificaStyle : defaultStyle);
-        chipPane.setStyle(editing ? modificaStyle : defaultStyle);
         padNamePane.setStyle(editing ? modificaStyle : defaultStyle);
         indPane.setStyle(editing ? modificaStyle : defaultStyle);
     }
