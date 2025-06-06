@@ -105,7 +105,7 @@ public abstract class GenericPrenotazioneGraphicControllerCLI<P extends ProfiloL
                 Printer.perror(e.getMessage()); continue;
             }
             if (candidates.isEmpty()) {
-                Printer.printf("Nessun professionista disponibile. Torno al menu principale.\n");
+                Printer.printf("Nessun professionista disponibile. Torno al menu.\n");
                 return null;
             }
             PrenotazioneBean result = chooseProfessionista(bean, candidates);

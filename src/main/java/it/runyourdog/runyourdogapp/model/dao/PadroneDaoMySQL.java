@@ -317,33 +317,31 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
 
         try {
 
-            this.cs = this.conn.prepareCall("{call updateProfiloPadrone(?,?,?,?,?,?,?,?,?,?,?)}");
+            this.cs = this.conn.prepareCall("{call updateProfiloPadrone(?,?,?,?,?,?,?,?,?,?)}");
 
             List<String> vaccinazioni = dog.getVaccinazioni();
 
             cs.setString(1, pad.getEmail());
 
-            cs.setString(2, dog.getMicrochip());
+            cs.setString(2, dog.getNome());
 
-            cs.setString(3, dog.getNome());
+            cs.setString(3, dog.getSesso());
 
-            cs.setString(4, dog.getSesso());
+            cs.setDate(4, dog.getDataNascita());
 
-            cs.setDate(5, dog.getDataNascita());
-
-            cs.setString(6, dog.getRazza());
+            cs.setString(5, dog.getRazza());
 
             String vaccinazioniStr = String.join(",", vaccinazioni);
 
-            cs.setString(7, vaccinazioniStr);
+            cs.setString(6, vaccinazioniStr);
 
-            cs.setString(8, pad.getNome());
+            cs.setString(7, pad.getNome());
 
-            cs.setString(9, pad.getTelefono());
+            cs.setString(8, pad.getTelefono());
 
-            cs.setString(10, pad.getIndirizzo());
+            cs.setString(9, pad.getIndirizzo());
 
-            cs.setString(11, pad.getCitta());
+            cs.setString(10, pad.getCitta());
 
             cs.execute();
 
