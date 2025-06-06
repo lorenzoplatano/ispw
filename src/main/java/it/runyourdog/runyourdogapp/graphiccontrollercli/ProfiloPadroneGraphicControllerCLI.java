@@ -130,6 +130,7 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
                 String sesso       = promptString("Sesso del cane (M/F)", profilo.getSessoCane(), scanner).toUpperCase();
                 newProfilo.setSessoCane(sesso);
 
+                newProfilo.setMicrochip(profilo.getMicrochip());
 
                 List<String> vaccinazioni = promptVaccinazioni(profilo.getVaccinazioniCane(), scanner);
                 newProfilo.setVaccinazioniCane(vaccinazioni);

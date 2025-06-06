@@ -19,7 +19,7 @@ public class DaoFactoryCSV extends DaoFactory {
     public PadroneDao getPadroneDao() {
         //se DAO_TYPE = CSV
         //allora utilizzo le DAO MySQL di Padrone, Veterinario e Dogsitter
-        //e utilizzo  le DAO CSV per le UnloggedUser e LoggedUser
+        //e utilizzo  le DAO CSV per le UnloggedUser e LoggedUser (uniche due implementate in CSV)
         return new PadroneDaoMySQL();
     }
 
@@ -27,7 +27,7 @@ public class DaoFactoryCSV extends DaoFactory {
     public DogsitterDao getDogsitterDao() {
         //se DAO_TYPE = CSV
         //allora utilizzo le DAO MySQL di Padrone, Veterinario e Dogsitter
-        //e utilizzo  le DAO CSV per le UnloggedUser e LoggedUser
+        //e utilizzo  le DAO CSV per le UnloggedUser e LoggedUser (uniche due implementate in CSV)
         return new DogsitterDaoMySQL();
     }
 
@@ -35,7 +35,7 @@ public class DaoFactoryCSV extends DaoFactory {
     public VeterinarioDao getVeterinarioDao() {
         //se DAO_TYPE = CSV
         //allora utilizzo le DAO MySQL di Padrone, Veterinario e Dogsitter
-        //e utilizzo  le DAO CSV per le UnloggedUser e LoggedUser
+        //e utilizzo  le DAO CSV per le UnloggedUser e LoggedUser (uniche due implementate in CSV)
         return new VeterinarioDaoMySQL();
     }
 }

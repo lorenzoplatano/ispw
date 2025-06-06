@@ -34,7 +34,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         p.setCitta("Roma");
         padroni.add(p);
 
-        Dog d = new Dog("Fido", "M", "Labrador", "000111222", Date.valueOf("2020-01-01"), List.of("Vacc1", "Vacc2"));
+        Dog d = new Dog("Fido", "M", "Labrador", "1", Date.valueOf("2020-01-01"), List.of("Vacc1", "Vacc2"));
         dogs.add(d);
         p.setCane(d);
 
