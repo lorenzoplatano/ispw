@@ -5,8 +5,8 @@ import it.runyourdog.runyourdogapp.model.entities.User;
 
 public interface UnloggedUserDao {
 
-    public User loginProcedure(User user) throws DAOException;
-    public boolean emailCheck(User newUser) throws DAOException;
+    User loginProcedure(User user) throws DAOException;
+    boolean emailCheck(User newUser) throws DAOException;
 
 
 }
