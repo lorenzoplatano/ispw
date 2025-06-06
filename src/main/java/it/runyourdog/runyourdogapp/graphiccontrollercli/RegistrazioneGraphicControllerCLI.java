@@ -11,7 +11,6 @@ import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.exceptions.RoleException;
 import it.runyourdog.runyourdogapp.utils.Printer;
 
-import javax.security.auth.login.CredentialException;
 import java.util.Scanner;
 
 public class RegistrazioneGraphicControllerCLI extends GenericGraphicControllerCLI{

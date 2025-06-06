@@ -6,7 +6,7 @@ import java.sql.Time;
 
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.pattern.observer.Subject;
-import it.runyourdog.runyourdogapp.utils.Printer;
+
 import it.runyourdog.runyourdogapp.utils.Validator;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
