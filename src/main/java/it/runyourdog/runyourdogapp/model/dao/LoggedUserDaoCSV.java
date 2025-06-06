@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LoggedUserDaoCSV implements LoggedUserDao {
 
-    private static final String CSV = "RunYourDog-App/src/main/resources/it/runyourdog/runyourdogapp/CSV/LoggedUser.csv";
+    private static final String CSV = "src/main/resources/it/runyourdog/runyourdogapp/CSV/LoggedUser.csv";
 
     @Override
     public void acceptReservation(Prenotazione prenotazione) throws DAOException {
