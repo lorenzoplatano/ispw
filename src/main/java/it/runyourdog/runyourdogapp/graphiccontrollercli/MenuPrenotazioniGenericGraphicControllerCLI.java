@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
+import it.runyourdog.runyourdogapp.appcontroller.GestisciPrenotazioneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -15,7 +15,7 @@ public abstract class MenuPrenotazioniGenericGraphicControllerCLI extends Generi
 
     protected final Scanner scanner = new Scanner(System.in);
 
-    PrenotazioneController controller;
+    GestisciPrenotazioneController controller;
 
     protected void displayActions(List<ReservationState> states) {
         Printer.printf("Seleziona uno dei seguenti stati per la prenotazione scelta:");

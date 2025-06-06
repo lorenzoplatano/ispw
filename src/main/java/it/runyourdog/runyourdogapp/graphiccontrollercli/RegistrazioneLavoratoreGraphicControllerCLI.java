@@ -115,14 +115,23 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
                     "Venerdì", "Sabato", "Domenica"
             };
             for (String giorno : giorniSettimana) {
-                Printer.printf("Vuoi inserire uno o più orari per " + giorno + "? (s/n):");
-                if (scanner.nextLine().trim().equalsIgnoreCase("s")) {
-                    boolean aggiungiAltri = true;
-                    while (aggiungiAltri) {
-                        Orario orario = inserisciOrarioValidoPerGiorno(giorno, scanner);
-                        orariSettimana.add(orario);
-                        Printer.printf("Vuoi aggiungere un altro orario per " + giorno + "? (s/n):");
-                        aggiungiAltri = scanner.nextLine().trim().equalsIgnoreCase("s");
+                while (true) {
+                    Printer.printf("Vuoi inserire uno o più orari per " + giorno + "? (s/n):");
+                    String risposta = scanner.nextLine().trim().toLowerCase();
+                    if (risposta.equals("s")) {
+                        boolean aggiungiAltri = true;
+                        while (aggiungiAltri) {
+                            Orario orario = inserisciOrarioValidoPerGiorno(giorno, scanner);
+                            orariSettimana.add(orario);
+                            Printer.printf("Vuoi aggiungere un altro orario per " + giorno + "? (s/n):");
+                            String altraRisposta = scanner.nextLine().trim().toLowerCase();
+                            aggiungiAltri = altraRisposta.equals("s");
+                        }
+                        break;
+                    } else if (risposta.equals("n")) {
+                        break;
+                    } else {
+                        Printer.perror("Risposta non valida. Inserisci 's' per sì o 'n' per no.");
                     }
                 }
             }

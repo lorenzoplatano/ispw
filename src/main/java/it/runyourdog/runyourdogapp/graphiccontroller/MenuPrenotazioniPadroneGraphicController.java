@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
+import it.runyourdog.runyourdogapp.appcontroller.GestisciPrenotazioneController;
 
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneVeterinarioController;
@@ -51,7 +51,7 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
     private Button confermaChoice;
 
 
-    PrenotazioneController controller;
+    GestisciPrenotazioneController controller;
     PrenotazioneBean selected;
 
     public void setController() {

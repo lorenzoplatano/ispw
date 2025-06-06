@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
+import it.runyourdog.runyourdogapp.appcontroller.GestisciPrenotazioneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public abstract class MenuPrenotazioniLavoratoreGraphicControllerCLI extends MenuPrenotazioniGenericGraphicControllerCLI {
 
-    protected abstract PrenotazioneController getController();
+    protected abstract GestisciPrenotazioneController getController();
 
     protected abstract List<PrenotazioneBean> caricaPrenotazioni() throws DAOException, InvalidInputException;
 
@@ -48,7 +48,7 @@ public abstract class MenuPrenotazioniLavoratoreGraphicControllerCLI extends Men
     protected void manageReservations() throws DAOException, InvalidInputException, PersistenceConfigurationException {
         List<PrenotazioneBean> lista = caricaPrenotazioni();
         if (lista.isEmpty()) {
-            Printer.printf("Non ci sono prenotazioni da gestire.%n");
+            Printer.printf("Non ci sono prenotazioni da gestire.\n");
             return;
         }
 
@@ -71,7 +71,7 @@ public abstract class MenuPrenotazioniLavoratoreGraphicControllerCLI extends Men
                     lista = caricaPrenotazioni();
                 }
             } else {
-                Printer.printf("Nessuna azione disponibile per la prenotazione selezionata%n");
+                Printer.printf("Nessuna azione disponibile per la prenotazione selezionata\n");
             }
         }
     }

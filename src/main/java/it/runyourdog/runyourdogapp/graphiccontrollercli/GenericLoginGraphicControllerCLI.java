@@ -60,8 +60,13 @@ public abstract class GenericLoginGraphicControllerCLI extends GenericGraphicCon
 
         while (true) {
             try {
-                Printer.printf(String.format("(%s)Inserisci Email: ", userLabel));
+                Printer.printf(String.format("(%s)Inserisci Email (oppure premi 0 per tornare al menu): ", userLabel));
                 String email = read.readLine();
+                if ("0".equals(email)) {
+                    Printer.printf("Torno al menu...\n");
+                    showMenu();
+                    return;
+                }
 
                 Printer.printf(String.format("(%s)Inserisci Password: ", userLabel));
                 String password = read.readLine();
@@ -75,7 +80,6 @@ public abstract class GenericLoginGraphicControllerCLI extends GenericGraphicCon
 
                 startProfile(loggedUser);
                 break;
-
 
             } catch (IOException | DAOException | CredentialException | InvalidInputException | PersistenceConfigurationException e) {
                 Printer.perror(e.getMessage());

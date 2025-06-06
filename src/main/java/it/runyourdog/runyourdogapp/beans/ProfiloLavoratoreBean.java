@@ -65,7 +65,7 @@ public abstract class ProfiloLavoratoreBean extends UserBean {
     }
 
     public void setEta(int eta) throws InvalidInputException {
-        if (eta <= 0 || eta > 120)
+        if (eta <= 16 || eta > 100)
             throw new InvalidInputException("Età non valida: " + eta);
         this.eta = eta;
     }

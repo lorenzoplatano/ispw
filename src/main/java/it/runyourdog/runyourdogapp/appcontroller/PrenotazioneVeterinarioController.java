@@ -22,7 +22,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrenotazioneVeterinarioController extends PrenotazioneController {
+public class PrenotazioneVeterinarioController extends GestisciPrenotazioneController {
 
     private final VeterinarioDao veterinarioDao;
 

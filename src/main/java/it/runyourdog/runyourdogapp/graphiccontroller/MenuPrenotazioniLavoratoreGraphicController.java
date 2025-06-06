@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
+import it.runyourdog.runyourdogapp.appcontroller.GestisciPrenotazioneController;
 
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
@@ -29,7 +29,7 @@ public abstract class MenuPrenotazioniLavoratoreGraphicController extends MenuPr
 
     @FXML private Button confermaChoice;
 
-    PrenotazioneController controller;
+    GestisciPrenotazioneController controller;
 
     @Override
     protected void configureAdditionalColumns(){

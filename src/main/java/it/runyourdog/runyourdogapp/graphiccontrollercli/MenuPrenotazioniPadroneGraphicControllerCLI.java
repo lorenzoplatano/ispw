@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
+import it.runyourdog.runyourdogapp.appcontroller.GestisciPrenotazioneController;
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneDogsitterController;
 import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneVeterinarioController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
@@ -25,7 +25,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends MenuPrenotazion
     public MenuPrenotazioniPadroneGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean padrone) throws PersistenceConfigurationException {
         this.loggedUser = loggedUser;
         this.profilo = padrone;
-        this.controller = new PrenotazioneController();
+        this.controller = new GestisciPrenotazioneController();
     }
 
     public void setController() throws PersistenceConfigurationException {
@@ -56,7 +56,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends MenuPrenotazion
             try {
                 switch (choice) {
                     case 1 -> manageReservations();
-                    case 2 -> new ProfiloPadroneGraphicControllerCLI(loggedUser).start();
+                    case 2 -> new ProfiloPadroneGraphicControllerCLI(loggedUser, profilo).start();
                     case 3 -> new PrenotazioneDogsitterGraphicControllerCLI(loggedUser, profilo).start();
                     case 4 -> new PrenotazioneVeterinarioGraphicControllerCLI(loggedUser, profilo).start();
                     case 5 -> new PreloginGraphicControllerCLI().start();
@@ -92,7 +92,7 @@ public class MenuPrenotazioniPadroneGraphicControllerCLI extends MenuPrenotazion
                 List<ReservationState> allowed = getAllowedStates(selected);
 
                 if (allowed.isEmpty()) {
-                    Printer.printf("Nessuna azione disponibile per lo stato attuale%n");
+                    Printer.printf("Nessuna azione disponibile per lo stato attuale\n");
                 } else {
                     boolean conferma = promptYesNo();
                     if (conferma) {

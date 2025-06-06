@@ -21,8 +21,7 @@ public class PadLoginGraphicControllerCLI extends GenericLoginGraphicControllerC
         try {
             ProfiloPadroneBean padrone = controller.getPadProfileInfo(user);
             padrone.setEmail(user.getEmail());
-            ProfiloPadroneGraphicControllerCLI cli = new ProfiloPadroneGraphicControllerCLI(user);
-            cli.setProfiloPadrone(padrone);
+            ProfiloPadroneGraphicControllerCLI cli = new ProfiloPadroneGraphicControllerCLI(user, padrone);
             cli.start();
         } catch (ProfileRetrievalException | InvalidInputException e) {
             Printer.perror(e.getMessage());
