@@ -6,6 +6,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
+import it.runyourdog.runyourdogapp.model.entities.Dog;
 import it.runyourdog.runyourdogapp.utils.Printer;
 import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import it.runyourdog.runyourdogapp.utils.Validator;
@@ -69,6 +70,13 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
             List<String> vaccinazioniList = Validator.pulisciVaccinazioni(vaccinazione);
             Date dataNascita = Date.valueOf(datadinascitaInput);
 
+            RegistrazioneController controller = new RegistrazioneController();
+            ProfiloPadroneBean bean = new ProfiloPadroneBean();
+
+            if(!controller.microchipUnico(new ProfiloPadroneBean(microchipInput))){
+                showError("Microchip già in uso.");
+                return;
+            }
             profiloPadroneBean.setTelefonoPadrone(telefonoInput);
             profiloPadroneBean.setIndirizzoPadrone(indirizzoInput);
             profiloPadroneBean.setNomeCane(nomeCaneInput);
@@ -79,7 +87,7 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
             profiloPadroneBean.setDataNascitaCane(dataNascita);
             profiloPadroneBean.setCittaPadrone(cittaInput);
 
-            new RegistrazioneController().padRegister(profiloPadroneBean);
+            controller.padRegister(profiloPadroneBean);
             SingletonStage.getStage(null).showPadroneHomePage("/it/runyourdog/runyourdogapp/GUI/ProfiloPadrone.fxml", profiloPadroneBean);
 
         } catch (IllegalArgumentException _) {

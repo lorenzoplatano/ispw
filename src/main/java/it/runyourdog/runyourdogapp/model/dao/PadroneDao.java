@@ -27,4 +27,6 @@ public interface PadroneDao {
     void mandaRichiestaVet(Prenotazione richiesta) throws DAOException;
 
     void updatePadrone(Padrone padrone, Dog dog) throws DAOException;
+
+    boolean microchipCheck(Dog dog)throws DAOException;
 }

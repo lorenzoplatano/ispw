@@ -5,6 +5,7 @@ import it.runyourdog.runyourdogapp.beans.ProfiloDogsitterBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
 import it.runyourdog.runyourdogapp.beans.UserBean;
+import it.runyourdog.runyourdogapp.exceptions.DAOException;
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.exceptions.RoleException;
@@ -94,9 +95,9 @@ public class RegistrazioneGraphicController extends GenericGraphicController {
                 }
                 default -> throw new RoleException("Ruolo non valido: " + ruoloStr);
             }
-        } catch (InvalidInputException | CredentialException | RoleException e) {
+        } catch (InvalidInputException | RoleException e) {
             showError(e.getMessage());
-        } catch (IOException | PersistenceConfigurationException e) {
+        } catch (DAOException | IOException | PersistenceConfigurationException e) {
             Printer.perror("Errore: " + e.getMessage());
         }
     }

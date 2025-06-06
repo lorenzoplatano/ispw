@@ -180,4 +180,11 @@ public class PadroneDaoMemory extends LoggedUserDaoMemory implements PadroneDao{
         existingDog.setVaccinazioni(dog.getVaccinazioni());
     }
 
+    @Override
+    public boolean microchipCheck(Dog dog) {
+        String micro = dog.getMicrochip();
+        return dogs.stream()
+                .noneMatch(existingDog -> micro.equalsIgnoreCase(existingDog.getMicrochip()));
+    }
+
 }

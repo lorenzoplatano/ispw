@@ -53,6 +53,10 @@ public class ProfiloPadroneBean extends UserBean {
         super(email, role);
     }
 
+    public ProfiloPadroneBean(String microchip) {
+        this.microchip = microchip;
+    }
+
 
     public String getNomeCane()               { return nomeCane; }
     public String getSessoCane()              { return sessoCane; }

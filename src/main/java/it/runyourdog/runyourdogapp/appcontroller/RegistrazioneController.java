@@ -43,17 +43,15 @@ public class RegistrazioneController {
 
     }
 
-    public boolean emailUnica(UserBean emailUser) throws CredentialException, PersistenceConfigurationException {
+    public boolean emailUnica(UserBean emailUser) throws PersistenceConfigurationException, DAOException {
         String email = emailUser.getEmail();
         User newUser = new User(email);
         boolean res;
 
-        try {
-            UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();
-            res = dao.emailCheck(newUser);
-        } catch (DAOException e) {
-            throw new CredentialException("Errore: " + e.getMessage());
-        }
+
+        UnloggedUserDao dao = DaoFactory.getFactory().getUnloggedUserDao();res = dao.emailCheck(newUser);
+
+
         return res;
     }
 
@@ -167,6 +165,19 @@ public class RegistrazioneController {
         veterinario.setCitta(bean.getCitta());
         veterinario.setTelefono(bean.getTelefono());
         veterinario.setIndirizzo(bean.getIndirizzo());
+    }
+
+    public boolean microchipUnico(ProfiloPadroneBean bean) throws DAOException, PersistenceConfigurationException {
+        String microchip = bean.getMicrochip();
+        Dog dog = new Dog(microchip);
+        boolean res;
+
+
+        PadroneDao dao = DaoFactory.getFactory().getPadroneDao();
+        res = dao.microchipCheck(dog);
+
+
+        return res;
     }
 }
 

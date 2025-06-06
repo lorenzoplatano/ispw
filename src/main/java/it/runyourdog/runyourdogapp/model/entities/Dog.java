@@ -18,6 +18,10 @@ public class Dog {
         this.razza = razza;
     }
 
+    public Dog(String microchip){
+        this.microchip = microchip;
+    }
+
     public Dog(String nome, String sesso, String razza, String microchip, Date dataNascita, List<String> vaccinazioni) {
         this.nome = nome;
         this.sesso = sesso;

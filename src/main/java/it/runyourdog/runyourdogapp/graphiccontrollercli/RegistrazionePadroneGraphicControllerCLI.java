@@ -80,8 +80,18 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 Printer.printf("Inserisci sesso del cane (M/F):");
                 profiloPadroneBean.setSessoCane(scanner.nextLine().trim().toUpperCase());
 
-                Printer.printf("Inserisci microchip del cane:");
-                profiloPadroneBean.setMicrochip(scanner.nextLine().trim());
+                boolean microchipOk = false;
+                while (!microchipOk) {
+                    Printer.printf("Inserisci microchip del cane:");
+                    String microchip = scanner.nextLine().trim();
+                    ProfiloPadroneBean bean = new ProfiloPadroneBean(microchip);
+                    if (!controller.microchipUnico(bean)) {
+                        Printer.perror("Microchip già in uso.");
+                    } else {
+                        profiloPadroneBean.setMicrochip(microchip);
+                        microchipOk = true;
+                    }
+                }
 
                 Printer.printf("Inserisci vaccinazioni separate da virgola (es. Rabbia, Cimurro):");
                 List<String> vaccinazioni;
@@ -101,6 +111,8 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 Printer.perror("Errore: " + e.getMessage());
             } catch (IllegalArgumentException _) {
                 Printer.perror("Formato data non valido. Usa yyyy-MM-dd (es. 2020-05-17).");
+            } catch (DAOException | PersistenceConfigurationException e) {
+                Printer.perror(e.getMessage());
             }
             Printer.perror("Riprova l'inserimento di tutti i dati.\n");
         }
