@@ -238,7 +238,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="infoLabel" layoutX="236.8" layoutY="440.0" prefHeight="27.0" prefWidth="384.0" AnchorPane.leftAnchor="236.8" AnchorPane.rightAnchor="229.5999999999999">
+            <Label fx:id="infoLabel" alignment="CENTER" layoutX="236.8" layoutY="440.0" prefHeight="27.0" prefWidth="384.0" textAlignment="JUSTIFY" AnchorPane.leftAnchor="236.8" AnchorPane.rightAnchor="229.5999999999999">
                <font>
                   <Font size="18.0" />
                </font>

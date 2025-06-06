@@ -8,6 +8,7 @@ import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
 import it.runyourdog.runyourdogapp.exceptions.PersistenceConfigurationException;
 import it.runyourdog.runyourdogapp.model.dao.DogsitterDao;
 
+import it.runyourdog.runyourdogapp.model.entities.Dog;
 import it.runyourdog.runyourdogapp.model.entities.Dogsitter;
 
 import it.runyourdog.runyourdogapp.model.entities.Padrone;
@@ -73,10 +74,12 @@ public class PrenotazioneDogsitterController extends GestisciPrenotazioneControl
 
         Dogsitter dogsitter = new Dogsitter();
         dogsitter.setEmail(request.getPrenotato().getEmail());
+        Dog dog = new Dog(request.getPrenotante().getNomeCane(), request.getPrenotante().getSessoCane(), request.getPrenotante().getRazzaCane(), request.getPrenotante().getMicrochip(), request.getPrenotante().getDataNascitaCane(), request.getPrenotante().getVaccinazioniCane());
 
         Padrone padrone = new Padrone(request.getPrenotante().getEmail());
+        padrone.setNome(request.getPrenotante().getNomePadrone());
 
-        Prenotazione sendingReq = new Prenotazione(data, oraInizio, oraFine, dogsitter, padrone);
+        Prenotazione sendingReq = new Prenotazione(data, oraInizio, oraFine, dogsitter, padrone, dog);
 
 
         padroneDao.mandaRichiesta(sendingReq);
@@ -95,7 +98,9 @@ public class PrenotazioneDogsitterController extends GestisciPrenotazioneControl
 
             bean.setData(d.getData());
             bean.setStato(d.getStato());
-            bean.setId(d.getId());
+            if (d.getId() > 0) {
+                bean.setId(d.getId());
+            }
             bean.setOrarioInizio(d.getOraInizio());
             bean.setOrarioFine(d.getOraFine());
             bean.setTipo(ReservationType.DOGSITTER);

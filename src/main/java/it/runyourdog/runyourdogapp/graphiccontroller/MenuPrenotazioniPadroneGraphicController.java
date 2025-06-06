@@ -29,6 +29,11 @@ import java.util.List;
 public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGenericGraphicController {
 
 
+    private ProfiloPadroneBean profilo;
+
+    public void setProfilo(ProfiloPadroneBean profilo) {
+        this.profilo = profilo;
+    }
 
     @FXML
     private TableColumn<PrenotazioneBean, String> colTipo;
@@ -148,13 +153,13 @@ public class MenuPrenotazioniPadroneGraphicController extends MenuPrenotazioniGe
     @FXML
     private void goToPrenotazione() throws IOException {
 
-        SingletonStage.getStage(null).showPadronePrenotazioneDogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter.fxml",  loggedUser);
+        SingletonStage.getStage(null).showPadronePrenotazioneDogsitterPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter.fxml",  loggedUser, profilo);
     }
 
     @FXML
     private void goToVetPrenotazione() throws IOException {
 
-        SingletonStage.getStage(null).showPadronePrenotazioneVetPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneVeterinario.fxml",  loggedUser);
+        SingletonStage.getStage(null).showPadronePrenotazioneVetPage("/it/runyourdog/runyourdogapp/GUI/PrenotazioneVeterinario.fxml",  loggedUser, profilo);
     }
 
     @FXML

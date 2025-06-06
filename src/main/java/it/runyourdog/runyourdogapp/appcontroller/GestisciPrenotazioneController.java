@@ -10,6 +10,9 @@ import it.runyourdog.runyourdogapp.model.entities.Padrone;
 import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationState;
 import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
+
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +34,9 @@ public class GestisciPrenotazioneController {
             bean.setTipo(d.getTipo());
             bean.setData(d.getData());
             bean.setStato(d.getStato());
-            bean.setId(d.getId());
+            if (d.getId() > 0) {
+                bean.setId(d.getId());
+            }
             bean.setOrarioInizio(d.getOraInizio());
 
             ProfiloLavoratoreBean profilo;
@@ -62,9 +67,14 @@ public class GestisciPrenotazioneController {
 
         int id = selected.getId();
         ReservationType tipo = selected.getTipo();
+        Date data = selected.getData();
+        Time oraInizio = selected.getOrarioInizio();
+
 
 
         Prenotazione prenotazione = new Prenotazione(id, tipo);
+        prenotazione.setData(data);
+        prenotazione.setOraInizio(oraInizio);
 
         LoggedUserDao dao = DaoFactory.getFactory().getLoggedUserDao(identity, tipo);
 

@@ -56,7 +56,7 @@ public abstract class PrenotazioneGenericGraphicController <T extends ProfiloLav
             prenotazioneBean.setData(Date.valueOf(giorno));
             prenotazioneBean.setCitta(city);
             prenotazioneBean.setOrarioInizio(Time.valueOf( inizio + ":00" ));
-            prenotazioneBean.setPrenotante((ProfiloPadroneBean) loggedUser);
+            prenotazioneBean.setPrenotante(profiloPadrone);
 
             if (usaOrarioFine())
                 prenotazioneBean.setOrarioFine(Time.valueOf( fine + ":00" ));

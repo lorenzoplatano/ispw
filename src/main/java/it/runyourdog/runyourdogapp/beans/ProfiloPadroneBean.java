@@ -34,7 +34,9 @@ public class ProfiloPadroneBean extends UserBean {
         setIndirizzoPadrone(datiCane[6]);
         setCittaPadrone(datiCane[7]);
     }
-
+    public ProfiloPadroneBean(String username, String email, String password, Role role) throws InvalidInputException {
+        super(username, email, password, role);
+    }
 
     public ProfiloPadroneBean(String username, String email, String password, String role, String nomePadrone) throws InvalidInputException {
         super(username, email, password, Role.valueOf(role));
@@ -42,6 +44,14 @@ public class ProfiloPadroneBean extends UserBean {
     }
 
     public ProfiloPadroneBean() {}
+
+    public ProfiloPadroneBean(String email, String password, Role role) throws InvalidInputException {
+        super(email, password, role);
+    }
+
+    public ProfiloPadroneBean(String email, Role role) throws InvalidInputException {
+        super(email, role);
+    }
 
 
     public String getNomeCane()               { return nomeCane; }

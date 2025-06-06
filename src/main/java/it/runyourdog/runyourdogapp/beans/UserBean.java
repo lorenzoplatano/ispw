@@ -25,6 +25,17 @@ public class UserBean {
 
     public UserBean() {}
 
+    public UserBean(String email, String password, Role role)throws InvalidInputException {
+        setEmail(email);
+        setPassword(password);
+        setRole(role);
+    }
+
+    public UserBean(String email, Role role)throws InvalidInputException {
+        setEmail(email);
+        setRole(role);
+    }
+
     public String getUsername() {
         return username;
     }

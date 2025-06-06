@@ -36,7 +36,7 @@ public class PrenotazioneVeterinario2GraphicController extends PrenotazioneGener
         SingletonStage.getStage(null)
                 .showPadronePrenotazione3VeterinarioPage(
                         "/it/runyourdog/runyourdogapp/GUI/PrenotazioneVeterinario3.fxml",
-                        loggedUser, bean
+                        loggedUser, bean, profiloPadrone
                 );
     }
 

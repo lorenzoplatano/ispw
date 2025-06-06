@@ -50,7 +50,7 @@ public class PrenotazioneDogsitter2GraphicController extends PrenotazioneGeneric
         SingletonStage.getStage(null)
                 .showPadronePrenotazione3DogsitterPage(
                         "/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter3.fxml",
-                        loggedUser, bean
+                        loggedUser, bean, profiloPadrone
                 );
     }
 

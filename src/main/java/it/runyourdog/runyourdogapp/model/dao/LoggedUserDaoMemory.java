@@ -71,7 +71,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         v.setOrari(defaultOrariV);
         veterinari.add(v);
 
-        Prenotazione p1 = new Prenotazione(1, ReservationType.DOGSITTER);
+        Prenotazione p1 = new Prenotazione(ReservationType.DOGSITTER);
         p1.setStato(ReservationState.ACCETTATA);
         p1.setData(Date.valueOf("2025-06-15"));
         p1.setOraInizio(Time.valueOf("09:00:00"));
@@ -81,7 +81,7 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
         p1.setLavoratore(ds);
         prenotazioni.add(p1);
 
-        Prenotazione p2 = new Prenotazione(2, ReservationType.VETERINARIO);
+        Prenotazione p2 = new Prenotazione( ReservationType.VETERINARIO);
         p2.setStato(ReservationState.IN_ATTESA);
         p2.setData(Date.valueOf("2025-06-05"));
         p2.setOraInizio(Time.valueOf("14:00:00"));
@@ -105,30 +105,33 @@ public class LoggedUserDaoMemory implements LoggedUserDao {
 
     @Override
     public void acceptReservation(Prenotazione prenotazione) throws DAOException {
-        updateStatus(prenotazione.getId(), prenotazione.getTipo(), ReservationState.ACCETTATA);
+        updateStatus(prenotazione.getData(),prenotazione.getOraInizio(), prenotazione.getTipo(), ReservationState.ACCETTATA);
     }
 
     @Override
     public void refuseReservation(Prenotazione prenotazione) throws DAOException {
-        updateStatus(prenotazione.getId(), prenotazione.getTipo(), ReservationState.RIFIUTATA);
+        updateStatus(prenotazione.getData(),prenotazione.getOraInizio(), prenotazione.getTipo(), ReservationState.RIFIUTATA);
     }
 
     @Override
     public void cancelReservation(Prenotazione prenotazione) throws DAOException {
-        updateStatus(prenotazione.getId(), prenotazione.getTipo(), ReservationState.CANCELLATA);
+        updateStatus(prenotazione.getData(),prenotazione.getOraInizio(), prenotazione.getTipo(), ReservationState.CANCELLATA);
     }
 
 
-    private void updateStatus(int id,
+    private void updateStatus(Date data,
+                              Time oraInizio,
                               ReservationType expectedType,
                               ReservationState newState) throws DAOException {
         Optional<Prenotazione> opt = prenotazioni.stream()
-                .filter(p -> p.getId() == id
+                .filter(p -> p.getData().equals(data)
+                        && p.getOraInizio().equals(oraInizio)
                         && p.getTipo() == expectedType)
                 .findFirst();
         if (opt.isEmpty()) {
             throw new DAOException(String.format(
-                    "Prenotazione con id %d e tipo %s non trovata", id, expectedType));
+                    "Prenotazione con data %s, oraInizio %s e tipo %s non trovata",
+                    data, oraInizio, expectedType));
         }
         opt.get().setStato(newState);
     }

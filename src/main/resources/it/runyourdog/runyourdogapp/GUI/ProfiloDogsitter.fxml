@@ -256,7 +256,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="infoLabel" layoutX="269.0" layoutY="408.0" prefHeight="27.0" prefWidth="384.0">
+            <Label fx:id="infoLabel" alignment="CENTER" layoutX="269.0" layoutY="408.0" prefHeight="27.0" prefWidth="384.0" textAlignment="JUSTIFY">
                <font>
                   <Font size="18.0" />
                </font>

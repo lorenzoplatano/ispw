@@ -44,7 +44,7 @@ public class PrenotazioneVeterinarioGraphicController extends PrenotazioneGeneri
     protected void goToPage2(List lista, PrenotazioneBean bean) throws IOException {
         SingletonStage.getStage(null).showPadronePrenotazione2VeterinarioPage(
                 "/it/runyourdog/runyourdogapp/GUI/PrenotazioneVeterinario2.fxml",
-                lista, loggedUser, bean
+                lista, loggedUser, bean, profiloPadrone
         );
     }
 }

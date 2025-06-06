@@ -134,22 +134,24 @@ public abstract class GenericProfiloLavoratoreGraphicController extends GenericP
         doPane.setStyle(editing ? modificaStyle : defaultStyle);
     }
 
-    protected void doUpdate()
-    {
-
+    @Override
+    protected boolean doUpdate() {
         try {
             ProfiloLavoratoreBean updated = creaProfilo();
             aggiorna(updated);
             updated.setEmail(loggedUser.getEmail());
             loggedUser = updated;
             populate(updated);
+            return true;
         } catch (DAOException e) {
             Printer.perror(e.getMessage());
+            showError(e.getMessage());
         } catch (InvalidInputException e) {
             showError(e.getMessage());
         } catch (IllegalArgumentException _) {
             showError("Utilizza un'età valida");
         }
+        return false;
     }
 
     protected List<Orario> creaListaOrari() throws InvalidInputException {

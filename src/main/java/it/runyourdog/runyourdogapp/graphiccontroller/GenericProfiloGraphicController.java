@@ -43,30 +43,38 @@ public abstract class GenericProfiloGraphicController extends GenericGraphicCont
 
     @FXML
     private void onModificaClicked() {
-        editing = !editing;
-
-        name.setEditable(editing);
-        sesso.setEditable(editing);
-        tel.setEditable(editing);
-        cittaProfilo.setEditable(editing);
-        editAdditiveInfo();
-
-        if (editing) {
+        if (!editing) {
+            editing = true;
+            name.setEditable(true);
+            sesso.setEditable(true);
+            tel.setEditable(true);
+            cittaProfilo.setEditable(true);
+            editAdditiveInfo();
             modificaButton.setText("SALVA");
             changeColor();
             infoLabel.setText("Modificare uno o più campi e cliccare su SALVA");
         } else {
-            doUpdate();
-            modificaButton.setText("MODIFICA");
-            changeColor();
-            infoLabel.setText("");
+            boolean success = doUpdate();
+            if (success){
+                editing = false;
+                name.setEditable(false);
+                sesso.setEditable(false);
+                tel.setEditable(false);
+                cittaProfilo.setEditable(false);
+                editAdditiveInfo();
+                modificaButton.setText("MODIFICA");
+                changeColor();
+                infoLabel.setText("");
+            }else {
+                infoLabel.setText("Correggi gli errori e riprova.");
+            }
         }
     }
 
     protected abstract void editAdditiveInfo();
 
 
-    protected abstract void doUpdate();
+    protected abstract boolean doUpdate();
 
     private void changeColor() {
         namePane.setStyle(editing ? modificaStyle : defaultStyle);

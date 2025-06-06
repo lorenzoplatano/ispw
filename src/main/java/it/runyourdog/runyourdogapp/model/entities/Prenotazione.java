@@ -31,6 +31,24 @@ public class Prenotazione {
         this.type = tipo;
     }
 
+    public Prenotazione(Date data, Time oraInizio, Time oraFine, Lavoratore lavoratore, Padrone padrone, Dog cane) {
+        this.data = data;
+        this.oraInizio = oraInizio;
+        this.oraFine = oraFine;
+        this.lavoratore = lavoratore;
+        this.padrone = padrone;
+        this.cane = cane;
+    }
+
+    public Prenotazione(Date data, Time oraInizio, Lavoratore lavoratore, Padrone padrone, Dog cane) {
+        this.data = data;
+        this.oraInizio = oraInizio;
+        this.lavoratore = lavoratore;
+        this.padrone = padrone;
+        this.cane = cane;
+    }
+
+
     public Prenotazione(int id,  ReservationType tipo, Padrone pad, Lavoratore lav, Date data, Time inizio) {
         this.id = id;
         this.type = tipo;

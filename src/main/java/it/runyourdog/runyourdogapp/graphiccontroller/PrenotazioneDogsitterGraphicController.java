@@ -44,7 +44,7 @@ public class PrenotazioneDogsitterGraphicController extends PrenotazioneGenericG
     protected void goToPage2(List lista, PrenotazioneBean bean) throws IOException {
         SingletonStage.getStage(null).showPadronePrenotazione2DogsitterPage(
                 "/it/runyourdog/runyourdogapp/GUI/PrenotazioneDogsitter2.fxml",
-                lista, loggedUser, bean
+                lista, loggedUser, bean, profiloPadrone
         );
     }
 }
