@@ -77,4 +77,5 @@ public abstract class GenericProfiloGraphicController extends GenericGraphicCont
     }
 
     protected abstract void changeOthersColor();
+
 }
