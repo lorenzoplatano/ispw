@@ -354,12 +354,16 @@ public class PadroneDaoMySQL extends LoggedUserDaoMySQL implements PadroneDao{
     @Override
     public boolean microchipCheck(Dog dog) throws DAOException {
         String micro = dog.getMicrochip();
+        int result;
         try {
-            this.cs = this.conn.prepareCall("{call microchipCheck(?)}");
+            this.cs = this.conn.prepareCall("{call microchipCheck(?, ?)}");
             cs.setString(1, micro);
+            this.cs.registerOutParameter(2, Types.INTEGER);
+            this.cs.executeQuery();
+            result = this.cs.getInt(2);
         } catch (SQLException e) {
             throw new DAOException("Errore durante il check dell'unicità del microchip: " + e.getMessage());
         }
-        return false;
+        return (result == 0);
     }
 }
