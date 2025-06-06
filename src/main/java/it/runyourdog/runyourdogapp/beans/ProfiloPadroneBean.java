@@ -3,6 +3,7 @@ package it.runyourdog.runyourdogapp.beans;
 import it.runyourdog.runyourdogapp.utils.Validator;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import it.runyourdog.runyourdogapp.exceptions.InvalidInputException;
@@ -82,13 +83,16 @@ public class ProfiloPadroneBean extends UserBean {
     public void setDataNascitaCane(Date dataNascitaCane) throws InvalidInputException {
         if (dataNascitaCane == null)
             throw new InvalidInputException("La data di nascita del cane è obbligatoria.");
+        LocalDate oggi = LocalDate.now();
+        LocalDate dataNascita = dataNascitaCane.toLocalDate();
+        if (dataNascita.isAfter(oggi)) {
+            throw new InvalidInputException("La data di nascita del cane non può essere nel futuro.");
+        }
         this.dataNascitaCane = dataNascitaCane;
     }
 
-    public void setVaccinazioniCane(List<String> vaccinazioniCane) throws InvalidInputException {
-        if (vaccinazioniCane == null || vaccinazioniCane.isEmpty())
-            throw new InvalidInputException("Almeno una vaccinazione è obbligatoria.");
-        this.vaccinazioniCane = vaccinazioniCane;
+    public void setVaccinazioniCane(List<String> vaccinazioniCane) {
+        this.vaccinazioniCane = (vaccinazioniCane == null) ? List.of() : vaccinazioniCane;
     }
 
     public void setNomePadrone(String nomePadrone) throws InvalidInputException {

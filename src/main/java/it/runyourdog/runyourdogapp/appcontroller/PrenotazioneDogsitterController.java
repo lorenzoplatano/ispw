@@ -21,7 +21,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrenotazioneDogsitterController extends PrenotazioneController{
+public class PrenotazioneDogsitterController extends GestisciPrenotazioneController {
 
 
     private final DogsitterDao dogsitterDao;

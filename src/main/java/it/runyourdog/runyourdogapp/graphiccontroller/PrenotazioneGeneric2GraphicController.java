@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
+import it.runyourdog.runyourdogapp.appcontroller.GestisciPrenotazioneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloVeterinarioBean;
@@ -95,7 +95,7 @@ public abstract class PrenotazioneGeneric2GraphicController extends ProfiloPadro
     protected abstract void mandaRichiesta(PrenotazioneBean prenotazioneBean) throws DAOException;
 
 
-    protected abstract PrenotazioneController getController();
+    protected abstract GestisciPrenotazioneController getController();
 
 
     protected abstract void goToPage3(PrenotazioneBean bean) throws IOException;

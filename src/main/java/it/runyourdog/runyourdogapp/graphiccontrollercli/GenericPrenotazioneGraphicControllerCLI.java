@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp.graphiccontrollercli;
 
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
+import it.runyourdog.runyourdogapp.appcontroller.GestisciPrenotazioneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloLavoratoreBean;
 import it.runyourdog.runyourdogapp.beans.ProfiloPadroneBean;
@@ -19,7 +19,7 @@ import java.util.Scanner;
 public abstract class GenericPrenotazioneGraphicControllerCLI<P extends ProfiloLavoratoreBean, C extends ProfiloLavoratoreBean> extends ProfiloPadroneGraphicControllerCLI {
 
 
-    protected final PrenotazioneController controller;
+    protected final GestisciPrenotazioneController controller;
 
     protected static final Scanner scanner = new Scanner(System.in);
 
@@ -31,9 +31,8 @@ public abstract class GenericPrenotazioneGraphicControllerCLI<P extends ProfiloL
 
 
     protected GenericPrenotazioneGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean padrone,
-                                                   PrenotazioneController controller) {
-        super(loggedUser);
-        this.profilo = padrone;
+                                                   GestisciPrenotazioneController controller) {
+        super(loggedUser, padrone);
         this.controller = controller;
     }
 
@@ -62,7 +61,7 @@ public abstract class GenericPrenotazioneGraphicControllerCLI<P extends ProfiloL
             try {
                 switch (choice) {
                     case 1 -> startBooking();
-                    case 2 -> new ProfiloPadroneGraphicControllerCLI(loggedUser).start();
+                    case 2 -> new ProfiloPadroneGraphicControllerCLI(loggedUser, profilo).start();
                     case 3 -> new MenuPrenotazioniPadroneGraphicControllerCLI(loggedUser, profilo).start();
                     case 4 -> crossBooking().start();
                     case 5 -> new PreloginGraphicControllerCLI().start();
@@ -120,7 +119,7 @@ public abstract class GenericPrenotazioneGraphicControllerCLI<P extends ProfiloL
         LocalDate today = LocalDate.now();
         while (true) {
             try {
-                Printer.printf(String.format("Inserisci la città in cui cerchi il %s:", getSectionTitle().contains(VET_KEYWORD) ? DOG_KEYWORD : "Veterinario"));
+                Printer.printf(String.format("Inserisci la città in cui cerchi il %s:", getSectionTitle().contains(VET_KEYWORD) ?  "Veterinario" : DOG_KEYWORD));
                 bean.setCitta(scanner.nextLine());
                 Printer.printf("Inserisci la data della prenotazione (YYYY-MM-DD):");
                 LocalDate date = LocalDate.parse(scanner.nextLine());
@@ -146,7 +145,7 @@ public abstract class GenericPrenotazioneGraphicControllerCLI<P extends ProfiloL
 
     private PrenotazioneBean chooseProfessionista(PrenotazioneBean bean,
                                                   List<P> list) {
-        Printer.printf(String.format("%s trovati:", getSectionTitle().contains(VET_KEYWORD) ? DOG_KEYWORD : "Veterinari"));
+        Printer.printf(String.format("%s trovati:", getSectionTitle().contains(VET_KEYWORD) ? "Veterinari" : DOG_KEYWORD));
         for (int i = 0; i < list.size(); i++) {
             Printer.printf(String.format("%d) %s", i+1, formatProfilo(list.get(i))));
         }

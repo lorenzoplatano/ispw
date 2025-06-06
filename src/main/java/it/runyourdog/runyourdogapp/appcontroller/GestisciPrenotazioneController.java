@@ -13,11 +13,11 @@ import it.runyourdog.runyourdogapp.utils.enumeration.ReservationType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrenotazioneController {
+public class GestisciPrenotazioneController {
 
     protected final PadroneDao padroneDao;
 
-    public PrenotazioneController() throws PersistenceConfigurationException {
+    public GestisciPrenotazioneController() throws PersistenceConfigurationException {
         this.padroneDao = DaoFactory.getFactory().getPadroneDao();
     }
 

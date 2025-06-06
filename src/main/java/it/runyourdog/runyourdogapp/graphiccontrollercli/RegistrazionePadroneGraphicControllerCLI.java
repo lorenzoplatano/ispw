@@ -37,8 +37,7 @@ public class RegistrazionePadroneGraphicControllerCLI extends RegistrazioneGraph
                 switch (choice) {
                     case 1:
                         UserBean user = this.registerPad(profiloPadroneBean);
-                        ProfiloPadroneGraphicControllerCLI cli = new ProfiloPadroneGraphicControllerCLI(user);
-                        cli.setProfiloPadrone(profiloPadroneBean);
+                        ProfiloPadroneGraphicControllerCLI cli = new ProfiloPadroneGraphicControllerCLI(user, profiloPadroneBean);
                         cli.start();
                         break;
 

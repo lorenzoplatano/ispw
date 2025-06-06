@@ -1,6 +1,6 @@
 package it.runyourdog.runyourdogapp.graphiccontroller;
 
-import it.runyourdog.runyourdogapp.appcontroller.PrenotazioneController;
+import it.runyourdog.runyourdogapp.appcontroller.GestisciPrenotazioneController;
 
 import it.runyourdog.runyourdogapp.appcontroller.RegistrazioneController;
 import it.runyourdog.runyourdogapp.beans.PrenotazioneBean;
@@ -81,7 +81,7 @@ public class ProfiloPadroneGraphicController extends GenericProfiloGraphicContro
         try {
             ProfiloPadroneBean padrone = new ProfiloPadroneBean();
             padrone.setEmail(loggedUser.getEmail());
-            PrenotazioneController controller = new PrenotazioneController();
+            GestisciPrenotazioneController controller = new GestisciPrenotazioneController();
             List<PrenotazioneBean> list = controller.mostraPrenotazioni(padrone);
 
             SingletonStage.getStage(null).showPadroneReservationMenu("/it/runyourdog/runyourdogapp/GUI/MenuPrenotazioniPadrone.fxml", loggedUser, list);

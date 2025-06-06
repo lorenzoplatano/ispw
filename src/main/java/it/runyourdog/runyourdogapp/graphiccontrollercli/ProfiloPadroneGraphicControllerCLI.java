@@ -20,12 +20,9 @@ public class ProfiloPadroneGraphicControllerCLI extends GenericProfiloGraphicCon
 
     protected ProfiloPadroneBean profilo;
 
-    public void setProfiloPadrone(ProfiloPadroneBean profilo) {
-        this.profilo = profilo;
-    }
-
-    public ProfiloPadroneGraphicControllerCLI(UserBean loggedUser) {
+    public ProfiloPadroneGraphicControllerCLI(UserBean loggedUser, ProfiloPadroneBean profilo) {
         this.loggedUser = loggedUser;
+        this.profilo = profilo;
     }
 
 
