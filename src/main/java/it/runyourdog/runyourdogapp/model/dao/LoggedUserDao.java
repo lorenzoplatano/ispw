@@ -5,7 +5,7 @@ import it.runyourdog.runyourdogapp.model.entities.Prenotazione;
 
 public interface LoggedUserDao {
 
-    public void acceptReservation(Prenotazione prenotazione) throws DAOException;
-    public void refuseReservation(Prenotazione prenotazione) throws DAOException;
-    public void cancelReservation(Prenotazione prenotazione)throws DAOException;
+    void acceptReservation(Prenotazione prenotazione) throws DAOException;
+    void refuseReservation(Prenotazione prenotazione) throws DAOException;
+    void cancelReservation(Prenotazione prenotazione)throws DAOException;
 }
