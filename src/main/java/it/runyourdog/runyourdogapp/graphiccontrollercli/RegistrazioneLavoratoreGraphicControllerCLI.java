@@ -108,32 +108,15 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
     private List<Orario> collectOrari(Scanner scanner) {
         List<Orario> orariSettimana;
         boolean orariValidi = false;
+        String[] giorniSettimana = {
+                "Lunedì", "Martedì", "Mercoledì", "Giovedì",
+                "Venerdì", "Sabato", "Domenica"
+        };
+
         do {
             orariSettimana = new ArrayList<>();
-            String[] giorniSettimana = {
-                    "Lunedì", "Martedì", "Mercoledì", "Giovedì",
-                    "Venerdì", "Sabato", "Domenica"
-            };
             for (String giorno : giorniSettimana) {
-                while (true) {
-                    Printer.printf("Vuoi inserire uno o più orari per " + giorno + "? (s/n):");
-                    String risposta = scanner.nextLine().trim().toLowerCase();
-                    if (risposta.equals("s")) {
-                        boolean aggiungiAltri = true;
-                        while (aggiungiAltri) {
-                            Orario orario = inserisciOrarioValidoPerGiorno(giorno, scanner);
-                            orariSettimana.add(orario);
-                            Printer.printf("Vuoi aggiungere un altro orario per " + giorno + "? (s/n):");
-                            String altraRisposta = scanner.nextLine().trim().toLowerCase();
-                            aggiungiAltri = altraRisposta.equals("s");
-                        }
-                        break;
-                    } else if (risposta.equals("n")) {
-                        break;
-                    } else {
-                        Printer.perror("Risposta non valida. Inserisci 's' per sì o 'n' per no.");
-                    }
-                }
+                aggiungiOrariPerGiorno(giorno, scanner, orariSettimana);
             }
             try {
                 profiloLavoratoreBean.setOrari(orariSettimana);
@@ -146,6 +129,28 @@ public abstract class RegistrazioneLavoratoreGraphicControllerCLI extends Regist
         return orariSettimana;
     }
 
+    private void aggiungiOrariPerGiorno(String giorno, Scanner scanner, List<Orario> orariSettimana) {
+        boolean rispostaValida = false;
+        while (!rispostaValida) {
+            Printer.printf("Vuoi inserire uno o più orari per " + giorno + "? (s/n):");
+            String risposta = scanner.nextLine().trim().toLowerCase();
+            if ("s".equals(risposta)) {
+                rispostaValida = true;
+                boolean aggiungiAltri;
+                do {
+                    Orario orario = inserisciOrarioValidoPerGiorno(giorno, scanner);
+                    orariSettimana.add(orario);
+                    Printer.printf("Vuoi aggiungere un altro orario per " + giorno + "? (s/n):");
+                    String altraRisposta = scanner.nextLine().trim().toLowerCase();
+                    aggiungiAltri = "s".equals(altraRisposta);
+                } while (aggiungiAltri);
+            } else if ("n".equals(risposta)) {
+                rispostaValida = true;
+            } else {
+                Printer.perror("Risposta non valida. Inserisci 's' per sì o 'n' per no.");
+            }
+        }
+    }
 
 
     protected abstract UserBean completaRegistrazioneLavoratore(ProfiloLavoratoreBean bean) throws InvalidInputException;
