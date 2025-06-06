@@ -71,7 +71,6 @@ public class RegistrazionePadroneGraphicController extends RegistrazioneGraphicC
             Date dataNascita = Date.valueOf(datadinascitaInput);
 
             RegistrazioneController controller = new RegistrazioneController();
-            ProfiloPadroneBean bean = new ProfiloPadroneBean();
 
             if(!controller.microchipUnico(new ProfiloPadroneBean(microchipInput))){
                 showError("Microchip già in uso.");

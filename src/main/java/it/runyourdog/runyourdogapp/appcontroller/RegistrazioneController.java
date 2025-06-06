@@ -8,7 +8,7 @@ import it.runyourdog.runyourdogapp.model.dao.*;
 import it.runyourdog.runyourdogapp.model.entities.*;
 import it.runyourdog.runyourdogapp.utils.enumeration.Role;
 
-import javax.security.auth.login.CredentialException;
+
 import java.sql.Date;
 import java.util.List;
 
