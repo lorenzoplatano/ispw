@@ -80,7 +80,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <TableView fx:id="reservationTable" layoutX="199.0" layoutY="94.0" prefHeight="288.0" prefWidth="630.0" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="199.39999999999986">
+            <TableView fx:id="reservationTable" layoutX="200.8" layoutY="94.0" prefHeight="288.0" prefWidth="627.0" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="199.39999999999986">
                <columns>
                   <TableColumn fx:id="colData" prefWidth="95.0" text="Data" />
                   <TableColumn fx:id="colOraInizio" prefWidth="95.0" text="Ora Inizio" />

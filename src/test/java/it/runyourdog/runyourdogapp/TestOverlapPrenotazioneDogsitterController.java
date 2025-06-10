@@ -51,7 +51,7 @@ class TestOverlapPrenotazioneDogsitterController {
         bean.setPrenotante(padrone);
 
         bean.setData(Date.valueOf("2024-07-02"));
-        bean.setOrarioInizio(Time.valueOf("10:00:00")); // Sovrapposto con 09:00-11:00
+        bean.setOrarioInizio(Time.valueOf("10:00:00"));
         bean.setOrarioFine(Time.valueOf("12:00:00"));
 
         Assertions.assertThrows(
@@ -70,7 +70,7 @@ class TestOverlapPrenotazioneDogsitterController {
         bean.setPrenotante(padrone);
 
         bean.setData(Date.valueOf("2024-07-02"));
-        bean.setOrarioInizio(Time.valueOf("12:00:00")); // Non sovrapposto
+        bean.setOrarioInizio(Time.valueOf("12:00:00"));
         bean.setOrarioFine(Time.valueOf("13:00:00"));
 
         Assertions.assertDoesNotThrow(() -> controller.validateNoOverlap(bean));
