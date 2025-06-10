@@ -176,7 +176,6 @@ public class RegistrazioneController {
         PadroneDao dao = DaoFactory.getFactory().getPadroneDao();
         res = dao.microchipCheck(dog);
 
-
         return res;
     }
 }
