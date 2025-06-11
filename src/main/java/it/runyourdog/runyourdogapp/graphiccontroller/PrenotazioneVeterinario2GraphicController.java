@@ -14,6 +14,7 @@ import it.runyourdog.runyourdogapp.utils.SingletonStage;
 import java.io.IOException;
 import java.util.List;
 
+
 public class PrenotazioneVeterinario2GraphicController extends PrenotazioneGeneric2GraphicController {
 
     @Override
